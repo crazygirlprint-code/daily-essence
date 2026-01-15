@@ -112,8 +112,8 @@ function LayoutContent({ children, currentPageName }) {
                         className={cn(
                           'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
                           isActive
-                            ? 'bg-gradient-to-r from-amber-50 to-stone-50 text-amber-700 border border-amber-200/50'
-                            : 'text-slate-600 hover:bg-stone-50'
+                            ? 'bg-gradient-to-r from-amber-50 to-stone-50 dark:from-neutral-800 dark:to-neutral-800 text-amber-700 dark:text-amber-400 border border-amber-200/50 dark:border-neutral-700'
+                            : 'text-slate-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-neutral-800'
                         )}
                       >
                         <Icon className={cn('w-5 h-5', isActive && 'text-amber-600')} />
