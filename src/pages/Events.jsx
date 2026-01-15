@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, isSameDay, addMonths, subMonths, parseISO } from 'date-fns';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Plus, Gift, Heart, Calendar as CalIcon, Star, Trash2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Gift, Heart, Calendar as CalIcon, Star, Trash2, Pencil } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -40,6 +40,7 @@ export default function Events() {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [isPremium, setIsPremium] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(null);
   const [newEvent, setNewEvent] = useState({
     title: '',
     date: format(new Date(), 'yyyy-MM-dd'),
@@ -83,6 +84,24 @@ export default function Events() {
     }
   });
   
+  const updateMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.SpecialEvent.update(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['specialEvents'] });
+      setIsAddOpen(false);
+      setEditingEvent(null);
+      setNewEvent({
+        title: '',
+        date: format(new Date(), 'yyyy-MM-dd'),
+        type: 'other',
+        notes: '',
+        emoji: '',
+        recurring_yearly: false,
+        color: ''
+      });
+    }
+  });
+
   const deleteMutation = useMutation({
     mutationFn: (id) => base44.entities.SpecialEvent.delete(id),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['specialEvents'] })
@@ -328,14 +347,24 @@ export default function Events() {
                       )}
                     </div>
                     <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ShareButton item={event} itemType="event" />
-                      <button
-                        onClick={() => deleteMutation.mutate(event.id)}
-                        className="p-2 hover:bg-red-50 rounded-lg transition-all"
-                      >
-                        <Trash2 className="w-4 h-4 text-red-400" />
-                      </button>
-                    </div>
+                       <ShareButton item={event} itemType="event" />
+                       <button
+                         onClick={() => {
+                           setEditingEvent(event);
+                           setNewEvent(event);
+                           setIsAddOpen(true);
+                         }}
+                         className="p-2 hover:bg-blue-50 rounded-lg transition-all"
+                       >
+                         <Pencil className="w-4 h-4 text-blue-400" />
+                       </button>
+                       <button
+                         onClick={() => deleteMutation.mutate(event.id)}
+                         className="p-2 hover:bg-red-50 rounded-lg transition-all"
+                       >
+                         <Trash2 className="w-4 h-4 text-red-400" />
+                       </button>
+                     </div>
                   </motion.div>
                 );
               })}
@@ -344,11 +373,25 @@ export default function Events() {
         </div>
       </div>
       
-      {/* Add Event Dialog */}
-      <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
+      {/* Add/Edit Event Dialog */}
+      <Dialog open={isAddOpen} onOpenChange={(open) => {
+        setIsAddOpen(open);
+        if (!open) {
+          setEditingEvent(null);
+          setNewEvent({
+            title: '',
+            date: format(new Date(), 'yyyy-MM-dd'),
+            type: 'other',
+            notes: '',
+            emoji: '',
+            recurring_yearly: false,
+            color: ''
+          });
+        }
+      }}>
         <DialogContent className="rounded-3xl">
           <DialogHeader>
-            <DialogTitle>Add Special Event</DialogTitle>
+            <DialogTitle>{editingEvent ? 'Edit Special Event' : 'Add Special Event'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <Input
@@ -414,11 +457,17 @@ export default function Events() {
             </div>
             
             <Button
-              onClick={() => createMutation.mutate(newEvent)}
+              onClick={() => {
+                if (editingEvent) {
+                  updateMutation.mutate({ id: editingEvent.id, data: newEvent });
+                } else {
+                  createMutation.mutate(newEvent);
+                }
+              }}
               disabled={!newEvent.title.trim() || !newEvent.date}
               className="w-full rounded-xl h-12 bg-gradient-to-r from-indigo-500 to-purple-500"
             >
-              Save Event
+              {editingEvent ? 'Update Event' : 'Save Event'}
             </Button>
           </div>
         </DialogContent>
