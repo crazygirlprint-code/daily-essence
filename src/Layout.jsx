@@ -23,6 +23,7 @@ const navItems = [
   { name: 'Budget', page: 'Budget', icon: Sparkles },
   { name: 'Family', page: 'Family', icon: Users },
   { name: 'Progress', page: 'Progress', icon: Trophy },
+  { name: 'Profile', page: 'Profile', icon: Users },
   { name: 'Pricing', page: 'Pricing', icon: Star },
 ];
 
