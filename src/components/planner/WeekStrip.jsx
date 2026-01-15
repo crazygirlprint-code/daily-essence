@@ -3,13 +3,19 @@ import { motion } from 'framer-motion';
 import { format, addDays, startOfWeek, isToday, isSameDay } from 'date-fns';
 import { cn } from '@/lib/utils';
 
+const getWeatherIcon = (dayIndex) => {
+  // Simple mock weather - in production, fetch from API
+  const weather = ['☀️', '⛅', '🌤️', '☁️', '🌧️', '⛅', '☀️'];
+  return weather[dayIndex % 7];
+};
+
 export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {} }) {
   const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   
   return (
     <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
-      {days.map((day) => {
+      {days.map((day, index) => {
         const dateKey = format(day, 'yyyy-MM-dd');
         const taskCount = tasksByDate[dateKey] || 0;
         const isSelected = isSameDay(day, selectedDate);
@@ -21,42 +27,45 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
             onClick={() => onDateSelect(day)}
             whileTap={{ scale: 0.95 }}
             className={cn(
-              'relative flex flex-col items-center min-w-[4rem] py-3 px-2 rounded-2xl transition-all',
+              'relative flex flex-col items-center min-w-[4.5rem] py-3 px-2 rounded-lg transition-all',
               isSelected
-                ? 'bg-gradient-to-b from-rose-400 to-rose-500 text-white shadow-lg shadow-rose-200'
+                ? 'bg-neutral-900 text-stone-100 shadow-lg'
                 : today
-                  ? 'bg-rose-50 text-rose-600 border-2 border-rose-200'
-                  : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
+                  ? 'bg-amber-100/50 text-neutral-900 border border-amber-300/50'
+                  : 'bg-white text-stone-700 hover:bg-stone-50 border border-stone-300'
             )}
           >
+            <span className="text-lg mb-0.5">
+              {getWeatherIcon(index)}
+            </span>
             <span className={cn(
-              'text-xs font-medium uppercase',
-              isSelected ? 'text-white/80' : 'text-slate-400'
+              'text-[9px] font-medium uppercase tracking-widest mb-0.5',
+              isSelected ? 'text-stone-400' : 'text-stone-500'
             )}>
               {format(day, 'EEE')}
             </span>
-            <span className="text-xl font-bold mt-1">
+            <span className="text-xl font-serif">
               {format(day, 'd')}
             </span>
             {taskCount > 0 && (
               <div className={cn(
-                'flex gap-0.5 mt-2',
+                'flex gap-0.5 mt-1.5',
               )}>
-                {Array.from({ length: Math.min(taskCount, 4) }).map((_, i) => (
+                {Array.from({ length: Math.min(taskCount, 3) }).map((_, i) => (
                   <span
                     key={i}
                     className={cn(
                       'w-1 h-1 rounded-full',
-                      isSelected ? 'bg-white/60' : 'bg-rose-400'
+                      isSelected ? 'bg-amber-400' : 'bg-amber-600'
                     )}
                   />
                 ))}
-                {taskCount > 4 && (
+                {taskCount > 3 && (
                   <span className={cn(
-                    'text-[10px] ml-0.5',
-                    isSelected ? 'text-white/60' : 'text-rose-400'
+                    'text-[9px] ml-0.5 font-serif',
+                    isSelected ? 'text-amber-400' : 'text-amber-600'
                   )}>
-                    +{taskCount - 4}
+                    +{taskCount - 3}
                   </span>
                 )}
               </div>
