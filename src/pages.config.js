@@ -11,6 +11,7 @@ import Pricing from './pages/Pricing';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
 import Profile from './pages/Profile';
+import Activities from './pages/Activities';
 import __Layout from './Layout.jsx';
 
 
@@ -28,6 +29,7 @@ export const PAGES = {
     "Progress": Progress,
     "SelfCare": SelfCare,
     "Profile": Profile,
+    "Activities": Activities,
 }
 
 export const pagesConfig = {
