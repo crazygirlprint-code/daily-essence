@@ -146,14 +146,10 @@ export default function Home() {
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
         <DayHeader date={selectedDate} userName={user?.full_name} />
         
-        {/* Stats Header */}
-        <StatsHeader
-          points={progress.points || 0}
-          level={progress.level || 1}
-          progressPercent={getProgressToNextLevel()}
-          tasksToday={tasksForDate.length}
-          tasksCompleted={tasksForDate.filter(t => t.completed).length}
-        />
+        {/* AI Insights */}
+        <div className="mb-6">
+          <AIInsights />
+        </div>
         
         {/* Quick Links */}
         <div className="grid grid-cols-4 gap-3 mb-8">
@@ -240,11 +236,6 @@ export default function Home() {
                 <span>Level {progress.level || 1}</span>
                 <span>Level {(progress.level || 1) + 1}</span>
               </div>
-            </div>
-            
-            {/* AI Insights */}
-            <div className="mb-6">
-              <AIInsights />
             </div>
             
             <div className="space-y-3">
