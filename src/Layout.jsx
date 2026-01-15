@@ -36,7 +36,7 @@ function LayoutContent({ children, currentPageName }) {
   
   if (isImmersive) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen dark:bg-neutral-950">
         <button
           onClick={() => window.history.back()}
           className="fixed top-4 left-4 z-50 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
@@ -46,7 +46,7 @@ function LayoutContent({ children, currentPageName }) {
         {children}
       </div>
     );
-  }
+    }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
