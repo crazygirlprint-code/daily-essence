@@ -43,7 +43,7 @@ export default function Calendar() {
   const tasksForSelectedDate = tasksByDate[selectedDateStr] || [];
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
       <div className="max-w-4xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -122,10 +122,10 @@ export default function Calendar() {
                   className={cn(
                     'aspect-square rounded-xl p-1 flex flex-col items-center justify-start transition-all relative',
                     isSelected 
-                      ? 'bg-gradient-to-br from-rose-400 to-rose-500 text-white shadow-lg'
+                      ? 'bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-lg'
                       : today
-                        ? 'bg-rose-50 text-rose-600 ring-2 ring-rose-200'
-                        : 'hover:bg-slate-50 text-slate-700'
+                        ? 'bg-amber-50 text-amber-700 ring-2 ring-amber-200'
+                        : 'hover:bg-stone-50 text-slate-700'
                   )}
                 >
                   <span className={cn(
