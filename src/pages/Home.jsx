@@ -144,6 +144,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
+        <DayHeader date={selectedDate} userName={user?.full_name} />
+        
         {/* Stats Header */}
         <StatsHeader
           points={progress.points || 0}
@@ -152,8 +154,6 @@ export default function Home() {
           tasksToday={tasksForDate.length}
           tasksCompleted={tasksForDate.filter(t => t.completed).length}
         />
-        
-        <DayHeader date={selectedDate} userName={user?.full_name} />
         
         {/* Quick Links */}
         <div className="grid grid-cols-4 gap-3 mb-8">
