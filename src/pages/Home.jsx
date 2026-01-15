@@ -37,9 +37,9 @@ export default function Home() {
   const [showStatsDialog, setShowStatsDialog] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
 
-        useTimezone();
-        const queryClient = useQueryClient();
-        const { progress, addPoints, getProgressToNextLevel } = useGamification();
+  useTimezone();
+  const queryClient = useQueryClient();
+  const { progress, addPoints, getProgressToNextLevel } = useGamification();
   
   // Fetch current user
   React.useEffect(() => {
