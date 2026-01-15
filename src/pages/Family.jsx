@@ -64,6 +64,7 @@ const colorOptions = [
 
 export default function Family() {
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [editingMember, setEditingMember] = useState(null);
   const [newMember, setNewMember] = useState({ name: '', relationship: 'child', color: 'rose' });
   
   const queryClient = useQueryClient();
@@ -86,6 +87,16 @@ export default function Family() {
       setNewMember({ name: '', relationship: 'child', color: 'rose' });
     },
   });
+
+  const updateMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.FamilyMember.update(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['familyMembers'] });
+      setIsAddOpen(false);
+      setEditingMember(null);
+      setNewMember({ name: '', relationship: 'child', color: 'rose' });
+    },
+  });
   
   const deleteMutation = useMutation({
     mutationFn: (id) => base44.entities.FamilyMember.delete(id),
@@ -98,6 +109,20 @@ export default function Family() {
   
   const getColorClasses = (colorValue) => {
     return colorOptions.find(c => c.value === colorValue) || colorOptions[0];
+  };
+
+  const handleEdit = (member) => {
+    setEditingMember(member);
+    setNewMember({ name: member.name, relationship: member.relationship, color: member.color });
+    setIsAddOpen(true);
+  };
+
+  const handleSave = () => {
+    if (editingMember) {
+      updateMutation.mutate({ id: editingMember.id, data: newMember });
+    } else {
+      createMutation.mutate(newMember);
+    }
   };
 
   return (
@@ -172,12 +197,22 @@ export default function Family() {
                       </span>
                     )}
                     
-                    <button
-                      onClick={() => deleteMutation.mutate(member.id)}
-                      className="absolute top-3 right-3 p-1.5 rounded-full bg-slate-100 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-100"
-                    >
-                      <X className="w-3 h-3 text-slate-400 hover:text-red-500" />
-                    </button>
+                    <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={() => handleEdit(member)}
+                        className="p-1.5 rounded-full bg-slate-100 hover:bg-blue-100"
+                        title="Edit"
+                      >
+                        <User className="w-3 h-3 text-slate-400 hover:text-blue-500" />
+                      </button>
+                      <button
+                        onClick={() => deleteMutation.mutate(member.id)}
+                        className="p-1.5 rounded-full bg-slate-100 hover:bg-red-100"
+                        title="Delete"
+                      >
+                        <X className="w-3 h-3 text-slate-400 hover:text-red-500" />
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -213,11 +248,17 @@ export default function Family() {
         </Tabs>
       </div>
       
-      {/* Add Member Dialog */}
-      <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
+      {/* Add/Edit Member Dialog */}
+      <Dialog open={isAddOpen} onOpenChange={(open) => {
+        setIsAddOpen(open);
+        if (!open) {
+          setEditingMember(null);
+          setNewMember({ name: '', relationship: 'child', color: 'rose' });
+        }
+      }}>
         <DialogContent className="rounded-3xl">
           <DialogHeader>
-            <DialogTitle>Add Family Member</DialogTitle>
+            <DialogTitle>{editingMember ? 'Edit Family Member' : 'Add Family Member'}</DialogTitle>
           </DialogHeader>
           
           <div className="space-y-4 pt-4">
@@ -282,11 +323,11 @@ export default function Family() {
             </div>
             
             <Button
-              onClick={() => createMutation.mutate(newMember)}
+              onClick={handleSave}
               disabled={!newMember.name.trim()}
               className="w-full rounded-xl h-12 bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600"
             >
-              Add Member
+              {editingMember ? 'Save Changes' : 'Add Member'}
             </Button>
           </div>
         </DialogContent>
