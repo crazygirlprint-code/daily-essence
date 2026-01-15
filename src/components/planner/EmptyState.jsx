@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Coffee, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Coffee, CheckCircle2, Heart, Leaf } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 
 export default function EmptyState({ type = 'no-tasks' }) {
   if (type === 'all-done') {
@@ -14,9 +16,29 @@ export default function EmptyState({ type = 'no-tasks' }) {
           <CheckCircle2 className="w-10 h-10 text-emerald-500" />
         </div>
         <h3 className="text-xl font-semibold text-slate-700 mb-2">All done!</h3>
-        <p className="text-slate-500 max-w-xs">
-          You've completed all your tasks. Time for a well-deserved break! ☕
+        <p className="text-slate-500 max-w-xs mb-4">
+          You've completed all your tasks. Time for a well-deserved break!
         </p>
+        <div className="flex gap-3">
+          <Link to={createPageUrl('Affirmations')}>
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 py-2 bg-amber-100 text-amber-900 rounded-lg text-sm font-medium border border-amber-300 hover:bg-amber-200 transition-colors"
+            >
+              <Sparkles className="w-4 h-4" />
+              Daily Affirmation
+            </motion.button>
+          </Link>
+          <Link to={createPageUrl('SelfCare')}>
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-900 rounded-lg text-sm font-medium border border-stone-300 hover:bg-stone-200 transition-colors"
+            >
+              <Heart className="w-4 h-4" />
+              Self-Care
+            </motion.button>
+          </Link>
+        </div>
       </motion.div>
     );
   }
@@ -31,9 +53,29 @@ export default function EmptyState({ type = 'no-tasks' }) {
         <Coffee className="w-10 h-10 text-rose-400" />
       </div>
       <h3 className="text-xl font-semibold text-slate-700 mb-2">No tasks yet</h3>
-      <p className="text-slate-500 max-w-xs">
-        Your day is clear! Add some tasks to get organized.
+      <p className="text-slate-500 max-w-xs mb-4">
+        Start your day fresh! Here are some suggestions:
       </p>
+      <div className="flex gap-3">
+        <Link to={createPageUrl('Meditation')}>
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-4 py-2 bg-neutral-100 text-neutral-900 rounded-lg text-sm font-medium border border-neutral-300 hover:bg-neutral-200 transition-colors"
+          >
+            <Leaf className="w-4 h-4" />
+            Meditate
+          </motion.button>
+        </Link>
+        <Link to={createPageUrl('Calendar')}>
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-900 rounded-lg text-sm font-medium border border-stone-300 hover:bg-stone-200 transition-colors"
+          >
+            <Sparkles className="w-4 h-4" />
+            Plan Week
+          </motion.button>
+        </Link>
+      </div>
     </motion.div>
   );
 }

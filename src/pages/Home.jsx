@@ -149,29 +149,67 @@ export default function Home() {
         <DayHeader date={selectedDate} userName={user?.full_name} />
         
         {/* AI Insights */}
-        <div className="mb-6">
+        <div className="mb-8">
           <AIInsights />
         </div>
         
         {/* Quick Links */}
-        <div className="grid grid-cols-4 gap-3 mb-8">
-          {quickLinks.map((link) => {
-            const Icon = link.icon;
+        <div className="mb-8">
+          {(() => {
+            const hour = new Date().getHours();
+            let featuredLink;
+            if (hour < 12) featuredLink = 'Affirmations';
+            else if (hour < 17) featuredLink = 'Meditation';
+            else featuredLink = 'Self-Care';
+            
             return (
-              <Link key={link.name} to={createPageUrl(link.page)}>
-                <motion.div
-                  whileTap={{ scale: 0.95 }}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-lg ${link.color} ${link.textColor} border border-stone-300/30`}
-                >
-                  <Icon className="w-5 h-5" strokeWidth={1.5} />
-                  <span className="text-[9px] font-medium uppercase tracking-widest">{link.name}</span>
-                </motion.div>
-              </Link>
+              <div className="space-y-3">
+                {/* Featured Link */}
+                {quickLinks.filter(l => l.name === featuredLink).map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <Link key={link.name} to={createPageUrl(link.page)}>
+                      <motion.div
+                        whileTap={{ scale: 0.98 }}
+                        className={`relative overflow-hidden flex items-center gap-4 p-5 rounded-xl ${link.color} ${link.textColor} border border-stone-300 shadow-sm`}
+                      >
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
+                        <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30">
+                          <Icon className="w-6 h-6" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-[10px] uppercase tracking-widest opacity-70 mb-0.5">Recommended Now</p>
+                          <h3 className="font-serif text-lg">{link.name}</h3>
+                        </div>
+                        <Sparkles className="w-5 h-5 opacity-50" strokeWidth={1.5} />
+                      </motion.div>
+                    </Link>
+                  );
+                })}
+                
+                {/* Other Links */}
+                <div className="grid grid-cols-3 gap-3">
+                  {quickLinks.filter(l => l.name !== featuredLink).map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <Link key={link.name} to={createPageUrl(link.page)}>
+                        <motion.div
+                          whileTap={{ scale: 0.95 }}
+                          className={`flex flex-col items-center gap-2 p-4 rounded-lg ${link.color} ${link.textColor} border border-stone-300/30`}
+                        >
+                          <Icon className="w-5 h-5" strokeWidth={1.5} />
+                          <span className="text-[9px] font-medium uppercase tracking-widest">{link.name}</span>
+                        </motion.div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             );
-          })}
+          })()}
         </div>
         
-        <div className="mb-6">
+        <div className="mb-8">
           <WeekStrip 
             selectedDate={selectedDate}
             onDateSelect={setSelectedDate}
@@ -180,13 +218,13 @@ export default function Home() {
         </div>
         
         {isToday(selectedDate) && tasksForDate.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-8">
             <StatsCard tasks={tasksForDate} />
           </div>
         )}
         
         {/* Section Tabs */}
-        <div className="flex gap-2 mb-6 overflow-x-auto">
+        <div className="flex gap-2 mb-8 overflow-x-auto">
           {[
             { id: 'tasks', label: 'Tasks', icon: Plus },
             { id: 'meals', label: 'Meals', icon: UtensilsCrossed },
@@ -221,27 +259,32 @@ export default function Home() {
             </div>
             
             {/* Progress to next level */}
-            <div 
-              className="space-y-1.5 mb-6 cursor-pointer hover:opacity-80 transition-opacity"
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="relative overflow-hidden space-y-2 mb-8 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-stone-50 border border-amber-200 cursor-pointer shadow-sm"
               onClick={() => setShowStatsDialog(true)}
             >
-              <div className="flex justify-between items-center">
-                <span className="text-stone-600 uppercase tracking-widest text-[10px]">Progress to Level {progress.level + 1}</span>
-                <span className="text-amber-600 font-serif text-sm">{Math.round(getProgressToNextLevel())}%</span>
+              <div className="absolute top-0 right-0 w-20 h-20 bg-amber-200/30 rounded-full blur-2xl" />
+              <div className="relative z-10">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-stone-700 uppercase tracking-widest text-[10px] font-medium">Progress to Level {progress.level + 1}</span>
+                  <span className="text-amber-700 font-serif text-base font-semibold">{Math.round(getProgressToNextLevel())}%</span>
+                </div>
+                <div className="h-2 bg-stone-200/50 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${getProgressToNextLevel()}%` }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    className="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full shadow-sm"
+                  />
+                </div>
+                <div className="flex justify-between text-[9px] text-stone-600 uppercase tracking-widest pt-1.5">
+                  <span>Level {progress.level || 1}</span>
+                  <span>Level {(progress.level || 1) + 1}</span>
+                </div>
               </div>
-              <div className="h-1.5 bg-stone-200 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${getProgressToNextLevel()}%` }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full"
-                />
-              </div>
-              <div className="flex justify-between text-[9px] text-stone-500 uppercase tracking-widest pt-0.5">
-                <span>Level {progress.level || 1}</span>
-                <span>Level {(progress.level || 1) + 1}</span>
-              </div>
-            </div>
+            </motion.div>
             
             <div className="space-y-3">
           <AnimatePresence mode="popLayout">
