@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { format, parseISO, isToday } from 'date-fns';
-import { useTimezone } from '@/hooks/useTimezone';
+import { useTimezone } from '@/components/hooks/useTimezone';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Calendar, Users, Sparkles, Heart, Leaf, UtensilsCrossed, StickyNote, Pencil } from 'lucide-react';
 import { Button } from '@/components/ui/button';
