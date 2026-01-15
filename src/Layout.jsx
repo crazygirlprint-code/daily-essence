@@ -42,9 +42,9 @@ export default function Layout({ children, currentPageName }) {
   }
 
   return (
-    <div className="min-h-screen bg-stone-100">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
       {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-b border-stone-300">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-b border-amber-200/50">
         <div className="flex items-center justify-between px-4 py-3.5">
           <button
             onClick={() => setIsSidebarOpen(true)}
@@ -98,8 +98,8 @@ export default function Layout({ children, currentPageName }) {
                         className={cn(
                           'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
                           isActive
-                            ? 'bg-gradient-to-r from-rose-50 to-pink-50 text-rose-600'
-                            : 'text-slate-600 hover:bg-slate-50'
+                            ? 'bg-gradient-to-r from-amber-50 to-stone-50 text-amber-700 border border-amber-200/50'
+                            : 'text-slate-600 hover:bg-stone-50'
                         )}
                       >
                         <Icon className={cn('w-5 h-5', isActive && 'text-rose-500')} />
@@ -115,7 +115,7 @@ export default function Layout({ children, currentPageName }) {
       </AnimatePresence>
       
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-stone-300 flex-col">
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 backdrop-blur-sm border-r border-amber-200/50 flex-col">
         <div className="p-6">
           <h1 className="text-2xl font-serif text-neutral-900 tracking-tight">
             Mom's Planner
@@ -134,8 +134,8 @@ export default function Layout({ children, currentPageName }) {
                 className={cn(
                   'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
-                    ? 'bg-neutral-900 text-stone-100'
-                    : 'text-stone-700 hover:bg-stone-100'
+                    ? 'bg-gradient-to-r from-amber-100 to-stone-100 text-amber-900 border border-amber-200'
+                    : 'text-stone-700 hover:bg-stone-50'
                 )}
               >
                 <Icon className={cn('w-5 h-5')} strokeWidth={1.5} />
@@ -145,8 +145,8 @@ export default function Layout({ children, currentPageName }) {
           })}
         </nav>
         
-        <div className="p-4 m-4 bg-amber-100/40 rounded-lg border border-stone-300">
-          <p className="text-xs text-neutral-900 font-medium uppercase tracking-widest">Self-Care Reminder</p>
+        <div className="p-4 m-4 bg-gradient-to-br from-amber-50 to-stone-50 rounded-lg border border-amber-200/50 shadow-sm">
+          <p className="text-xs text-amber-900 font-medium uppercase tracking-widest">Self-Care Reminder</p>
           <p className="text-xs text-stone-700 mt-2 leading-relaxed">
             Don't forget to schedule some me-time this week!
           </p>
