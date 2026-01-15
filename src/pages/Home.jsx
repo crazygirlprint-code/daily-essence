@@ -155,11 +155,6 @@ export default function Home() {
         
         <DayHeader date={selectedDate} userName={user?.full_name} />
         
-        {/* AI Insights */}
-        <div className="mb-6">
-          <AIInsights />
-        </div>
-        
         {/* Quick Links */}
         <div className="grid grid-cols-4 gap-3 mb-8">
           {quickLinks.map((link) => {
@@ -283,6 +278,11 @@ export default function Home() {
             <QuickNotes />
           </div>
         )}
+        
+        {/* AI Insights */}
+        <div className="mt-6">
+          <AIInsights />
+        </div>
       </div>
       
       {/* Floating Add Button */}
