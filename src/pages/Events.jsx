@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import ShareButton from '@/components/family/ShareButton';
+import EmojiPicker from '@/components/events/EmojiPicker';
 
 const EVENT_TYPES = {
   birthday: { icon: Gift, color: 'bg-pink-500', bgLight: 'bg-pink-100 text-pink-700' },
@@ -37,16 +38,28 @@ export default function Events() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isPremium, setIsPremium] = useState(false);
   const [newEvent, setNewEvent] = useState({
     title: '',
     date: format(new Date(), 'yyyy-MM-dd'),
     type: 'other',
     notes: '',
+    emoji: '',
     recurring_yearly: false,
     color: ''
   });
   
   const queryClient = useQueryClient();
+
+  // Check subscription status
+  React.useEffect(() => {
+    base44.auth.me().then(u => {
+      setUser(u);
+      // Check if user has premium subscription (stored in user data)
+      setIsPremium(u?.subscription_tier === 'premium');
+    }).catch(() => {});
+  }, []);
   
   const { data: events = [], isLoading } = useQuery({
     queryKey: ['specialEvents'],
@@ -63,6 +76,7 @@ export default function Events() {
         date: format(new Date(), 'yyyy-MM-dd'),
         type: 'other',
         notes: '',
+        emoji: '',
         recurring_yearly: false,
         color: ''
       });
@@ -144,16 +158,20 @@ export default function Events() {
                       'flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl',
                       typeInfo.bgLight
                     )}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <div>
-                      <p className="font-medium text-sm">{event.title}</p>
-                      <p className="text-xs opacity-75">
-                        {format(event.nextDate, 'MMM d')}
-                        {event.recurring_yearly && ' • Yearly'}
-                      </p>
-                    </div>
-                  </motion.div>
+                    >
+                      {event.emoji ? (
+                        <span className="text-2xl">{event.emoji}</span>
+                      ) : (
+                        <Icon className="w-5 h-5" />
+                      )}
+                      <div>
+                        <p className="font-medium text-sm">{event.title}</p>
+                        <p className="text-xs opacity-75">
+                          {format(event.nextDate, 'MMM d')}
+                          {event.recurring_yearly && ' • Yearly'}
+                        </p>
+                      </div>
+                    </motion.div>
                 );
               })}
             </div>
@@ -224,19 +242,27 @@ export default function Events() {
                   </span>
                   
                   {dayEvents.length > 0 && (
-                    <div className="flex gap-0.5 mt-1">
-                      {dayEvents.slice(0, 3).map((event, idx) => {
-                        const typeInfo = EVENT_TYPES[event.type] || EVENT_TYPES.other;
-                        return (
+                    <div className="flex gap-0.5 mt-1 flex-wrap justify-center">
+                      {dayEvents.slice(0, 2).map((event, idx) => (
+                        event.emoji ? (
+                          <motion.span
+                            key={idx}
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: idx * 0.3 }}
+                            className="text-xs"
+                          >
+                            {event.emoji}
+                          </motion.span>
+                        ) : (
                           <span
                             key={idx}
                             className={cn(
                               'w-1.5 h-1.5 rounded-full',
-                              isSelected ? 'bg-white/70' : typeInfo.color
+                              isSelected ? 'bg-white/70' : (EVENT_TYPES[event.type] || EVENT_TYPES.other).color
                             )}
                           />
-                        );
-                      })}
+                        )
+                      ))}
                     </div>
                   )}
                 </motion.button>
@@ -276,11 +302,22 @@ export default function Events() {
                     key={event.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="group flex items-center gap-4 p-4 bg-slate-50 rounded-xl"
+                    whileHover={{ scale: 1.02 }}
+                    className="group flex items-center gap-4 p-4 bg-slate-50 rounded-xl transition-all"
                   >
-                    <div className={cn('p-3 rounded-xl', typeInfo.bgLight)}>
-                      <Icon className="w-5 h-5" />
-                    </div>
+                    {event.emoji ? (
+                      <motion.div
+                        animate={{ rotate: [0, 5, -5, 0] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="text-3xl"
+                      >
+                        {event.emoji}
+                      </motion.div>
+                    ) : (
+                      <div className={cn('p-3 rounded-xl', typeInfo.bgLight)}>
+                        <Icon className="w-5 h-5" />
+                      </div>
+                    )}
                     <div className="flex-1">
                       <h4 className="font-medium text-slate-800">{event.title}</h4>
                       {event.notes && (
@@ -351,6 +388,19 @@ export default function Events() {
               className="rounded-xl"
               rows={2}
             />
+
+            {isPremium && (
+              <div>
+                <label className="text-sm text-slate-600 font-medium block mb-2">
+                  Emoji or Sticker
+                </label>
+                <EmojiPicker
+                  value={newEvent.emoji}
+                  onChange={(emoji) => setNewEvent({ ...newEvent, emoji })}
+                  isPremium={true}
+                />
+              </div>
+            )}
             
             <div className="flex items-center gap-2">
               <Checkbox
