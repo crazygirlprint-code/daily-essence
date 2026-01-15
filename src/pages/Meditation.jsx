@@ -115,8 +115,8 @@ export default function Meditation() {
     
     if (audioEnabled) {
       speak(script.intro, {
-        rate: 0.75,
-        pitch: 0.9,
+        rate: 0.82,
+        pitch: 1.05,
         onEnd: () => {
           setCurrentPhase('main');
           startInstructions();
@@ -136,8 +136,8 @@ export default function Meditation() {
     const speakNextInstruction = () => {
       if (instructionIndex < script.instructions.length && isPlaying) {
         speak(script.instructions[instructionIndex], {
-          rate: 0.7,
-          pitch: 0.9,
+          rate: 0.8,
+          pitch: 1.05,
           onEnd: () => {
             instructionIndex++;
             phaseTimerRef.current = setTimeout(speakNextInstruction, 15000);
@@ -174,8 +174,8 @@ export default function Meditation() {
     
     if (audioEnabled) {
       speak(script.closing, {
-        rate: 0.75,
-        pitch: 0.9,
+        rate: 0.82,
+        pitch: 1.05,
         onEnd: async () => {
           setCurrentPhase('complete');
           setIsPlaying(false);
