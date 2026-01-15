@@ -37,55 +37,149 @@ export default function AIInsights() {
     queryFn: () => base44.entities.Affirmation.list(),
   });
 
+  const { data: meditationSessions = [] } = useQuery({
+    queryKey: ['meditationSessions'],
+    queryFn: () => base44.entities.MeditationSession.list('-completed_at', 10),
+  });
+
+  const { data: beautyRoutines = [] } = useQuery({
+    queryKey: ['beautyRoutines'],
+    queryFn: () => base44.entities.BeautyRoutine.list(),
+  });
+
+  const { data: userProgress = [] } = useQuery({
+    queryKey: ['userProgress'],
+    queryFn: () => base44.entities.UserProgress.list(),
+  });
+
   const generateInsights = async () => {
     setIsLoading(true);
     try {
-      // Analyze user data
+      // Analyze user data comprehensively
       const today = format(new Date(), 'yyyy-MM-dd');
+      const yesterday = format(addDays(new Date(), -1), 'yyyy-MM-dd');
       const nextWeek = format(addDays(new Date(), 7), 'yyyy-MM-dd');
+      const lastWeek = format(addDays(new Date(), -7), 'yyyy-MM-dd');
       
-      const recentTasks = tasks.slice(0, 20);
+      const recentTasks = tasks.slice(0, 30);
+      const todayTasks = recentTasks.filter(t => t.due_date === today);
+      const completedToday = todayTasks.filter(t => t.completed);
       const completedTasks = recentTasks.filter(t => t.completed);
       const incompleteTasks = recentTasks.filter(t => !t.completed);
+      const overdueTasks = recentTasks.filter(t => t.due_date && t.due_date < today && !t.completed);
+      
+      // Analyze task patterns
       const tasksByCategory = recentTasks.reduce((acc, t) => {
         acc[t.category] = (acc[t.category] || 0) + 1;
         return acc;
       }, {});
-
-      const recentMeals = mealPlans.slice(0, 10);
-      const upcomingEvents = events.filter(e => e.date >= today && e.date <= nextWeek);
+      
+      const completionRate = recentTasks.length > 0 
+        ? Math.round((completedTasks.length / recentTasks.length) * 100) 
+        : 0;
+      
+      // Analyze time patterns
+      const highPriorityTasks = incompleteTasks.filter(t => t.priority === 'high');
+      const familyTasks = recentTasks.filter(t => t.category === 'kids' || t.family_member);
+      
+      // Wellness tracking
+      const recentMeditations = meditationSessions.filter(m => m.completed_at >= lastWeek);
+      const totalMeditationTime = recentMeditations.reduce((sum, m) => sum + m.duration_minutes, 0);
+      const beautyCompletedToday = beautyRoutines.filter(r => r.last_completed === today);
       const pastSelfCare = selfCareActivities.filter(a => a.completed);
+      const upcomingSelfCare = selfCareActivities.filter(a => !a.completed && a.scheduled_date >= today);
+      
+      // Events and schedule
+      const upcomingEvents = events.filter(e => e.date >= today && e.date <= nextWeek);
+      const todayEvents = events.filter(e => e.date === today);
+      
+      // Meals and nutrition
+      const recentMeals = mealPlans.slice(0, 15);
+      const todayMeals = mealPlans.filter(m => m.date === today);
+      const mealTypes = recentMeals.reduce((acc, m) => {
+        acc[m.meal_type] = (acc[m.meal_type] || 0) + 1;
+        return acc;
+      }, {});
+      
+      // Affirmations
       const favAffirmations = affirmations.filter(a => a.is_favorite);
+      const affirmationCategories = favAffirmations.reduce((acc, a) => {
+        acc[a.category] = (acc[a.category] || 0) + 1;
+        return acc;
+      }, {});
+      
+      // User progress
+      const progress = userProgress[0];
+      const streakDays = progress?.streak_days || 0;
+      const currentLevel = progress?.level || 1;
 
-      const prompt = `You are a supportive AI assistant for a busy mom's planner app. Analyze the user's activity and provide personalized recommendations.
+      const prompt = `You are an empathetic AI life coach for a busy mom. Analyze her daily patterns, habits, and current situation to provide deeply personalized, actionable insights.
 
-USER DATA:
-- Recent tasks: ${recentTasks.length} total (${completedTasks.length} completed, ${incompleteTasks.length} pending)
-- Task categories: ${JSON.stringify(tasksByCategory)}
-- Recent incomplete tasks: ${incompleteTasks.slice(0, 5).map(t => t.title).join(', ')}
-- Recent meals: ${recentMeals.map(m => `${m.meal_type}: ${m.meal_name}`).join(', ')}
-- Past self-care activities: ${pastSelfCare.map(a => a.name).join(', ')}
-- Upcoming events: ${upcomingEvents.map(e => `${e.title} on ${e.date}`).join(', ')}
-- Favorite affirmation categories: ${favAffirmations.map(a => a.category).join(', ')}
+TODAY'S ACTIVITY:
+- Tasks completed today: ${completedToday.length}/${todayTasks.length}
+- Today's events: ${todayEvents.map(e => e.title).join(', ') || 'None'}
+- Beauty routine completed: ${beautyCompletedToday.length > 0 ? 'Yes' : 'Not yet'}
+- Planned meals: ${todayMeals.map(m => `${m.meal_type}: ${m.meal_name}`).join(', ') || 'None planned'}
 
-Provide exactly 3 personalized recommendations:
-1. A self-care activity suggestion (consider upcoming events and their stress levels, past preferences)
-2. A meal idea that complements their recent meal patterns (be specific and practical)
-3. An affirmation theme that matches their current challenges (based on incomplete tasks and categories)
+RECENT PATTERNS (Last 7 days):
+- Overall completion rate: ${completionRate}%
+- Task focus areas: ${Object.entries(tasksByCategory).sort((a,b) => b[1] - a[1]).slice(0,3).map(([k,v]) => `${k} (${v})`).join(', ')}
+- High priority pending: ${highPriorityTasks.length} tasks
+- Overdue tasks: ${overdueTasks.length}
+- Family-related tasks: ${familyTasks.length}
+- Meditation: ${recentMeditations.length} sessions, ${totalMeditationTime} total minutes
+- Self-care completed: ${pastSelfCare.map(a => a.name).join(', ') || 'None recently'}
 
-Be warm, supportive, and specific to their data. Keep each recommendation to 1-2 sentences.`;
+UPCOMING WEEK:
+- Scheduled events: ${upcomingEvents.map(e => `${e.title} (${e.date}, ${e.type})`).join(', ') || 'None'}
+- Self-care planned: ${upcomingSelfCare.map(a => `${a.name} on ${a.scheduled_date}`).join(', ') || 'None scheduled'}
+
+PREFERENCES & HABITS:
+- Favorite affirmations: ${Object.entries(affirmationCategories).sort((a,b) => b[1] - a[1]).map(([k,v]) => k).join(', ') || 'None favorited yet'}
+- Recent meal patterns: ${Object.entries(mealTypes).map(([k,v]) => `${k}: ${v}`).join(', ')}
+- Current streak: ${streakDays} days
+- Level: ${currentLevel}
+
+PROVIDE A PERSONALIZED DAILY SUMMARY AND 4 SPECIFIC, ACTIONABLE RECOMMENDATIONS:
+
+1. Daily Summary: Write a warm 2-3 sentence summary of her day so far and patterns you notice - celebrate wins, acknowledge challenges, show you understand her life.
+
+2. Priority Action: Based on her overdue/high-priority tasks and today's schedule, what's ONE specific thing she should focus on completing today? Be concrete.
+
+3. Wellness Suggestion: Given her stress level (inferred from task load, upcoming events), meditation history, and self-care patterns, what specific wellness activity would help her most right now?
+
+4. Meal Recommendation: Based on meal patterns, time of day, and energy needs, suggest ONE specific meal for today (breakfast/lunch/dinner/snack). Make it realistic for a busy mom.
+
+5. Affirmation Focus: Based on her current challenges, incomplete tasks, and favorite themes, what affirmation theme would resonate most today?
+
+Be warm, specific, and actionable. Reference her actual data. Speak like a supportive friend who truly knows her routine.`;
 
       const result = await base44.integrations.Core.InvokeLLM({
         prompt,
         response_json_schema: {
           type: 'object',
           properties: {
-            self_care: {
+            daily_summary: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+                tone: { type: 'string', enum: ['encouraging', 'supportive', 'energizing', 'calming'] }
+              }
+            },
+            priority_action: {
               type: 'object',
               properties: {
                 title: { type: 'string' },
                 description: { type: 'string' },
-                reason: { type: 'string' }
+                why_now: { type: 'string' }
+              }
+            },
+            wellness: {
+              type: 'object',
+              properties: {
+                title: { type: 'string' },
+                description: { type: 'string' },
+                benefit: { type: 'string' }
               }
             },
             meal: {
@@ -93,15 +187,15 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
               properties: {
                 title: { type: 'string' },
                 description: { type: 'string' },
-                reason: { type: 'string' }
+                timing: { type: 'string' }
               }
             },
             affirmation: {
               type: 'object',
               properties: {
                 theme: { type: 'string' },
-                description: { type: 'string' },
-                reason: { type: 'string' }
+                suggestion: { type: 'string' },
+                relevance: { type: 'string' }
               }
             }
           }
@@ -128,23 +222,23 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-3xl p-6 text-white shadow-xl"
+        className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-lg p-6 text-stone-100 shadow-lg border border-stone-700"
       >
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-            <Sparkles className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-lg bg-amber-700/20 flex items-center justify-center border border-amber-700/30">
+            <Sparkles className="w-4 h-4 text-amber-400" strokeWidth={1.5} />
           </div>
-          <h3 className="font-semibold text-lg">AI Insights</h3>
+          <h3 className="font-serif text-base">Daily Insights</h3>
         </div>
-        <p className="text-white/80 text-sm mb-4">
-          Get personalized recommendations based on your activity
+        <p className="text-stone-300 text-xs mb-4 leading-relaxed">
+          Get personalized daily summary and actionable recommendations based on your habits and goals
         </p>
         <Button
           onClick={generateInsights}
           disabled={isLoading}
-          className="bg-white text-purple-600 hover:bg-white/90"
+          className="bg-amber-700/20 text-amber-400 hover:bg-amber-700/30 border border-amber-700/30"
         >
-          <Sparkles className="w-4 h-4 mr-2" />
+          <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
           Generate Insights
         </Button>
       </motion.div>
@@ -155,25 +249,25 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden"
+      className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-lg p-6 text-stone-100 shadow-lg relative overflow-hidden border border-stone-700"
     >
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-slate-400/10 rounded-full blur-2xl" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-700/10 rounded-full blur-2xl" />
       
       <div className="relative z-10">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-3">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
+              className="w-9 h-9 rounded-lg bg-amber-700/20 flex items-center justify-center border border-amber-700/30"
             >
-              <Sparkles className="w-5 h-5" />
+              <Sparkles className="w-4 h-4 text-amber-400" strokeWidth={1.5} />
             </motion.div>
             <div>
-              <h3 className="font-semibold text-lg">AI Insights</h3>
-              <p className="text-xs text-white/70">Personalized for you</p>
+              <h3 className="font-serif text-base text-stone-100">Daily Insights</h3>
+              <p className="text-[10px] text-stone-400 uppercase tracking-widest">Personalized for you</p>
             </div>
           </div>
           <Button
@@ -181,9 +275,9 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
             disabled={isLoading}
             size="sm"
             variant="ghost"
-            className="text-white hover:bg-white/20"
+            className="text-stone-300 hover:bg-stone-800"
           >
-            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.5} />
           </Button>
         </div>
 
@@ -195,10 +289,10 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
               exit={{ opacity: 0 }}
               className="space-y-3"
             >
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-white/10 rounded-2xl p-4 animate-pulse">
-                  <div className="h-4 bg-white/20 rounded w-3/4 mb-2" />
-                  <div className="h-3 bg-white/20 rounded w-full" />
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="bg-stone-900/50 rounded-lg p-4 animate-pulse border border-stone-700">
+                  <div className="h-3 bg-stone-700 rounded w-3/4 mb-2" />
+                  <div className="h-2.5 bg-stone-700 rounded w-full" />
                 </div>
               ))}
             </motion.div>
@@ -209,66 +303,116 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
               exit={{ opacity: 0 }}
               className="space-y-3"
             >
-              {/* Self-Care Suggestion */}
-              <Link to={createPageUrl('SelfCare')}>
+              {/* Daily Summary */}
+              {insights.daily_summary && (
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-amber-900/20 backdrop-blur-sm rounded-lg p-4 border border-amber-700/30"
+                >
+                  <p className="text-sm text-amber-100 leading-relaxed italic">
+                    "{insights.daily_summary.message}"
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Priority Action */}
+              {insights.priority_action && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  whileHover={{ scale: 1.01 }}
+                  className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-rose-400/30 flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-4 h-4 text-rose-200" />
+                    <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
+                      <span className="text-amber-400 text-sm font-serif">1</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-semibold text-sm">{insights.self_care.title}</h4>
-                        <ChevronRight className="w-4 h-4 text-white/50" />
-                      </div>
-                      <p className="text-xs text-white/80 leading-relaxed">{insights.self_care.description}</p>
-                      <p className="text-[10px] text-white/50 mt-1 italic">{insights.self_care.reason}</p>
+                      <h4 className="font-medium text-sm text-stone-100 mb-1">{insights.priority_action.title}</h4>
+                      <p className="text-xs text-stone-300 leading-relaxed">{insights.priority_action.description}</p>
+                      <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.priority_action.why_now}</p>
                     </div>
                   </div>
                 </motion.div>
-              </Link>
+              )}
+
+              {/* Wellness Suggestion */}
+              {insights.wellness && (
+                <Link to={createPageUrl('SelfCare')}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    whileHover={{ scale: 1.01 }}
+                    className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
+                        <Heart className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.5} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="font-medium text-sm text-stone-100">{insights.wellness.title}</h4>
+                          <ChevronRight className="w-3.5 h-3.5 text-stone-500" strokeWidth={1.5} />
+                        </div>
+                        <p className="text-xs text-stone-300 leading-relaxed">{insights.wellness.description}</p>
+                        <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.wellness.benefit}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              )}
 
               {/* Meal Suggestion */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-amber-400/30 flex items-center justify-center flex-shrink-0">
-                    <UtensilsCrossed className="w-4 h-4 text-amber-200" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-sm mb-1">{insights.meal.title}</h4>
-                    <p className="text-xs text-white/80 leading-relaxed">{insights.meal.description}</p>
-                    <p className="text-[10px] text-white/50 mt-1 italic">{insights.meal.reason}</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Affirmation Theme */}
-              <Link to={createPageUrl('Affirmations')}>
+              {insights.meal && (
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  whileHover={{ scale: 1.01 }}
+                  className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-purple-400/30 flex items-center justify-center flex-shrink-0">
-                      <Sparkles className="w-4 h-4 text-purple-200" />
+                    <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
+                      <UtensilsCrossed className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.5} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-semibold text-sm">{insights.affirmation.theme}</h4>
-                        <ChevronRight className="w-4 h-4 text-white/50" />
-                      </div>
-                      <p className="text-xs text-white/80 leading-relaxed">{insights.affirmation.description}</p>
-                      <p className="text-[10px] text-white/50 mt-1 italic">{insights.affirmation.reason}</p>
+                      <h4 className="font-medium text-sm text-stone-100 mb-1">{insights.meal.title}</h4>
+                      <p className="text-xs text-stone-300 leading-relaxed">{insights.meal.description}</p>
+                      <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.meal.timing}</p>
                     </div>
                   </div>
                 </motion.div>
-              </Link>
+              )}
+
+              {/* Affirmation Theme */}
+              {insights.affirmation && (
+                <Link to={createPageUrl('Affirmations')}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    whileHover={{ scale: 1.01 }}
+                    className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.5} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="font-medium text-sm text-stone-100">{insights.affirmation.theme}</h4>
+                          <ChevronRight className="w-3.5 h-3.5 text-stone-500" strokeWidth={1.5} />
+                        </div>
+                        <p className="text-xs text-stone-300 leading-relaxed">{insights.affirmation.suggestion}</p>
+                        <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.affirmation.relevance}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
