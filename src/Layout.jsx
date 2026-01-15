@@ -63,7 +63,7 @@ function LayoutContent({ children, currentPageName }) {
           >
             <Menu className="w-5 h-5 text-neutral-900 dark:text-stone-100" strokeWidth={1.5} />
           </button>
-          <h1 className="font-serif text-lg text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400 tracking-tight">Daily Essence</h1>
+          <h1 className="font-serif text-lg text-neutral-900 dark:text-stone-100 dark-luxury:text-slate-200 tracking-tight">Daily Essence</h1>
           <button
             onClick={toggleTheme}
             className="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
