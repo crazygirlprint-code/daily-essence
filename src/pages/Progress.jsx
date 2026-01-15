@@ -72,7 +72,7 @@ export default function Progress() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-rose-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-800">Your Progress</h1>
