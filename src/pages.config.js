@@ -1,25 +1,25 @@
-import Home from './pages/Home';
-import Calendar from './pages/Calendar';
-import Family from './pages/Family';
 import Affirmations from './pages/Affirmations';
 import Beauty from './pages/Beauty';
-import Meditation from './pages/Meditation';
-import SelfCare from './pages/SelfCare';
+import Calendar from './pages/Calendar';
 import Events from './pages/Events';
+import Family from './pages/Family';
+import Home from './pages/Home';
+import Meditation from './pages/Meditation';
 import Progress from './pages/Progress';
+import SelfCare from './pages/SelfCare';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Home": Home,
-    "Calendar": Calendar,
-    "Family": Family,
     "Affirmations": Affirmations,
     "Beauty": Beauty,
-    "Meditation": Meditation,
-    "SelfCare": SelfCare,
+    "Calendar": Calendar,
     "Events": Events,
+    "Family": Family,
+    "Home": Home,
+    "Meditation": Meditation,
     "Progress": Progress,
+    "SelfCare": SelfCare,
 }
 
 export const pagesConfig = {

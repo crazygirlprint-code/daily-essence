@@ -21,6 +21,7 @@ import StatsHeader from '@/components/gamification/StatsHeader';
 import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
 import AchievementUnlock from '@/components/gamification/AchievementUnlock';
+import AIInsights from '@/components/ai/AIInsights';
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -153,6 +154,11 @@ export default function Home() {
         />
         
         <DayHeader date={selectedDate} userName={user?.full_name} />
+        
+        {/* AI Insights */}
+        <div className="mb-6">
+          <AIInsights />
+        </div>
         
         {/* Quick Links */}
         <div className="grid grid-cols-4 gap-2 mb-6">
