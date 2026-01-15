@@ -158,7 +158,7 @@ function LayoutContent({ children, currentPageName }) {
                 className={cn(
                   'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
-                    ? 'bg-gradient-to-r from-amber-100 to-stone-100 dark:from-neutral-800 dark:to-neutral-800 dark-luxury:from-amber-950 dark-luxury:to-amber-950 text-amber-900 dark:text-amber-400 border border-amber-200 dark:border-neutral-700 dark-luxury:border-amber-600/50'
+                    ? 'bg-gradient-to-r from-stone-100 to-stone-100 dark:from-neutral-800 dark:to-neutral-800 dark-luxury:from-slate-800 dark-luxury:to-slate-800 text-slate-700 dark:text-slate-300 border border-stone-200 dark:border-neutral-700 dark-luxury:border-slate-600/50'
                     : 'text-stone-700 dark:text-stone-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-neutral-800 dark-luxury:hover:bg-blue-900/50'
                 )}
               >
