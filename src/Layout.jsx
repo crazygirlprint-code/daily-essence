@@ -87,7 +87,7 @@ function LayoutContent({ children, currentPageName }) {
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="fixed left-0 top-0 bottom-0 w-72 bg-white dark:bg-neutral-900 shadow-2xl z-50 md:hidden"
+              className="fixed left-0 top-0 bottom-0 w-72 bg-white dark:bg-neutral-900 dark-luxury:bg-blue-950 shadow-2xl z-50 md:hidden"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
