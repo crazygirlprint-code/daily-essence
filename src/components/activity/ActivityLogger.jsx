@@ -1,0 +1,184 @@
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { motion } from 'framer-motion';
+import { X } from 'lucide-react';
+
+const activityTypes = [
+  { value: 'mindful_walking', label: '🚶 Mindful Walking' },
+  { value: 'journaling', label: '📝 Journaling' },
+  { value: 'social_connection', label: '👥 Social Connection' },
+  { value: 'healthy_meal', label: '🥗 Healthy Meal' },
+  { value: 'creative_hobby', label: '🎨 Creative Hobby' },
+  { value: 'other', label: '✨ Other' },
+];
+
+const moodOptions = [
+  { value: 'very_low', label: 'Very Low' },
+  { value: 'low', label: 'Low' },
+  { value: 'neutral', label: 'Neutral' },
+  { value: 'good', label: 'Good' },
+  { value: 'excellent', label: 'Excellent' },
+];
+
+export default function ActivityLogger({ onSubmit, onClose }) {
+  const [formData, setFormData] = useState({
+    type: 'mindful_walking',
+    title: '',
+    duration_minutes: '',
+    notes: '',
+    mood_before: 'neutral',
+    mood_after: 'neutral',
+    energy_level: 5,
+    activity_date: new Date().toISOString().split('T')[0],
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({
+      ...formData,
+      duration_minutes: formData.duration_minutes ? parseInt(formData.duration_minutes) : null,
+      energy_level: parseInt(formData.energy_level),
+      logged_at: new Date().toISOString(),
+    });
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white dark:bg-neutral-900 dark-luxury:bg-blue-950 rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-amber-200/50 dark:border-neutral-800 dark-luxury:border-amber-600/30"
+      >
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-serif text-neutral-900 dark:text-stone-100">Log Activity</h2>
+          <button
+            onClick={onClose}
+            className="p-1 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Type</label>
+            <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
+              <SelectTrigger className="mt-1">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {activityTypes.map((type) => (
+                  <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Title</label>
+            <Input
+              placeholder="e.g., Morning walk in the park"
+              value={formData.title}
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              className="mt-1"
+              required
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Duration (min)</label>
+              <Input
+                type="number"
+                placeholder="30"
+                value={formData.duration_minutes}
+                onChange={(e) => setFormData({ ...formData, duration_minutes: e.target.value })}
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Date</label>
+              <Input
+                type="date"
+                value={formData.activity_date}
+                onChange={(e) => setFormData({ ...formData, activity_date: e.target.value })}
+                className="mt-1"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Mood Before</label>
+            <Select value={formData.mood_before} onValueChange={(value) => setFormData({ ...formData, mood_before: value })}>
+              <SelectTrigger className="mt-1">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {moodOptions.map((mood) => (
+                  <SelectItem key={mood.value} value={mood.value}>{mood.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Mood After</label>
+            <Select value={formData.mood_after} onValueChange={(value) => setFormData({ ...formData, mood_after: value })}>
+              <SelectTrigger className="mt-1">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {moodOptions.map((mood) => (
+                  <SelectItem key={mood.value} value={mood.value}>{mood.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Energy Level</label>
+              <span className="text-sm font-semibold text-amber-600">{formData.energy_level}/10</span>
+            </div>
+            <input
+              type="range"
+              min="1"
+              max="10"
+              value={formData.energy_level}
+              onChange={(e) => setFormData({ ...formData, energy_level: e.target.value })}
+              className="w-full"
+            />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Notes</label>
+            <Textarea
+              placeholder="How did this activity make you feel? What did you learn?"
+              value={formData.notes}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              className="mt-1 h-24"
+            />
+          </div>
+
+          <div className="flex gap-3 pt-4">
+            <Button type="button" variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button type="submit" className="flex-1 bg-amber-600 hover:bg-amber-700">
+              Log Activity
+            </Button>
+          </div>
+        </form>
+      </motion.div>
+    </motion.div>
+  );
+}
