@@ -3,10 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { 
   Home, Calendar, Heart, Sparkles, Leaf, 
-  Users, Star, Menu, X, Trophy, MessageCircle
+  Users, Star, Menu, X, Trophy, MessageCircle, Moon, Sun
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { ThemeProvider, useTheme } from '@/components/hooks/useTheme';
 import NotificationBanner from '@/components/notifications/NotificationBanner';
 import UpcomingNotification from '@/components/notifications/UpcomingNotification';
 
