@@ -102,7 +102,7 @@ export default function Layout({ children, currentPageName }) {
                             : 'text-slate-600 hover:bg-stone-50'
                         )}
                       >
-                        <Icon className={cn('w-5 h-5', isActive && 'text-rose-500')} />
+                        <Icon className={cn('w-5 h-5', isActive && 'text-amber-600')} />
                         <span className="font-medium">{item.name}</span>
                       </Link>
                     );
