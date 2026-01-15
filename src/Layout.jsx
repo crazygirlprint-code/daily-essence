@@ -55,7 +55,7 @@ function LayoutContent({ children, currentPageName }) {
       <NotificationBanner />
       <UpcomingNotification />
       {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-neutral-900/95 dark-luxury:bg-blue-950/95 backdrop-blur-lg border-b border-amber-200/50 dark:border-neutral-800 dark-luxury:border-amber-600/30">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-neutral-900/95 dark-luxury:bg-blue-950/95 backdrop-blur-lg border-b border-stone-200/50 dark:border-neutral-800 dark-luxury:border-slate-600/30">
         <div className="flex items-center justify-between px-4 py-3.5">
           <button
             onClick={() => setIsSidebarOpen(true)}
