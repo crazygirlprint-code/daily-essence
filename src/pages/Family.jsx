@@ -21,6 +21,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import FamilyWall from '@/components/family/FamilyWall';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const relationshipIcons = {
   self: User,
@@ -80,7 +82,7 @@ export default function Family() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-6">
           <Link to={createPageUrl('Home')}>
             <Button variant="ghost" size="icon" className="rounded-xl">
               <Home className="w-5 h-5" />
@@ -99,7 +101,15 @@ export default function Family() {
           </Button>
         </div>
         
-        {/* Family Members Grid */}
+        {/* Tabs */}
+        <Tabs defaultValue="members" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="members">Members</TabsTrigger>
+            <TabsTrigger value="wall">Family Wall</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="members">
+            {/* Family Members Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <AnimatePresence>
             {members.map((member) => {
@@ -165,14 +175,20 @@ export default function Family() {
           </motion.button>
         </div>
         
-        {/* Empty State */}
-        {members.length === 0 && !isLoading && (
-          <div className="text-center py-12 mt-8">
-            <Users className="w-16 h-16 text-slate-200 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-slate-600 mb-2">No family members yet</h3>
-            <p className="text-slate-400">Add your family members to assign tasks to them</p>
-          </div>
-        )}
+            {/* Empty State */}
+            {members.length === 0 && !isLoading && (
+              <div className="text-center py-12 mt-8">
+                <Users className="w-16 h-16 text-slate-200 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-slate-600 mb-2">No family members yet</h3>
+                <p className="text-slate-400">Add your family members to assign tasks to them</p>
+              </div>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="wall">
+            <FamilyWall />
+          </TabsContent>
+        </Tabs>
       </div>
       
       {/* Add Member Dialog */}

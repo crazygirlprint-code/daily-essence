@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { format } from 'date-fns';
+import ShareButton from '@/components/family/ShareButton';
 
 const priorityColors = {
   high: 'bg-red-500',
@@ -49,15 +50,18 @@ export default function TaskCard({ task, onToggle, onDelete, onEdit }) {
               {task.title}
             </h3>
             
-            <DropdownMenu>
-              <DropdownMenuTrigger className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-slate-100 rounded-lg">
-                <MoreHorizontal className="w-4 h-4 text-slate-400" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => onEdit(task)}>Edit</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onDelete(task)} className="text-red-600">Delete</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <ShareButton item={task} itemType="task" />
+              <DropdownMenu>
+                <DropdownMenuTrigger className="p-1 hover:bg-slate-100 rounded-lg">
+                  <MoreHorizontal className="w-4 h-4 text-slate-400" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => onEdit(task)}>Edit</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => onDelete(task)} className="text-red-600">Delete</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
           
           <div className="flex flex-wrap items-center gap-2 mt-2">
