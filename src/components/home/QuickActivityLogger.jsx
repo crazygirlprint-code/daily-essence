@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Zap } from 'lucide-react';
+import { Zap, Mic } from 'lucide-react';
 import ActivityLogger from '@/components/activity/ActivityLogger';
+import { useSpeechRecognition } from '@/components/hooks/useSpeechRecognition';
 
 const activityQuickActions = [
   { type: 'mindful_walking', emoji: '🚶', label: 'Walk' },
@@ -14,10 +15,24 @@ const activityQuickActions = [
 export default function QuickActivityLogger({ onActivityLogged }) {
   const [showLogger, setShowLogger] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
+  const { isListening, transcript, startListening, stopListening, clearTranscript } = useSpeechRecognition();
 
   const handleQuickLog = (type) => {
     setSelectedType(type);
     setShowLogger(true);
+  };
+
+  const handleVoiceLog = () => {
+    if (isListening) {
+      stopListening();
+      if (transcript.trim()) {
+        setSelectedType('other');
+        setShowLogger(true);
+      }
+    } else {
+      clearTranscript();
+      startListening();
+    }
   };
 
   return (
@@ -32,30 +47,40 @@ export default function QuickActivityLogger({ onActivityLogged }) {
           <h3 className="font-semibold text-slate-900 dark:text-stone-100">Quick Activity Log</h3>
         </div>
         <div className="grid grid-cols-5 gap-2">
-          {activityQuickActions.map((activity) => (
-            <button
-              key={activity.type}
-              onClick={() => handleQuickLog(activity.type)}
-              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-white/50 dark:hover:bg-neutral-700/50 transition-colors"
-            >
-              <span className="text-2xl">{activity.emoji}</span>
-              <span className="text-xs font-medium text-slate-700 dark:text-stone-300">{activity.label}</span>
-            </button>
-          ))}
-        </div>
+           {activityQuickActions.map((activity) => (
+             <button
+               key={activity.type}
+               onClick={() => handleQuickLog(activity.type)}
+               className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-white/50 dark:hover:bg-neutral-700/50 transition-colors"
+             >
+               <span className="text-2xl">{activity.emoji}</span>
+               <span className="text-xs font-medium text-slate-700 dark:text-stone-300">{activity.label}</span>
+             </button>
+           ))}
+           <button
+             onClick={handleVoiceLog}
+             className={`flex flex-col items-center gap-2 p-3 rounded-lg transition-colors ${isListening ? 'bg-red-100 hover:bg-red-200' : 'hover:bg-white/50 dark:hover:bg-neutral-700/50'}`}
+           >
+             <Mic className={`w-5 h-5 ${isListening ? 'text-red-600 animate-pulse' : 'text-slate-600'}`} />
+             <span className="text-xs font-medium text-slate-700 dark:text-stone-300">Voice</span>
+           </button>
+         </div>
       </motion.div>
 
       {showLogger && (
         <ActivityLogger
           preselectedType={selectedType}
+          prefilledTitle={selectedType === 'other' ? transcript : ''}
           onSubmit={(data) => {
             onActivityLogged?.(data);
             setShowLogger(false);
             setSelectedType(null);
+            clearTranscript();
           }}
           onClose={() => {
             setShowLogger(false);
             setSelectedType(null);
+            clearTranscript();
           }}
         />
       )}
