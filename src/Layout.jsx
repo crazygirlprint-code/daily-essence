@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import NotificationBanner from '@/components/notifications/NotificationBanner';
+import UpcomingNotification from '@/components/notifications/UpcomingNotification';
 
 const navItems = [
   { name: 'Home', page: 'Home', icon: Home },
@@ -46,6 +48,8 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
+      <NotificationBanner />
+      <UpcomingNotification />
       {/* Mobile Header */}
       <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-b border-amber-200/50">
         <div className="flex items-center justify-between px-4 py-3.5">
