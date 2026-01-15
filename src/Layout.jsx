@@ -26,8 +26,9 @@ const navItems = [
   { name: 'Pricing', page: 'Pricing', icon: Star },
 ];
 
-export default function Layout({ children, currentPageName }) {
+function LayoutContent({ children, currentPageName }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
   
   // Hide layout on certain pages for immersive experience
   const immersivePages = ['Meditation'];
