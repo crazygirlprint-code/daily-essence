@@ -56,8 +56,8 @@ export default function Events() {
   React.useEffect(() => {
     base44.auth.me().then(u => {
       setUser(u);
-      // Check if user has premium subscription (stored in user data)
-      setIsPremium(u?.subscription_tier === 'premium');
+      // Admin users and premium subscribers can use emojis
+      setIsPremium(u?.subscription_tier === 'premium' || u?.role === 'admin');
     }).catch(() => {});
   }, []);
   
