@@ -27,7 +27,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 const relationshipIcons = {
   self: User,
   spouse: Heart,
+  husband: Heart,
+  wife: Heart,
+  boyfriend: Heart,
+  girlfriend: Heart,
   child: Baby,
+  son: Baby,
+  daughter: Baby,
+  father: Users,
+  mother: Users,
+  dad: Users,
+  mom: Users,
+  brother: Users,
+  sister: Users,
+  grandfather: Users,
+  grandmother: Users,
+  grandpa: Users,
+  grandma: Users,
+  uncle: Users,
+  aunt: Users,
+  cousin: Users,
+  niece: Baby,
+  nephew: Baby,
+  friend: Users,
   other: Users
 };
 
@@ -215,8 +237,29 @@ export default function Family() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="self">Me</SelectItem>
-                <SelectItem value="spouse">Spouse/Partner</SelectItem>
-                <SelectItem value="child">Child</SelectItem>
+                <SelectItem value="spouse">Spouse</SelectItem>
+                <SelectItem value="husband">Husband</SelectItem>
+                <SelectItem value="wife">Wife</SelectItem>
+                <SelectItem value="boyfriend">Boyfriend</SelectItem>
+                <SelectItem value="girlfriend">Girlfriend</SelectItem>
+                <SelectItem value="son">Son</SelectItem>
+                <SelectItem value="daughter">Daughter</SelectItem>
+                <SelectItem value="father">Father</SelectItem>
+                <SelectItem value="mother">Mother</SelectItem>
+                <SelectItem value="dad">Dad</SelectItem>
+                <SelectItem value="mom">Mom</SelectItem>
+                <SelectItem value="brother">Brother</SelectItem>
+                <SelectItem value="sister">Sister</SelectItem>
+                <SelectItem value="grandfather">Grandfather</SelectItem>
+                <SelectItem value="grandmother">Grandmother</SelectItem>
+                <SelectItem value="grandpa">Grandpa</SelectItem>
+                <SelectItem value="grandma">Grandma</SelectItem>
+                <SelectItem value="uncle">Uncle</SelectItem>
+                <SelectItem value="aunt">Aunt</SelectItem>
+                <SelectItem value="cousin">Cousin</SelectItem>
+                <SelectItem value="niece">Niece</SelectItem>
+                <SelectItem value="nephew">Nephew</SelectItem>
+                <SelectItem value="friend">Friend</SelectItem>
                 <SelectItem value="other">Other</SelectItem>
               </SelectContent>
             </Select>
