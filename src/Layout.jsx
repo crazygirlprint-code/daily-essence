@@ -118,7 +118,7 @@ function LayoutContent({ children, currentPageName }) {
                             : 'text-slate-600 dark:text-stone-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-neutral-800 dark-luxury:hover:bg-blue-900/50'
                         )}
                       >
-                        <Icon className={cn('w-5 h-5', isActive && 'text-amber-600')} />
+                        <Icon className={cn('w-5 h-5', isActive && 'text-slate-600')} />
                         <span className="font-medium">{item.name}</span>
                       </Link>
                     );
