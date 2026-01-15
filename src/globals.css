@@ -19,55 +19,85 @@ css
 
 /* Dark Luxury Variant Support */
 @layer components {
+  /* Text Colors */
   .dark-luxury\:text-amber-400 { 
-    @apply text-slate-200; 
+    @apply text-amber-400; 
+  }
+  .dark-luxury\:text-amber-300 {
+    @apply text-amber-300;
+  }
+  .dark-luxury\:text-amber-50 {
+    @apply text-slate-100;
+  }
+  .dark-luxury\:text-slate-100 { 
+    @apply text-slate-100; 
   }
   .dark-luxury\:text-slate-200 { 
     @apply text-slate-200; 
   }
-  .dark-luxury\:text-slate-400 { 
-    @apply text-slate-400; 
-  }
   .dark-luxury\:text-slate-300 { 
     @apply text-slate-300; 
+  }
+  .dark-luxury\:text-slate-400 { 
+    @apply text-slate-400; 
   }
   .dark-luxury\:text-slate-600 { 
     @apply text-slate-600; 
   }
-  .dark-luxury\:bg-blue-950 { 
-    @apply bg-blue-950; 
+
+  /* Background Colors */
+  .dark-luxury\:bg-slate-950 { 
+    @apply bg-slate-950; 
   }
-  .dark-luxury\:bg-blue-950\/95 { 
-    @apply bg-blue-950/95; 
+  .dark-luxury\:bg-slate-950\/98 { 
+    @apply bg-slate-950/98; 
   }
-  .dark-luxury\:bg-blue-950\/80 { 
-    @apply bg-blue-950/80; 
+  .dark-luxury\:bg-slate-950\/90 { 
+    @apply bg-slate-950/90; 
   }
-  .dark-luxury\:from-blue-950 { 
-    @apply from-blue-950; 
+  .dark-luxury\:from-slate-950 { 
+    @apply from-slate-950; 
   }
-  .dark-luxury\:via-slate-950 { 
-    @apply via-slate-950; 
+  .dark-luxury\:via-slate-900 { 
+    @apply via-slate-900; 
   }
   .dark-luxury\:to-slate-950 { 
     @apply to-slate-950; 
   }
+  .dark-luxury\:bg-slate-900\/30 {
+    @apply bg-slate-900/30;
+  }
+  .dark-luxury\:bg-slate-800\/50 {
+    @apply bg-slate-800/50;
+  }
+
+  /* Border Colors */
+  .dark-luxury\:border-amber-900\/20 { 
+    @apply border-amber-900/20; 
+  }
+  .dark-luxury\:border-amber-900\/30 { 
+    @apply border-amber-900/30; 
+  }
+  .dark-luxury\:border-amber-900\/40 { 
+    @apply border-amber-900/40; 
+  }
   .dark-luxury\:border-slate-600\/30 { 
-    @apply border-slate-600/30; 
+    @apply border-slate-700/30; 
   }
   .dark-luxury\:border-slate-600\/50 { 
-    @apply border-slate-600/50; 
+    @apply border-slate-700/50; 
   }
-  .dark-luxury\:from-slate-800 { 
-    @apply from-slate-800; 
+
+  /* Hover States */
+  .dark-luxury\:hover\:bg-amber-900\/10 { 
+    @apply hover:bg-amber-900/10; 
   }
-  .dark-luxury\:to-slate-800 { 
-    @apply to-slate-800; 
+  .dark-luxury\:hover\:bg-amber-900\/20 {
+    @apply hover:bg-amber-900/20;
   }
-  .dark-luxury\:to-blue-900 { 
-    @apply to-blue-900; 
-  }
-  .dark-luxury\:hover\:bg-blue-900\/50 { 
-    @apply hover:bg-blue-900/50; 
+
+  /* Backdrop Blur */
+  .dark-luxury\:backdrop-blur-xl {
+    @apply backdrop-blur-xl;
   }
 }
