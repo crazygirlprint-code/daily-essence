@@ -25,14 +25,14 @@ export default function DayHeader({ date, userName }) {
     <div className="mb-8">
       <div className="flex items-center gap-2 mb-2">
         <Icon className={`w-4 h-4 ${greeting.color}`} strokeWidth={1.5} />
-        <span className="text-stone-700 text-xs font-medium uppercase tracking-widest">{greeting.text}, {firstName}</span>
+        <span className="text-stone-600 text-xs font-medium uppercase tracking-widest">{greeting.text}, {firstName}</span>
       </div>
       
-      <h1 className="text-4xl font-serif text-stone-900 tracking-tight leading-tight">
+      <h1 className="text-4xl font-serif text-neutral-900 tracking-tight leading-tight">
         {getDateLabel(date)}
       </h1>
       
-      <p className="text-stone-600 text-sm mt-1.5 uppercase tracking-widest font-light">
+      <p className="text-stone-500 text-sm mt-1.5 uppercase tracking-widest font-light">
         {format(date, 'MMMM d, yyyy')}
       </p>
     </div>
