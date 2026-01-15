@@ -9,6 +9,7 @@ import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
 import Budget from './pages/Budget';
 import Pricing from './pages/Pricing';
+import Community from './pages/Community';
 import __Layout from './Layout.jsx';
 
 
@@ -24,6 +25,7 @@ export const PAGES = {
     "SelfCare": SelfCare,
     "Budget": Budget,
     "Pricing": Pricing,
+    "Community": Community,
 }
 
 export const pagesConfig = {
