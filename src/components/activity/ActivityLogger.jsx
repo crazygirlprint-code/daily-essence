@@ -4,7 +4,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Mic } from 'lucide-react';
+import { useSpeechRecognition } from '@/components/hooks/useSpeechRecognition';
 
 const activityTypes = [
   { value: 'mindful_walking', label: '🚶 Mindful Walking' },
@@ -23,10 +24,10 @@ const moodOptions = [
   { value: 'excellent', label: 'Excellent' },
 ];
 
-export default function ActivityLogger({ onSubmit, onClose, preselectedType }) {
+export default function ActivityLogger({ onSubmit, onClose, preselectedType, prefilledTitle = '' }) {
   const [formData, setFormData] = useState({
     type: preselectedType || 'mindful_walking',
-    title: '',
+    title: prefilledTitle,
     duration_minutes: '',
     notes: '',
     mood_before: 'neutral',
@@ -34,6 +35,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType }) {
     energy_level: 5,
     activity_date: new Date().toISOString().split('T')[0],
   });
+  const { isListening, transcript, startListening, stopListening, clearTranscript } = useSpeechRecognition();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,15 +85,24 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType }) {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Title</label>
-            <Input
-              placeholder="e.g., Morning walk in the park"
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="mt-1"
-              required
-            />
-          </div>
+             <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Title</label>
+             <div className="relative">
+               <Input
+                 placeholder="e.g., Morning walk in the park"
+                 value={formData.title || (isListening ? transcript : '')}
+                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                 className="mt-1 pr-10"
+                 required
+               />
+               <button
+                 type="button"
+                 onClick={() => isListening ? (stopListening(), setFormData({ ...formData, title: transcript }), clearTranscript()) : startListening()}
+                 className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+               >
+                 <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+               </button>
+             </div>
+           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
@@ -160,14 +171,23 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType }) {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Notes</label>
-            <Textarea
-              placeholder="How did this activity make you feel? What did you learn?"
-              value={formData.notes}
-              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-              className="mt-1 h-24"
-            />
-          </div>
+             <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Notes</label>
+             <div className="relative">
+               <Textarea
+                 placeholder="How did this activity make you feel? What did you learn?"
+                 value={formData.notes}
+                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                 className="mt-1 h-24"
+               />
+               <button
+                 type="button"
+                 onClick={() => isListening ? (stopListening(), setFormData({ ...formData, notes: formData.notes + ' ' + transcript }), clearTranscript()) : startListening()}
+                 className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+               >
+                 <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+               </button>
+             </div>
+           </div>
 
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="outline" onClick={onClose}>
