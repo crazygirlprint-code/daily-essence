@@ -120,7 +120,7 @@ export default function Layout({ children, currentPageName }) {
           <h1 className="text-2xl font-serif text-neutral-900 tracking-tight">
             Daily Essence
           </h1>
-          <p className="text-[10px] text-stone-500 mt-1 uppercase tracking-widest font-light">Your daily companion</p>
+          <p className="text-[10px] text-stone-500 mt-1 uppercase tracking-widest font-light">Sanctuary for Peace of Mind</p>
         </div>
         
         <nav className="flex-1 px-4 space-y-1">
