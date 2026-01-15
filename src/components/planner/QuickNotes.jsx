@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { StickyNote, Plus, Pin, Trash2, X } from 'lucide-react';
+import { StickyNote, Plus, Pin, Trash2, X, Mic } from 'lucide-react';
+import { useSpeechRecognition } from '@/components/hooks/useSpeechRecognition';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -25,6 +26,7 @@ const NOTE_COLORS = [
 export default function QuickNotes({ compact = false }) {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [newNote, setNewNote] = useState({ title: '', content: '', color: 'yellow' });
+  const { isListening, transcript, startListening, stopListening, clearTranscript } = useSpeechRecognition();
   const queryClient = useQueryClient();
   
   const { data: notes = [] } = useQuery({
@@ -100,19 +102,37 @@ export default function QuickNotes({ compact = false }) {
               <DialogTitle>New Note</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 pt-4">
-              <Input
-                placeholder="Title"
-                value={newNote.title}
-                onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
-                className="rounded-xl"
-              />
-              <Textarea
-                placeholder="Write your note..."
-                value={newNote.content}
-                onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
-                className="rounded-xl"
-                rows={3}
-              />
+              <div className="relative">
+                <Input
+                  placeholder="Title"
+                  value={newNote.title || (isListening ? transcript : '')}
+                  onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
+                  className="rounded-xl pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => isListening ? (stopListening(), setNewNote({ ...newNote, title: transcript }), clearTranscript()) : startListening()}
+                  className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                >
+                  <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                </button>
+              </div>
+              <div className="relative">
+                <Textarea
+                  placeholder="Write your note..."
+                  value={newNote.content}
+                  onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
+                  className="rounded-xl"
+                  rows={3}
+                />
+                <button
+                  type="button"
+                  onClick={() => isListening ? (stopListening(), setNewNote({ ...newNote, content: newNote.content + ' ' + transcript }), clearTranscript()) : startListening()}
+                  className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                >
+                  <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                </button>
+              </div>
               <div className="flex gap-2">
                 {NOTE_COLORS.map((color) => (
                   <button
@@ -209,19 +229,37 @@ export default function QuickNotes({ compact = false }) {
             <DialogTitle>New Note</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <Input
-              placeholder="Title"
-              value={newNote.title}
-              onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
-              className="rounded-xl"
-            />
-            <Textarea
-              placeholder="Write your note..."
-              value={newNote.content}
-              onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
-              className="rounded-xl"
-              rows={4}
-            />
+             <div className="relative">
+               <Input
+                 placeholder="Title"
+                 value={newNote.title || (isListening ? transcript : '')}
+                 onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
+                 className="rounded-xl pr-10"
+               />
+               <button
+                 type="button"
+                 onClick={() => isListening ? (stopListening(), setNewNote({ ...newNote, title: transcript }), clearTranscript()) : startListening()}
+                 className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+               >
+                 <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+               </button>
+             </div>
+             <div className="relative">
+               <Textarea
+                 placeholder="Write your note..."
+                 value={newNote.content}
+                 onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
+                 className="rounded-xl"
+                 rows={4}
+               />
+               <button
+                 type="button"
+                 onClick={() => isListening ? (stopListening(), setNewNote({ ...newNote, content: newNote.content + ' ' + transcript }), clearTranscript()) : startListening()}
+                 className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+               >
+                 <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+               </button>
+             </div>
             <div className="flex gap-2">
               {NOTE_COLORS.map((color) => (
                 <button
