@@ -10,11 +10,11 @@ import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
 
 const MEDITATION_TYPES = [
-  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-stone-300 to-stone-400' },
-  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-amber-300 to-amber-500' },
-  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-amber-400 to-orange-400' },
-  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-stone-400 to-neutral-500' },
-  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-neutral-300 to-stone-400' },
+  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-teal-500 to-cyan-600' },
+  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-500 to-indigo-600' },
+  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-violet-500 to-purple-600' },
+  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-indigo-600 to-blue-700' },
+  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-emerald-500 to-teal-600' },
 ];
 
 const DURATIONS = [10, 15, 20];
@@ -248,9 +248,12 @@ export default function Meditation() {
 
   return (
     <div className={cn(
-      'min-h-screen transition-colors duration-1000',
-      `bg-gradient-to-br ${selectedType.color.replace('from-', 'from-').replace('to-', 'via-white/30 to-')}`
+      'min-h-screen transition-colors duration-1000 relative overflow-hidden',
+      `bg-gradient-to-br ${selectedType.color}`
     )}>
+      {/* Ambient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-slate-900/20" />
+      
       {/* Background meditation music - royalty free ambient */}
       <audio 
         ref={audioRef} 
@@ -258,10 +261,10 @@ export default function Meditation() {
         src="https://cdn.pixabay.com/audio/2022/05/13/audio_1808fbf07a.mp3"
       />
       
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="relative z-10 max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Meditation</h1>
-          <p className="text-white/80">Find your inner peace</p>
+          <h1 className="text-3xl font-serif text-white mb-2 drop-shadow-lg">Meditation</h1>
+          <p className="text-white/90">Find your inner peace</p>
         </div>
         
         {currentPhase === 'idle' ? (
@@ -277,10 +280,10 @@ export default function Meditation() {
                     onClick={() => setSelectedType(type)}
                     whileTap={{ scale: 0.95 }}
                     className={cn(
-                      'flex flex-col items-center gap-2 p-3 rounded-2xl transition-all',
+                      'flex flex-col items-center gap-2 p-3 rounded-2xl transition-all backdrop-blur-sm',
                       isActive
-                        ? 'bg-white/95 text-neutral-900 shadow-lg border border-amber-200'
-                        : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
+                        ? 'bg-white/95 text-slate-800 shadow-xl ring-2 ring-white/50'
+                        : 'bg-white/15 text-white hover:bg-white/25'
                     )}
                   >
                     <Icon className="w-6 h-6" />
@@ -297,10 +300,10 @@ export default function Meditation() {
                   key={dur}
                   onClick={() => setSelectedDuration(dur)}
                   className={cn(
-                    'w-20 h-20 rounded-full font-bold text-xl transition-all',
+                    'w-20 h-20 rounded-full font-bold text-xl transition-all backdrop-blur-sm',
                     selectedDuration === dur
-                      ? 'bg-white/95 text-neutral-900 shadow-lg scale-110 border border-amber-200'
-                      : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
+                      ? 'bg-white/95 text-slate-800 shadow-xl scale-110 ring-2 ring-white/50'
+                      : 'bg-white/15 text-white hover:bg-white/25'
                   )}
                 >
                   {dur}
@@ -314,8 +317,8 @@ export default function Meditation() {
               <button
                 onClick={() => setAudioEnabled(!audioEnabled)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all',
-                  audioEnabled ? 'bg-white/95 text-neutral-900 border border-amber-200' : 'bg-white/10 text-white backdrop-blur-sm'
+                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all backdrop-blur-sm',
+                  audioEnabled ? 'bg-white/95 text-slate-800 shadow-lg' : 'bg-white/15 text-white'
                 )}
               >
                 {audioEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
@@ -326,8 +329,8 @@ export default function Meditation() {
               <button
                 onClick={() => setMusicEnabled(!musicEnabled)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all',
-                  musicEnabled ? 'bg-white/95 text-neutral-900 border border-amber-200' : 'bg-white/10 text-white backdrop-blur-sm'
+                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all backdrop-blur-sm',
+                  musicEnabled ? 'bg-white/95 text-slate-800 shadow-lg' : 'bg-white/15 text-white'
                 )}
               >
                 <span className="text-sm font-medium">
@@ -341,7 +344,7 @@ export default function Meditation() {
               <Button
                 onClick={startMeditation}
                 size="lg"
-                className="rounded-full px-12 py-8 text-xl bg-white/95 text-neutral-900 hover:bg-white shadow-2xl border-2 border-amber-200"
+                className="rounded-full px-12 py-8 text-xl bg-white/95 text-slate-800 hover:bg-white shadow-2xl backdrop-blur-sm"
               >
                 <Play className="w-6 h-6 mr-2 fill-current" />
                 Begin
@@ -353,13 +356,14 @@ export default function Meditation() {
           <div className="text-center">
             {/* Timer Circle */}
             <div className="relative w-64 h-64 mx-auto mb-8">
-              <svg className="w-full h-full transform -rotate-90">
+              <div className="absolute inset-0 bg-white/5 rounded-full backdrop-blur-md" />
+              <svg className="w-full h-full transform -rotate-90 relative z-10">
                 <circle
                   cx="128"
                   cy="128"
                   r="120"
                   fill="none"
-                  stroke="rgba(255,255,255,0.2)"
+                  stroke="rgba(255,255,255,0.15)"
                   strokeWidth="8"
                 />
                 <motion.circle
@@ -374,13 +378,14 @@ export default function Meditation() {
                   strokeDashoffset={2 * Math.PI * 120 * (1 - progress / 100)}
                   initial={{ strokeDashoffset: 2 * Math.PI * 120 }}
                   animate={{ strokeDashoffset: 2 * Math.PI * 120 * (1 - progress / 100) }}
+                  className="drop-shadow-lg"
                 />
               </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-5xl font-bold text-white">
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
+                <span className="text-5xl font-bold text-white drop-shadow-lg">
                   {formatTime(timeRemaining)}
                 </span>
-                <span className="text-white/70 capitalize mt-2">{currentPhase}</span>
+                <span className="text-white/80 capitalize mt-2 text-sm tracking-wider">{currentPhase}</span>
               </div>
             </div>
             
@@ -414,7 +419,7 @@ export default function Meditation() {
                   <Button
                     onClick={isPlaying ? pauseMeditation : startMeditation}
                     size="lg"
-                    className="rounded-full w-16 h-16 bg-white/95 text-neutral-900 hover:bg-white border-2 border-amber-200"
+                    className="rounded-full w-16 h-16 bg-white/95 text-slate-800 hover:bg-white shadow-xl backdrop-blur-sm"
                   >
                     {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 fill-current" />}
                   </Button>
@@ -422,7 +427,7 @@ export default function Meditation() {
                     onClick={resetMeditation}
                     size="lg"
                     variant="outline"
-                    className="rounded-full w-16 h-16 border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm"
+                    className="rounded-full w-16 h-16 border-2 border-white/80 text-white hover:bg-white/15 backdrop-blur-sm"
                   >
                     <RotateCcw className="w-5 h-5" />
                   </Button>
@@ -431,7 +436,7 @@ export default function Meditation() {
                 <Button
                   onClick={resetMeditation}
                   size="lg"
-                  className="rounded-full px-8 bg-white/95 text-neutral-900 hover:bg-white border-2 border-amber-200"
+                  className="rounded-full px-8 bg-white/95 text-slate-800 hover:bg-white shadow-xl backdrop-blur-sm"
                 >
                   Start New Session
                 </Button>
