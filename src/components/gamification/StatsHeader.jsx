@@ -10,7 +10,7 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-3xl p-5 text-white shadow-2xl mb-6 overflow-hidden relative"
+      className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 rounded-3xl p-5 text-white shadow-2xl mb-6 overflow-hidden relative"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/20 to-transparent rounded-full blur-2xl" />
@@ -20,11 +20,11 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
         {/* Top row - Points and Level */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center shadow-lg shadow-amber-900/20">
               <Trophy className="w-6 h-6 text-white" />
             </div>
             <div>
-              <p className="text-amber-200 text-xs font-medium uppercase tracking-wider">Level {level}</p>
+              <p className="text-amber-300 text-xs font-medium uppercase tracking-wider">Level {level}</p>
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4 text-amber-400 fill-amber-400" />
                 <span className="text-2xl font-bold">{points.toLocaleString()}</span>
@@ -81,7 +81,7 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
               initial={{ width: 0 }}
               animate={{ width: `${progressPercent}%` }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="h-full bg-gradient-to-r from-rose-400 via-amber-400 to-amber-300 rounded-full"
+              className="h-full bg-gradient-to-r from-slate-400 via-amber-600 to-amber-500 rounded-full"
             />
           </div>
         </div>

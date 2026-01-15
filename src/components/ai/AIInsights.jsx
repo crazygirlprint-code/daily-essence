@@ -128,7 +128,7 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-br from-purple-600 via-indigo-600 to-purple-700 rounded-3xl p-6 text-white shadow-xl"
+        className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-3xl p-6 text-white shadow-xl"
       >
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
@@ -155,11 +155,11 @@ Be warm, supportive, and specific to their data. Keep each recommendation to 1-2
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-purple-600 via-indigo-600 to-purple-700 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden"
+      className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden"
     >
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-pink-400/20 rounded-full blur-2xl" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-slate-400/10 rounded-full blur-2xl" />
       
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">

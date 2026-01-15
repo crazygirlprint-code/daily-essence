@@ -26,7 +26,7 @@ export default function PointsPopup({ points, show, onComplete, message }) {
             <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-rose-400 to-purple-400 blur-xl opacity-50" />
             
             {/* Main popup */}
-            <div className="relative bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl border border-amber-500/30">
+            <div className="relative bg-gradient-to-r from-slate-800 via-slate-700 to-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl border border-amber-600/20">
               <div className="flex items-center gap-3">
                 <motion.div
                   animate={{ rotate: [0, 15, -15, 0] }}

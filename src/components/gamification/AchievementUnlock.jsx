@@ -54,7 +54,7 @@ export default function AchievementUnlock({ badge, show, onClose }) {
             exit={{ scale: 0, rotate: 180 }}
             transition={{ type: 'spring', damping: 15 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-3xl p-8 text-center max-w-sm mx-4 shadow-2xl border border-amber-500/30"
+            className="relative bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 rounded-3xl p-8 text-center max-w-sm mx-4 shadow-2xl border border-amber-600/20"
           >
             <button
               onClick={onClose}
