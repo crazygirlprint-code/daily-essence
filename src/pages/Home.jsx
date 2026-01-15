@@ -109,8 +109,15 @@ export default function Home() {
     }, {});
   }, [tasks]);
   
-  const handleToggleTask = (task) => {
-    updateMutation.mutate({ id: task.id, data: { completed: !task.completed } });
+  const handleToggleTask = async (task) => {
+    const isCompleting = !task.completed;
+    updateMutation.mutate({ id: task.id, data: { completed: isCompleting } });
+    
+    if (isCompleting) {
+      const result = await addPoints('task_complete');
+      setPointsEarned(result.pointsEarned);
+      setShowPoints(true);
+    }
   };
   
   const handleDeleteTask = (task) => {
@@ -244,6 +251,31 @@ export default function Home() {
             )}
           </AnimatePresence>
         </div>
+          </>
+        )}
+        
+        {activeSection === 'meals' && (
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100">
+            <h3 className="font-semibold text-slate-700 mb-4 flex items-center gap-2">
+              <UtensilsCrossed className="w-5 h-5 text-orange-500" />
+              Meal Plan for {format(selectedDate, 'EEEE')}
+            </h3>
+            <MealPlanner 
+              selectedDate={selectedDate} 
+              onAddPoints={async (action) => {
+                const result = await addPoints(action);
+                setPointsEarned(result.pointsEarned);
+                setShowPoints(true);
+              }}
+            />
+          </div>
+        )}
+        
+        {activeSection === 'notes' && (
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100">
+            <QuickNotes />
+          </div>
+        )}
       </div>
       
       {/* Floating Add Button */}
