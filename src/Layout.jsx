@@ -33,7 +33,7 @@ function LayoutContent({ children, currentPageName }) {
   const { isDark, toggleTheme } = useTheme();
   
   // Hide layout on certain pages for immersive experience
-  const immersivePages = ['Meditation'];
+  const immersivePages = [];
   const isImmersive = immersivePages.includes(currentPageName);
   
   if (isImmersive) {
