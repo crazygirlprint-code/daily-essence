@@ -238,14 +238,14 @@ export default function Home() {
             const Icon = section.icon;
             return (
               <button
-                key={section.id}
-                onClick={() => setActiveSection(section.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
-                  activeSection === section.id
-                    ? 'bg-neutral-900 text-stone-100 shadow-sm'
-                    : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-50'
-                }`}
-              >
+                      key={section.id}
+                      onClick={() => setActiveSection(section.id)}
+                      className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
+                        activeSection === section.id
+                          ? 'bg-amber-600 text-stone-50 shadow-sm hover:bg-amber-700'
+                          : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-50'
+                      }`}
+                    >
                 <Icon className="w-4 h-4" strokeWidth={1.5} />
                 {section.label}
               </button>
