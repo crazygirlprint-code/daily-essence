@@ -122,6 +122,10 @@ export default function Home() {
       const result = await addPoints('task_complete');
       setPointsEarned(result.pointsEarned);
       setShowPoints(true);
+      
+      if (result.newBadge) {
+        setUnlockedBadge(result.newBadge);
+      }
     }
   };
   
@@ -389,6 +393,7 @@ export default function Home() {
         show={showPoints}
         onComplete={() => setShowPoints(false)}
         message="Task completed!"
+        streakBonus={0}
       />
       
       <AchievementUnlock

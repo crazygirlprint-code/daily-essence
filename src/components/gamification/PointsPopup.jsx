@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Star, Sparkles } from 'lucide-react';
 
-export default function PointsPopup({ points, show, onComplete, message }) {
+export default function PointsPopup({ points, show, onComplete, message, streakBonus }) {
   useEffect(() => {
     if (show) {
       const timer = setTimeout(() => {
@@ -42,7 +42,10 @@ export default function PointsPopup({ points, show, onComplete, message }) {
                   >
                     +{points}
                   </motion.p>
-                  <p className="text-xs text-white/60">{message || 'Points earned!'}</p>
+                  <p className="text-xs text-white/60">
+                    {message || 'Points earned!'}
+                    {streakBonus > 0 && ` +${streakBonus} streak bonus!`}
+                  </p>
                 </div>
                 <Sparkles className="w-5 h-5 text-amber-400" />
               </div>

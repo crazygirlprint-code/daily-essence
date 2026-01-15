@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Trophy, Zap, Target, Flame, Calendar, CheckCircle2 } from 'lucide-react';
 import LevelBadge from '@/components/gamification/LevelBadge';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
+import StreakDisplay from '@/components/gamification/StreakDisplay';
 import { useGamification } from '@/components/gamification/useGamification';
 import { format, subDays, eachDayOfInterval, isToday } from 'date-fns';
 import { cn } from '@/lib/utils';
@@ -22,9 +23,26 @@ export default function Progress() {
     queryFn: () => base44.entities.MeditationSession.list('-created_date')
   });
   
+  const { data: selfCareActivities = [] } = useQuery({
+    queryKey: ['selfCareActivities'],
+    queryFn: () => base44.entities.SelfCareActivity.list('-created_date')
+  });
+  
+  const { data: beautyRoutines = [] } = useQuery({
+    queryKey: ['beautyRoutines'],
+    queryFn: () => base44.entities.BeautyRoutine.list()
+  });
+  
+  const { data: mealPlans = [] } = useQuery({
+    queryKey: ['mealPlans'],
+    queryFn: () => base44.entities.MealPlan.list()
+  });
+  
   // Calculate stats
   const completedTasks = tasks.filter(t => t.completed).length;
   const totalMeditationMinutes = meditationSessions.reduce((acc, s) => acc + (s.duration_minutes || 0), 0);
+  const completedSelfCare = selfCareActivities.filter(a => a.completed).length;
+  const completedBeautySteps = beautyRoutines.filter(r => r.last_completed).length;
   
   // Activity heatmap for last 30 days
   const last30Days = eachDayOfInterval({
@@ -56,19 +74,26 @@ export default function Progress() {
       bgColor: 'bg-rose-50'
     },
     { 
+      label: 'Day Streak', 
+      value: progress.streak_days || 0, 
+      icon: Flame, 
+      color: 'from-orange-400 to-red-500',
+      bgColor: 'bg-orange-50'
+    },
+    { 
       label: 'Tasks Done', 
       value: completedTasks, 
       icon: CheckCircle2, 
       color: 'from-emerald-400 to-teal-500',
       bgColor: 'bg-emerald-50'
     },
-    { 
-      label: 'Meditation Mins', 
-      value: totalMeditationMinutes, 
-      icon: Target, 
-      color: 'from-purple-400 to-indigo-500',
-      bgColor: 'bg-purple-50'
-    },
+  ];
+  
+  const extraStats = [
+    { label: 'Meditation Minutes', value: totalMeditationMinutes },
+    { label: 'Self-Care Activities', value: completedSelfCare },
+    { label: 'Beauty Steps Completed', value: completedBeautySteps },
+    { label: 'Meals Planned', value: mealPlans.length },
   ];
 
   return (
@@ -79,13 +104,14 @@ export default function Progress() {
           <p className="text-slate-500 mt-1">Keep going, you're doing amazing! 🌟</p>
         </div>
         
-        {/* Level Card */}
-        <div className="mb-8">
+        {/* Level and Streak */}
+        <div className="grid md:grid-cols-2 gap-4 mb-8">
           <LevelBadge 
             level={progress.level || 1} 
             points={progress.points || 0} 
             progressPercent={getProgressToNextLevel()}
           />
+          <StreakDisplay streak={progress.streak_days || 0} />
         </div>
         
         {/* Stats Grid */}
@@ -106,6 +132,25 @@ export default function Progress() {
               </motion.div>
             );
           })}
+        </div>
+        
+        {/* Extra Stats */}
+        <div className="bg-white rounded-2xl p-6 shadow-sm mb-8">
+          <h3 className="font-semibold text-slate-700 mb-4">Your Activity Summary</h3>
+          <div className="grid grid-cols-2 gap-4">
+            {extraStats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="text-center p-3 bg-gradient-to-br from-stone-50 to-amber-50 rounded-xl"
+              >
+                <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
+                <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
         
         {/* Activity Heatmap */}

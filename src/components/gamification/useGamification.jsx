@@ -108,36 +108,98 @@ export function useGamification() {
     return Math.min((pointsInLevel / pointsNeeded) * 100, 100);
   };
   
-  const addPoints = async (action, customPoints = null) => {
+  const checkAndAwardBadges = async (action, stats) => {
+    const currentBadges = progress.badges || [];
+    const newBadges = [...currentBadges];
+    
+    // Task badges
+    if (stats.totalTasks === 1 && !currentBadges.includes('first_task')) newBadges.push('first_task');
+    if (stats.totalTasks >= 10 && !currentBadges.includes('ten_tasks')) newBadges.push('ten_tasks');
+    if (stats.totalTasks >= 50 && !currentBadges.includes('fifty_tasks')) newBadges.push('fifty_tasks');
+    if (stats.totalTasks >= 100 && !currentBadges.includes('hundred_tasks')) newBadges.push('hundred_tasks');
+    
+    // Meditation badges
+    if (action === 'meditation_complete' && !currentBadges.includes('first_meditation')) newBadges.push('first_meditation');
+    if (stats.meditationMinutes >= 100 && !currentBadges.includes('zen_master')) newBadges.push('zen_master');
+    
+    // Beauty badges
+    if (stats.beautyRoutines >= 10 && !currentBadges.includes('beauty_starter')) newBadges.push('beauty_starter');
+    if (stats.beautyRoutines >= 30 && !currentBadges.includes('beauty_master')) newBadges.push('beauty_master');
+    
+    // Self-care badges
+    if (stats.selfCareActivities >= 3 && !currentBadges.includes('self_care_starter')) newBadges.push('self_care_starter');
+    if (stats.selfCareActivities >= 10 && !currentBadges.includes('self_care_pro')) newBadges.push('self_care_pro');
+    
+    // Streak badges
+    if (stats.streak >= 3 && !currentBadges.includes('three_day_streak')) newBadges.push('three_day_streak');
+    if (stats.streak >= 7 && !currentBadges.includes('week_streak')) newBadges.push('week_streak');
+    if (stats.streak >= 30 && !currentBadges.includes('month_streak')) newBadges.push('month_streak');
+    
+    // Level badges
+    if (stats.level >= 5 && !currentBadges.includes('level_5')) newBadges.push('level_5');
+    if (stats.level >= 10 && !currentBadges.includes('level_10')) newBadges.push('level_10');
+    if (stats.level >= 20 && !currentBadges.includes('level_20')) newBadges.push('level_20');
+    
+    // Meal planner badges
+    if (stats.mealsPlanned >= 20 && !currentBadges.includes('meal_planner')) newBadges.push('meal_planner');
+    
+    return newBadges;
+  };
+
+  const addPoints = async (action, customPoints = null, additionalStats = {}) => {
     const pointsToAdd = customPoints || POINTS_CONFIG[action] || 10;
     const newPoints = (progress.points || 0) + pointsToAdd;
     const newLevel = calculateLevel(newPoints);
     const today = format(new Date(), 'yyyy-MM-dd');
     
+    // Calculate streak
+    const lastActivity = progress.last_activity_date;
+    let newStreak = progress.streak_days || 0;
+    
+    if (lastActivity) {
+      const lastDate = new Date(lastActivity);
+      const diffDays = Math.floor((new Date(today) - lastDate) / (1000 * 60 * 60 * 24));
+      
+      if (diffDays === 1) {
+        newStreak += 1;
+      } else if (diffDays > 1) {
+        newStreak = 1;
+      }
+    } else {
+      newStreak = 1;
+    }
+    
+    // Award streak bonus
+    let streakBonus = 0;
+    if (newStreak > (progress.streak_days || 0) && newStreak >= 3) {
+      streakBonus = POINTS_CONFIG.streak_bonus;
+    }
+    
     let newTasks = progress.total_tasks_completed || 0;
     if (action === 'task_complete') newTasks += 1;
     
-    // Check for level up
     const leveledUp = newLevel > (progress.level || 1);
     
-    // Check for new badges
-    const currentBadges = progress.badges || [];
-    const newBadges = [...currentBadges];
+    // Prepare stats for badge checking
+    const stats = {
+      totalTasks: newTasks,
+      meditationMinutes: additionalStats.meditationMinutes || 0,
+      beautyRoutines: additionalStats.beautyRoutines || 0,
+      selfCareActivities: additionalStats.selfCareActivities || 0,
+      mealsPlanned: additionalStats.mealsPlanned || 0,
+      streak: newStreak,
+      level: newLevel
+    };
     
-    if (newTasks === 1 && !currentBadges.includes('first_task')) newBadges.push('first_task');
-    if (newTasks >= 10 && !currentBadges.includes('ten_tasks')) newBadges.push('ten_tasks');
-    if (newTasks >= 50 && !currentBadges.includes('fifty_tasks')) newBadges.push('fifty_tasks');
-    if (action === 'meditation_complete' && !currentBadges.includes('first_meditation')) newBadges.push('first_meditation');
-    if (newLevel >= 5 && !currentBadges.includes('level_5')) newBadges.push('level_5');
-    if (newLevel >= 10 && !currentBadges.includes('level_10')) newBadges.push('level_10');
-    
-    const earnedNewBadge = newBadges.length > currentBadges.length;
+    const newBadges = await checkAndAwardBadges(action, stats);
+    const earnedNewBadge = newBadges.length > (progress.badges || []).length;
     
     const updateData = {
-      points: newPoints,
+      points: newPoints + streakBonus,
       level: newLevel,
       total_tasks_completed: newTasks,
       last_activity_date: today,
+      streak_days: newStreak,
       badges: newBadges
     };
     
@@ -147,7 +209,6 @@ export function useGamification() {
       await createProgressMutation.mutateAsync(updateData);
     }
     
-    // Trigger celebrations
     if (leveledUp) {
       triggerCelebration('large');
     } else if (earnedNewBadge) {
@@ -156,7 +217,13 @@ export function useGamification() {
       triggerCelebration('small');
     }
     
-    return { pointsEarned: pointsToAdd, leveledUp, earnedNewBadge };
+    return { 
+      pointsEarned: pointsToAdd + streakBonus, 
+      leveledUp, 
+      earnedNewBadge,
+      newBadge: earnedNewBadge ? newBadges[newBadges.length - 1] : null,
+      streakBonus
+    };
   };
   
   return {
