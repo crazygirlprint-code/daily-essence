@@ -49,20 +49,25 @@ function LayoutContent({ children, currentPageName }) {
     }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-900">
       <NotificationBanner />
       <UpcomingNotification />
       {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-b border-amber-200/50">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-lg border-b border-amber-200/50 dark:border-neutral-800">
         <div className="flex items-center justify-between px-4 py-3.5">
           <button
             onClick={() => setIsSidebarOpen(true)}
-            className="p-2 hover:bg-stone-100 rounded-lg"
+            className="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
           >
-            <Menu className="w-5 h-5 text-neutral-900" strokeWidth={1.5} />
+            <Menu className="w-5 h-5 text-neutral-900 dark:text-stone-100" strokeWidth={1.5} />
           </button>
-          <h1 className="font-serif text-lg text-neutral-900 tracking-tight">Daily Essence</h1>
-          <div className="w-9" /> {/* Spacer for centering */}
+          <h1 className="font-serif text-lg text-neutral-900 dark:text-stone-100 tracking-tight">Daily Essence</h1>
+          <button
+            onClick={toggleTheme}
+            className="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
+          >
+            {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-stone-600" />}
+          </button>
         </div>
       </header>
       
