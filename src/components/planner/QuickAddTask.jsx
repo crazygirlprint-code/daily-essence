@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, X, Calendar, Clock, Flag, Tag } from 'lucide-react';
+import { Plus, X, Calendar, Clock, Flag, Tag, Mic } from 'lucide-react';
+import { useSpeechRecognition } from '@/components/hooks/useSpeechRecognition';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -29,6 +30,7 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
     notes: '',
     family_member: ''
   });
+  const { isListening, transcript, startListening, stopListening, clearTranscript } = useSpeechRecognition();
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,13 +78,22 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  placeholder="What needs to be done?"
-                  value={task.title}
-                  onChange={(e) => setTask({ ...task, title: e.target.value })}
-                  className="text-lg border-0 border-b border-slate-200 rounded-none px-0 focus-visible:ring-0 focus-visible:border-rose-400"
-                  autoFocus
-                />
+                <div className="relative">
+                  <Input
+                    placeholder="What needs to be done?"
+                    value={task.title || (isListening ? transcript : '')}
+                    onChange={(e) => setTask({ ...task, title: e.target.value })}
+                    className="text-lg border-0 border-b border-slate-200 rounded-none px-0 pr-10 focus-visible:ring-0 focus-visible:border-rose-400"
+                    autoFocus
+                  />
+                  <button
+                    type="button"
+                    onClick={() => isListening ? (stopListening(), setTask({ ...task, title: transcript })) : startListening()}
+                    className={`absolute right-0 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                  >
+                    <Mic className={`w-5 h-5 ${isListening ? 'animate-pulse' : ''}`} />
+                  </button>
+                </div>
                 
                 <div className="grid grid-cols-2 gap-3">
                   <Select value={task.category} onValueChange={(v) => setTask({ ...task, category: v })}>
@@ -151,13 +162,22 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
                   </Select>
                 )}
                 
-                <Textarea
-                  placeholder="Add notes..."
-                  value={task.notes}
-                  onChange={(e) => setTask({ ...task, notes: e.target.value })}
-                  className="rounded-xl resize-none"
-                  rows={2}
-                />
+                <div className="relative">
+                  <Textarea
+                    placeholder="Add notes..."
+                    value={task.notes}
+                    onChange={(e) => setTask({ ...task, notes: e.target.value })}
+                    className="rounded-xl resize-none"
+                    rows={2}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => isListening ? (stopListening(), setTask({ ...task, notes: task.notes + ' ' + transcript }), clearTranscript()) : startListening()}
+                    className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                  >
+                    <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                  </button>
+                </div>
                 
                 <Button
                   type="submit"
