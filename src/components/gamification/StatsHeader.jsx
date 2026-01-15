@@ -71,10 +71,10 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
         </div>
         
         {/* Progress to next level */}
-        <div className="space-y-2">
-          <div className="flex justify-between text-xs">
+        <div className="space-y-1.5">
+          <div className="flex justify-between items-center">
             <span className="text-stone-400 uppercase tracking-widest text-[10px]">Progress to Level {level + 1}</span>
-            <span className="text-amber-400 font-serif">{Math.round(progressPercent)}%</span>
+            <span className="text-amber-400 font-serif text-sm">{Math.round(progressPercent)}%</span>
           </div>
           <div className="h-1.5 bg-stone-800 rounded-full overflow-hidden">
             <motion.div
@@ -83,6 +83,10 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full"
             />
+          </div>
+          <div className="flex justify-between text-[9px] text-stone-500 uppercase tracking-widest pt-0.5">
+            <span>Level {level}</span>
+            <span>Level {level + 1}</span>
           </div>
         </div>
         
