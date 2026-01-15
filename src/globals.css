@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark Luxury Theme */
+:root.dark-luxury {
+  color-scheme: dark;
+}
+
+@layer base {
+  :root.dark-luxury {
+    --background: 10 20 40;
+    --foreground: 241 245 250;
+    --primary: 251 146 60;
+    --secondary: 51 65 85;
+  }
+}
