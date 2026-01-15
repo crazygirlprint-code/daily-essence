@@ -1,3 +1,4 @@
+css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,5 +14,60 @@
     --foreground: 241 245 250;
     --primary: 251 146 60;
     --secondary: 51 65 85;
+  }
+}
+
+/* Dark Luxury Variant Support */
+@layer components {
+  .dark-luxury\:text-amber-400 { 
+    @apply text-slate-200; 
+  }
+  .dark-luxury\:text-slate-200 { 
+    @apply text-slate-200; 
+  }
+  .dark-luxury\:text-slate-400 { 
+    @apply text-slate-400; 
+  }
+  .dark-luxury\:text-slate-300 { 
+    @apply text-slate-300; 
+  }
+  .dark-luxury\:text-slate-600 { 
+    @apply text-slate-600; 
+  }
+  .dark-luxury\:bg-blue-950 { 
+    @apply bg-blue-950; 
+  }
+  .dark-luxury\:bg-blue-950\/95 { 
+    @apply bg-blue-950/95; 
+  }
+  .dark-luxury\:bg-blue-950\/80 { 
+    @apply bg-blue-950/80; 
+  }
+  .dark-luxury\:from-blue-950 { 
+    @apply from-blue-950; 
+  }
+  .dark-luxury\:via-slate-950 { 
+    @apply via-slate-950; 
+  }
+  .dark-luxury\:to-slate-950 { 
+    @apply to-slate-950; 
+  }
+  .dark-luxury\:border-slate-600\/30 { 
+    @apply border-slate-600/30; 
+  }
+  .dark-luxury\:border-slate-600\/50 { 
+    @apply border-slate-600/50; 
+  }
+  .dark-luxury\:from-slate-800 { 
+    @apply from-slate-800; 
+  }
+  .dark-luxury\:to-slate-800 { 
+    @apply to-slate-800; 
+  }
+  .dark-luxury\:to-blue-900 { 
+    @apply to-blue-900; 
+  }
+  .dark-luxury\:hover\:bg-blue-900\/50 { 
+    @apply hover:bg-blue-900/50; 
   }
 }
