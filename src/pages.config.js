@@ -1,3 +1,4 @@
+import Activities from './pages/Activities';
 import Affirmations from './pages/Affirmations';
 import Beauty from './pages/Beauty';
 import Budget from './pages/Budget';
@@ -8,14 +9,14 @@ import Family from './pages/Family';
 import Home from './pages/Home';
 import Meditation from './pages/Meditation';
 import Pricing from './pages/Pricing';
+import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
-import Profile from './pages/Profile';
-import Activities from './pages/Activities';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
+    "Activities": Activities,
     "Affirmations": Affirmations,
     "Beauty": Beauty,
     "Budget": Budget,
@@ -26,10 +27,9 @@ export const PAGES = {
     "Home": Home,
     "Meditation": Meditation,
     "Pricing": Pricing,
+    "Profile": Profile,
     "Progress": Progress,
     "SelfCare": SelfCare,
-    "Profile": Profile,
-    "Activities": Activities,
 }
 
 export const pagesConfig = {

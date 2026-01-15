@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Heart, RefreshCw, Sparkles, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { Volume2, VolumeX, Heart, RefreshCw, Sparkles, ChevronLeft, ChevronRight, Play, Pause, Mic, Plus } from 'lucide-react';
+import { useSpeechRecognition } from '@/components/hooks/useSpeechRecognition';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useTextToSpeech } from '@/components/audio/useTextToSpeech';
@@ -37,9 +39,12 @@ export default function Affirmations() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showPoints, setShowPoints] = useState(false);
   const [pointsEarned, setPointsEarned] = useState(0);
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [newAffirmation, setNewAffirmation] = useState({ text: '', category: 'confidence' });
   
   const { speak, stop, isSpeaking, isPaused, pause, resume } = useTextToSpeech();
   const { addPoints } = useGamification();
+  const { isListening, transcript, startListening, stopListening, clearTranscript } = useSpeechRecognition();
   const queryClient = useQueryClient();
   
   const { data: affirmations = [], isLoading } = useQuery({
@@ -59,6 +64,16 @@ export default function Affirmations() {
     mutationFn: ({ id, is_favorite }) => 
       base44.entities.Affirmation.update(id, { is_favorite: !is_favorite }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['affirmations'] })
+  });
+
+  const createMutation = useMutation({
+    mutationFn: (data) => base44.entities.Affirmation.create(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['affirmations'] });
+      setShowCreateForm(false);
+      setNewAffirmation({ text: '', category: 'confidence' });
+      clearTranscript();
+    }
   });
   
   const currentAffirmation = affirmations[currentIndex] || DEFAULT_AFFIRMATIONS[0];
@@ -230,31 +245,99 @@ export default function Affirmations() {
           ))}
         </div>
         
-        {/* Favorites Section */}
-        {affirmations.some(a => a.is_favorite) && (
-          <div className="mt-12">
-            <h3 className="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-              <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
-              Your Favorites
-            </h3>
-            <div className="space-y-3">
-              {affirmations.filter(a => a.is_favorite).map((aff, idx) => (
-                <motion.button
-                  key={aff.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                  onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
-                  className="w-full text-left p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100"
+        {/* Create New Affirmation */}
+        <div className="mt-12">
+          {!showCreateForm ? (
+            <Button
+              onClick={() => setShowCreateForm(true)}
+              className="w-full rounded-xl bg-gradient-to-r from-purple-500 to-rose-500 text-white hover:from-purple-600 hover:to-rose-600"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Create Your Own Affirmation
+            </Button>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white rounded-2xl p-6 shadow-lg"
+            >
+              <div className="space-y-4">
+                <div className="relative">
+                  <Input
+                    placeholder="Type or say your affirmation..."
+                    value={newAffirmation.text || (isListening ? transcript : '')}
+                    onChange={(e) => setNewAffirmation({ ...newAffirmation, text: e.target.value })}
+                    className="rounded-xl pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => isListening ? (stopListening(), setNewAffirmation({ ...newAffirmation, text: transcript }), clearTranscript()) : startListening()}
+                    className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                  >
+                    <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                  </button>
+                </div>
+                <select
+                  value={newAffirmation.category}
+                  onChange={(e) => setNewAffirmation({ ...newAffirmation, category: e.target.value })}
+                  className="w-full p-2 rounded-xl border border-slate-200"
                 >
-                  <p className="text-slate-700">"{aff.text}"</p>
-                  <p className="text-xs text-slate-400 mt-1 capitalize">{aff.category}</p>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+                  <option value="confidence">Confidence</option>
+                  <option value="gratitude">Gratitude</option>
+                  <option value="strength">Strength</option>
+                  <option value="peace">Peace</option>
+                  <option value="success">Success</option>
+                  <option value="love">Love</option>
+                </select>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => {
+                      setShowCreateForm(false);
+                      clearTranscript();
+                    }}
+                    variant="outline"
+                    className="flex-1 rounded-xl"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => createMutation.mutate(newAffirmation)}
+                    disabled={!newAffirmation.text.trim()}
+                    className="flex-1 rounded-xl bg-purple-600 hover:bg-purple-700 text-white"
+                  >
+                    Save
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Favorites Section */}
+         {affirmations.some(a => a.is_favorite) && (
+           <div className="mt-12">
+             <h3 className="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+               <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
+               Your Favorites
+             </h3>
+             <div className="space-y-3">
+               {affirmations.filter(a => a.is_favorite).map((aff, idx) => (
+                 <motion.button
+                   key={aff.id}
+                   initial={{ opacity: 0, y: 10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ delay: idx * 0.05 }}
+                   onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
+                   className="w-full text-left p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100"
+                 >
+                   <p className="text-slate-700">"{aff.text}"</p>
+                   <p className="text-xs text-slate-400 mt-1 capitalize">{aff.category}</p>
+                 </motion.button>
+               ))}
+             </div>
+           </div>
+         )}
+        </div>
       
       <PointsPopup 
         points={pointsEarned} 
