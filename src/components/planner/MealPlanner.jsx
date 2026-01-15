@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
+import ShareButton from '@/components/family/ShareButton';
 
 const MEAL_TYPES = [
   { id: 'breakfast', name: 'Breakfast', icon: Coffee, color: 'bg-amber-100 text-amber-600' },
@@ -75,12 +76,15 @@ export default function MealPlanner({ selectedDate, onAddPoints }) {
                   <p className="text-sm font-medium text-slate-700 truncate">
                     {existingMeal.meal_name}
                   </p>
-                  <button
-                    onClick={() => deleteMutation.mutate(existingMeal.id)}
-                    className="p-1 hover:bg-red-50 rounded"
-                  >
-                    <Trash2 className="w-3 h-3 text-red-400" />
-                  </button>
+                  <div className="flex items-center gap-1">
+                    <ShareButton item={existingMeal} itemType="meal" />
+                    <button
+                      onClick={() => deleteMutation.mutate(existingMeal.id)}
+                      className="p-1 hover:bg-red-50 rounded"
+                    >
+                      <Trash2 className="w-3 h-3 text-red-400" />
+                    </button>
+                  </div>
                 </div>
               ) : isAddingThis ? (
                 <div className="flex gap-2">
