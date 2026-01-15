@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { format, parseISO, isToday } from 'date-fns';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Calendar, Users } from 'lucide-react';
+import { Plus, Calendar, Users, Sparkles, Heart, Leaf, UtensilsCrossed, StickyNote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -15,14 +15,23 @@ import CategoryFilter from '@/components/planner/CategoryFilter';
 import TaskCard from '@/components/planner/TaskCard';
 import QuickAddTask from '@/components/planner/QuickAddTask';
 import EmptyState from '@/components/planner/EmptyState';
+import MealPlanner from '@/components/planner/MealPlanner';
+import QuickNotes from '@/components/planner/QuickNotes';
+import LevelBadge from '@/components/gamification/LevelBadge';
+import { useGamification } from '@/components/gamification/useGamification';
+import PointsPopup from '@/components/gamification/PointsPopup';
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [showPoints, setShowPoints] = useState(false);
+  const [pointsEarned, setPointsEarned] = useState(0);
+  const [activeSection, setActiveSection] = useState('tasks');
   
   const queryClient = useQueryClient();
+  const { progress, addPoints, getProgressToNextLevel } = useGamification();
   
   // Fetch current user
   React.useEffect(() => {
@@ -115,10 +124,45 @@ export default function Home() {
   const pendingTasks = filteredTasks.filter(t => !t.completed);
   const allTasksDone = tasksForDate.length > 0 && pendingTasks.length === 0 && selectedCategory === 'all';
 
+  const quickLinks = [
+    { name: 'Affirmations', icon: Sparkles, color: 'from-purple-400 to-indigo-500', page: 'Affirmations' },
+    { name: 'Beauty', icon: Heart, color: 'from-pink-400 to-rose-500', page: 'Beauty' },
+    { name: 'Meditation', icon: Leaf, color: 'from-emerald-400 to-teal-500', page: 'Meditation' },
+    { name: 'Self-Care', icon: Heart, color: 'from-rose-400 to-pink-500', page: 'SelfCare' },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
+        {/* Level Badge */}
+        <div className="mb-4">
+          <LevelBadge 
+            level={progress.level || 1} 
+            points={progress.points || 0} 
+            progressPercent={getProgressToNextLevel()}
+            compact
+          />
+        </div>
+        
         <DayHeader date={selectedDate} userName={user?.full_name} />
+        
+        {/* Quick Links */}
+        <div className="grid grid-cols-4 gap-2 mb-6">
+          {quickLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Link key={link.name} to={createPageUrl(link.page)}>
+                <motion.div
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex flex-col items-center gap-1 p-3 rounded-2xl bg-gradient-to-br ${link.color} text-white shadow-lg`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="text-xs font-medium">{link.name}</span>
+                </motion.div>
+              </Link>
+            );
+          })}
+        </div>
         
         <div className="mb-6">
           <WeekStrip 
@@ -134,6 +178,33 @@ export default function Home() {
           </div>
         )}
         
+        {/* Section Tabs */}
+        <div className="flex gap-2 mb-4 overflow-x-auto">
+          {[
+            { id: 'tasks', label: 'Tasks', icon: Plus },
+            { id: 'meals', label: 'Meals', icon: UtensilsCrossed },
+            { id: 'notes', label: 'Notes', icon: StickyNote },
+          ].map((section) => {
+            const Icon = section.icon;
+            return (
+              <button
+                key={section.id}
+                onClick={() => setActiveSection(section.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-sm whitespace-nowrap transition-all ${
+                  activeSection === section.id
+                    ? 'bg-slate-800 text-white'
+                    : 'bg-white text-slate-600 border border-slate-200'
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+                {section.label}
+              </button>
+            );
+          })}
+        </div>
+        
+        {activeSection === 'tasks' && (
+          <>
         <div className="mb-6">
           <CategoryFilter
             selected={selectedCategory}
@@ -213,6 +284,12 @@ export default function Home() {
         onOpenChange={setIsAddOpen}
         onAdd={handleAddTask}
         familyMembers={familyMembers}
+      />
+      
+      <PointsPopup
+        points={pointsEarned}
+        show={showPoints}
+        onComplete={() => setShowPoints(false)}
       />
     </div>
   );

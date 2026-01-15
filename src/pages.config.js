@@ -5,6 +5,7 @@ import Affirmations from './pages/Affirmations';
 import Beauty from './pages/Beauty';
 import Meditation from './pages/Meditation';
 import SelfCare from './pages/SelfCare';
+import Events from './pages/Events';
 
 
 export const PAGES = {
@@ -15,6 +16,7 @@ export const PAGES = {
     "Beauty": Beauty,
     "Meditation": Meditation,
     "SelfCare": SelfCare,
+    "Events": Events,
 }
 
 export const pagesConfig = {
