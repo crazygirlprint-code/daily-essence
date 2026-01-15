@@ -320,9 +320,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-amber-900/20 backdrop-blur-sm rounded-lg p-4 border border-amber-700/30"
+                  className="bg-amber-100/40 backdrop-blur-sm rounded-lg p-4 border border-amber-300/50"
                 >
-                  <p className="text-sm text-amber-100 leading-relaxed italic">
+                  <p className="text-sm text-amber-900 leading-relaxed italic">
                     "{insights.daily_summary.message}"
                   </p>
                 </motion.div>
@@ -335,16 +335,16 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                   whileHover={{ scale: 1.01 }}
-                  className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
+                  className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-amber-300/50 transition-all cursor-pointer shadow-xs"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
-                      <span className="text-amber-400 text-sm font-serif">1</span>
+                    <div className="w-7 h-7 rounded bg-amber-100 flex items-center justify-center flex-shrink-0 border border-amber-300/50">
+                      <span className="text-amber-700 text-sm font-serif">1</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm text-stone-100 mb-1">{insights.priority_action.title}</h4>
-                      <p className="text-xs text-stone-300 leading-relaxed">{insights.priority_action.description}</p>
-                      <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.priority_action.why_now}</p>
+                      <h4 className="font-medium text-sm text-stone-900 mb-1">{insights.priority_action.title}</h4>
+                      <p className="text-xs text-stone-700 leading-relaxed">{insights.priority_action.description}</p>
+                      <p className="text-[10px] text-stone-600 mt-1.5 uppercase tracking-widest">{insights.priority_action.why_now}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -358,19 +358,19 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                     whileHover={{ scale: 1.01 }}
-                    className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
+                    className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-amber-300/50 transition-all cursor-pointer shadow-xs"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
-                        <Heart className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.5} />
+                      <div className="w-7 h-7 rounded bg-amber-100 flex items-center justify-center flex-shrink-0 border border-amber-300/50">
+                        <Heart className="w-3.5 h-3.5 text-amber-700" strokeWidth={1.5} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="font-medium text-sm text-stone-100">{insights.wellness.title}</h4>
-                          <ChevronRight className="w-3.5 h-3.5 text-stone-500" strokeWidth={1.5} />
+                          <h4 className="font-medium text-sm text-stone-900">{insights.wellness.title}</h4>
+                          <ChevronRight className="w-3.5 h-3.5 text-stone-600" strokeWidth={1.5} />
                         </div>
-                        <p className="text-xs text-stone-300 leading-relaxed">{insights.wellness.description}</p>
-                        <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.wellness.benefit}</p>
+                        <p className="text-xs text-stone-700 leading-relaxed">{insights.wellness.description}</p>
+                        <p className="text-[10px] text-stone-600 mt-1.5 uppercase tracking-widest">{insights.wellness.benefit}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -384,16 +384,16 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                   whileHover={{ scale: 1.01 }}
-                  className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
+                  className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-amber-300/50 transition-all cursor-pointer shadow-xs"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
-                      <UtensilsCrossed className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.5} />
+                    <div className="w-7 h-7 rounded bg-amber-100 flex items-center justify-center flex-shrink-0 border border-amber-300/50">
+                      <UtensilsCrossed className="w-3.5 h-3.5 text-amber-700" strokeWidth={1.5} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm text-stone-100 mb-1">{insights.meal.title}</h4>
-                      <p className="text-xs text-stone-300 leading-relaxed">{insights.meal.description}</p>
-                      <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.meal.timing}</p>
+                      <h4 className="font-medium text-sm text-stone-900 mb-1">{insights.meal.title}</h4>
+                      <p className="text-xs text-stone-700 leading-relaxed">{insights.meal.description}</p>
+                      <p className="text-[10px] text-stone-600 mt-1.5 uppercase tracking-widest">{insights.meal.timing}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -407,19 +407,19 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     whileHover={{ scale: 1.01 }}
-                    className="bg-stone-900/50 backdrop-blur-sm rounded-lg p-4 border border-stone-700 hover:border-amber-700/50 transition-all cursor-pointer"
+                    className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-amber-300/50 transition-all cursor-pointer shadow-xs"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded bg-amber-700/20 flex items-center justify-center flex-shrink-0 border border-amber-700/30">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.5} />
+                      <div className="w-7 h-7 rounded bg-amber-100 flex items-center justify-center flex-shrink-0 border border-amber-300/50">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-700" strokeWidth={1.5} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="font-medium text-sm text-stone-100">{insights.affirmation.theme}</h4>
-                          <ChevronRight className="w-3.5 h-3.5 text-stone-500" strokeWidth={1.5} />
+                          <h4 className="font-medium text-sm text-stone-900">{insights.affirmation.theme}</h4>
+                          <ChevronRight className="w-3.5 h-3.5 text-stone-600" strokeWidth={1.5} />
                         </div>
-                        <p className="text-xs text-stone-300 leading-relaxed">{insights.affirmation.suggestion}</p>
-                        <p className="text-[10px] text-stone-500 mt-1.5 uppercase tracking-widest">{insights.affirmation.relevance}</p>
+                        <p className="text-xs text-stone-700 leading-relaxed">{insights.affirmation.suggestion}</p>
+                        <p className="text-[10px] text-stone-600 mt-1.5 uppercase tracking-widest">{insights.affirmation.relevance}</p>
                       </div>
                     </div>
                   </motion.div>
