@@ -16,15 +16,39 @@ const POINTS_CONFIG = {
 const LEVEL_THRESHOLDS = [0, 100, 250, 500, 1000, 2000, 3500, 5500, 8000, 12000];
 
 const BADGES = {
-  first_task: { name: 'First Steps', icon: '🌱', description: 'Complete your first task' },
-  ten_tasks: { name: 'Getting Things Done', icon: '⭐', description: 'Complete 10 tasks' },
-  fifty_tasks: { name: 'Productivity Queen', icon: '👑', description: 'Complete 50 tasks' },
-  first_meditation: { name: 'Inner Peace', icon: '🧘', description: 'Complete your first meditation' },
-  week_streak: { name: 'Consistency', icon: '🔥', description: '7 day streak' },
-  beauty_master: { name: 'Glow Up', icon: '✨', description: 'Complete 30 beauty routines' },
-  self_care_pro: { name: 'Self Love', icon: '💖', description: 'Complete 5 self-care activities' },
-  level_5: { name: 'Rising Star', icon: '🌟', description: 'Reach level 5' },
-  level_10: { name: 'Superwoman', icon: '💪', description: 'Reach level 10' }
+  // Core Achievements
+  first_task: { name: 'First Steps', icon: '🌱', description: 'Complete your first task', category: 'tasks' },
+  ten_tasks: { name: 'Task Master', icon: '⭐', description: 'Complete 10 tasks', category: 'tasks' },
+  fifty_tasks: { name: 'Productivity Queen', icon: '👑', description: 'Complete 50 tasks', category: 'tasks' },
+  hundred_tasks: { name: 'Boss Mom', icon: '💎', description: 'Complete 100 tasks', category: 'tasks' },
+  
+  // Planning Achievements
+  planning_pro: { name: 'Planning Pro', icon: '📋', description: 'Plan 7 days in a row', category: 'planning' },
+  meal_planner: { name: 'Meal Planner', icon: '🍳', description: 'Plan 20 meals', category: 'planning' },
+  organized_queen: { name: 'Organized Queen', icon: '📚', description: 'Create 10 notes', category: 'planning' },
+  
+  // Wellness Achievements
+  first_meditation: { name: 'Inner Peace', icon: '🧘', description: 'Complete your first meditation', category: 'wellness' },
+  zen_master: { name: 'Zen Master', icon: '☯️', description: 'Meditate for 100 minutes total', category: 'wellness' },
+  beauty_starter: { name: 'Glow Getter', icon: '💄', description: 'Complete 10 beauty routines', category: 'wellness' },
+  beauty_master: { name: 'Glow Up', icon: '✨', description: 'Complete 30 beauty routines', category: 'wellness' },
+  self_care_starter: { name: 'Me Time', icon: '🛁', description: 'Complete 3 self-care activities', category: 'wellness' },
+  self_care_pro: { name: 'Self Love', icon: '💖', description: 'Complete 10 self-care activities', category: 'wellness' },
+  
+  // Streak Achievements
+  three_day_streak: { name: 'Getting Started', icon: '🔥', description: '3 day streak', category: 'streaks' },
+  week_streak: { name: 'Consistency', icon: '🔥', description: '7 day streak', category: 'streaks' },
+  month_streak: { name: 'Unstoppable', icon: '💫', description: '30 day streak', category: 'streaks' },
+  
+  // Level Achievements
+  level_5: { name: 'Rising Star', icon: '🌟', description: 'Reach level 5', category: 'levels' },
+  level_10: { name: 'Superwoman', icon: '💪', description: 'Reach level 10', category: 'levels' },
+  level_20: { name: 'Legend', icon: '🏆', description: 'Reach level 20', category: 'levels' },
+  
+  // Special Achievements
+  early_bird: { name: 'Early Bird', icon: '🐦', description: 'Complete a task before 7am', category: 'special' },
+  night_owl: { name: 'Night Owl', icon: '🦉', description: 'Complete a task after 10pm', category: 'special' },
+  perfect_day: { name: 'Perfect Day', icon: '🌈', description: 'Complete all tasks in a day', category: 'special' },
 };
 
 export function triggerCelebration(intensity = 'medium') {

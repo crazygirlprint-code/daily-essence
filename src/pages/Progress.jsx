@@ -157,6 +157,7 @@ export default function Progress() {
           <BadgesDisplay 
             earnedBadges={progress.badges || []} 
             showAll={true}
+            showFilter={true}
           />
         </div>
         

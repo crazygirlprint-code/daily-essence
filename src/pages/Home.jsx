@@ -17,9 +17,10 @@ import QuickAddTask from '@/components/planner/QuickAddTask';
 import EmptyState from '@/components/planner/EmptyState';
 import MealPlanner from '@/components/planner/MealPlanner';
 import QuickNotes from '@/components/planner/QuickNotes';
-import LevelBadge from '@/components/gamification/LevelBadge';
+import StatsHeader from '@/components/gamification/StatsHeader';
 import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
+import AchievementUnlock from '@/components/gamification/AchievementUnlock';
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -29,6 +30,7 @@ export default function Home() {
   const [showPoints, setShowPoints] = useState(false);
   const [pointsEarned, setPointsEarned] = useState(0);
   const [activeSection, setActiveSection] = useState('tasks');
+  const [unlockedBadge, setUnlockedBadge] = useState(null);
   
   const queryClient = useQueryClient();
   const { progress, addPoints, getProgressToNextLevel } = useGamification();
@@ -141,15 +143,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
-        {/* Level Badge */}
-        <div className="mb-4">
-          <LevelBadge 
-            level={progress.level || 1} 
-            points={progress.points || 0} 
-            progressPercent={getProgressToNextLevel()}
-            compact
-          />
-        </div>
+        {/* Stats Header */}
+        <StatsHeader
+          points={progress.points || 0}
+          level={progress.level || 1}
+          progressPercent={getProgressToNextLevel()}
+          tasksToday={tasksForDate.length}
+          tasksCompleted={tasksForDate.filter(t => t.completed).length}
+        />
         
         <DayHeader date={selectedDate} userName={user?.full_name} />
         
@@ -322,6 +323,13 @@ export default function Home() {
         points={pointsEarned}
         show={showPoints}
         onComplete={() => setShowPoints(false)}
+        message="Task completed!"
+      />
+      
+      <AchievementUnlock
+        badge={unlockedBadge}
+        show={!!unlockedBadge}
+        onClose={() => setUnlockedBadge(null)}
       />
     </div>
   );
