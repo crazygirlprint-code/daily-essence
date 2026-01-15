@@ -135,14 +135,14 @@ export default function Home() {
   const allTasksDone = tasksForDate.length > 0 && pendingTasks.length === 0 && selectedCategory === 'all';
 
   const quickLinks = [
-    { name: 'Affirmations', icon: Sparkles, color: 'from-amber-100 to-amber-50', textColor: 'text-amber-800', page: 'Affirmations' },
-    { name: 'Beauty', icon: Heart, color: 'from-rose-100 to-rose-50', textColor: 'text-rose-800', page: 'Beauty' },
-    { name: 'Meditation', icon: Leaf, color: 'from-emerald-100 to-emerald-50', textColor: 'text-emerald-800', page: 'Meditation' },
-    { name: 'Self-Care', icon: Heart, color: 'from-stone-100 to-stone-50', textColor: 'text-stone-800', page: 'SelfCare' },
+    { name: 'Affirmations', icon: Sparkles, color: 'bg-amber-100/60', textColor: 'text-amber-900', page: 'Affirmations' },
+    { name: 'Beauty', icon: Heart, color: 'bg-stone-200/50', textColor: 'text-stone-900', page: 'Beauty' },
+    { name: 'Meditation', icon: Leaf, color: 'bg-neutral-200/50', textColor: 'text-neutral-900', page: 'Meditation' },
+    { name: 'Self-Care', icon: Heart, color: 'bg-amber-100/50', textColor: 'text-amber-900', page: 'SelfCare' },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/30 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
         {/* Stats Header */}
         <StatsHeader
@@ -161,17 +161,17 @@ export default function Home() {
         </div>
         
         {/* Quick Links */}
-        <div className="grid grid-cols-4 gap-3 mb-6">
+        <div className="grid grid-cols-4 gap-3 mb-8">
           {quickLinks.map((link) => {
             const Icon = link.icon;
             return (
               <Link key={link.name} to={createPageUrl(link.page)}>
                 <motion.div
                   whileTap={{ scale: 0.95 }}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-br ${link.color} ${link.textColor} shadow-sm border border-stone-200/50`}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-lg ${link.color} ${link.textColor} border border-stone-300/30`}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="text-[10px] font-medium uppercase tracking-wide">{link.name}</span>
+                  <Icon className="w-5 h-5" strokeWidth={1.5} />
+                  <span className="text-[9px] font-medium uppercase tracking-widest">{link.name}</span>
                 </motion.div>
               </Link>
             );
@@ -204,13 +204,13 @@ export default function Home() {
               <button
                 key={section.id}
                 onClick={() => setActiveSection(section.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                   activeSection === section.id
-                    ? 'bg-stone-800 text-amber-50 shadow-md'
-                    : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300'
+                    ? 'bg-neutral-900 text-stone-100 shadow-sm'
+                    : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-50'
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-4 h-4" strokeWidth={1.5} />
                 {section.label}
               </button>
             );
@@ -294,26 +294,26 @@ export default function Home() {
       >
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="h-14 w-14 rounded-full bg-stone-800 hover:bg-stone-900 shadow-xl shadow-stone-300/50 text-amber-50"
+          className="h-14 w-14 rounded-full bg-neutral-900 hover:bg-black shadow-lg shadow-stone-400/30 text-stone-100"
         >
-          <Plus className="w-6 h-6" />
+          <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>
       </motion.div>
       
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-stone-200 px-6 py-3 md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-stone-300 px-6 py-3 md:hidden">
         <div className="flex justify-around items-center max-w-md mx-auto">
-          <button className="flex flex-col items-center gap-1 text-amber-700">
-            <Calendar className="w-5 h-5" />
-            <span className="text-xs font-medium tracking-wide">Today</span>
+          <button className="flex flex-col items-center gap-1 text-neutral-900">
+            <Calendar className="w-5 h-5" strokeWidth={1.5} />
+            <span className="text-[10px] font-medium uppercase tracking-widest">Today</span>
           </button>
-          <Link to={createPageUrl('Calendar')} className="flex flex-col items-center gap-1 text-stone-400">
-            <Calendar className="w-5 h-5" />
-            <span className="text-xs font-medium tracking-wide">Calendar</span>
+          <Link to={createPageUrl('Calendar')} className="flex flex-col items-center gap-1 text-stone-500">
+            <Calendar className="w-5 h-5" strokeWidth={1.5} />
+            <span className="text-[10px] font-medium uppercase tracking-widest">Calendar</span>
           </Link>
-          <Link to={createPageUrl('Family')} className="flex flex-col items-center gap-1 text-stone-400">
-            <Users className="w-5 h-5" />
-            <span className="text-xs font-medium tracking-wide">Family</span>
+          <Link to={createPageUrl('Family')} className="flex flex-col items-center gap-1 text-stone-500">
+            <Users className="w-5 h-5" strokeWidth={1.5} />
+            <span className="text-[10px] font-medium uppercase tracking-widest">Family</span>
           </Link>
         </div>
       </div>

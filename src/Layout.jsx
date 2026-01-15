@@ -42,17 +42,17 @@ export default function Layout({ children, currentPageName }) {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-stone-100">
       {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-lg border-b border-stone-200">
-        <div className="flex items-center justify-between px-4 py-3">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-b border-stone-300">
+        <div className="flex items-center justify-between px-4 py-3.5">
           <button
             onClick={() => setIsSidebarOpen(true)}
-            className="p-2 hover:bg-stone-100 rounded-xl"
+            className="p-2 hover:bg-stone-100 rounded-lg"
           >
-            <Menu className="w-5 h-5 text-stone-600" />
+            <Menu className="w-5 h-5 text-neutral-900" strokeWidth={1.5} />
           </button>
-          <h1 className="font-serif font-light text-lg text-stone-800 tracking-tight">Mom's Planner</h1>
+          <h1 className="font-serif text-lg text-neutral-900 tracking-tight">Mom's Planner</h1>
           <div className="w-9" /> {/* Spacer for centering */}
         </div>
       </header>
@@ -77,12 +77,12 @@ export default function Layout({ children, currentPageName }) {
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-xl font-serif font-light text-stone-800 tracking-tight">Mom's Planner</h2>
+                  <h2 className="text-xl font-serif text-neutral-900 tracking-tight">Mom's Planner</h2>
                   <button
                     onClick={() => setIsSidebarOpen(false)}
-                    className="p-2 hover:bg-stone-100 rounded-xl"
+                    className="p-2 hover:bg-stone-100 rounded-lg"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="w-5 h-5" strokeWidth={1.5} />
                   </button>
                 </div>
                 
@@ -115,12 +115,12 @@ export default function Layout({ children, currentPageName }) {
       </AnimatePresence>
       
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-stone-200 flex-col">
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-stone-300 flex-col">
         <div className="p-6">
-          <h1 className="text-xl font-serif font-light text-stone-800 tracking-tight">
+          <h1 className="text-2xl font-serif text-neutral-900 tracking-tight">
             Mom's Planner
           </h1>
-          <p className="text-xs text-stone-400 mt-1 tracking-wide">Your daily companion</p>
+          <p className="text-[10px] text-stone-500 mt-1 uppercase tracking-widest font-light">Your daily companion</p>
         </div>
         
         <nav className="flex-1 px-4 space-y-1">
@@ -132,22 +132,22 @@ export default function Layout({ children, currentPageName }) {
                 key={item.page}
                 to={createPageUrl(item.page)}
                 className={cn(
-                  'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
+                  'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
-                    ? 'bg-gradient-to-r from-amber-50 to-stone-50 text-stone-800 shadow-sm border border-stone-200/50'
-                    : 'text-stone-600 hover:bg-stone-50'
+                    ? 'bg-neutral-900 text-stone-100'
+                    : 'text-stone-700 hover:bg-stone-100'
                 )}
               >
-                <Icon className={cn('w-5 h-5', isActive && 'text-amber-700')} />
-                <span className="font-medium tracking-wide">{item.name}</span>
+                <Icon className={cn('w-5 h-5')} strokeWidth={1.5} />
+                <span className="text-sm tracking-wide">{item.name}</span>
               </Link>
             );
           })}
         </nav>
         
-        <div className="p-4 m-4 bg-gradient-to-br from-amber-50 to-stone-50 rounded-2xl border border-stone-200/50">
-          <p className="text-sm text-stone-800 font-medium">💛 Self-Care Reminder</p>
-          <p className="text-xs text-stone-600/70 mt-1 tracking-wide">
+        <div className="p-4 m-4 bg-amber-100/40 rounded-lg border border-stone-300">
+          <p className="text-xs text-neutral-900 font-medium uppercase tracking-widest">Self-Care Reminder</p>
+          <p className="text-xs text-stone-700 mt-2 leading-relaxed">
             Don't forget to schedule some me-time this week!
           </p>
         </div>

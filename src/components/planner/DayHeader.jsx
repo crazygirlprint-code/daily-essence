@@ -23,16 +23,16 @@ export default function DayHeader({ date, userName }) {
   
   return (
     <div className="mb-8">
-      <div className="flex items-center gap-2 mb-1">
-        <Icon className={`w-4 h-4 ${greeting.color}`} />
-        <span className="text-stone-500 text-sm font-medium tracking-wide">{greeting.text}, {firstName}</span>
+      <div className="flex items-center gap-2 mb-2">
+        <Icon className={`w-4 h-4 ${greeting.color}`} strokeWidth={1.5} />
+        <span className="text-stone-600 text-xs font-medium uppercase tracking-widest">{greeting.text}, {firstName}</span>
       </div>
       
-      <h1 className="text-3xl font-serif font-light text-stone-800 tracking-tight">
+      <h1 className="text-4xl font-serif text-neutral-900 tracking-tight leading-tight">
         {getDateLabel(date)}
       </h1>
       
-      <p className="text-stone-400 text-sm mt-1 tracking-wide">
+      <p className="text-stone-500 text-sm mt-1.5 uppercase tracking-widest font-light">
         {format(date, 'MMMM d, yyyy')}
       </p>
     </div>
