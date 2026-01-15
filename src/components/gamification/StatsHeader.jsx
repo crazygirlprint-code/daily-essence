@@ -70,26 +70,6 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
           </div>
         </div>
         
-        {/* Progress to next level */}
-        <div className="space-y-1.5">
-          <div className="flex justify-between items-center">
-            <span className="text-stone-400 uppercase tracking-widest text-[10px]">Progress to Level {level + 1}</span>
-            <span className="text-amber-400 font-serif text-sm">{Math.round(progressPercent)}%</span>
-          </div>
-          <div className="h-1.5 bg-stone-800 rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: `${progressPercent}%` }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full"
-            />
-          </div>
-          <div className="flex justify-between text-[9px] text-stone-500 uppercase tracking-widest pt-0.5">
-            <span>Level {level}</span>
-            <span>Level {level + 1}</span>
-          </div>
-        </div>
-        
         {/* Quick stats row */}
         <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-stone-700">
           <div className="text-center">

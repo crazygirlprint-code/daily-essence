@@ -222,6 +222,26 @@ export default function Home() {
               />
             </div>
             
+            {/* Progress to next level */}
+            <div className="space-y-1.5 mb-6">
+              <div className="flex justify-between items-center">
+                <span className="text-stone-600 uppercase tracking-widest text-[10px]">Progress to Level {progress.level + 1}</span>
+                <span className="text-amber-600 font-serif text-sm">{Math.round(getProgressToNextLevel())}%</span>
+              </div>
+              <div className="h-1.5 bg-stone-200 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${getProgressToNextLevel()}%` }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  className="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full"
+                />
+              </div>
+              <div className="flex justify-between text-[9px] text-stone-500 uppercase tracking-widest pt-0.5">
+                <span>Level {progress.level || 1}</span>
+                <span>Level {(progress.level || 1) + 1}</span>
+              </div>
+            </div>
+            
             <div className="space-y-3">
           <AnimatePresence mode="popLayout">
             {isLoading ? (
