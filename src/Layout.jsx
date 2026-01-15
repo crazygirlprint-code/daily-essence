@@ -132,10 +132,10 @@ function LayoutContent({ children, currentPageName }) {
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-neutral-900/80 dark-luxury:bg-blue-950/80 backdrop-blur-sm border-r border-amber-200/50 dark:border-neutral-800 dark-luxury:border-amber-600/30 flex-col">
         <div className="p-6 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 tracking-tight">
+            <h1 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400 tracking-tight">
               Daily Essence
             </h1>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 uppercase tracking-widest font-light">Where Chaos Meets Clarity</p>
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 dark-luxury:text-amber-600 mt-1 uppercase tracking-widest font-light">Where Chaos Meets Clarity</p>
           </div>
           <button
             onClick={toggleTheme}
