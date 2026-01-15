@@ -242,6 +242,11 @@ export default function Home() {
               </div>
             </div>
             
+            {/* AI Insights */}
+            <div className="mb-6">
+              <AIInsights />
+            </div>
+            
             <div className="space-y-3">
           <AnimatePresence mode="popLayout">
             {isLoading ? (
@@ -298,11 +303,6 @@ export default function Home() {
             <QuickNotes />
           </div>
         )}
-        
-        {/* AI Insights */}
-        <div className="mt-6">
-          <AIInsights />
-        </div>
       </div>
       
       {/* Floating Add Button */}
