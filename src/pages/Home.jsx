@@ -5,6 +5,7 @@ import { format, parseISO, isToday } from 'date-fns';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Calendar, Users, Sparkles, Heart, Leaf, UtensilsCrossed, StickyNote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
@@ -32,6 +33,7 @@ export default function Home() {
   const [pointsEarned, setPointsEarned] = useState(0);
   const [activeSection, setActiveSection] = useState('tasks');
   const [unlockedBadge, setUnlockedBadge] = useState(null);
+  const [showStatsDialog, setShowStatsDialog] = useState(false);
   
   const queryClient = useQueryClient();
   const { progress, addPoints, getProgressToNextLevel } = useGamification();
@@ -219,7 +221,10 @@ export default function Home() {
             </div>
             
             {/* Progress to next level */}
-            <div className="space-y-1.5 mb-6">
+            <div 
+              className="space-y-1.5 mb-6 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => setShowStatsDialog(true)}
+            >
               <div className="flex justify-between items-center">
                 <span className="text-stone-600 uppercase tracking-widest text-[10px]">Progress to Level {progress.level + 1}</span>
                 <span className="text-amber-600 font-serif text-sm">{Math.round(getProgressToNextLevel())}%</span>
@@ -348,6 +353,18 @@ export default function Home() {
         show={!!unlockedBadge}
         onClose={() => setUnlockedBadge(null)}
       />
+      
+      <Dialog open={showStatsDialog} onOpenChange={setShowStatsDialog}>
+        <DialogContent className="max-w-md">
+          <StatsHeader
+            points={progress.points || 0}
+            level={progress.level || 1}
+            progressPercent={getProgressToNextLevel()}
+            tasksToday={tasksForDate.length}
+            tasksCompleted={tasksForDate.filter(t => t.completed).length}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
