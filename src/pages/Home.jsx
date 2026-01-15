@@ -135,14 +135,14 @@ export default function Home() {
   const allTasksDone = tasksForDate.length > 0 && pendingTasks.length === 0 && selectedCategory === 'all';
 
   const quickLinks = [
-    { name: 'Affirmations', icon: Sparkles, color: 'from-purple-400 to-indigo-500', page: 'Affirmations' },
-    { name: 'Beauty', icon: Heart, color: 'from-pink-400 to-rose-500', page: 'Beauty' },
-    { name: 'Meditation', icon: Leaf, color: 'from-emerald-400 to-teal-500', page: 'Meditation' },
-    { name: 'Self-Care', icon: Heart, color: 'from-rose-400 to-pink-500', page: 'SelfCare' },
+    { name: 'Affirmations', icon: Sparkles, color: 'from-amber-100 to-amber-50', textColor: 'text-amber-800', page: 'Affirmations' },
+    { name: 'Beauty', icon: Heart, color: 'from-rose-100 to-rose-50', textColor: 'text-rose-800', page: 'Beauty' },
+    { name: 'Meditation', icon: Leaf, color: 'from-emerald-100 to-emerald-50', textColor: 'text-emerald-800', page: 'Meditation' },
+    { name: 'Self-Care', icon: Heart, color: 'from-stone-100 to-stone-50', textColor: 'text-stone-800', page: 'SelfCare' },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/30 to-white">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
         {/* Stats Header */}
         <StatsHeader
@@ -161,17 +161,17 @@ export default function Home() {
         </div>
         
         {/* Quick Links */}
-        <div className="grid grid-cols-4 gap-2 mb-6">
+        <div className="grid grid-cols-4 gap-3 mb-6">
           {quickLinks.map((link) => {
             const Icon = link.icon;
             return (
               <Link key={link.name} to={createPageUrl(link.page)}>
                 <motion.div
                   whileTap={{ scale: 0.95 }}
-                  className={`flex flex-col items-center gap-1 p-3 rounded-2xl bg-gradient-to-br ${link.color} text-white shadow-lg`}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-br ${link.color} ${link.textColor} shadow-sm border border-stone-200/50`}
                 >
                   <Icon className="w-5 h-5" />
-                  <span className="text-xs font-medium">{link.name}</span>
+                  <span className="text-[10px] font-medium uppercase tracking-wide">{link.name}</span>
                 </motion.div>
               </Link>
             );
@@ -193,7 +193,7 @@ export default function Home() {
         )}
         
         {/* Section Tabs */}
-        <div className="flex gap-2 mb-4 overflow-x-auto">
+        <div className="flex gap-2 mb-6 overflow-x-auto">
           {[
             { id: 'tasks', label: 'Tasks', icon: Plus },
             { id: 'meals', label: 'Meals', icon: UtensilsCrossed },
@@ -204,10 +204,10 @@ export default function Home() {
               <button
                 key={section.id}
                 onClick={() => setActiveSection(section.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-sm whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${
                   activeSection === section.id
-                    ? 'bg-slate-800 text-white'
-                    : 'bg-white text-slate-600 border border-slate-200'
+                    ? 'bg-stone-800 text-amber-50 shadow-md'
+                    : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -294,26 +294,26 @@ export default function Home() {
       >
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="h-14 w-14 rounded-full bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 shadow-xl shadow-rose-200 text-white"
+          className="h-14 w-14 rounded-full bg-stone-800 hover:bg-stone-900 shadow-xl shadow-stone-300/50 text-amber-50"
         >
           <Plus className="w-6 h-6" />
         </Button>
       </motion.div>
       
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-slate-200 px-6 py-3 md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-stone-200 px-6 py-3 md:hidden">
         <div className="flex justify-around items-center max-w-md mx-auto">
-          <button className="flex flex-col items-center gap-1 text-rose-500">
+          <button className="flex flex-col items-center gap-1 text-amber-700">
             <Calendar className="w-5 h-5" />
-            <span className="text-xs font-medium">Today</span>
+            <span className="text-xs font-medium tracking-wide">Today</span>
           </button>
-          <Link to={createPageUrl('Calendar')} className="flex flex-col items-center gap-1 text-slate-400">
+          <Link to={createPageUrl('Calendar')} className="flex flex-col items-center gap-1 text-stone-400">
             <Calendar className="w-5 h-5" />
-            <span className="text-xs font-medium">Calendar</span>
+            <span className="text-xs font-medium tracking-wide">Calendar</span>
           </Link>
-          <Link to={createPageUrl('Family')} className="flex flex-col items-center gap-1 text-slate-400">
+          <Link to={createPageUrl('Family')} className="flex flex-col items-center gap-1 text-stone-400">
             <Users className="w-5 h-5" />
-            <span className="text-xs font-medium">Family</span>
+            <span className="text-xs font-medium tracking-wide">Family</span>
           </Link>
         </div>
       </div>
