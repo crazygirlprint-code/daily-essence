@@ -12,10 +12,11 @@ const plans = [
     name: 'Free',
     price: 0,
     priceId: null,
-    description: 'Perfect for getting started',
+    description: 'Perfect for getting started with ads',
     color: 'from-slate-50 to-stone-50',
     borderColor: 'border-stone-200',
     buttonColor: 'bg-stone-600 hover:bg-stone-700',
+    badge: 'Includes Ads',
     features: [
       { text: 'Daily task planner', included: true },
       { text: 'Affirmations & meditation', included: true },
@@ -23,6 +24,7 @@ const plans = [
       { text: 'Family member management', included: true },
       { text: 'Basic meal planning', included: true },
       { text: 'Beauty routine tracking', included: true },
+      { text: 'Ad-free experience', included: false },
       { text: 'Advanced budgeting', included: false },
       { text: 'Financial analytics', included: false },
       { text: 'Priority support', included: false },
@@ -120,6 +122,14 @@ export default function Pricing() {
                   <span className="bg-gradient-to-r from-purple-600 to-rose-600 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-2">
                     <Zap className="w-4 h-4" />
                     Most Popular
+                  </span>
+                </div>
+              )}
+
+              {plan.badge && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                  <span className="bg-stone-400 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                    {plan.badge}
                   </span>
                 </div>
               )}
