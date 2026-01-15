@@ -129,12 +129,20 @@ function LayoutContent({ children, currentPageName }) {
       </AnimatePresence>
       
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 backdrop-blur-sm border-r border-amber-200/50 flex-col">
-        <div className="p-6">
-          <h1 className="text-2xl font-serif text-neutral-900 tracking-tight">
-            Daily Essence
-          </h1>
-          <p className="text-[10px] text-stone-500 mt-1 uppercase tracking-widest font-light">Where Chaos Meets Clarity</p>
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm border-r border-amber-200/50 dark:border-neutral-800 flex-col">
+        <div className="p-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 tracking-tight">
+              Daily Essence
+            </h1>
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 uppercase tracking-widest font-light">Where Chaos Meets Clarity</p>
+          </div>
+          <button
+            onClick={toggleTheme}
+            className="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
+          >
+            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-stone-600" />}
+          </button>
         </div>
         
         <nav className="flex-1 px-4 space-y-1">
