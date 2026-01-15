@@ -340,11 +340,16 @@ export default function Events() {
                     )}
                     <div className="flex-1">
                       <h4 className="font-medium text-slate-800">{event.title}</h4>
-                      {event.notes && (
-                        <p className="text-sm text-slate-500 mt-0.5">{event.notes}</p>
-                      )}
+                      <div className="flex flex-wrap items-center gap-2 mt-1">
+                        {event.notes && (
+                          <p className="text-sm text-slate-500">{event.notes}</p>
+                        )}
+                        <span className="text-xs text-slate-400">
+                          {formatDistanceToNow(new Date(event.created_date), { addSuffix: true })}
+                        </span>
+                      </div>
                       {event.recurring_yearly && (
-                        <span className="text-xs text-indigo-500 font-medium">Repeats yearly</span>
+                        <span className="text-xs text-indigo-500 font-medium mt-1">Repeats yearly</span>
                       )}
                     </div>
                     <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
