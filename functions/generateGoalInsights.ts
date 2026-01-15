@@ -22,8 +22,9 @@ Deno.serve(async (req) => {
     // Fetch related data
     const tasks = await base44.entities.Task.filter({ created_by: user.email });
     const meditations = await base44.entities.MeditationSession.filter({ created_by: user.email });
-    const activities = await base44.entities.SelfCareActivity.filter({ created_by: user.email });
+    const selfCareActivities = await base44.entities.SelfCareActivity.filter({ created_by: user.email });
     const meals = await base44.entities.MealPlan.filter({ created_by: user.email });
+    const trackedActivities = await base44.entities.Activity.filter({ created_by: user.email });
 
     // Generate insights for each goal using LLM
     const insights = [];
