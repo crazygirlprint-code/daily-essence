@@ -23,9 +23,9 @@ const moodOptions = [
   { value: 'excellent', label: 'Excellent' },
 ];
 
-export default function ActivityLogger({ onSubmit, onClose }) {
+export default function ActivityLogger({ onSubmit, onClose, preselectedType }) {
   const [formData, setFormData] = useState({
-    type: 'mindful_walking',
+    type: preselectedType || 'mindful_walking',
     title: '',
     duration_minutes: '',
     notes: '',
