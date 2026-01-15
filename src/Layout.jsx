@@ -52,7 +52,7 @@ export default function Layout({ children, currentPageName }) {
           >
             <Menu className="w-5 h-5 text-neutral-900" strokeWidth={1.5} />
           </button>
-          <h1 className="font-serif text-lg text-neutral-900 tracking-tight">Mom's Planner</h1>
+          <h1 className="font-serif text-lg text-neutral-900 tracking-tight">Daily Essence</h1>
           <div className="w-9" /> {/* Spacer for centering */}
         </div>
       </header>
@@ -77,7 +77,7 @@ export default function Layout({ children, currentPageName }) {
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-xl font-serif text-neutral-900 tracking-tight">Mom's Planner</h2>
+                  <h2 className="text-xl font-serif text-neutral-900 tracking-tight">Daily Essence</h2>
                   <button
                     onClick={() => setIsSidebarOpen(false)}
                     className="p-2 hover:bg-stone-100 rounded-lg"
@@ -118,7 +118,7 @@ export default function Layout({ children, currentPageName }) {
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 backdrop-blur-sm border-r border-amber-200/50 flex-col">
         <div className="p-6">
           <h1 className="text-2xl font-serif text-neutral-900 tracking-tight">
-            Mom's Planner
+            Daily Essence
           </h1>
           <p className="text-[10px] text-stone-500 mt-1 uppercase tracking-widest font-light">Your daily companion</p>
         </div>
