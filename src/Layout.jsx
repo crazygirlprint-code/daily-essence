@@ -93,7 +93,7 @@ function LayoutContent({ children, currentPageName }) {
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400 tracking-tight">Daily Essence</h2>
+                  <h2 className="text-xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-slate-200 tracking-tight">Daily Essence</h2>
                   <button
                     onClick={() => setIsSidebarOpen(false)}
                     className="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
