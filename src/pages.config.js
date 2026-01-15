@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Meditation from './pages/Meditation';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
+import Budget from './pages/Budget';
 import __Layout from './Layout.jsx';
 
 
@@ -20,6 +21,7 @@ export const PAGES = {
     "Meditation": Meditation,
     "Progress": Progress,
     "SelfCare": SelfCare,
+    "Budget": Budget,
 }
 
 export const pagesConfig = {

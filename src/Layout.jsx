@@ -16,6 +16,7 @@ const navItems = [
   { name: 'Beauty', page: 'Beauty', icon: Heart },
   { name: 'Meditation', page: 'Meditation', icon: Leaf },
   { name: 'Self-Care', page: 'SelfCare', icon: Heart },
+  { name: 'Budget', page: 'Budget', icon: Sparkles },
   { name: 'Family', page: 'Family', icon: Users },
   { name: 'Progress', page: 'Progress', icon: Trophy },
 ];
