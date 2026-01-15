@@ -23,6 +23,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import ShareButton from '@/components/family/ShareButton';
 
 const EVENT_TYPES = {
   birthday: { icon: Gift, color: 'bg-pink-500', bgLight: 'bg-pink-100 text-pink-700' },
@@ -289,12 +290,15 @@ export default function Events() {
                         <span className="text-xs text-indigo-500 font-medium">Repeats yearly</span>
                       )}
                     </div>
-                    <button
-                      onClick={() => deleteMutation.mutate(event.id)}
-                      className="p-2 opacity-0 group-hover:opacity-100 hover:bg-red-50 rounded-lg transition-all"
-                    >
-                      <Trash2 className="w-4 h-4 text-red-400" />
-                    </button>
+                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ShareButton item={event} itemType="event" />
+                      <button
+                        onClick={() => deleteMutation.mutate(event.id)}
+                        className="p-2 hover:bg-red-50 rounded-lg transition-all"
+                      >
+                        <Trash2 className="w-4 h-4 text-red-400" />
+                      </button>
+                    </div>
                   </motion.div>
                 );
               })}
