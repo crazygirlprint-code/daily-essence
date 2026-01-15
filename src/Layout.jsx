@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { 
   Home, Calendar, Heart, Sparkles, Leaf, 
-  Users, Star, Menu, X, Trophy
+  Users, Star, Menu, X, Trophy, MessageCircle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { name: 'Home', page: 'Home', icon: Home },
   { name: 'Calendar', page: 'Calendar', icon: Calendar },
+  { name: 'Community', page: 'Community', icon: MessageCircle },
   { name: 'Events', page: 'Events', icon: Star },
   { name: 'Affirmations', page: 'Affirmations', icon: Sparkles },
   { name: 'Beauty', page: 'Beauty', icon: Heart },
