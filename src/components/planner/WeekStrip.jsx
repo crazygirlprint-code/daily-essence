@@ -40,7 +40,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
             </span>
             <span className={cn(
               'text-[9px] font-medium uppercase tracking-widest mb-0.5',
-              isSelected ? 'text-stone-400' : 'text-stone-500'
+              isSelected ? 'text-white/90' : 'text-stone-500'
             )}>
               {format(day, 'EEE')}
             </span>
