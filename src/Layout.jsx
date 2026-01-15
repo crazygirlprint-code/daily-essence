@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { 
   Home, Calendar, Heart, Sparkles, Leaf, 
-  Users, Star, Menu, X, Trophy, MessageCircle, Moon, Sun
+  Users, Star, Menu, X, Trophy, MessageCircle, Moon, Sun, Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -14,13 +14,13 @@ import UpcomingNotification from '@/components/notifications/UpcomingNotificatio
 const navItems = [
   { name: 'Home', page: 'Home', icon: Home },
   { name: 'Calendar', page: 'Calendar', icon: Calendar },
+  { name: 'Activities', page: 'Activities', icon: Zap },
   { name: 'Community', page: 'Community', icon: MessageCircle },
   { name: 'Events', page: 'Events', icon: Star },
   { name: 'Affirmations', page: 'Affirmations', icon: Sparkles },
   { name: 'Beauty', page: 'Beauty', icon: Heart },
   { name: 'Meditation', page: 'Meditation', icon: Leaf },
   { name: 'Self-Care', page: 'SelfCare', icon: Heart },
-  { name: 'Activities', page: 'Activities', icon: Sparkles },
   { name: 'Budget', page: 'Budget', icon: Sparkles },
   { name: 'Family', page: 'Family', icon: Users },
   { name: 'Progress', page: 'Progress', icon: Trophy },
