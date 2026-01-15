@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { format } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import ShareButton from '@/components/family/ShareButton';
 
 const priorityColors = {
@@ -73,6 +73,10 @@ export default function TaskCard({ task, onToggle, onDelete, onEdit }) {
                 {task.due_time}
               </span>
             )}
+            
+            <span className="text-xs text-slate-400">
+              {formatDistanceToNow(new Date(task.created_date), { addSuffix: true })}
+            </span>
             
             {task.family_member && (
               <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
