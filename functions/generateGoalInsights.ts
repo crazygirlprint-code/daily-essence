@@ -46,6 +46,30 @@ Deno.serve(async (req) => {
         return sessionDate > weekAgo;
       });
 
+      const recentTrackedActivities = trackedActivities.filter(a => {
+        const actDate = new Date(a.activity_date);
+        const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+        return actDate > weekAgo;
+      });
+
+      const activitySummary = recentTrackedActivities.reduce((acc, a) => {
+        const prev = acc[a.type] || { count: 0, totalTime: 0, avgMood: 0 };
+        const moodScore = { very_low: 1, low: 2, neutral: 3, good: 4, excellent: 5 };
+        return {
+          ...acc,
+          [a.type]: {
+            count: prev.count + 1,
+            totalTime: prev.totalTime + (a.duration_minutes || 0),
+            avgMood: prev.avgMood + (moodScore[a.mood_after] || 0),
+          },
+        };
+      }, {});
+
+      const activityDetails = Object.entries(activitySummary).map(([type, data]) => {
+        const avgMood = Math.round(data.avgMood / data.count);
+        return `${type}: ${data.count} times (${data.totalTime} min total, avg mood: ${avgMood}/5)`;
+      }).join('\n');
+
       const prompt = `
 You are a wellness coach analyzing a user's progress toward their goal: "${goal.name}"
 
@@ -58,12 +82,14 @@ Goal Details:
 User Activity (Last 7 days):
 - Tasks completed: ${completedTasks.length} out of ${lastWeekTasks.length} (${Math.round(completionRate)}% completion)
 - Meditation sessions: ${recentMeditations.length} sessions totaling ${recentMeditations.reduce((sum, m) => sum + m.duration_minutes, 0)} minutes
-- Self-care activities: ${activities.length} activities logged
-- Meals planned: ${meals.length} meals
+- Self-care activities: ${selfCareActivities.length} activities logged
 
-Based on this data, provide:
+Daily Tracked Activities:
+${activityDetails || 'None logged yet'}
+
+Based on this comprehensive activity data, provide:
 1. A brief assessment of progress toward this wellness goal (1-2 sentences)
-2. One specific recommendation for improving progress
+2. One specific recommendation for improving progress based on their activity patterns
 3. A suggestion to adjust daily routine to better support this goal
 
 Keep the response concise and actionable.`;
