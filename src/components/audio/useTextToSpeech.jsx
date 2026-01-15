@@ -11,24 +11,42 @@ export function useTextToSpeech() {
       window.speechSynthesis.cancel();
       
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = options.rate || 0.9;
-      utterance.pitch = options.pitch || 0.95;
+      utterance.rate = options.rate || 0.85;
+      utterance.pitch = options.pitch || 1.0;
       utterance.volume = options.volume || 1;
       
-      // Try to get a natural, soothing voice (prioritize premium voices)
+      // Prioritize natural, premium voices (Apple, Google Neural, Microsoft Natural)
       const voices = window.speechSynthesis.getVoices();
-      const naturalVoice = voices.find(v => 
-        v.name.includes('Samantha') || 
-        v.name.includes('Ava') ||
-        v.name.includes('Allison') ||
-        v.name.includes('Serena') ||
-        v.name.includes('Fiona') ||
-        v.name.includes('Google UK English Female') ||
-        v.name.includes('Microsoft Zira') ||
-        (v.lang.startsWith('en') && v.name.includes('Natural'))
-      ) || voices.find(v => v.lang.startsWith('en') && v.name.includes('Female'));
       
-      if (naturalVoice) utterance.voice = naturalVoice;
+      // Priority list for most natural-sounding voices
+      const preferredVoices = [
+        'Samantha',           // macOS - very natural
+        'Ava',                // macOS - premium
+        'Allison',            // macOS Enhanced
+        'Serena',             // macOS Enhanced  
+        'Google US English',  // Android neural
+        'Google UK English Female',
+        'Microsoft Aria',     // Windows 11 Neural
+        'Microsoft Jenny',    // Windows Neural
+        'Alex',               // macOS default male (good quality)
+      ];
+      
+      let selectedVoice = null;
+      
+      // First, try to find a preferred voice
+      for (const preferred of preferredVoices) {
+        selectedVoice = voices.find(v => v.name.includes(preferred));
+        if (selectedVoice) break;
+      }
+      
+      // Fallback to any natural-sounding English voice
+      if (!selectedVoice) {
+        selectedVoice = voices.find(v => 
+          (v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Neural')))
+        ) || voices.find(v => v.lang.startsWith('en-'));
+      }
+      
+      if (selectedVoice) utterance.voice = selectedVoice;
       
       utterance.onstart = () => {
         setIsSpeaking(true);
