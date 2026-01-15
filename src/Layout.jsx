@@ -14,6 +14,7 @@ import UpcomingNotification from '@/components/notifications/UpcomingNotificatio
 const navItems = [
   { name: 'Home', page: 'Home', icon: Home },
   { name: 'Calendar', page: 'Calendar', icon: Calendar },
+  { name: 'Activities', page: 'Activities', icon: Zap },
   { name: 'Community', page: 'Community', icon: MessageCircle },
   { name: 'Events', page: 'Events', icon: Star },
   { name: 'Affirmations', page: 'Affirmations', icon: Sparkles },
