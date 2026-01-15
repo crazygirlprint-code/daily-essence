@@ -80,7 +80,8 @@ export default function Affirmations() {
       resume();
     } else {
       speak(currentAffirmation.text, {
-        rate: 0.85,
+        rate: 0.8,
+        pitch: 0.95,
         onEnd: async () => {
           const result = await addPoints('affirmation_listen');
           setPointsEarned(result.pointsEarned);

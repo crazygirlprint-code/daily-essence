@@ -12,20 +12,23 @@ export function useTextToSpeech() {
       
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = options.rate || 0.9;
-      utterance.pitch = options.pitch || 1;
+      utterance.pitch = options.pitch || 0.95;
       utterance.volume = options.volume || 1;
       
-      // Try to get a female voice
+      // Try to get a natural, soothing voice (prioritize premium voices)
       const voices = window.speechSynthesis.getVoices();
-      const femaleVoice = voices.find(v => 
-        v.name.includes('Female') || 
+      const naturalVoice = voices.find(v => 
         v.name.includes('Samantha') || 
-        v.name.includes('Victoria') ||
-        v.name.includes('Karen') ||
-        v.name.includes('Moira')
-      ) || voices.find(v => v.lang.startsWith('en'));
+        v.name.includes('Ava') ||
+        v.name.includes('Allison') ||
+        v.name.includes('Serena') ||
+        v.name.includes('Fiona') ||
+        v.name.includes('Google UK English Female') ||
+        v.name.includes('Microsoft Zira') ||
+        (v.lang.startsWith('en') && v.name.includes('Natural'))
+      ) || voices.find(v => v.lang.startsWith('en') && v.name.includes('Female'));
       
-      if (femaleVoice) utterance.voice = femaleVoice;
+      if (naturalVoice) utterance.voice = naturalVoice;
       
       utterance.onstart = () => {
         setIsSpeaking(true);

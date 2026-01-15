@@ -84,11 +84,13 @@ export default function Meditation() {
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [currentPhase, setCurrentPhase] = useState('idle'); // idle, intro, main, closing, complete
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const [musicEnabled, setMusicEnabled] = useState(true);
   const [showPoints, setShowPoints] = useState(false);
   const [pointsEarned, setPointsEarned] = useState(0);
   
   const timerRef = useRef(null);
   const phaseTimerRef = useRef(null);
+  const audioRef = useRef(null);
   const { speak, stop, isSpeaking } = useTextToSpeech();
   const { addPoints } = useGamification();
   const queryClient = useQueryClient();
@@ -105,9 +107,16 @@ export default function Meditation() {
     setTimeRemaining(selectedDuration * 60);
     setCurrentPhase('intro');
     
+    // Start background music
+    if (musicEnabled && audioRef.current) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.play().catch(err => console.log('Audio autoplay prevented'));
+    }
+    
     if (audioEnabled) {
       speak(script.intro, {
-        rate: 0.8,
+        rate: 0.75,
+        pitch: 0.9,
         onEnd: () => {
           setCurrentPhase('main');
           startInstructions();
@@ -127,7 +136,8 @@ export default function Meditation() {
     const speakNextInstruction = () => {
       if (instructionIndex < script.instructions.length && isPlaying) {
         speak(script.instructions[instructionIndex], {
-          rate: 0.75,
+          rate: 0.7,
+          pitch: 0.9,
           onEnd: () => {
             instructionIndex++;
             phaseTimerRef.current = setTimeout(speakNextInstruction, 15000);
@@ -142,6 +152,7 @@ export default function Meditation() {
   const pauseMeditation = () => {
     setIsPlaying(false);
     stop();
+    if (audioRef.current) audioRef.current.pause();
     if (phaseTimerRef.current) clearTimeout(phaseTimerRef.current);
   };
   
@@ -150,6 +161,10 @@ export default function Meditation() {
     setTimeRemaining(0);
     setCurrentPhase('idle');
     stop();
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
     if (timerRef.current) clearInterval(timerRef.current);
     if (phaseTimerRef.current) clearTimeout(phaseTimerRef.current);
   };
@@ -159,10 +174,12 @@ export default function Meditation() {
     
     if (audioEnabled) {
       speak(script.closing, {
-        rate: 0.8,
+        rate: 0.75,
+        pitch: 0.9,
         onEnd: async () => {
           setCurrentPhase('complete');
           setIsPlaying(false);
+          if (audioRef.current) audioRef.current.pause();
           
           await saveMutation.mutateAsync({
             duration_minutes: selectedDuration,
@@ -178,6 +195,7 @@ export default function Meditation() {
     } else {
       setCurrentPhase('complete');
       setIsPlaying(false);
+      if (audioRef.current) audioRef.current.pause();
       
       await saveMutation.mutateAsync({
         duration_minutes: selectedDuration,
@@ -233,6 +251,13 @@ export default function Meditation() {
       'min-h-screen transition-colors duration-1000',
       `bg-gradient-to-br ${selectedType.color.replace('from-', 'from-').replace('to-', 'via-white/30 to-')}`
     )}>
+      {/* Background meditation music - royalty free ambient */}
+      <audio 
+        ref={audioRef} 
+        loop
+        src="https://cdn.pixabay.com/audio/2022/05/13/audio_1808fbf07a.mp3"
+      />
+      
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Meditation</h1>
@@ -245,7 +270,7 @@ export default function Meditation() {
             <div className="grid grid-cols-5 gap-2 mb-8">
               {MEDITATION_TYPES.map((type) => {
                 const Icon = type.icon;
-                const isActive = selectedType.id === type.id;
+                          const isActive = selectedType.id === type.id;
                 return (
                   <motion.button
                     key={type.id}
@@ -284,8 +309,8 @@ export default function Meditation() {
               ))}
             </div>
             
-            {/* Audio Toggle */}
-            <div className="flex justify-center mb-8">
+            {/* Audio Toggles */}
+            <div className="flex justify-center gap-3 mb-8">
               <button
                 onClick={() => setAudioEnabled(!audioEnabled)}
                 className={cn(
@@ -295,7 +320,18 @@ export default function Meditation() {
               >
                 {audioEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
                 <span className="text-sm font-medium">
-                  {audioEnabled ? 'Audio Guidance On' : 'Audio Off'}
+                  {audioEnabled ? 'Guidance' : 'Silent'}
+                </span>
+              </button>
+              <button
+                onClick={() => setMusicEnabled(!musicEnabled)}
+                className={cn(
+                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all',
+                  musicEnabled ? 'bg-white text-slate-800' : 'bg-white/20 text-white'
+                )}
+              >
+                <span className="text-sm font-medium">
+                  {musicEnabled ? '🎵 Music' : '🔇 No Music'}
                 </span>
               </button>
             </div>
