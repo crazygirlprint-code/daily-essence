@@ -261,11 +261,11 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-xl p-6 text-stone-100 shadow-xl relative overflow-hidden border border-amber-900/20"
+      className="bg-gradient-to-br from-amber-50 to-stone-50 rounded-xl p-6 text-stone-900 shadow-sm relative overflow-hidden border border-amber-200/50"
     >
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-600/20 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-amber-700/20 to-transparent rounded-full blur-2xl" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-200/30 to-transparent rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-amber-100/30 to-transparent rounded-full blur-2xl" />
       
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-5">
@@ -273,13 +273,13 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             <motion.div
               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center border border-amber-500/30 shadow-lg shadow-amber-500/10"
+              className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200/60 to-amber-100/40 flex items-center justify-center border border-amber-300/50 shadow-lg shadow-amber-200/20"
             >
-              <Sparkles className="w-5 h-5 text-amber-400" strokeWidth={1.5} />
+              <Sparkles className="w-5 h-5 text-amber-700" strokeWidth={1.5} />
             </motion.div>
             <div>
-              <h3 className="font-serif text-lg text-stone-100">Daily Insights</h3>
-              <p className="text-[10px] text-amber-400/70 uppercase tracking-widest">AI-Powered</p>
+              <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
+              <p className="text-[10px] text-amber-700/60 uppercase tracking-widest">AI-Powered</p>
             </div>
           </div>
           <Button
@@ -287,7 +287,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             disabled={isLoading}
             size="sm"
             variant="ghost"
-            className="text-stone-300 hover:bg-stone-800"
+            className="text-stone-700 hover:bg-stone-200"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.5} />
           </Button>
