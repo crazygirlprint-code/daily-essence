@@ -212,15 +212,15 @@ export default function Home() {
         
         {activeSection === 'tasks' && (
           <>
-        <div className="mb-6">
-          <CategoryFilter
+            <div className="mb-6">
+              <CategoryFilter
             selected={selectedCategory}
             onChange={setSelectedCategory}
-            taskCounts={taskCounts}
-          />
-        </div>
-        
-        <div className="space-y-3">
+                taskCounts={taskCounts}
+              />
+            </div>
+            
+            <div className="space-y-3">
           <AnimatePresence mode="popLayout">
             {isLoading ? (
               <div className="space-y-3">
@@ -249,8 +249,8 @@ export default function Home() {
                 />
               ))
             )}
-          </AnimatePresence>
-        </div>
+            </AnimatePresence>
+            </div>
           </>
         )}
         
