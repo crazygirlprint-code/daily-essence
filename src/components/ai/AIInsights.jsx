@@ -302,9 +302,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               className="space-y-3"
             >
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="bg-stone-900/50 rounded-lg p-4 animate-pulse border border-stone-700">
-                  <div className="h-3 bg-stone-700 rounded w-3/4 mb-2" />
-                  <div className="h-2.5 bg-stone-700 rounded w-full" />
+                <div key={i} className="bg-stone-100 rounded-lg p-4 animate-pulse border border-stone-200">
+                  <div className="h-3 bg-stone-300 rounded w-3/4 mb-2" />
+                  <div className="h-2.5 bg-stone-200 rounded w-full" />
                 </div>
               ))}
             </motion.div>
