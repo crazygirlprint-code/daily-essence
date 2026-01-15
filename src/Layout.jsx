@@ -167,9 +167,9 @@ function LayoutContent({ children, currentPageName }) {
           })}
         </nav>
         
-        <div className="p-4 m-4 bg-gradient-to-br from-amber-50 to-stone-50 dark:from-neutral-800 dark:to-neutral-800 rounded-lg border border-amber-200/50 dark:border-neutral-700 shadow-sm">
-          <p className="text-xs text-amber-900 dark:text-amber-400 font-medium uppercase tracking-widest">Self-Care Reminder</p>
-          <p className="text-xs text-stone-700 dark:text-stone-400 mt-2 leading-relaxed">
+        <div className="p-4 m-4 bg-gradient-to-br from-amber-50 to-stone-50 dark:from-neutral-800 dark:to-neutral-800 dark-luxury:from-slate-800 dark-luxury:to-blue-900 rounded-lg border border-amber-200/50 dark:border-neutral-700 dark-luxury:border-amber-600/40 shadow-sm">
+          <p className="text-xs text-amber-900 dark:text-amber-400 dark-luxury:text-amber-500 font-medium uppercase tracking-widest">Self-Care Reminder</p>
+          <p className="text-xs text-stone-700 dark:text-stone-400 dark-luxury:text-slate-300 mt-2 leading-relaxed">
             Don't forget to schedule some me-time this week!
           </p>
         </div>
