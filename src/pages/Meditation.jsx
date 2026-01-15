@@ -10,11 +10,11 @@ import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
 
 const MEDITATION_TYPES = [
-  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-cyan-400 to-blue-500' },
-  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-rose-400 to-pink-500' },
-  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-amber-400 to-orange-500' },
-  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-indigo-400 to-purple-500' },
-  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-emerald-400 to-teal-500' },
+  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-stone-300 to-stone-400' },
+  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-amber-300 to-amber-500' },
+  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-amber-400 to-orange-400' },
+  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-stone-400 to-neutral-500' },
+  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-neutral-300 to-stone-400' },
 ];
 
 const DURATIONS = [10, 15, 20];
@@ -279,8 +279,8 @@ export default function Meditation() {
                     className={cn(
                       'flex flex-col items-center gap-2 p-3 rounded-2xl transition-all',
                       isActive
-                        ? 'bg-white text-slate-800 shadow-lg'
-                        : 'bg-white/20 text-white hover:bg-white/30'
+                        ? 'bg-white/95 text-neutral-900 shadow-lg border border-amber-200'
+                        : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
                     )}
                   >
                     <Icon className="w-6 h-6" />
@@ -299,8 +299,8 @@ export default function Meditation() {
                   className={cn(
                     'w-20 h-20 rounded-full font-bold text-xl transition-all',
                     selectedDuration === dur
-                      ? 'bg-white text-slate-800 shadow-lg scale-110'
-                      : 'bg-white/20 text-white hover:bg-white/30'
+                      ? 'bg-white/95 text-neutral-900 shadow-lg scale-110 border border-amber-200'
+                      : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
                   )}
                 >
                   {dur}
@@ -315,7 +315,7 @@ export default function Meditation() {
                 onClick={() => setAudioEnabled(!audioEnabled)}
                 className={cn(
                   'flex items-center gap-2 px-4 py-2 rounded-full transition-all',
-                  audioEnabled ? 'bg-white text-slate-800' : 'bg-white/20 text-white'
+                  audioEnabled ? 'bg-white/95 text-neutral-900 border border-amber-200' : 'bg-white/10 text-white backdrop-blur-sm'
                 )}
               >
                 {audioEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
@@ -327,7 +327,7 @@ export default function Meditation() {
                 onClick={() => setMusicEnabled(!musicEnabled)}
                 className={cn(
                   'flex items-center gap-2 px-4 py-2 rounded-full transition-all',
-                  musicEnabled ? 'bg-white text-slate-800' : 'bg-white/20 text-white'
+                  musicEnabled ? 'bg-white/95 text-neutral-900 border border-amber-200' : 'bg-white/10 text-white backdrop-blur-sm'
                 )}
               >
                 <span className="text-sm font-medium">
@@ -341,7 +341,7 @@ export default function Meditation() {
               <Button
                 onClick={startMeditation}
                 size="lg"
-                className="rounded-full px-12 py-8 text-xl bg-white text-slate-800 hover:bg-white/90 shadow-2xl"
+                className="rounded-full px-12 py-8 text-xl bg-white/95 text-neutral-900 hover:bg-white shadow-2xl border-2 border-amber-200"
               >
                 <Play className="w-6 h-6 mr-2 fill-current" />
                 Begin
@@ -414,7 +414,7 @@ export default function Meditation() {
                   <Button
                     onClick={isPlaying ? pauseMeditation : startMeditation}
                     size="lg"
-                    className="rounded-full w-16 h-16 bg-white text-slate-800 hover:bg-white/90"
+                    className="rounded-full w-16 h-16 bg-white/95 text-neutral-900 hover:bg-white border-2 border-amber-200"
                   >
                     {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 fill-current" />}
                   </Button>
@@ -422,7 +422,7 @@ export default function Meditation() {
                     onClick={resetMeditation}
                     size="lg"
                     variant="outline"
-                    className="rounded-full w-16 h-16 border-white text-white hover:bg-white/10"
+                    className="rounded-full w-16 h-16 border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm"
                   >
                     <RotateCcw className="w-5 h-5" />
                   </Button>
@@ -431,7 +431,7 @@ export default function Meditation() {
                 <Button
                   onClick={resetMeditation}
                   size="lg"
-                  className="rounded-full px-8 bg-white text-slate-800 hover:bg-white/90"
+                  className="rounded-full px-8 bg-white/95 text-neutral-900 hover:bg-white border-2 border-amber-200"
                 >
                   Start New Session
                 </Button>
