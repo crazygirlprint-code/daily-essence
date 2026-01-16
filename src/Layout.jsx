@@ -89,7 +89,7 @@ function LayoutContent({ children, currentPageName }) {
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="fixed left-0 top-0 bottom-0 w-72 bg-white dark:bg-neutral-900 dark-luxury:bg-slate-950 shadow-2xl z-50 md:hidden backdrop-blur-xl dark-luxury:backdrop-blur-xl"
+              className="fixed left-0 top-0 bottom-0 w-72 bg-white dark:bg-black dark-luxury:bg-slate-950 shadow-2xl z-50 md:hidden backdrop-blur-xl dark-luxury:backdrop-blur-xl"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
@@ -141,9 +141,9 @@ function LayoutContent({ children, currentPageName }) {
           </div>
           <button
             onClick={toggleTheme}
-            className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg"
+            className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-900 rounded-lg"
           >
-            {theme === 'dark-luxury' ? <Sparkles className="w-4 h-4 text-amber-400" /> : isDark ? <Sun className="w-4 h-4 text-rose-300" /> : <Moon className="w-4 h-4 text-stone-600" />}
+            {theme === 'dark-luxury' ? <Sparkles className="w-4 h-4 text-amber-400" /> : isDark ? <Sun className="w-4 h-4 text-zinc-400" /> : <Moon className="w-4 h-4 text-stone-600" />}
           </button>
         </div>
         
