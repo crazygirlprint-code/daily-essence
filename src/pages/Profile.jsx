@@ -155,7 +155,7 @@ export default function Profile() {
           {isLoading ? (
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="h-32 bg-stone-200 dark:bg-neutral-800 rounded-xl animate-pulse" />
+                <div key={i} className="h-32 bg-stone-200 rounded-xl animate-pulse" />
               ))}
             </div>
           ) : activeGoals.length === 0 ? (
@@ -165,8 +165,8 @@ export default function Profile() {
               className="text-center py-16 bg-white/50 rounded-2xl border border-dashed border-stone-300"
             >
               <Sparkles className="w-12 h-12 text-amber-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Wellness Goals Yet</h3>
-              <p className="text-stone-600 dark:text-stone-400 mb-6">Set your first wellness goal to get personalized AI insights.</p>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">No Wellness Goals Yet</h3>
+              <p className="text-stone-600 mb-6">Set your first wellness goal to get personalized AI insights.</p>
               <Button onClick={() => setShowAddGoal(true)} className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700">
                 Create Your First Goal
               </Button>
