@@ -257,7 +257,7 @@ export default function Budget() {
   // Subscription gate
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent flex items-center justify-center">
         <div className="animate-pulse text-slate-400">Loading...</div>
       </div>
     );
@@ -265,7 +265,7 @@ export default function Budget() {
 
   if (!hasAccess) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
         <div className="max-w-2xl mx-auto px-4 py-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -314,7 +314,7 @@ export default function Budget() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
