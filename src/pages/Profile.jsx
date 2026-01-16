@@ -116,7 +116,7 @@ export default function Profile() {
                 onClick={generateInsights}
                 disabled={loadingInsights || activeGoals.length === 0}
                 variant="outline"
-                className="gap-2"
+                className="gap-2 dark:border-rose-500/30 dark:text-rose-200 dark:hover:bg-rose-950/20"
               >
                 {loadingInsights ? (
                   <>
