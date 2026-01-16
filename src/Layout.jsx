@@ -51,7 +51,7 @@ function LayoutContent({ children, currentPageName }) {
     }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black dark-luxury:from-slate-950 dark-luxury:via-slate-900 dark-luxury:to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black dark-luxury:from-blue-950 dark-luxury:via-slate-900 dark-luxury:to-blue-950">
       <NotificationBanner />
       <UpcomingNotification />
       {/* Mobile Header */}
