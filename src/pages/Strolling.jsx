@@ -15,7 +15,7 @@ export default function Strolling() {
     queryKey: ['strollingActivities'],
     queryFn: async () => {
       const all = await base44.entities.Activity.list('-logged_at');
-      return all.filter(a => a.type === 'strolling' || a.type === 'mindful_walking');
+      return all.filter(a => a.type === 'mindful_walking');
     },
   });
 
@@ -127,9 +127,9 @@ export default function Strolling() {
       <AnimatePresence>
         {showLogger && (
           <ActivityLogger
-            onSubmit={(data) => createMutation.mutate({ ...data, type: 'strolling' })}
+            onSubmit={(data) => createMutation.mutate({ ...data, type: 'mindful_walking' })}
             onClose={() => setShowLogger(false)}
-            preselectedType="strolling"
+            preselectedType="mindful_walking"
             prefilledTitle="Afternoon stroll"
           />
         )}
