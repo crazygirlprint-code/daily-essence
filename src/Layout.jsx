@@ -12,19 +12,19 @@ import NotificationBanner from '@/components/notifications/NotificationBanner';
 import UpcomingNotification from '@/components/notifications/UpcomingNotification';
 
 const navItems = [
+  { name: 'Profile', page: 'Profile', icon: Users },
   { name: 'Home', page: 'Home', icon: Home },
   { name: 'Calendar', page: 'Calendar', icon: Calendar },
   { name: 'Activities', page: 'Activities', icon: Zap },
-  { name: 'Community', page: 'Community', icon: MessageCircle },
   { name: 'Events', page: 'Events', icon: Star },
+  { name: 'Community', page: 'Community', icon: MessageCircle },
   { name: 'Affirmations', page: 'Affirmations', icon: Sparkles },
-  { name: 'Beauty', page: 'Beauty', icon: Heart },
   { name: 'Meditation', page: 'Meditation', icon: Leaf },
+  { name: 'Beauty', page: 'Beauty', icon: Heart },
   { name: 'Self-Care', page: 'SelfCare', icon: Heart },
-  { name: 'Budget', page: 'Budget', icon: Sparkles },
   { name: 'Family', page: 'Family', icon: Users },
+  { name: 'Budget', page: 'Budget', icon: Sparkles },
   { name: 'Progress', page: 'Progress', icon: Trophy },
-  { name: 'Profile', page: 'Profile', icon: Users },
   { name: 'Pricing', page: 'Pricing', icon: Star },
 ];
 
