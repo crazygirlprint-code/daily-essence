@@ -103,7 +103,7 @@ function LayoutContent({ children, currentPageName }) {
                   </button>
                 </div>
                 
-                <nav className="space-y-1">
+                <nav className="space-y-1 overflow-y-auto max-h-[calc(100vh-200px)]">
                   {navItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = currentPageName === item.page;
@@ -148,7 +148,7 @@ function LayoutContent({ children, currentPageName }) {
           </button>
         </div>
         
-        <nav className="flex-1 px-4 space-y-1">
+        <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPageName === item.page;
