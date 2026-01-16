@@ -144,10 +144,10 @@ export default function Home() {
   const allTasksDone = tasksForDate.length > 0 && pendingTasks.length === 0 && selectedCategory === 'all';
 
   const quickLinks = [
-    { name: 'Affirmations', icon: Sparkles, color: 'bg-amber-100/60', textColor: 'text-amber-900', page: 'Affirmations' },
-    { name: 'Beauty', icon: Heart, color: 'bg-stone-200/50', textColor: 'text-stone-900', page: 'Beauty' },
-    { name: 'Meditation', icon: Leaf, color: 'bg-neutral-200/50', textColor: 'text-neutral-900', page: 'Meditation' },
-    { name: 'Self-Care', icon: Heart, color: 'bg-amber-100/50', textColor: 'text-amber-900', page: 'SelfCare' },
+    { name: 'Affirmations', icon: Sparkles, color: 'bg-amber-100/60 dark:bg-rose-900/40', textColor: 'text-amber-900 dark:text-rose-100', page: 'Affirmations' },
+    { name: 'Beauty', icon: Heart, color: 'bg-stone-200/50 dark:bg-pink-900/30', textColor: 'text-stone-900 dark:text-pink-100', page: 'Beauty' },
+    { name: 'Meditation', icon: Leaf, color: 'bg-neutral-200/50 dark:bg-rose-900/40', textColor: 'text-neutral-900 dark:text-rose-100', page: 'Meditation' },
+    { name: 'Self-Care', icon: Heart, color: 'bg-amber-100/50 dark:bg-pink-900/30', textColor: 'text-amber-900 dark:text-pink-100', page: 'SelfCare' },
   ];
 
   return (
@@ -244,8 +244,8 @@ export default function Home() {
                       onClick={() => setActiveSection(section.id)}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
-                          ? 'bg-amber-600 text-stone-50 shadow-sm hover:bg-amber-700'
-                          : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-50'
+                          ? 'bg-amber-600 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 text-stone-50 shadow-sm hover:bg-amber-700 dark:hover:from-rose-700 dark:hover:to-pink-700'
+                          : 'bg-white dark:bg-neutral-800/50 text-stone-700 dark:text-stone-300 border border-stone-300 dark:border-rose-500/20 hover:bg-stone-50 dark:hover:bg-neutral-700/50'
                       }`}
                     >
                 <Icon className="w-4 h-4" strokeWidth={1.5} />
@@ -269,24 +269,24 @@ export default function Home() {
             <motion.div 
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="relative overflow-hidden space-y-2 mb-8 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-stone-50 border border-amber-200 cursor-pointer shadow-sm"
+              className="relative overflow-hidden space-y-2 mb-8 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-stone-50 dark:from-rose-950/40 dark:to-pink-950/30 border border-amber-200 dark:border-rose-500/30 cursor-pointer shadow-sm"
               onClick={() => setShowStatsDialog(true)}
             >
-              <div className="absolute top-0 right-0 w-20 h-20 bg-amber-200/30 rounded-full blur-2xl" />
+              <div className="absolute top-0 right-0 w-20 h-20 bg-amber-200/30 dark:bg-rose-500/20 rounded-full blur-2xl" />
               <div className="relative z-10">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-stone-700 uppercase tracking-widest text-[10px] font-medium">Progress to Level {progress.level + 1}</span>
-                  <span className="text-amber-700 font-serif text-base font-semibold">{Math.round(getProgressToNextLevel())}%</span>
+                  <span className="text-stone-700 dark:text-stone-300 uppercase tracking-widest text-[10px] font-medium">Progress to Level {progress.level + 1}</span>
+                   <span className="text-amber-700 dark:text-rose-400 font-serif text-base font-semibold">{Math.round(getProgressToNextLevel())}%</span>
                 </div>
-                <div className="h-2 bg-stone-200/50 rounded-full overflow-hidden">
+                <div className="h-2 bg-stone-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${getProgressToNextLevel()}%` }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full shadow-sm"
+                    className="h-full bg-gradient-to-r from-amber-600 dark:from-rose-500 dark:to-pink-500 to-amber-400 rounded-full shadow-sm"
                   />
                 </div>
-                <div className="flex justify-between text-[9px] text-stone-600 uppercase tracking-widest pt-1.5">
+                <div className="flex justify-between text-[9px] text-stone-600 dark:text-stone-400 uppercase tracking-widest pt-1.5">
                   <span>Level {progress.level || 1}</span>
                   <span>Level {(progress.level || 1) + 1}</span>
                 </div>
@@ -363,7 +363,7 @@ export default function Home() {
       >
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="h-14 w-14 rounded-full bg-neutral-900 hover:bg-black shadow-lg shadow-stone-400/30 text-stone-100"
+          className="h-14 w-14 rounded-full bg-neutral-900 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 hover:bg-black dark:hover:from-rose-700 dark:hover:to-pink-700 shadow-lg dark:shadow-rose-500/30 shadow-stone-400/30 text-stone-100"
         >
           <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>
