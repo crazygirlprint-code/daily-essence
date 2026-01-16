@@ -32,6 +32,10 @@ function LayoutContent({ children, currentPageName }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { isDark, theme, toggleTheme } = useTheme();
   
+  const bgGradient = theme === 'dark-luxury' 
+    ? 'from-blue-950 via-slate-900 to-blue-950'
+    : 'dark:from-black dark:via-rose-950/20 dark:to-black from-stone-50/40 via-stone-50/50 to-white';
+  
   // Hide layout on certain pages for immersive experience
   const immersivePages = [];
   const isImmersive = immersivePages.includes(currentPageName);
@@ -50,8 +54,12 @@ function LayoutContent({ children, currentPageName }) {
     );
     }
 
+  const bgStyle = theme === 'dark-luxury' ? {
+    background: 'linear-gradient(to bottom, rgb(23 37 84), rgb(15 23 42), rgb(23 37 84))'
+  } : {};
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black dark-luxury:from-blue-950 dark-luxury:via-slate-900 dark-luxury:to-blue-950">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black" style={bgStyle}>
       <NotificationBanner />
       <UpcomingNotification />
       {/* Mobile Header */}
