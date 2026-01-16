@@ -6,6 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { motion } from 'framer-motion';
 import { X, Mic } from 'lucide-react';
 import { useSpeechRecognition } from '@/components/hooks/useSpeechRecognition';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 
 const activityTypes = [
   { value: 'mindful_walking', label: '🚶 Mindful Walking' },
@@ -34,7 +36,14 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
     mood_after: 'neutral',
     energy_level: 5,
     activity_date: new Date().toISOString().split('T')[0],
+    family_member: '',
   });
+  
+  const { data: familyMembers = [] } = useQuery({
+    queryKey: ['familyMembers'],
+    queryFn: () => base44.entities.FamilyMember.list(),
+  });
+  
   const { isListening, transcript, startListening, stopListening, clearTranscript } = useSpeechRecognition();
 
   const handleSubmit = (e) => {
@@ -169,6 +178,25 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
               className="w-full"
             />
           </div>
+
+          {familyMembers.length > 0 && (
+            <div>
+              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Family Member (Optional)</label>
+              <Select value={formData.family_member} onValueChange={(value) => setFormData({ ...formData, family_member: value })}>
+                <SelectTrigger className="mt-1">
+                  <SelectValue placeholder="Select family member" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={null}>None</SelectItem>
+                  {familyMembers.map((member) => (
+                    <SelectItem key={member.id} value={member.name}>
+                      {member.name} ({member.relationship})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
 
           <div>
              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Notes</label>
