@@ -9,9 +9,12 @@ import StreakDisplay from '@/components/gamification/StreakDisplay';
 import { useGamification } from '@/components/gamification/useGamification';
 import { format, subDays, eachDayOfInterval, isToday } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { usePremiumCheck } from '@/components/premium/usePremiumCheck';
+import PremiumGate from '@/components/premium/PremiumGate';
 
 export default function Progress() {
   const { progress, getProgressToNextLevel, BADGES, LEVEL_THRESHOLDS } = useGamification();
+  const { hasAccess, isLoading: checkingAccess } = usePremiumCheck('Flourish');
   
   const { data: tasks = [] } = useQuery({
     queryKey: ['tasks'],
@@ -95,6 +98,29 @@ export default function Progress() {
     { label: 'Beauty Steps Completed', value: completedBeautySteps },
     { label: 'Meals Planned', value: mealPlans.length },
   ];
+
+  if (checkingAccess) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white flex items-center justify-center">
+        <div className="animate-pulse text-slate-400">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!hasAccess) {
+    return (
+      <PremiumGate
+        requiredTier="Flourish"
+        featureName="Advanced analytics dashboard"
+        benefits={[
+          'Activity heatmap visualization',
+          'Detailed progress statistics',
+          'Achievement tracking',
+          'Level milestone progress'
+        ]}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
