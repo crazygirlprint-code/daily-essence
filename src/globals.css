@@ -122,6 +122,16 @@ css
     --tw-gradient-to: rgb(2 6 23) !important;
   }
 
+  /* Dark Luxury - Blue Colors */
+  .dark-luxury\:from-blue-950 { 
+    --tw-gradient-from: rgb(23 37 84) !important;
+    --tw-gradient-to: rgb(23 37 84 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+  .dark-luxury\:to-blue-950 { 
+    --tw-gradient-to: rgb(23 37 84) !important;
+  }
+
   /* Dark Luxury - Border Colors */
   .dark-luxury\:border-amber-900\/20 { 
     border-color: rgba(120, 53, 15, 0.2) !important; /* #78350f */
