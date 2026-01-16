@@ -12,20 +12,40 @@ const plans = [
     name: 'Free',
     price: 0,
     priceId: null,
-    description: 'Perfect for getting started with ads',
+    description: 'Perfect for getting started',
     color: 'from-slate-50 to-stone-50',
     borderColor: 'border-stone-200',
     buttonColor: 'bg-stone-600 hover:bg-stone-700',
     badge: 'Includes Ads',
     features: [
       { text: 'Daily task planner', included: true },
-      { text: 'Affirmations & meditation', included: true },
+      { text: 'Basic affirmations', included: true },
       { text: 'Self-care tracking', included: true },
-      { text: 'Family member management', included: true },
+      { text: 'Up to 3 family members', included: true },
       { text: 'Basic meal planning', included: true },
-      { text: 'Beauty routine tracking', included: true },
+      { text: 'Ad-supported', included: true },
       { text: 'Ad-free experience', included: false },
-      { text: 'Advanced budgeting', included: false },
+      { text: 'Advanced features', included: false },
+      { text: 'Priority support', included: false },
+    ]
+  },
+  {
+    id: 'basic',
+    name: 'Basic',
+    price: 4.99,
+    priceId: 'price_basic',
+    description: 'Essential features with no ads',
+    color: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-blue-300',
+    buttonColor: 'bg-blue-600 hover:bg-blue-700',
+    features: [
+      { text: 'Everything in Free', included: true },
+      { text: 'Ad-free experience', included: true },
+      { text: 'Unlimited family members', included: true },
+      { text: 'Advanced meal planning', included: true },
+      { text: 'Community features', included: true },
+      { text: 'Email support', included: true },
+      { text: 'Budget tracking', included: false },
       { text: 'Financial analytics', included: false },
       { text: 'Priority support', included: false },
     ]
@@ -33,24 +53,44 @@ const plans = [
   {
     id: 'premium',
     name: 'Premium',
-    price: 19.99,
+    price: 9.99,
     priceId: 'price_1SpuUjK9Na9KxcTLwLVxgUJW',
-    description: 'Everything plus: Advanced budgeting, analytics & ad-free',
-    color: 'from-gradient-to-purple via-gradient-to-pink to-gradient-to-rose',
+    description: 'Complete wellness & budgeting suite',
+    color: 'from-purple-50 via-pink-50 to-rose-50',
     borderColor: 'border-purple-400/50',
     buttonColor: 'bg-gradient-to-r from-purple-600 to-rose-600 hover:from-purple-700 hover:to-rose-700',
     highlighted: true,
     features: [
-      { text: 'Everything in Free', included: true },
-      { text: 'Ad-free experience', included: true },
+      { text: 'Everything in Basic', included: true },
       { text: 'Advanced budgeting tools', included: true },
       { text: 'Detailed financial analytics', included: true },
       { text: 'Spending insights & reports', included: true },
-      { text: 'Budget category customization', included: true },
       { text: 'Transaction tracking', included: true },
       { text: 'Monthly financial summaries', included: true },
+      { text: 'AI-powered insights', included: true },
       { text: 'Priority email support', included: true },
-      { text: 'Early access to new features', included: true },
+      { text: 'Early access to features', included: true },
+    ]
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    price: 19.99,
+    priceId: 'price_pro',
+    description: 'Everything + exclusive features',
+    color: 'from-amber-50 to-orange-50',
+    borderColor: 'border-amber-400',
+    buttonColor: 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700',
+    features: [
+      { text: 'Everything in Premium', included: true },
+      { text: 'Unlimited AI insights', included: true },
+      { text: 'Custom themes & stickers', included: true },
+      { text: 'Advanced analytics dashboard', included: true },
+      { text: 'Data export & backup', included: true },
+      { text: 'Priority 24/7 support', included: true },
+      { text: 'Exclusive community access', included: true },
+      { text: 'Beta features access', included: true },
+      { text: 'Personal wellness coach', included: true },
     ]
   },
 ];
@@ -102,7 +142,7 @@ export default function Pricing() {
         </div>
 
         {/* Plans Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.id}
