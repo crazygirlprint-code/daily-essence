@@ -137,7 +137,7 @@ export default function Beauty() {
           <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
             <TabsTrigger
               value="morning"
-              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-orange-400 data-[state=active]:text-white"
+              className="rounded-xl data-[state=active]:bg-gradient-to-r dark:data-[state=active]:from-rose-500 dark:data-[state=active]:to-pink-500 data-[state=active]:from-amber-400 data-[state=active]:to-orange-400 data-[state=active]:text-white"
             >
               <Sun className="w-4 h-4 mr-2" />
               Morning
@@ -155,7 +155,7 @@ export default function Beauty() {
           <div className={cn(
             'rounded-2xl p-6 mb-6 text-white',
             activeTab === 'morning' 
-              ? 'bg-gradient-to-r from-amber-400 to-orange-400'
+              ? 'bg-gradient-to-r from-amber-400 dark:from-rose-500 dark:to-pink-500 to-orange-400'
               : 'bg-gradient-to-r from-indigo-400 to-purple-500'
           )}>
             <div className="flex justify-between items-center mb-3">
@@ -196,7 +196,7 @@ export default function Beauty() {
                     completedToday(routine)
                       ? 'bg-green-500 text-white'
                       : activeTab === 'morning'
-                        ? 'bg-amber-100 text-amber-600'
+                        ? 'bg-amber-100 dark:bg-rose-900/40 text-amber-600 dark:text-rose-300'
                         : 'bg-indigo-100 text-indigo-600'
                   )}>
                     {completedToday(routine) ? <Check className="w-4 h-4" /> : index + 1}
@@ -259,7 +259,7 @@ export default function Beauty() {
               className={cn(
                 'w-full rounded-xl h-12',
                 activeTab === 'morning'
-                  ? 'bg-gradient-to-r from-amber-400 to-orange-400'
+                  ? 'bg-gradient-to-r from-amber-400 dark:from-rose-500 dark:to-pink-500 to-orange-400'
                   : 'bg-gradient-to-r from-indigo-400 to-purple-500'
               )}
             >
