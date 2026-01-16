@@ -187,6 +187,33 @@ export default function Budget() {
 
   const COLORS = ['#f59e0b', '#ef4444', '#8b5cf6', '#10b981', '#3b82f6', '#ec4899', '#14b8a6', '#f97316'];
 
+  // Smart categorization helper
+  const suggestCategory = (description) => {
+    if (!description) return null;
+    const text = description.toLowerCase();
+    
+    // Grocery keywords
+    const groceryKeywords = ['recipe', 'ingredients', 'grocery', 'groceries', 'supermarket', 'whole foods', 'trader joe', 'costco', 'walmart', 'milk', 'bread', 'eggs', 'chicken', 'beef', 'vegetables', 'fruits', 'pasta', 'rice', 'cooking'];
+    
+    // Dining keywords
+    const diningKeywords = ['restaurant', 'cafe', 'coffee', 'starbucks', 'dinner', 'lunch', 'breakfast', 'takeout', 'delivery', 'uber eats', 'doordash', 'grubhub'];
+    
+    if (groceryKeywords.some(keyword => text.includes(keyword))) return 'groceries';
+    if (diningKeywords.some(keyword => text.includes(keyword))) return 'dining';
+    
+    return null;
+  };
+
+  // Auto-suggest category when description changes
+  React.useEffect(() => {
+    if (newTransaction.description && isAddOpen) {
+      const suggested = suggestCategory(newTransaction.description);
+      if (suggested && newTransaction.category !== suggested) {
+        setNewTransaction(prev => ({ ...prev, category: suggested }));
+      }
+    }
+  }, [newTransaction.description, isAddOpen]);
+
   // Subscription gate
   if (isLoading) {
     return (
