@@ -10,11 +10,11 @@ import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
 
 const MEDITATION_TYPES = [
-  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-indigo-500 to-indigo-700' },
-  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-indigo-600 to-indigo-800' },
-  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-indigo-500 to-indigo-700' },
-  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-indigo-700 to-indigo-900' },
-  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-indigo-600 to-indigo-800' },
+  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-indigo-500 to-indigo-700', colorLuxury: 'from-amber-600 to-amber-800' },
+  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-indigo-600 to-indigo-800', colorLuxury: 'from-amber-700 to-amber-900' },
+  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-indigo-500 to-indigo-700', colorLuxury: 'from-amber-600 to-amber-800' },
+  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-indigo-700 to-indigo-900', colorLuxury: 'from-amber-800 to-amber-950' },
+  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-indigo-600 to-indigo-800', colorLuxury: 'from-amber-700 to-amber-900' },
 ];
 
 const DURATIONS = [10, 15, 20];

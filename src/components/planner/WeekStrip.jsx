@@ -29,10 +29,10 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
             className={cn(
               'relative flex flex-col items-center min-w-[4.5rem] py-3 px-2 rounded-lg transition-all',
               isSelected
-                ? 'bg-amber-600 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 text-white shadow-lg dark:shadow-rose-500/30'
+                ? 'bg-amber-600 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 dark-luxury:from-amber-600 dark-luxury:to-amber-700 text-white shadow-lg dark:shadow-rose-500/30 dark-luxury:shadow-amber-500/30'
                 : today
-                  ? 'bg-amber-100/50 dark:bg-rose-950/40 text-stone-900 dark:text-rose-300 border border-amber-300/50 dark:border-rose-500/50'
-                  : 'bg-white dark:bg-neutral-800/30 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-neutral-700/30 border border-stone-300 dark:border-rose-500/20'
+                  ? 'bg-amber-100/50 dark:bg-rose-950/40 dark-luxury:bg-amber-900/30 text-stone-900 dark:text-rose-300 dark-luxury:text-amber-400 border border-amber-300/50 dark:border-rose-500/50 dark-luxury:border-amber-500/50'
+                  : 'bg-white dark:bg-neutral-800/30 dark-luxury:bg-slate-800/50 text-stone-700 dark:text-stone-300 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-neutral-700/30 dark-luxury:hover:bg-amber-900/10 border border-stone-300 dark:border-rose-500/20 dark-luxury:border-amber-900/30'
             )}
           >
             <span className="text-lg mb-0.5">
@@ -40,7 +40,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
             </span>
             <span className={cn(
               'text-[9px] font-medium uppercase tracking-widest mb-0.5',
-              isSelected ? 'text-white/90' : 'text-stone-500 dark:text-stone-400'
+              isSelected ? 'text-white/90' : 'text-stone-500 dark:text-stone-400 dark-luxury:text-slate-400'
             )}>
               {format(day, 'EEE')}
             </span>
@@ -56,14 +56,14 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
                     key={i}
                     className={cn(
                        'w-1 h-1 rounded-full',
-                       isSelected ? 'bg-white dark:bg-pink-300' : 'bg-amber-600 dark:bg-rose-400'
+                            isSelected ? 'bg-white dark:bg-pink-300 dark-luxury:bg-amber-300' : 'bg-amber-600 dark:bg-rose-400 dark-luxury:bg-amber-500'
                      )}
                   />
                 ))}
                 {taskCount > 3 && (
                   <span className={cn(
                     'text-[9px] ml-0.5 font-serif',
-                    isSelected ? 'text-white dark:text-pink-300' : 'text-amber-600 dark:text-rose-400'
+                    isSelected ? 'text-white dark:text-pink-300 dark-luxury:text-amber-300' : 'text-amber-600 dark:text-rose-400 dark-luxury:text-amber-500'
                   )}>
                     +{taskCount - 3}
                   </span>
