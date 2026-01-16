@@ -87,17 +87,17 @@ export default function Activities() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-3 gap-4 mb-8"
           >
-            <div className="bg-white dark:bg-neutral-800 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-rose-500/30">
-              <p className="text-xs text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-2">Activities</p>
-              <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.count}</p>
+            <div className="bg-white rounded-xl p-4 border border-amber-200/50">
+              <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Activities</p>
+              <p className="text-2xl font-serif text-amber-600">{stats.count}</p>
             </div>
-            <div className="bg-white dark:bg-neutral-800 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-rose-500/30">
-              <p className="text-xs text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-2">Total Time</p>
-              <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.totalMinutes}m</p>
+            <div className="bg-white rounded-xl p-4 border border-amber-200/50">
+              <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Total Time</p>
+              <p className="text-2xl font-serif text-amber-600">{stats.totalMinutes}m</p>
             </div>
-            <div className="bg-white dark:bg-neutral-800 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-rose-500/30">
-              <p className="text-xs text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-2">Avg Energy</p>
-              <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.avgEnergy}/10</p>
+            <div className="bg-white rounded-xl p-4 border border-amber-200/50">
+              <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Avg Energy</p>
+              <p className="text-2xl font-serif text-amber-600">{stats.avgEnergy}/10</p>
             </div>
           </motion.div>
         )}
@@ -106,7 +106,7 @@ export default function Activities() {
         {isLoading ? (
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-32 bg-stone-200 dark:bg-neutral-800 rounded-xl animate-pulse" />
+              <div key={i} className="h-32 bg-stone-200 rounded-xl animate-pulse" />
             ))}
           </div>
         ) : filteredActivities.length === 0 ? (
@@ -116,8 +116,8 @@ export default function Activities() {
             className="text-center py-16 bg-white/50 dark:bg-neutral-800/50 dark-luxury:bg-blue-900/30 rounded-2xl border border-dashed border-stone-300 dark:border-neutral-700"
           >
             <Zap className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-50" />
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Activities Yet</h3>
-            <p className="text-stone-600 dark:text-stone-400 mb-6">Log your first activity to track mood and energy changes.</p>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">No Activities Yet</h3>
+            <p className="text-stone-600 mb-6">Log your first activity to track mood and energy changes.</p>
             <Button onClick={() => setShowLogger(true)} className="bg-amber-600 dark:bg-rose-600 hover:bg-amber-700 dark:hover:bg-rose-700">
               Log Your First Activity
             </Button>
