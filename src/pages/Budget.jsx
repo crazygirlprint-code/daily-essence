@@ -6,7 +6,7 @@ import {
   DollarSign, Plus, TrendingUp, TrendingDown, Calendar,
   CreditCard, Wallet, PiggyBank, ShoppingCart, UtensilsCrossed,
   Car, Zap, Heart, Film, Baby, GraduationCap, User, Lock, AlertTriangle,
-  Target, Edit2, Users
+  Target, Edit2, Users, Download
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -293,14 +293,24 @@ export default function Budget() {
             <h1 className="text-3xl font-serif text-slate-800 mb-2">Budget Tracker</h1>
             <p className="text-slate-500">Manage your finances with clarity</p>
           </div>
-          <Button
-            onClick={() => setIsBudgetOpen(true)}
-            variant="outline"
-            className="gap-2"
-          >
-            <Target className="w-4 h-4" />
-            Set Budget
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={exportToCSV}
+              variant="outline"
+              className="gap-2"
+            >
+              <Download className="w-4 h-4" />
+              Export CSV
+            </Button>
+            <Button
+              onClick={() => setIsBudgetOpen(true)}
+              variant="outline"
+              className="gap-2"
+            >
+              <Target className="w-4 h-4" />
+              Set Budget
+            </Button>
+          </div>
         </div>
 
         {/* Filters */}
