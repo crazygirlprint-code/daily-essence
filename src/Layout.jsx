@@ -114,8 +114,8 @@ function LayoutContent({ children, currentPageName }) {
                         className={cn(
                           'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
                           isActive
-                            ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 dark:from-rose-500/20 dark:to-pink-500/10 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200/50 dark:border-rose-500/30 dark-luxury:border-amber-900/30'
-                            : 'text-slate-600 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-800/50 dark-luxury:hover:bg-amber-900/10'
+                            ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 dark:from-rose-600/30 dark:to-pink-600/20 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200/50 dark:border-rose-500/40 dark-luxury:border-amber-900/30'
+                            : 'text-slate-600 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-rose-950/30 dark-luxury:hover:bg-amber-900/10'
                         )}
                       >
                         <Icon className={cn('w-5 h-5', isActive && 'text-slate-600')} />
@@ -158,8 +158,8 @@ function LayoutContent({ children, currentPageName }) {
                 className={cn(
                   'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
-                    ? 'bg-gradient-to-r from-amber-900/30 to-amber-900/15 dark:from-rose-500/20 dark:to-pink-500/10 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200 dark:border-rose-500/30 dark-luxury:border-amber-900/30'
-                    : 'text-stone-700 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-800/50 dark-luxury:hover:bg-amber-900/10'
+                    ? 'bg-gradient-to-r from-amber-900/30 to-amber-900/15 dark:from-rose-600/30 dark:to-pink-600/20 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200 dark:border-rose-500/40 dark-luxury:border-amber-900/30'
+                    : 'text-stone-700 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-rose-950/30 dark-luxury:hover:bg-amber-900/10'
                 )}
               >
                 <Icon className={cn('w-5 h-5')} strokeWidth={1.5} />
