@@ -4,16 +4,21 @@ css
 @tailwind utilities;
 
 /* Dark Luxury Theme - Slate & Amber */
+/* Exact Hex Codes:
+   Backgrounds: slate-950 #020617, slate-900 #0f172a, slate-800 #1e293b, slate-700 #334155
+   Text: slate-100 #f1f5f9, slate-200 #e2e8f0, slate-300 #cbd5e1, slate-400 #94a3b8, slate-500 #64748b
+   Accent: amber-300 #fcd34d, amber-400 #fbbf24, amber-500 #f59e0b, amber-600 #d97706, amber-900 #78350f
+*/
 :root.dark-luxury {
   color-scheme: dark;
 }
 
 @layer base {
   :root.dark-luxury {
-    --background: 2 6 23; /* slate-950 */
-    --foreground: 241 245 249; /* slate-100 */
-    --primary: 251 191 36; /* amber-400 */
-    --secondary: 30 41 59; /* slate-800 */
+    --background: 2 6 23; /* slate-950 #020617 */
+    --foreground: 241 245 249; /* slate-100 #f1f5f9 */
+    --primary: 251 191 36; /* amber-400 #fbbf24 */
+    --secondary: 30 41 59; /* slate-800 #1e293b */
   }
   
   .dark-luxury {
@@ -24,37 +29,43 @@ css
 /* Dark Luxury Variant Support */
 @layer components {
   /* Dark Luxury - Text Colors */
-  .dark-luxury\:text-amber-400 { 
-    color: rgb(251 191 36) !important; 
-  }
   .dark-luxury\:text-amber-300 {
-    color: rgb(252 211 77) !important;
+    color: rgb(252 211 77) !important; /* #fcd34d */
+  }
+  .dark-luxury\:text-amber-400 { 
+    color: rgb(251 191 36) !important; /* #fbbf24 */
   }
   .dark-luxury\:text-amber-500 {
-    color: rgb(245 158 11) !important;
+    color: rgb(245 158 11) !important; /* #f59e0b */
+  }
+  .dark-luxury\:text-amber-600 {
+    color: rgb(217 119 6) !important; /* #d97706 */
   }
   .dark-luxury\:text-slate-100 { 
-    color: rgb(241 245 249) !important; 
+    color: rgb(241 245 249) !important; /* #f1f5f9 */
   }
   .dark-luxury\:text-slate-200 { 
-    color: rgb(226 232 240) !important; 
+    color: rgb(226 232 240) !important; /* #e2e8f0 */
   }
   .dark-luxury\:text-slate-300 { 
-    color: rgb(203 213 225) !important; 
+    color: rgb(203 213 225) !important; /* #cbd5e1 */
   }
   .dark-luxury\:text-slate-400 { 
-    color: rgb(148 163 184) !important; 
+    color: rgb(148 163 184) !important; /* #94a3b8 */
   }
   .dark-luxury\:text-slate-500 { 
-    color: rgb(100 116 139) !important; 
+    color: rgb(100 116 139) !important; /* #64748b */
+  }
+  .dark-luxury\:text-slate-700 { 
+    color: rgb(51 65 85) !important; /* #334155 */
   }
   .dark-luxury\:text-slate-900 { 
-    color: rgb(15 23 42) !important; 
+    color: rgb(15 23 42) !important; /* #0f172a */
   }
 
   /* Dark Luxury - Background Colors */
   .dark-luxury\:bg-slate-950 { 
-    background-color: rgb(2 6 23) !important; 
+    background-color: rgb(2 6 23) !important; /* #020617 */
   }
   .dark-luxury\:bg-slate-950\/98 { 
     background-color: rgba(2, 6, 23, 0.98) !important; 
@@ -63,19 +74,40 @@ css
     background-color: rgba(2, 6, 23, 0.9) !important; 
   }
   .dark-luxury\:bg-slate-900 {
-    background-color: rgb(15 23 42) !important;
+    background-color: rgb(15 23 42) !important; /* #0f172a */
   }
   .dark-luxury\:bg-slate-900\/30 {
     background-color: rgba(15, 23, 42, 0.3) !important;
   }
+  .dark-luxury\:bg-slate-800 {
+    background-color: rgb(30 41 59) !important; /* #1e293b */
+  }
   .dark-luxury\:bg-slate-800\/50 {
     background-color: rgba(30, 41, 59, 0.5) !important;
   }
+  .dark-luxury\:bg-slate-700 {
+    background-color: rgb(51 65 85) !important; /* #334155 */
+  }
+  .dark-luxury\:bg-amber-400 {
+    background-color: rgb(251 191 36) !important; /* #fbbf24 */
+  }
   .dark-luxury\:bg-amber-500 {
-    background-color: rgb(245 158 11) !important;
+    background-color: rgb(245 158 11) !important; /* #f59e0b */
+  }
+  .dark-luxury\:bg-amber-600 {
+    background-color: rgb(217 119 6) !important; /* #d97706 */
+  }
+  .dark-luxury\:bg-amber-900\/10 {
+    background-color: rgba(120, 53, 15, 0.1) !important;
   }
   .dark-luxury\:bg-amber-900\/20 {
-    background-color: rgba(120, 53, 15, 0.2) !important;
+    background-color: rgba(120, 53, 15, 0.2) !important; /* #78350f */
+  }
+  .dark-luxury\:bg-amber-900\/30 {
+    background-color: rgba(120, 53, 15, 0.3) !important;
+  }
+  .dark-luxury\:bg-amber-900\/40 {
+    background-color: rgba(120, 53, 15, 0.4) !important;
   }
   .dark-luxury\:from-slate-950 { 
     --tw-gradient-from: rgb(2 6 23) !important;
@@ -92,7 +124,7 @@ css
 
   /* Dark Luxury - Border Colors */
   .dark-luxury\:border-amber-900\/20 { 
-    border-color: rgba(120, 53, 15, 0.2) !important; 
+    border-color: rgba(120, 53, 15, 0.2) !important; /* #78350f */
   }
   .dark-luxury\:border-amber-900\/30 { 
     border-color: rgba(120, 53, 15, 0.3) !important; 
@@ -100,8 +132,14 @@ css
   .dark-luxury\:border-amber-900\/40 { 
     border-color: rgba(120, 53, 15, 0.4) !important; 
   }
+  .dark-luxury\:border-slate-700 { 
+    border-color: rgb(51 65 85) !important; /* #334155 */
+  }
   .dark-luxury\:border-slate-700\/30 { 
     border-color: rgba(51, 65, 85, 0.3) !important; 
+  }
+  .dark-luxury\:border-slate-700\/50 { 
+    border-color: rgba(51, 65, 85, 0.5) !important; 
   }
   .dark-luxury\:border-slate-600\/30 { 
     border-color: rgba(71, 85, 105, 0.3) !important; 
