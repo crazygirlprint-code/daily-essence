@@ -149,6 +149,34 @@ export default function Budget() {
     });
   }, [transactions, currentRange, selectedMember]);
 
+  const exportToCSV = () => {
+    const csvHeaders = ['Date', 'Type', 'Category', 'Amount', 'Description', 'Payment Method', 'Family Member'];
+    const csvRows = filteredTransactions.map(t => [
+      t.date,
+      t.type,
+      CATEGORY_CONFIG[t.category].name,
+      t.amount,
+      t.description || '',
+      t.payment_method,
+      t.family_member || ''
+    ]);
+    
+    const csvContent = [
+      csvHeaders.join(','),
+      ...csvRows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `budget-transactions-${format(new Date(), 'yyyy-MM-dd')}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  };
+
   // Calculate totals
   const totalIncome = useMemo(() => 
     filteredTransactions.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0),
