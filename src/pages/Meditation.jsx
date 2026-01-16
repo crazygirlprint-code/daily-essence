@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { useTextToSpeech } from '@/components/audio/useTextToSpeech';
 import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
+import { useTheme } from '@/components/hooks/useTheme';
 
 const MEDITATION_TYPES = [
   { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-indigo-500 to-indigo-700', colorLuxury: 'from-amber-600 to-amber-800' },
@@ -93,6 +94,7 @@ export default function Meditation() {
   const audioRef = useRef(null);
   const { speak, stop, isSpeaking } = useTextToSpeech();
   const { addPoints } = useGamification();
+  const { theme } = useTheme();
   const queryClient = useQueryClient();
   
   const saveMutation = useMutation({
@@ -246,10 +248,12 @@ export default function Meditation() {
     ? ((selectedDuration * 60 - timeRemaining) / (selectedDuration * 60)) * 100 
     : 0;
 
+  const meditationColor = theme === 'dark-luxury' ? selectedType.colorLuxury : selectedType.color;
+
   return (
     <div className={cn(
       'min-h-screen transition-colors duration-1000 relative overflow-hidden',
-      `bg-gradient-to-br ${selectedType.color}`
+      `bg-gradient-to-br ${meditationColor}`
     )}>
       {/* Ambient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-slate-900/20" />
