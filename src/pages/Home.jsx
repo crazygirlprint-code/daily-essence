@@ -151,7 +151,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
         <DayHeader date={selectedDate} userName={user?.full_name} />
         
@@ -370,7 +370,7 @@ export default function Home() {
       </motion.div>
       
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-stone-300 px-6 py-3 md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-black/80 dark-luxury:bg-slate-950/80 backdrop-blur-lg border-t border-stone-300 dark:border-rose-500/20 dark-luxury:border-amber-900/30 px-6 py-3 md:hidden">
         <div className="flex justify-around items-center max-w-md mx-auto">
           <button className="flex flex-col items-center gap-1 text-neutral-900">
             <Calendar className="w-5 h-5" strokeWidth={1.5} />
