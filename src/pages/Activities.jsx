@@ -87,15 +87,15 @@ export default function Activities() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-3 gap-4 mb-8"
           >
-            <div className="bg-white dark:bg-neutral-800 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-rose-500/30">
+            <div className="bg-white dark:bg-purple-900/30 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-purple-600/30">
               <p className="text-xs text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-2">Activities</p>
               <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.count}</p>
             </div>
-            <div className="bg-white dark:bg-neutral-800 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-rose-500/30">
+            <div className="bg-white dark:bg-purple-900/30 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-purple-600/30">
               <p className="text-xs text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-2">Total Time</p>
               <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.totalMinutes}m</p>
             </div>
-            <div className="bg-white dark:bg-neutral-800 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-rose-500/30">
+            <div className="bg-white dark:bg-purple-900/30 dark-luxury:bg-slate-800/50 rounded-xl p-4 border border-amber-200/50 dark:border-purple-600/30">
               <p className="text-xs text-stone-600 dark:text-stone-400 uppercase tracking-widest mb-2">Avg Energy</p>
               <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.avgEnergy}/10</p>
             </div>
@@ -113,7 +113,7 @@ export default function Activities() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16 bg-white/50 dark:bg-neutral-800/50 dark-luxury:bg-blue-900/30 rounded-2xl border border-dashed border-stone-300 dark:border-neutral-700"
+            className="text-center py-16 bg-white/50 dark:bg-purple-900/25 dark-luxury:bg-blue-900/30 rounded-2xl border border-dashed border-stone-300 dark:border-purple-600/25"
           >
             <Zap className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-50" />
             <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Activities Yet</h3>
