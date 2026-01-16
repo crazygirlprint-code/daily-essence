@@ -161,7 +161,7 @@ export default function Progress() {
         </div>
         
         {/* Extra Stats */}
-        <div className="bg-white dark:bg-purple-900/30 rounded-2xl p-6 shadow-sm dark:border dark:border-purple-600/30 mb-8">
+        <div className="bg-white rounded-2xl p-6 shadow-sm mb-8">
           <h3 className="font-semibold text-slate-700 mb-4">Your Activity Summary</h3>
           <div className="grid grid-cols-2 gap-4">
             {extraStats.map((stat, index) => (
@@ -170,7 +170,7 @@ export default function Progress() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="text-center p-3 bg-gradient-to-br from-stone-50 to-amber-50 dark:from-purple-900/30 dark:to-purple-900/20 rounded-xl dark:border dark:border-purple-600/30"
+                className="text-center p-3 bg-gradient-to-br from-stone-50 to-amber-50 rounded-xl"
               >
                 <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
                 <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
@@ -180,7 +180,7 @@ export default function Progress() {
         </div>
         
         {/* Activity Heatmap */}
-        <div className="bg-white dark:bg-purple-900/30 rounded-2xl p-6 shadow-sm dark:border dark:border-purple-600/30 mb-8">
+        <div className="bg-white rounded-2xl p-6 shadow-sm mb-8">
           <h3 className="font-semibold text-slate-700 mb-4 flex items-center gap-2">
             <Calendar className="w-5 h-5 text-rose-500" />
             Activity (Last 30 Days)

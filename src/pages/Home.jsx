@@ -245,7 +245,7 @@ export default function Home() {
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
                           ? 'bg-amber-600 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 text-stone-50 shadow-sm hover:bg-amber-700 dark:hover:from-rose-700 dark:hover:to-pink-700'
-                          : 'bg-white dark:bg-purple-900/30 text-stone-700 dark:text-stone-300 border border-stone-300 dark:border-purple-600/30 hover:bg-stone-50 dark:hover:bg-purple-900/40'
+                          : 'bg-white dark:bg-neutral-800/50 text-stone-700 dark:text-stone-300 border border-stone-300 dark:border-rose-500/20 hover:bg-stone-50 dark:hover:bg-neutral-700/50'
                       }`}
                     >
                 <Icon className="w-4 h-4" strokeWidth={1.5} />
@@ -269,7 +269,7 @@ export default function Home() {
             <motion.div 
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="relative overflow-hidden space-y-2 mb-8 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-stone-50 dark:from-purple-900/30 dark:to-purple-900/20 border border-amber-200 dark:border-purple-600/30 cursor-pointer shadow-sm"
+              className="relative overflow-hidden space-y-2 mb-8 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-stone-50 dark:from-rose-950/40 dark:to-pink-950/30 border border-amber-200 dark:border-rose-500/30 cursor-pointer shadow-sm"
               onClick={() => setShowStatsDialog(true)}
             >
               <div className="absolute top-0 right-0 w-20 h-20 bg-amber-200/30 dark:bg-rose-500/20 rounded-full blur-2xl" />
@@ -298,7 +298,7 @@ export default function Home() {
             {isLoading ? (
               <div className="space-y-3">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-white dark:bg-purple-900/30 rounded-2xl p-4 border border-slate-100 dark:border-purple-600/30 animate-pulse">
+                  <div key={i} className="bg-white rounded-2xl p-4 border border-slate-100 animate-pulse">
                     <div className="flex gap-3">
                       <div className="w-5 h-5 rounded-full bg-slate-200" />
                       <div className="flex-1">

@@ -259,7 +259,7 @@ export default function Affirmations() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-purple-900/30 rounded-2xl p-6 shadow-lg dark:border dark:border-purple-600/30"
+              className="bg-white rounded-2xl p-6 shadow-lg"
             >
               <div className="space-y-4">
                 <div className="relative">
@@ -328,7 +328,7 @@ export default function Affirmations() {
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: idx * 0.05 }}
                    onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
-                   className="w-full text-left p-4 bg-white dark:bg-purple-900/30 rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100 dark:border-purple-600/30"
+                   className="w-full text-left p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100"
                  >
                    <p className="text-slate-700">"{aff.text}"</p>
                    <p className="text-xs text-slate-400 mt-1 capitalize">{aff.category}</p>

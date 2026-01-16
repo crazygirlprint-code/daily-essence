@@ -373,7 +373,7 @@ export default function Budget() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white dark:bg-purple-900/30 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-purple-600/30"
+            className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
           >
             <div className="flex items-center gap-2 text-emerald-600 mb-2">
               <TrendingUp className="w-5 h-5" />
@@ -386,7 +386,7 @@ export default function Budget() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-purple-900/30 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-purple-600/30"
+            className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
           >
             <div className="flex items-center gap-2 text-red-600 mb-2">
               <TrendingDown className="w-5 h-5" />

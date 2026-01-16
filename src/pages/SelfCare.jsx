@@ -150,7 +150,7 @@ export default function SelfCare() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white dark:bg-purple-900/30 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-purple-600/30 mb-6"
+            className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6"
           >
             <div className="flex items-center gap-2 text-amber-500 mb-2">
               <Lightbulb className="w-5 h-5" />
@@ -192,7 +192,7 @@ export default function SelfCare() {
                   setNewActivity({ ...newActivity, type: type.id, name: type.name });
                   setIsAddOpen(true);
                 }}
-                className="flex flex-col items-center gap-2 p-4 bg-white dark:bg-purple-900/30 rounded-2xl shadow-sm hover:shadow-md transition-all dark:border dark:border-purple-600/30"
+                className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all"
               >
                 <div className={cn('p-3 rounded-xl', type.color)}>
                   <Icon className="w-5 h-5" />
@@ -219,7 +219,7 @@ export default function SelfCare() {
                     key={activity.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-4 p-4 bg-white dark:bg-purple-900/30 rounded-2xl shadow-sm dark:border dark:border-purple-600/30"
+                    className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm"
                   >
                     <div className={cn('p-3 rounded-xl', typeInfo.color)}>
                       <Icon className="w-5 h-5" />

@@ -185,10 +185,10 @@ export default function Beauty() {
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ delay: index * 0.05 }}
                   className={cn(
-                    'group flex items-center gap-3 p-4 bg-white dark:bg-purple-900/30 rounded-2xl shadow-sm border transition-all',
+                    'group flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border transition-all',
                     completedToday(routine) 
-                      ? 'border-green-200 bg-green-50/50 dark:bg-green-900/30 dark:border-green-600/30' 
-                      : 'border-slate-100 dark:border-purple-600/30 hover:shadow-md'
+                      ? 'border-green-200 bg-green-50/50' 
+                      : 'border-slate-100 hover:shadow-md'
                   )}
                 >
                   <span className={cn(

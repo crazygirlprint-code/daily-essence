@@ -174,7 +174,7 @@ export default function Family() {
                   className="relative group"
                 >
                   <div className={cn(
-                    'bg-white dark:bg-purple-900/30 rounded-3xl p-6 border border-slate-200 dark:border-purple-600/30 shadow-sm',
+                    'bg-white rounded-3xl p-6 border border-slate-200 shadow-sm',
                     'hover:shadow-md transition-all duration-300',
                     'flex flex-col items-center text-center'
                   )}>
