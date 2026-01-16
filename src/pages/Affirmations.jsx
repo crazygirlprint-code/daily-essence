@@ -117,7 +117,7 @@ export default function Affirmations() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-rose-50 to-amber-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-rose-50 to-amber-50 dark:bg-transparent dark-luxury:bg-transparent">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4">
