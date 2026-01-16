@@ -30,7 +30,7 @@ const navItems = [
 
 function LayoutContent({ children, currentPageName }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, theme, toggleTheme } = useTheme();
   
   // Hide layout on certain pages for immersive experience
   const immersivePages = [];
@@ -68,7 +68,7 @@ function LayoutContent({ children, currentPageName }) {
             onClick={toggleTheme}
             className="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
           >
-            {isDark ? <Sun className="w-5 h-5 text-amber-200" /> : <Moon className="w-5 h-5 text-stone-600" />}
+            {theme === 'dark-luxury' ? <Sparkles className="w-5 h-5 text-amber-400" /> : isDark ? <Sun className="w-5 h-5 text-amber-200" /> : <Moon className="w-5 h-5 text-stone-600" />}
           </button>
         </div>
       </header>
