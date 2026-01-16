@@ -26,6 +26,7 @@ import {
 import { cn } from '@/lib/utils';
 import ShareButton from '@/components/family/ShareButton';
 import EmojiPicker from '@/components/events/EmojiPicker';
+import { useTheme } from '@/components/hooks/useTheme';
 
 const EVENT_TYPES = {
   birthday: { icon: Gift, color: 'bg-pink-500', bgLight: 'bg-pink-100 text-pink-700' },
@@ -36,6 +37,7 @@ const EVENT_TYPES = {
 };
 
 export default function Events() {
+  const { theme } = useTheme();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isAddOpen, setIsAddOpen] = useState(false);
@@ -251,10 +253,10 @@ export default function Events() {
                   className={cn(
                     'aspect-square rounded-xl p-1 flex flex-col items-center justify-start transition-all relative',
                     isSelected 
-                      ? 'bg-gradient-to-br from-indigo-500 dark:from-rose-500 dark:to-pink-600 dark-luxury:from-amber-600 dark-luxury:to-amber-700 to-purple-500 text-white shadow-lg dark:shadow-rose-500/30 dark-luxury:shadow-amber-500/30'
+                      ? `${theme === 'dark-luxury' ? 'bg-gradient-to-br from-amber-600 to-amber-700 shadow-amber-500/30' : 'bg-gradient-to-br from-indigo-500 to-purple-500'} dark:bg-gradient-to-br dark:from-rose-500 dark:to-pink-600 ${theme === 'dark-luxury' ? 'dark-luxury:from-amber-600 dark-luxury:to-amber-700 dark-luxury:shadow-amber-500/30' : ''} text-white shadow-lg dark:shadow-rose-500/30`
                       : today
-                        ? 'bg-indigo-50 dark:bg-rose-950/40 dark-luxury:bg-amber-900/30 text-indigo-600 dark:text-rose-300 dark-luxury:text-amber-400 ring-2 ring-indigo-200 dark:ring-rose-500/50 dark-luxury:ring-amber-500/50'
-                        : 'hover:bg-slate-50 dark:hover:bg-neutral-800/30 dark-luxury:hover:bg-amber-900/10 text-slate-700 dark:text-stone-400 dark-luxury:text-slate-300'
+                        ? `${theme === 'dark-luxury' ? 'bg-amber-900/30 text-amber-400 ring-amber-500/50' : 'bg-indigo-50 text-indigo-600 ring-indigo-200'} dark:bg-rose-950/40 dark:text-rose-300 dark:ring-rose-500/50 ring-2`
+                        : `${theme === 'dark-luxury' ? 'hover:bg-amber-900/10 text-slate-300' : 'hover:bg-slate-50 text-slate-700'} dark:hover:bg-neutral-800/30 dark:text-stone-400`
                   )}
                 >
                   <span className="text-sm font-semibold mt-1">
@@ -303,7 +305,7 @@ export default function Events() {
                 setNewEvent({ ...newEvent, date: format(selectedDate, 'yyyy-MM-dd') });
                 setIsAddOpen(true);
               }}
-              className="rounded-xl bg-gradient-to-r from-indigo-500 dark:from-rose-600 dark:to-pink-600 dark-luxury:from-amber-600 dark-luxury:to-amber-700 to-purple-500"
+              className={cn('rounded-xl bg-gradient-to-r to-purple-500', theme === 'dark-luxury' ? 'from-amber-600 to-amber-700' : 'from-indigo-500 dark:from-rose-600 dark:to-pink-600')}
             >
               <Plus className="w-4 h-4 mr-1" />
               Add Event
@@ -471,7 +473,7 @@ export default function Events() {
                 }
               }}
               disabled={!newEvent.title.trim() || !newEvent.date}
-              className="w-full rounded-xl h-12 bg-gradient-to-r from-indigo-500 dark:from-rose-600 dark:to-pink-600 dark-luxury:from-amber-600 dark-luxury:to-amber-700 to-purple-500"
+              className={cn('w-full rounded-xl h-12 bg-gradient-to-r to-purple-500', theme === 'dark-luxury' ? 'from-amber-600 to-amber-700' : 'from-indigo-500 dark:from-rose-600 dark:to-pink-600')}
             >
               {editingEvent ? 'Update Event' : 'Save Event'}
             </Button>

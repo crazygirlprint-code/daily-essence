@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, Home, Baby, Heart, ShoppingBag, LayoutGrid } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTheme } from '@/components/hooks/useTheme';
 
 const categories = [
   { id: 'all', label: 'All', icon: LayoutGrid },
@@ -13,6 +14,8 @@ const categories = [
 ];
 
 export default function CategoryFilter({ selected, onChange, taskCounts = {} }) {
+  const { theme } = useTheme();
+  
   return (
     <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
       {categories.map((cat) => {
@@ -30,8 +33,12 @@ export default function CategoryFilter({ selected, onChange, taskCounts = {} }) 
             className={cn(
               'relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all',
               isActive
-                ? 'bg-slate-800 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark-luxury:from-amber-600 dark-luxury:to-amber-700 text-white shadow-lg shadow-slate-200 dark:shadow-rose-500/30 dark-luxury:shadow-amber-500/30'
-                : 'bg-white dark:bg-neutral-800/30 dark-luxury:bg-slate-800/50 text-slate-600 dark:text-stone-300 dark-luxury:text-slate-400 hover:bg-slate-50 dark:hover:bg-neutral-700/30 dark-luxury:hover:bg-amber-900/10 border border-slate-200 dark:border-rose-500/20 dark-luxury:border-amber-900/30'
+                ? theme === 'dark-luxury'
+                  ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg shadow-amber-500/30'
+                  : 'bg-slate-800 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 text-white shadow-lg shadow-slate-200 dark:shadow-rose-500/30'
+                : theme === 'dark-luxury'
+                  ? 'bg-slate-800/50 text-slate-400 hover:bg-amber-900/10 border border-amber-900/30'
+                  : 'bg-white dark:bg-neutral-800/30 text-slate-600 dark:text-stone-300 hover:bg-slate-50 dark:hover:bg-neutral-700/30 border border-slate-200 dark:border-rose-500/20'
             )}
           >
             <Icon className="w-4 h-4" />
@@ -39,7 +46,7 @@ export default function CategoryFilter({ selected, onChange, taskCounts = {} }) 
             {count > 0 && (
               <span className={cn(
                 'ml-1 px-1.5 py-0.5 rounded-full text-xs font-semibold',
-                isActive ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-neutral-700/50 text-slate-600 dark:text-stone-300 dark-luxury:bg-amber-900/40 dark-luxury:text-amber-300'
+                isActive ? 'bg-white/20 text-white' : theme === 'dark-luxury' ? 'bg-amber-900/40 text-amber-300' : 'bg-slate-100 dark:bg-neutral-700/50 text-slate-600 dark:text-stone-300'
               )}>
                 {count}
               </span>
