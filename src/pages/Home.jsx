@@ -331,8 +331,8 @@ export default function Home() {
         )}
         
         {activeSection === 'meals' && (
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100">
-            <h3 className="font-semibold text-slate-700 mb-4 flex items-center gap-2">
+          <div className="bg-white dark:bg-purple-900/25 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-purple-600/25">
+            <h3 className="font-semibold text-slate-700 dark:text-stone-300 mb-4 flex items-center gap-2">
               <UtensilsCrossed className="w-5 h-5 text-orange-500" />
               Meal Plan for {format(selectedDate, 'EEEE')}
             </h3>
@@ -348,7 +348,7 @@ export default function Home() {
         )}
         
         {activeSection === 'notes' && (
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100">
+          <div className="bg-white dark:bg-purple-900/25 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-purple-600/25">
             <QuickNotes />
           </div>
         )}
