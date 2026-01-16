@@ -192,14 +192,24 @@ export default function Budget() {
     if (!description) return null;
     const text = description.toLowerCase();
     
-    // Grocery keywords
-    const groceryKeywords = ['recipe', 'ingredients', 'grocery', 'groceries', 'supermarket', 'whole foods', 'trader joe', 'costco', 'walmart', 'milk', 'bread', 'eggs', 'chicken', 'beef', 'vegetables', 'fruits', 'pasta', 'rice', 'cooking'];
+    const categoryKeywords = {
+      groceries: ['recipe', 'ingredients', 'grocery', 'groceries', 'supermarket', 'whole foods', 'trader joe', 'costco', 'walmart', 'milk', 'bread', 'eggs', 'chicken', 'beef', 'vegetables', 'fruits', 'pasta', 'rice', 'cooking', 'food', 'produce'],
+      dining: ['restaurant', 'cafe', 'coffee', 'starbucks', 'dinner', 'lunch', 'breakfast', 'takeout', 'delivery', 'uber eats', 'doordash', 'grubhub', 'chipotle', 'mcdonalds', 'pizza'],
+      transportation: ['gas', 'fuel', 'uber', 'lyft', 'taxi', 'car', 'parking', 'toll', 'metro', 'subway', 'train', 'bus', 'transit', 'vehicle', 'auto', 'repair', 'mechanic', 'oil change'],
+      healthcare: ['doctor', 'hospital', 'pharmacy', 'cvs', 'walgreens', 'medicine', 'prescription', 'dental', 'dentist', 'medical', 'clinic', 'health', 'therapy', 'appointment'],
+      entertainment: ['movie', 'cinema', 'netflix', 'spotify', 'concert', 'theater', 'tickets', 'game', 'entertainment', 'amusement', 'disney', 'streaming'],
+      childcare: ['daycare', 'babysitter', 'nanny', 'childcare', 'preschool', 'kids', 'children', 'babysitting'],
+      education: ['school', 'tuition', 'books', 'supplies', 'course', 'class', 'university', 'college', 'education', 'learning', 'textbook'],
+      personal: ['haircut', 'salon', 'spa', 'massage', 'manicure', 'pedicure', 'barber', 'beauty', 'skincare', 'makeup', 'cosmetics', 'sephora', 'ulta'],
+      shopping: ['amazon', 'target', 'mall', 'clothing', 'clothes', 'shoes', 'fashion', 'store', 'shopping', 'retail'],
+      utilities: ['electric', 'electricity', 'water', 'gas bill', 'internet', 'phone', 'cable', 'utility', 'utilities', 'bill']
+    };
     
-    // Dining keywords
-    const diningKeywords = ['restaurant', 'cafe', 'coffee', 'starbucks', 'dinner', 'lunch', 'breakfast', 'takeout', 'delivery', 'uber eats', 'doordash', 'grubhub'];
-    
-    if (groceryKeywords.some(keyword => text.includes(keyword))) return 'groceries';
-    if (diningKeywords.some(keyword => text.includes(keyword))) return 'dining';
+    for (const [category, keywords] of Object.entries(categoryKeywords)) {
+      if (keywords.some(keyword => text.includes(keyword))) {
+        return category;
+      }
+    }
     
     return null;
   };
