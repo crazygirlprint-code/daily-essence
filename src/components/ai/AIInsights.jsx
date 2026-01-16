@@ -7,10 +7,13 @@ import { Button } from '@/components/ui/button';
 import { format, addDays } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { usePremiumCheck } from '@/components/premium/usePremiumCheck';
+import PremiumGate from '@/components/premium/PremiumGate';
 
 export default function AIInsights() {
   const [insights, setInsights] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { hasAccess, isLoading: checkingAccess } = usePremiumCheck('Flourish');
 
   const { data: tasks = [] } = useQuery({
     queryKey: ['tasks'],
@@ -212,10 +215,45 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
 
   React.useEffect(() => {
     // Auto-generate insights on mount if we have data
-    if (tasks.length > 0 && !insights) {
+    if (tasks.length > 0 && !insights && hasAccess) {
       generateInsights();
     }
-  }, [tasks.length]);
+  }, [tasks.length, hasAccess]);
+
+  // Premium gate
+  if (checkingAccess) {
+    return (
+      <div className="bg-white rounded-xl p-6 shadow-sm border border-stone-200 animate-pulse">
+        <div className="h-4 bg-stone-200 rounded w-1/3 mb-3" />
+        <div className="h-3 bg-stone-100 rounded w-full" />
+      </div>
+    );
+  }
+
+  if (!hasAccess) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200/50 cursor-pointer hover:shadow-lg transition-all"
+        onClick={() => window.location.href = '/Pricing'}
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles className="w-5 h-5 text-purple-600" />
+              <h3 className="font-serif text-lg text-slate-800">AI Daily Insights</h3>
+            </div>
+            <p className="text-sm text-slate-600 mb-1">
+              Get personalized recommendations based on your habits
+            </p>
+            <p className="text-xs text-purple-600 font-medium">Flourish Tier Feature</p>
+          </div>
+          <ChevronRight className="w-5 h-5 text-purple-400" />
+        </div>
+      </motion.div>
+    );
+  }
 
   if (!insights && !isLoading) {
     return (
