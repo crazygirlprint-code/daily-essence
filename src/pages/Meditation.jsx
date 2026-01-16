@@ -10,11 +10,11 @@ import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
 
 const MEDITATION_TYPES = [
-  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-teal-500 to-cyan-600' },
-  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-500 to-indigo-600' },
-  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-violet-500 to-purple-600' },
-  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-indigo-600 to-blue-700' },
-  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-emerald-500 to-teal-600' },
+  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-indigo-500 to-indigo-700' },
+  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-indigo-600 to-indigo-800' },
+  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-indigo-500 to-indigo-700' },
+  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-indigo-700 to-indigo-900' },
+  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-indigo-600 to-indigo-800' },
 ];
 
 const DURATIONS = [10, 15, 20];
