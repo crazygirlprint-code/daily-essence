@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Heart, UtensilsCrossed, RefreshCw, ChevronRight } from 'lucide-react';
+import { Sparkles, Heart, UtensilsCrossed, RefreshCw, ChevronRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { format, addDays } from 'date-fns';
+import { format, addDays, differenceInDays, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { usePremiumCheck } from '@/components/premium/usePremiumCheck';
@@ -14,6 +14,7 @@ export default function AIInsights() {
   const [insights, setInsights] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { hasAccess, isLoading: checkingAccess } = usePremiumCheck('Flourish');
+  const [trialInfo, setTrialInfo] = useState({ inTrial: false, daysLeft: 0 });
 
   const { data: tasks = [] } = useQuery({
     queryKey: ['tasks'],
@@ -214,11 +215,28 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
   };
 
   React.useEffect(() => {
+    const checkTrialStatus = async () => {
+      if (!hasAccess) {
+        try {
+          const user = await base44.auth.me();
+          const accountAge = differenceInDays(new Date(), parseISO(user.created_date));
+          const daysLeft = Math.max(0, 9 - accountAge);
+          const inTrial = accountAge < 9;
+          setTrialInfo({ inTrial, daysLeft });
+        } catch (error) {
+          setTrialInfo({ inTrial: false, daysLeft: 0 });
+        }
+      }
+    };
+    checkTrialStatus();
+  }, [hasAccess]);
+
+  React.useEffect(() => {
     // Auto-generate insights on mount if we have data
-    if (tasks.length > 0 && !insights && hasAccess) {
+    if (tasks.length > 0 && !insights && (hasAccess || trialInfo.inTrial)) {
       generateInsights();
     }
-  }, [tasks.length, hasAccess]);
+  }, [tasks.length, hasAccess, trialInfo.inTrial]);
 
   // Premium gate
   if (checkingAccess) {
@@ -230,7 +248,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
     );
   }
 
-  if (!hasAccess) {
+  if (!hasAccess && !trialInfo.inTrial) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -247,7 +265,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             <p className="text-sm text-slate-600 mb-1">
               Get personalized recommendations based on your habits
             </p>
-            <p className="text-xs text-purple-600 font-medium">Flourish Tier Feature</p>
+            <p className="text-xs text-purple-600 font-medium">Trial ended - Upgrade to Flourish</p>
           </div>
           <ChevronRight className="w-5 h-5 text-purple-400" />
         </div>
@@ -282,6 +300,12 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
           <p className="text-stone-700 text-xs mb-4 leading-relaxed">
             Get personalized daily summary and actionable recommendations based on your habits and goals
           </p>
+          {!hasAccess && trialInfo.inTrial && (
+            <div className="flex items-center gap-2 mb-3 text-xs text-amber-700 bg-amber-100/50 rounded-lg px-3 py-2 border border-amber-200">
+              <Clock className="w-3.5 h-3.5" />
+              <span>Free trial: {trialInfo.daysLeft} {trialInfo.daysLeft === 1 ? 'day' : 'days'} left</span>
+            </div>
+          )}
           <Button
             onClick={generateInsights}
             disabled={isLoading}
@@ -315,9 +339,17 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             >
               <Sparkles className="w-5 h-5 text-amber-700" strokeWidth={1.5} />
             </motion.div>
-            <div>
+            <div className="flex-1">
               <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
-              <p className="text-[10px] text-amber-700/60 uppercase tracking-widest">AI-Powered</p>
+              <div className="flex items-center gap-2">
+                <p className="text-[10px] text-amber-700/60 uppercase tracking-widest">AI-Powered</p>
+                {!hasAccess && trialInfo.inTrial && (
+                  <div className="flex items-center gap-1 text-[10px] text-amber-700 bg-amber-100/50 rounded px-2 py-0.5">
+                    <Clock className="w-2.5 h-2.5" />
+                    <span>{trialInfo.daysLeft}d trial left</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <Button
