@@ -12,6 +12,7 @@ import Pricing from './pages/Pricing';
 import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
+import Strolling from './pages/Strolling';
 import __Layout from './Layout.jsx';
 
 
@@ -30,6 +31,7 @@ export const PAGES = {
     "Profile": Profile,
     "Progress": Progress,
     "SelfCare": SelfCare,
+    "Strolling": Strolling,
 }
 
 export const pagesConfig = {
