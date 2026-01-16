@@ -30,11 +30,7 @@ const navItems = [
 
 function LayoutContent({ children, currentPageName }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { isDark, theme, toggleTheme } = useTheme();
-  
-  const bgGradient = theme === 'dark-luxury' 
-    ? 'from-blue-950 via-slate-900 to-blue-950'
-    : 'dark:from-black dark:via-rose-950/20 dark:to-black from-stone-50/40 via-stone-50/50 to-white';
+  const { isDark, toggleTheme } = useTheme();
   
   // Hide layout on certain pages for immersive experience
   const immersivePages = [];
@@ -54,16 +50,12 @@ function LayoutContent({ children, currentPageName }) {
     );
     }
 
-  const bgStyle = theme === 'dark-luxury' ? {
-    background: 'linear-gradient(to bottom, rgb(23 37 84), rgb(15 23 42), rgb(23 37 84))'
-  } : {};
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black" style={bgStyle}>
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black">
       <NotificationBanner />
       <UpcomingNotification />
       {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-zinc-900/95 dark-luxury:bg-slate-950/98 backdrop-blur-xl border-b border-stone-200/50 dark:border-zinc-800 dark-luxury:border-amber-900/30">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border-b border-stone-200/50 dark:border-zinc-800">
         <div className="flex items-center justify-between px-4 py-3.5">
           <button
             onClick={() => setIsSidebarOpen(true)}
@@ -71,12 +63,12 @@ function LayoutContent({ children, currentPageName }) {
           >
             <Menu className="w-5 h-5 text-neutral-900 dark:text-stone-100" strokeWidth={1.5} />
           </button>
-          <h1 className="font-serif text-lg text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400 tracking-tight">Daily Essence</h1>
+          <h1 className="font-serif text-lg text-neutral-900 dark:text-stone-100 tracking-tight">Daily Essence</h1>
           <button
             onClick={toggleTheme}
             className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg"
             >
-            {theme === 'dark-luxury' ? <Sparkles className="w-5 h-5 text-amber-400" /> : isDark ? <Sun className="w-5 h-5 text-rose-300" /> : <Moon className="w-5 h-5 text-stone-600" />}
+            {isDark ? <Sun className="w-5 h-5 text-rose-300" /> : <Moon className="w-5 h-5 text-stone-600" />}
           </button>
         </div>
       </header>
@@ -122,8 +114,8 @@ function LayoutContent({ children, currentPageName }) {
                         className={cn(
                           'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
                           isActive
-                            ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 dark:from-rose-600/30 dark:to-pink-600/20 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200/50 dark:border-rose-500/40 dark-luxury:border-amber-900/30'
-                            : 'text-slate-600 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-rose-950/30 dark-luxury:hover:bg-amber-900/10'
+                            ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 dark:from-rose-600/30 dark:to-pink-600/20 text-slate-700 dark:text-rose-100 border border-stone-200/50 dark:border-rose-500/40'
+                            : 'text-slate-600 dark:text-zinc-400 hover:bg-stone-50 dark:hover:bg-rose-950/30'
                         )}
                       >
                         <Icon className={cn('w-5 h-5', isActive && 'text-slate-600')} />
@@ -139,19 +131,19 @@ function LayoutContent({ children, currentPageName }) {
       </AnimatePresence>
       
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-zinc-900/90 dark-luxury:bg-slate-950/90 backdrop-blur-xl border-r border-stone-200/50 dark:border-zinc-800 dark-luxury:border-amber-900/30 flex-col">
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-zinc-900/90 backdrop-blur-xl border-r border-stone-200/50 dark:border-zinc-800 flex-col">
         <div className="p-6 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400 tracking-tight">
+            <h1 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 tracking-tight">
               Daily Essence
             </h1>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 dark-luxury:text-slate-400 mt-1 uppercase tracking-widest font-light">Where Chaos Meets Clarity</p>
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 uppercase tracking-widest font-light">Where Chaos Meets Clarity</p>
           </div>
           <button
             onClick={toggleTheme}
             className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg"
           >
-            {theme === 'dark-luxury' ? <Sparkles className="w-4 h-4 text-amber-400" /> : isDark ? <Sun className="w-4 h-4 text-rose-300" /> : <Moon className="w-4 h-4 text-stone-600" />}
+            {isDark ? <Sun className="w-4 h-4 text-rose-300" /> : <Moon className="w-4 h-4 text-stone-600" />}
           </button>
         </div>
         
@@ -166,8 +158,8 @@ function LayoutContent({ children, currentPageName }) {
                 className={cn(
                   'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
-                    ? 'bg-gradient-to-r from-amber-900/30 to-amber-900/15 dark:from-rose-600/30 dark:to-pink-600/20 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200 dark:border-rose-500/40 dark-luxury:border-amber-900/30'
-                    : 'text-stone-700 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-rose-950/30 dark-luxury:hover:bg-amber-900/10'
+                    ? 'bg-gradient-to-r from-amber-900/30 to-amber-900/15 dark:from-rose-600/30 dark:to-pink-600/20 text-slate-700 dark:text-rose-100 border border-stone-200 dark:border-rose-500/40'
+                    : 'text-stone-700 dark:text-zinc-400 hover:bg-stone-50 dark:hover:bg-rose-950/30'
                 )}
               >
                 <Icon className={cn('w-5 h-5')} strokeWidth={1.5} />
@@ -177,9 +169,9 @@ function LayoutContent({ children, currentPageName }) {
           })}
         </nav>
         
-        <div className="p-4 m-4 bg-gradient-to-br from-amber-900/20 to-amber-900/10 dark:from-rose-500/10 dark:to-pink-500/5 dark-luxury:from-amber-900/30 dark-luxury:to-amber-900/20 rounded-lg border border-stone-200/50 dark:border-rose-500/20 dark-luxury:border-amber-900/30 shadow-sm backdrop-blur-sm">
-         <p className="text-xs text-slate-700 dark:text-rose-200 dark-luxury:text-amber-400 font-medium uppercase tracking-widest">Self-Care Reminder</p>
-          <p className="text-xs text-stone-700 dark:text-rose-100/80 dark-luxury:text-slate-300 mt-2 leading-relaxed">
+        <div className="p-4 m-4 bg-gradient-to-br from-amber-900/20 to-amber-900/10 dark:from-rose-500/10 dark:to-pink-500/5 rounded-lg border border-stone-200/50 dark:border-rose-500/20 shadow-sm backdrop-blur-sm">
+         <p className="text-xs text-slate-700 dark:text-rose-200 font-medium uppercase tracking-widest">Self-Care Reminder</p>
+         <p className="text-xs text-stone-700 dark:text-rose-100/80 mt-2 leading-relaxed">
             Don't forget to schedule some me-time this week!
           </p>
         </div>

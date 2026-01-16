@@ -16,24 +16,14 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
-    document.documentElement.classList.remove('dark', 'dark-luxury');
-    if (theme.startsWith('dark')) {
+    document.documentElement.classList.remove('dark');
+    if (theme === 'dark') {
       document.documentElement.classList.add('dark');
-    }
-    if (theme === 'dark-luxury') {
-      document.documentElement.classList.add('dark-luxury');
     }
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => {
-      switch (prev) {
-        case 'light': return 'dark';
-        case 'dark': return 'dark-luxury';
-        case 'dark-luxury': return 'light';
-        default: return 'light';
-      }
-    });
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
   return (
