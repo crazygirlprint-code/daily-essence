@@ -159,10 +159,10 @@ export default function Budget() {
             <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-amber-100 to-stone-100 rounded-full flex items-center justify-center">
               <Lock className="w-10 h-10 text-amber-600" />
             </div>
-            <h1 className="text-3xl font-serif text-slate-800 mb-4">Premium Feature</h1>
+            <h1 className="text-3xl font-serif text-slate-800 mb-4">Radiant Tier Feature</h1>
             <p className="text-slate-600 mb-8 max-w-md mx-auto">
-              Budget tracking and money management is available with a premium subscription. 
-              Get insights into your spending, set budgets, and achieve your financial goals.
+              Budget tracking with AI insights is available exclusively with the Radiant tier ($19.99/month). 
+              Get powerful insights into your spending, set intelligent budgets, and achieve your financial goals with unlimited AI coaching.
             </p>
             <div className="space-y-3 mb-8">
               <div className="flex items-center gap-3 text-left">
@@ -184,8 +184,11 @@ export default function Budget() {
                 <span className="text-slate-700">Set budgets and monitor spending</span>
               </div>
             </div>
-            <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 h-12 rounded-xl shadow-lg">
-              Upgrade to Premium
+            <Button 
+              onClick={() => window.location.href = '/Pricing'}
+              className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 h-12 rounded-xl shadow-lg"
+            >
+              Upgrade to Radiant
             </Button>
             <p className="text-xs text-slate-400 mt-4">Cancel anytime</p>
           </motion.div>
