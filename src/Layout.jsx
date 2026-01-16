@@ -51,11 +51,11 @@ function LayoutContent({ children, currentPageName }) {
     }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 dark-luxury:from-slate-950 dark-luxury:via-slate-900 dark-luxury:to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-zinc-950 dark:to-black dark-luxury:from-slate-950 dark-luxury:via-slate-900 dark-luxury:to-slate-950">
       <NotificationBanner />
       <UpcomingNotification />
       {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-zinc-900/95 dark-luxury:bg-slate-950/98 backdrop-blur-xl border-b border-stone-200/50 dark:border-zinc-800 dark-luxury:border-amber-900/30">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-black/95 dark-luxury:bg-slate-950/98 backdrop-blur-xl border-b border-stone-200/50 dark:border-zinc-900 dark-luxury:border-amber-900/30">
         <div className="flex items-center justify-between px-4 py-3.5">
           <button
             onClick={() => setIsSidebarOpen(true)}
@@ -115,7 +115,7 @@ function LayoutContent({ children, currentPageName }) {
                           'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
                           isActive
                             ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 dark:from-rose-500/20 dark:to-pink-500/10 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200/50 dark:border-rose-500/30 dark-luxury:border-amber-900/30'
-                            : 'text-slate-600 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-800/50 dark-luxury:hover:bg-amber-900/10'
+                            : 'text-slate-600 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-900/50 dark-luxury:hover:bg-amber-900/10'
                         )}
                       >
                         <Icon className={cn('w-5 h-5', isActive && 'text-slate-600')} />
@@ -131,7 +131,7 @@ function LayoutContent({ children, currentPageName }) {
       </AnimatePresence>
       
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-zinc-900/90 dark-luxury:bg-slate-950/90 backdrop-blur-xl border-r border-stone-200/50 dark:border-zinc-800 dark-luxury:border-amber-900/30 flex-col">
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-black/90 dark-luxury:bg-slate-950/90 backdrop-blur-xl border-r border-stone-200/50 dark:border-zinc-900 dark-luxury:border-amber-900/30 flex-col">
         <div className="p-6 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400 tracking-tight">
@@ -159,7 +159,7 @@ function LayoutContent({ children, currentPageName }) {
                   'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
                     ? 'bg-gradient-to-r from-amber-900/30 to-amber-900/15 dark:from-rose-500/20 dark:to-pink-500/10 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200 dark:border-rose-500/30 dark-luxury:border-amber-900/30'
-                    : 'text-stone-700 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-800/50 dark-luxury:hover:bg-amber-900/10'
+                    : 'text-stone-700 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-900/50 dark-luxury:hover:bg-amber-900/10'
                 )}
               >
                 <Icon className={cn('w-5 h-5')} strokeWidth={1.5} />
