@@ -56,14 +56,16 @@ export default function Budget() {
 
   const queryClient = useQueryClient();
 
-  // Check subscription status
+  // Check subscription status - only Radiant tier and admin
   React.useEffect(() => {
     const checkSubscription = async () => {
       try {
         const user = await base44.auth.me();
-        // Check if user has premium subscription
-        const isSubscribed = user.subscription_status === 'active' || user.role === 'admin';
-        setHasAccess(isSubscribed);
+        // Only Radiant tier (top tier) or admin can access
+        const isRadiantTier = user.subscription_status === 'active' && 
+          (user.subscription_plan === 'Radiant' || user.subscription_plan === 'radiant');
+        const isAdmin = user.role === 'admin';
+        setHasAccess(isRadiantTier || isAdmin);
       } catch (error) {
         setHasAccess(false);
       } finally {
