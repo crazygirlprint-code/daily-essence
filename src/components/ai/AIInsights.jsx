@@ -335,12 +335,12 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             <motion.div
               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200/60 to-amber-100/40 flex items-center justify-center border border-amber-300/50 shadow-lg shadow-amber-200/20"
+              className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200/60 dark:from-rose-500/40 dark:to-pink-500/30 to-amber-100/40 flex items-center justify-center border border-amber-300/50 dark:border-rose-500/50 shadow-lg dark:shadow-rose-500/20 shadow-amber-200/20"
             >
-              <Sparkles className="w-5 h-5 text-amber-700" strokeWidth={1.5} />
+              <Sparkles className="w-5 h-5 text-amber-700 dark:text-rose-300" strokeWidth={1.5} />
             </motion.div>
             <div className="flex-1">
-              <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
+              <h3 className="font-serif text-lg text-stone-900 dark:text-stone-100">Daily Insights</h3>
               <div className="flex items-center gap-2">
                 <p className="text-[10px] text-amber-700/60 uppercase tracking-widest">AI-Powered</p>
                 {!hasAccess && trialInfo.inTrial && (
@@ -353,11 +353,11 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             </div>
           </div>
           <Button
-            onClick={generateInsights}
-            disabled={isLoading}
-            size="sm"
-            variant="ghost"
-            className="text-stone-700 hover:bg-stone-200"
+          onClick={generateInsights}
+          disabled={isLoading}
+          size="sm"
+          variant="ghost"
+          className="text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-neutral-700"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.5} />
           </Button>
