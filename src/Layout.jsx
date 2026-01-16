@@ -143,7 +143,7 @@ function LayoutContent({ children, currentPageName }) {
             onClick={toggleTheme}
             className="p-2 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
           >
-            {isDark ? <Sun className="w-4 h-4 text-amber-200" /> : <Moon className="w-4 h-4 text-stone-600" />}
+            {theme === 'dark-luxury' ? <Sparkles className="w-4 h-4 text-amber-400" /> : isDark ? <Sun className="w-4 h-4 text-amber-200" /> : <Moon className="w-4 h-4 text-stone-600" />}
           </button>
         </div>
         
