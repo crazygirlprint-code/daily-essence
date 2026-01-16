@@ -50,8 +50,12 @@ function LayoutContent({ children, currentPageName }) {
     );
     }
 
+  const darkBg = isDark ? {
+    background: 'linear-gradient(to bottom, rgb(70, 45, 80), rgb(55, 35, 65), rgb(70, 45, 80))'
+  } : {};
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white dark:from-black dark:via-rose-950/20 dark:to-black" style={darkBg}>
       <NotificationBanner />
       <UpcomingNotification />
       {/* Mobile Header */}
