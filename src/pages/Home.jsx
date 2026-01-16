@@ -310,7 +310,7 @@ export default function Home() {
                 ))}
               </div>
             ) : sortedTasks.length === 0 ? (
-              <EmptyState type={allTasksDone ? 'all-done' : 'no-tasks'} />
+               <EmptyState type={allTasksDone ? 'all-done' : 'no-tasks'} />
             ) : (
               sortedTasks.map((task) => (
                 <TaskCard
