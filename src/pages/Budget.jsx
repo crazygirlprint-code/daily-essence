@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   DollarSign, Plus, TrendingUp, TrendingDown, Calendar,
   CreditCard, Wallet, PiggyBank, ShoppingCart, UtensilsCrossed,
-  Car, Zap, Heart, Film, Baby, GraduationCap, User, Lock
+  Car, Zap, Heart, Film, Baby, GraduationCap, User, Lock, AlertTriangle,
+  Target, Edit2, Users
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,6 +16,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, parseISO } from 'date-fns';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
 const CATEGORY_CONFIG = {
   groceries: { icon: ShoppingCart, color: 'bg-emerald-100 text-emerald-600', name: 'Groceries' },
@@ -33,15 +35,23 @@ const CATEGORY_CONFIG = {
 export default function Budget() {
   const [timeView, setTimeView] = useState('month');
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isBudgetOpen, setIsBudgetOpen] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedMember, setSelectedMember] = useState('all');
   const [newTransaction, setNewTransaction] = useState({
     amount: '',
     category: 'groceries',
     description: '',
     date: format(new Date(), 'yyyy-MM-dd'),
     payment_method: 'credit_card',
-    type: 'expense'
+    type: 'expense',
+    family_member: ''
+  });
+  const [newBudget, setNewBudget] = useState({
+    category: 'groceries',
+    monthly_limit: '',
+    month: format(new Date(), 'yyyy-MM')
   });
 
   const queryClient = useQueryClient();
@@ -75,6 +85,12 @@ export default function Budget() {
     enabled: hasAccess
   });
 
+  const { data: familyMembers = [] } = useQuery({
+    queryKey: ['familyMembers'],
+    queryFn: () => base44.entities.FamilyMember.list(),
+    enabled: hasAccess
+  });
+
   const createTransactionMutation = useMutation({
     mutationFn: (data) => base44.entities.Transaction.create(data),
     onSuccess: () => {
@@ -86,7 +102,8 @@ export default function Budget() {
         description: '',
         date: format(new Date(), 'yyyy-MM-dd'),
         payment_method: 'credit_card',
-        type: 'expense'
+        type: 'expense',
+        family_member: ''
       });
     }
   });
@@ -94,6 +111,19 @@ export default function Budget() {
   const deleteTransactionMutation = useMutation({
     mutationFn: (id) => base44.entities.Transaction.delete(id),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['transactions'] })
+  });
+
+  const createBudgetMutation = useMutation({
+    mutationFn: (data) => base44.entities.Budget.create(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['budgets'] });
+      setIsBudgetOpen(false);
+      setNewBudget({
+        category: 'groceries',
+        monthly_limit: '',
+        month: format(new Date(), 'yyyy-MM')
+      });
+    }
   });
 
   // Calculate date ranges
@@ -107,13 +137,15 @@ export default function Budget() {
 
   const currentRange = ranges[timeView];
 
-  // Filter transactions by time period
+  // Filter transactions by time period and family member
   const filteredTransactions = useMemo(() => {
     return transactions.filter(t => {
       const tDate = t.date;
-      return tDate >= currentRange.start && tDate <= currentRange.end;
+      const dateMatch = tDate >= currentRange.start && tDate <= currentRange.end;
+      const memberMatch = selectedMember === 'all' || t.family_member === selectedMember;
+      return dateMatch && memberMatch;
     });
-  }, [transactions, currentRange]);
+  }, [transactions, currentRange, selectedMember]);
 
   // Calculate totals
   const totalIncome = useMemo(() => 
@@ -137,6 +169,23 @@ export default function Budget() {
     });
     return grouped;
   }, [filteredTransactions]);
+
+  // Get current month budgets
+  const currentMonth = format(new Date(), 'yyyy-MM');
+  const currentBudgets = useMemo(() => {
+    return budgets.filter(b => b.month === currentMonth);
+  }, [budgets, currentMonth]);
+
+  // Chart data
+  const chartData = useMemo(() => {
+    return Object.entries(expensesByCategory).map(([category, amount]) => ({
+      name: CATEGORY_CONFIG[category].name,
+      value: amount,
+      color: CATEGORY_CONFIG[category].color
+    }));
+  }, [expensesByCategory]);
+
+  const COLORS = ['#f59e0b', '#ef4444', '#8b5cf6', '#10b981', '#3b82f6', '#ec4899', '#14b8a6', '#f97316'];
 
   // Subscription gate
   if (isLoading) {
@@ -200,20 +249,47 @@ export default function Budget() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-serif text-slate-800 mb-2">Budget Tracker</h1>
-          <p className="text-slate-500">Manage your finances with clarity</p>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-3xl font-serif text-slate-800 mb-2">Budget Tracker</h1>
+            <p className="text-slate-500">Manage your finances with clarity</p>
+          </div>
+          <Button
+            onClick={() => setIsBudgetOpen(true)}
+            variant="outline"
+            className="gap-2"
+          >
+            <Target className="w-4 h-4" />
+            Set Budget
+          </Button>
         </div>
 
-        {/* Time Period Tabs */}
-        <Tabs value={timeView} onValueChange={setTimeView} className="mb-8">
-          <TabsList className="grid grid-cols-4 w-full bg-white/50 rounded-2xl p-1">
-            <TabsTrigger value="day" className="rounded-xl">Today</TabsTrigger>
-            <TabsTrigger value="week" className="rounded-xl">Week</TabsTrigger>
-            <TabsTrigger value="month" className="rounded-xl">Month</TabsTrigger>
-            <TabsTrigger value="year" className="rounded-xl">YTD</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        {/* Filters */}
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <Tabs value={timeView} onValueChange={setTimeView}>
+            <TabsList className="grid grid-cols-4 w-full bg-white/50 rounded-2xl p-1">
+              <TabsTrigger value="day" className="rounded-xl">Today</TabsTrigger>
+              <TabsTrigger value="week" className="rounded-xl">Week</TabsTrigger>
+              <TabsTrigger value="month" className="rounded-xl">Month</TabsTrigger>
+              <TabsTrigger value="year" className="rounded-xl">YTD</TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          {familyMembers.length > 0 && (
+            <Select value={selectedMember} onValueChange={setSelectedMember}>
+              <SelectTrigger className="bg-white/50 rounded-2xl">
+                <Users className="w-4 h-4 mr-2" />
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Family Members</SelectItem>
+                {familyMembers.map(member => (
+                  <SelectItem key={member.id} value={member.name}>{member.name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        </div>
 
         {/* Summary Cards */}
         <div className="grid md:grid-cols-3 gap-4 mb-8">
@@ -261,41 +337,107 @@ export default function Budget() {
           </motion.div>
         </div>
 
-        {/* Category Breakdown */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-8">
-          <h3 className="font-semibold text-slate-700 mb-4">Spending by Category</h3>
-          <div className="space-y-3">
-            {Object.entries(expensesByCategory).sort((a, b) => b[1] - a[1]).map(([category, amount]) => {
-              const config = CATEGORY_CONFIG[category];
-              const Icon = config.icon;
-              const percentage = totalExpenses > 0 ? (amount / totalExpenses) * 100 : 0;
-              
-              return (
-                <div key={category} className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className={cn('p-2 rounded-lg', config.color)}>
-                        <Icon className="w-4 h-4" />
+        {/* Budget Progress */}
+        {currentBudgets.length > 0 && (
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-8">
+            <h3 className="font-semibold text-slate-700 mb-4">Monthly Budget Progress</h3>
+            <div className="space-y-4">
+              {currentBudgets.map((budget) => {
+                const spent = expensesByCategory[budget.category] || 0;
+                const percentage = (spent / budget.monthly_limit) * 100;
+                const isOverBudget = percentage > 100;
+                const isWarning = percentage >= 80 && percentage <= 100;
+                const config = CATEGORY_CONFIG[budget.category];
+                const Icon = config.icon;
+
+                return (
+                  <div key={budget.id} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className={cn('p-2 rounded-lg', config.color)}>
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-slate-700">{config.name}</p>
+                          <p className="text-xs text-slate-400">Budget: ${budget.monthly_limit}</p>
+                        </div>
                       </div>
-                      <span className="font-medium text-slate-700">{config.name}</span>
+                      <div className="text-right">
+                        <div className="flex items-center gap-2">
+                          {isOverBudget && <AlertTriangle className="w-4 h-4 text-red-500" />}
+                          {isWarning && <AlertTriangle className="w-4 h-4 text-amber-500" />}
+                          <p className={cn(
+                            'font-bold',
+                            isOverBudget ? 'text-red-600' : isWarning ? 'text-amber-600' : 'text-slate-800'
+                          )}>
+                            ${spent.toFixed(2)}
+                          </p>
+                        </div>
+                        <p className="text-xs text-slate-400">{percentage.toFixed(0)}% used</p>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-bold text-slate-800">${amount.toFixed(2)}</p>
-                      <p className="text-xs text-slate-400">{percentage.toFixed(1)}%</p>
+                    <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${Math.min(percentage, 100)}%` }}
+                        className={cn(
+                          'h-full',
+                          isOverBudget ? 'bg-red-500' : isWarning ? 'bg-amber-500' : 'bg-gradient-to-r from-emerald-400 to-teal-400'
+                        )}
+                      />
                     </div>
+                    {isOverBudget && (
+                      <p className="text-xs text-red-600 font-medium">
+                        Over budget by ${(spent - budget.monthly_limit).toFixed(2)}
+                      </p>
+                    )}
                   </div>
-                  <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${percentage}%` }}
-                      className="h-full bg-gradient-to-r from-amber-400 to-orange-400"
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Charts */}
+        {chartData.length > 0 && (
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+              <h3 className="font-semibold text-slate-700 mb-4">Spending Distribution</h3>
+              <ResponsiveContainer width="100%" height={250}>
+                <PieChart>
+                  <Pie
+                    data={chartData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {chartData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+              <h3 className="font-semibold text-slate-700 mb-4">Category Spending</h3>
+              <ResponsiveContainer width="100%" height={250}>
+                <BarChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <XAxis dataKey="name" tick={{ fontSize: 11 }} angle={-45} textAnchor="end" height={80} />
+                  <YAxis tick={{ fontSize: 11 }} />
+                  <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+                  <Bar dataKey="value" fill="#f59e0b" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        )}
 
         {/* Recent Transactions */}
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
@@ -415,6 +557,23 @@ export default function Budget() {
               className="rounded-xl"
             />
 
+            {familyMembers.length > 0 && (
+              <Select
+                value={newTransaction.family_member}
+                onValueChange={(v) => setNewTransaction({ ...newTransaction, family_member: v })}
+              >
+                <SelectTrigger className="rounded-xl">
+                  <SelectValue placeholder="Family Member (optional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={null}>None</SelectItem>
+                  {familyMembers.map(member => (
+                    <SelectItem key={member.id} value={member.name}>{member.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+
             <Select
               value={newTransaction.payment_method}
               onValueChange={(v) => setNewTransaction({ ...newTransaction, payment_method: v })}
@@ -440,6 +599,56 @@ export default function Budget() {
               className="w-full rounded-xl h-12 bg-gradient-to-r from-amber-500 to-orange-500"
             >
               Add Transaction
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Set Budget Dialog */}
+      <Dialog open={isBudgetOpen} onOpenChange={setIsBudgetOpen}>
+        <DialogContent className="rounded-3xl">
+          <DialogHeader>
+            <DialogTitle>Set Monthly Budget</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 pt-4">
+            <Select
+              value={newBudget.category}
+              onValueChange={(v) => setNewBudget({ ...newBudget, category: v })}
+            >
+              <SelectTrigger className="rounded-xl">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(CATEGORY_CONFIG).map(([key, config]) => (
+                  <SelectItem key={key} value={key}>{config.name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Input
+              type="number"
+              placeholder="Monthly Limit"
+              value={newBudget.monthly_limit}
+              onChange={(e) => setNewBudget({ ...newBudget, monthly_limit: e.target.value })}
+              className="rounded-xl"
+            />
+
+            <Input
+              type="month"
+              value={newBudget.month}
+              onChange={(e) => setNewBudget({ ...newBudget, month: e.target.value })}
+              className="rounded-xl"
+            />
+
+            <Button
+              onClick={() => createBudgetMutation.mutate({
+                ...newBudget,
+                monthly_limit: parseFloat(newBudget.monthly_limit)
+              })}
+              disabled={!newBudget.monthly_limit || parseFloat(newBudget.monthly_limit) <= 0}
+              className="w-full rounded-xl h-12 bg-gradient-to-r from-emerald-500 to-teal-500"
+            >
+              Set Budget
             </Button>
           </div>
         </DialogContent>
