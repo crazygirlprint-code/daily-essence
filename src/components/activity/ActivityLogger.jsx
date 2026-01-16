@@ -11,6 +11,7 @@ import { base44 } from '@/api/base44Client';
 
 const activityTypes = [
   { value: 'mindful_walking', label: '🚶 Mindful Walking' },
+  { value: 'strolling', label: '🚶‍♀️ Strolling' },
   { value: 'journaling', label: '📝 Journaling' },
   { value: 'social_connection', label: '👥 Social Connection' },
   { value: 'healthy_meal', label: '🥗 Healthy Meal' },
