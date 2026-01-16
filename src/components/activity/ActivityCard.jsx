@@ -38,6 +38,7 @@ export default function ActivityCard({ activity, onDelete }) {
             <h3 className="font-semibold text-slate-900 dark:text-stone-100">{activity.title}</h3>
             <p className="text-xs text-slate-600 dark:text-stone-400 mt-1">
               {format(new Date(activity.activity_date), 'MMM d, yyyy')}
+              {activity.family_member && ` • ${activity.family_member}`}
             </p>
           </div>
         </div>
