@@ -68,7 +68,7 @@ function LayoutContent({ children, currentPageName }) {
             onClick={toggleTheme}
             className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg"
             >
-            {theme === 'dark-luxury' ? <Sparkles className="w-5 h-5 text-amber-400" /> : isDark ? <Sun className="w-5 h-5 text-rose-300" /> : <Moon className="w-5 h-5 text-stone-600" />}
+            {theme === 'dark-luxury' ? <Sparkles className="w-5 h-5 text-amber-400" /> : isDark ? <Sun className="w-5 h-5 text-zinc-400" /> : <Moon className="w-5 h-5 text-stone-600" />}
           </button>
         </div>
       </header>
@@ -98,7 +98,7 @@ function LayoutContent({ children, currentPageName }) {
                     onClick={() => setIsSidebarOpen(false)}
                     className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg"
                     >
-                    <X className="w-5 h-5 dark:text-rose-100" strokeWidth={1.5} />
+                    <X className="w-5 h-5 dark:text-zinc-100" strokeWidth={1.5} />
                   </button>
                 </div>
                 
@@ -114,7 +114,7 @@ function LayoutContent({ children, currentPageName }) {
                         className={cn(
                           'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
                           isActive
-                            ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 dark:from-rose-500/20 dark:to-pink-500/10 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200/50 dark:border-rose-500/30 dark-luxury:border-amber-900/30'
+                            ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20 dark:bg-zinc-800 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-zinc-100 dark-luxury:text-amber-300 border border-stone-200/50 dark:border-zinc-700 dark-luxury:border-amber-900/30'
                             : 'text-slate-600 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-900/50 dark-luxury:hover:bg-amber-900/10'
                         )}
                       >
@@ -158,7 +158,7 @@ function LayoutContent({ children, currentPageName }) {
                 className={cn(
                   'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                   isActive
-                    ? 'bg-gradient-to-r from-amber-900/30 to-amber-900/15 dark:from-rose-500/20 dark:to-pink-500/10 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-rose-100 dark-luxury:text-amber-300 border border-stone-200 dark:border-rose-500/30 dark-luxury:border-amber-900/30'
+                    ? 'bg-gradient-to-r from-amber-900/30 to-amber-900/15 dark:bg-zinc-800 dark-luxury:from-amber-900/40 dark-luxury:to-amber-900/20 text-slate-700 dark:text-zinc-100 dark-luxury:text-amber-300 border border-stone-200 dark:border-zinc-700 dark-luxury:border-amber-900/30'
                     : 'text-stone-700 dark:text-zinc-400 dark-luxury:text-slate-400 hover:bg-stone-50 dark:hover:bg-zinc-900/50 dark-luxury:hover:bg-amber-900/10'
                 )}
               >
@@ -169,9 +169,9 @@ function LayoutContent({ children, currentPageName }) {
           })}
         </nav>
         
-        <div className="p-4 m-4 bg-gradient-to-br from-amber-900/20 to-amber-900/10 dark:from-rose-500/10 dark:to-pink-500/5 dark-luxury:from-amber-900/30 dark-luxury:to-amber-900/20 rounded-lg border border-stone-200/50 dark:border-rose-500/20 dark-luxury:border-amber-900/30 shadow-sm backdrop-blur-sm">
-         <p className="text-xs text-slate-700 dark:text-rose-200 dark-luxury:text-amber-400 font-medium uppercase tracking-widest">Self-Care Reminder</p>
-          <p className="text-xs text-stone-700 dark:text-rose-100/80 dark-luxury:text-slate-300 mt-2 leading-relaxed">
+        <div className="p-4 m-4 bg-gradient-to-br from-amber-900/20 to-amber-900/10 dark:bg-zinc-800 dark-luxury:from-amber-900/30 dark-luxury:to-amber-900/20 rounded-lg border border-stone-200/50 dark:border-zinc-700 dark-luxury:border-amber-900/30 shadow-sm backdrop-blur-sm">
+         <p className="text-xs text-slate-700 dark:text-zinc-200 dark-luxury:text-amber-400 font-medium uppercase tracking-widest">Self-Care Reminder</p>
+          <p className="text-xs text-stone-700 dark:text-zinc-400 dark-luxury:text-slate-300 mt-2 leading-relaxed">
             Don't forget to schedule some me-time this week!
           </p>
         </div>
