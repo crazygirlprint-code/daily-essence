@@ -135,7 +135,7 @@ function LayoutContent({ children, currentPageName }) {
       </AnimatePresence>
       
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-zinc-900/90 backdrop-blur-xl border-r border-stone-200/50 dark:border-zinc-800 flex-col">
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white/80 dark:bg-purple-900/30 backdrop-blur-xl border-r border-stone-200/50 dark:border-purple-600/30 flex-col">
         <div className="p-6 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 tracking-tight">
