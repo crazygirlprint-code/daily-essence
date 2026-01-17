@@ -37,6 +37,7 @@ export default function Home() {
   const [showStatsDialog, setShowStatsDialog] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [weatherForecast, setWeatherForecast] = useState([]);
+  const [temperatureUnit, setTemperatureUnit] = useState('fahrenheit');
 
   useTimezone();
   const queryClient = useQueryClient();
@@ -44,7 +45,10 @@ export default function Home() {
   
   // Fetch current user
   React.useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => {});
+    base44.auth.me().then((userData) => {
+      setUser(userData);
+      setTemperatureUnit(userData?.temperature_unit || 'fahrenheit');
+    }).catch(() => {});
   }, []);
   
   // Fetch weather forecast
@@ -283,6 +287,7 @@ export default function Home() {
             onDateSelect={setSelectedDate}
             tasksByDate={tasksByDate}
             forecast={weatherForecast}
+            temperatureUnit={temperatureUnit}
           />
         </div>
         
