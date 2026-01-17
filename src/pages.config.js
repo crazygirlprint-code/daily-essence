@@ -4,7 +4,6 @@ import Beauty from './pages/Beauty';
 import Budget from './pages/Budget';
 import Calendar from './pages/Calendar';
 import Community from './pages/Community';
-import Events from './pages/Events';
 import Family from './pages/Family';
 import Home from './pages/Home';
 import Meditation from './pages/Meditation';
@@ -13,6 +12,7 @@ import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
 import Strolling from './pages/Strolling';
+import Events from './pages/Events';
 import __Layout from './Layout.jsx';
 
 
@@ -23,7 +23,6 @@ export const PAGES = {
     "Budget": Budget,
     "Calendar": Calendar,
     "Community": Community,
-    "Events": Events,
     "Family": Family,
     "Home": Home,
     "Meditation": Meditation,
@@ -32,6 +31,7 @@ export const PAGES = {
     "Progress": Progress,
     "SelfCare": SelfCare,
     "Strolling": Strolling,
+    "Events": Events,
 }
 
 export const pagesConfig = {
