@@ -122,9 +122,9 @@ export default function Calendar() {
                   className={cn(
                     'aspect-square rounded-xl p-1 flex flex-col items-center justify-start transition-all relative',
                     isSelected 
-                      ? 'bg-gradient-to-br from-amber-500 dark:from-rose-500 dark:to-pink-600 to-amber-600 text-white shadow-lg dark:shadow-rose-500/30'
+                      ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 text-white shadow-lg shadow-purple-500/40'
                       : today
-                        ? 'bg-amber-50 dark:bg-rose-950/40 text-amber-700 dark:text-rose-300 ring-2 ring-amber-200 dark:ring-rose-500/50'
+                        ? 'bg-purple-50 dark:bg-rose-950/40 text-purple-700 dark:text-rose-300 ring-2 ring-purple-200 dark:ring-rose-500/50'
                         : 'hover:bg-stone-50 dark:hover:bg-neutral-800/30 text-slate-700 dark:text-stone-400'
                   )}
                 >

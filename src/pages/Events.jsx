@@ -253,10 +253,10 @@ export default function Events() {
                   className={cn(
                     'aspect-square rounded-xl p-1 flex flex-col items-center justify-start transition-all relative',
                     isSelected 
-                      ? `${theme === 'dark-luxury' ? 'bg-gradient-to-br from-amber-600 to-amber-700 shadow-amber-500/30' : 'bg-gradient-to-br from-indigo-500 to-purple-500'} dark:bg-gradient-to-br dark:from-rose-500 dark:to-pink-600 ${theme === 'dark-luxury' ? 'dark-luxury:from-amber-600 dark-luxury:to-amber-700 dark-luxury:shadow-amber-500/30' : ''} text-white shadow-lg dark:shadow-rose-500/30`
+                      ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 text-white shadow-lg shadow-purple-500/40'
                       : today
-                        ? `${theme === 'dark-luxury' ? 'bg-amber-900/30 text-amber-400 ring-amber-500/50' : 'bg-indigo-50 text-indigo-600 ring-indigo-200'} dark:bg-rose-950/40 dark:text-rose-300 dark:ring-rose-500/50 ring-2`
-                        : `${theme === 'dark-luxury' ? 'hover:bg-amber-900/10 text-slate-300' : 'hover:bg-slate-50 text-slate-700'} dark:hover:bg-neutral-800/30 dark:text-stone-400`
+                        ? 'bg-purple-50 dark:bg-rose-950/40 text-purple-700 dark:text-rose-300 ring-2 ring-purple-200 dark:ring-rose-500/50'
+                        : 'hover:bg-stone-50 dark:hover:bg-neutral-800/30 text-slate-700 dark:text-stone-400'
                   )}
                 >
                   <span className="text-sm font-semibold mt-1">
@@ -305,7 +305,7 @@ export default function Events() {
                 setNewEvent({ ...newEvent, date: format(selectedDate, 'yyyy-MM-dd') });
                 setIsAddOpen(true);
               }}
-              className={cn('rounded-xl bg-gradient-to-r to-purple-500', theme === 'dark-luxury' ? 'from-amber-600 to-amber-700' : 'from-indigo-500 dark:from-rose-600 dark:to-pink-600')}
+              className="rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40"
             >
               <Plus className="w-4 h-4 mr-1" />
               Add Event
@@ -473,7 +473,7 @@ export default function Events() {
                 }
               }}
               disabled={!newEvent.title.trim() || !newEvent.date}
-              className={cn('w-full rounded-xl h-12 bg-gradient-to-r to-purple-500', theme === 'dark-luxury' ? 'from-amber-600 to-amber-700' : 'from-indigo-500 dark:from-rose-600 dark:to-pink-600')}
+              className="w-full rounded-xl h-12 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40"
             >
               {editingEvent ? 'Update Event' : 'Save Event'}
             </Button>
