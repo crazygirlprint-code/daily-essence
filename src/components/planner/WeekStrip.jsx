@@ -54,7 +54,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
         const taskCount = tasksByDate[dateKey] || 0;
         const isSelected = isSameDay(day, selectedDate);
         const today = isToday(day);
-        const weatherForDay = forecast[index];
+        const weatherForDay = forecast[forecastStart + index];
         
         return (
           <motion.button
