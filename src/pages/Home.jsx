@@ -202,7 +202,7 @@ export default function Home() {
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
           <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30">
-            <Trophy className="w-6 h-6 text-white" strokeWidth={1.5} />
+            <Trophy className="w-6 h-6 text-amber-300" strokeWidth={1.5} />
           </div>
           <div className="flex-1 relative z-10">
             <p className="text-[10px] uppercase tracking-widest opacity-90 mb-1">Your Progress</p>
