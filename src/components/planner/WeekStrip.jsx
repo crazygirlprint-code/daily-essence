@@ -33,7 +33,12 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
   const [weekOffset, setWeekOffset] = useState(0);
   const weekStart = addDays(startOfWeek(selectedDate, { weekStartsOn: 1 }), weekOffset * 7);
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
-  const forecastStart = weekOffset * 7;
+  
+  // Map forecast data by date key for easy lookup
+  const forecastByDate = forecast.reduce((acc, item) => {
+    acc[item.date] = item;
+    return acc;
+  }, {});
   
   return (
     <div className="space-y-3">
@@ -61,7 +66,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
         const taskCount = tasksByDate[dateKey] || 0;
         const isSelected = isSameDay(day, selectedDate);
         const today = isToday(day);
-        const weatherForDay = forecast[forecastStart + index];
+        const weatherForDay = forecastByDate[dateKey];
         
         return (
           <motion.button
