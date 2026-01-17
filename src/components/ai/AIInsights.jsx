@@ -325,25 +325,34 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-stone-100/50 rounded-xl p-6 border border-stone-300 cursor-pointer shadow-sm"
-        onClick={() => setIsExpanded(true)}
+        className="relative overflow-hidden bg-stone-100/50 rounded-xl p-6 border border-stone-300 shadow-sm"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-white/30 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/20 rounded-full blur-2xl" />
         
         <div className="relative z-10">
-          <div className="flex items-center gap-3">
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="w-10 h-10 rounded-xl bg-white/60 flex items-center justify-center border border-stone-300 shadow-lg shadow-stone-200/20"
-            >
-              <Sparkles className="w-5 h-5 text-stone-700" strokeWidth={1.5} />
-            </motion.div>
-            <div>
-              <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
-              <p className="text-[10px] text-stone-600 uppercase tracking-widest">Click to expand</p>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 flex-1 cursor-pointer" onClick={() => setIsExpanded(true)}>
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="w-10 h-10 rounded-xl bg-white/60 flex items-center justify-center border border-stone-300 shadow-lg shadow-stone-200/20"
+              >
+                <Sparkles className="w-5 h-5 text-stone-700" strokeWidth={1.5} />
+              </motion.div>
+              <div>
+                <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
+                <p className="text-[10px] text-stone-600 uppercase tracking-widest">Click to expand</p>
+              </div>
             </div>
+            <Button
+              onClick={generateInsights}
+              disabled={isLoading}
+              className="bg-slate-700 hover:bg-slate-600 text-white"
+            >
+              <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
+              Generate Insights
+            </Button>
           </div>
         </div>
       </motion.div>
