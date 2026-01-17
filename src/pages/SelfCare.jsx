@@ -294,7 +294,7 @@ export default function SelfCare() {
         {/* Add Button */}
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-xl bg-gradient-to-r from-rose-400 to-pink-500"
+          className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-xl bg-gradient-to-r from-rose-500 to-pink-600"
         >
           <Plus className="w-6 h-6" />
         </Button>
@@ -352,7 +352,7 @@ export default function SelfCare() {
             <Button
               onClick={() => createMutation.mutate(newActivity)}
               disabled={!newActivity.name.trim()}
-              className="w-full rounded-xl h-12 bg-gradient-to-r from-rose-400 to-pink-500"
+              className="w-full rounded-xl h-12 bg-gradient-to-r from-rose-500 to-pink-600"
             >
               Save Activity
             </Button>
