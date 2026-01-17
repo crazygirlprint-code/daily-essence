@@ -4,11 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { User, MapPin, Briefcase, Phone, Home, Calendar, Save, X } from 'lucide-react';
+import { User, MapPin, Briefcase, Phone, Home, Calendar, Save, X, Camera, Loader2 } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
 
 export default function ProfileEditor({ user, onSave, onCancel }) {
   const [formData, setFormData] = useState({
     display_name: user?.display_name || user?.full_name || '',
+    profile_picture: user?.profile_picture || '',
     birthday: user?.birthday || '',
     city: user?.city || '',
     profession: user?.profession || '',
@@ -22,6 +24,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
     phone_public: user?.phone_public ?? false,
     address_public: user?.address_public ?? false,
   });
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +33,21 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
 
   const updateField = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      updateField('profile_picture', file_url);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    } finally {
+      setUploadingImage(false);
+    }
   };
 
   return (
@@ -45,6 +63,62 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
         <Button type="button" variant="ghost" size="icon" onClick={onCancel}>
           <X className="w-4 h-4" />
         </Button>
+      </div>
+
+      {/* Profile Picture */}
+      <div className="space-y-2">
+        <Label className="text-slate-900 dark:text-stone-100">Profile Picture</Label>
+        <div className="flex items-center gap-4">
+          <div className="relative">
+            {formData.profile_picture ? (
+              <img 
+                src={formData.profile_picture} 
+                alt="Profile" 
+                className="w-24 h-24 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30"
+              />
+            ) : (
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-amber-100 to-stone-200 dark:from-rose-900/40 dark:to-pink-900/30 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30">
+                <User className="w-10 h-10 text-stone-600 dark:text-stone-300" />
+              </div>
+            )}
+            {uploadingImage && (
+              <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center">
+                <Loader2 className="w-6 h-6 text-white animate-spin" />
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => document.getElementById('profile-picture-input').click()}
+              disabled={uploadingImage}
+              className="dark:border-rose-500/30"
+            >
+              <Camera className="w-4 h-4 mr-2" />
+              {formData.profile_picture ? 'Change Photo' : 'Upload Photo'}
+            </Button>
+            {formData.profile_picture && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => updateField('profile_picture', '')}
+                className="text-red-600 hover:text-red-700"
+              >
+                Remove
+              </Button>
+            )}
+          </div>
+          <input
+            id="profile-picture-input"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="hidden"
+          />
+        </div>
       </div>
 
       {/* Name */}
