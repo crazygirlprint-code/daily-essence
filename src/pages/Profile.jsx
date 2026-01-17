@@ -102,7 +102,7 @@ export default function Profile() {
             </div>
             <div>
               <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">My Profile</h1>
-              <p className="text-stone-600 dark:text-stone-400 text-sm">{user?.full_name}</p>
+              <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.full_name}</p>
             </div>
           </div>
         </motion.div>
@@ -115,8 +115,7 @@ export default function Profile() {
               <Button
                 onClick={generateInsights}
                 disabled={loadingInsights || activeGoals.length === 0}
-                variant="outline"
-                className="gap-2 dark:border-rose-500/30 dark:text-rose-200 dark:hover:bg-rose-950/20"
+                className="gap-2 bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700 text-white"
               >
                 {loadingInsights ? (
                   <>
