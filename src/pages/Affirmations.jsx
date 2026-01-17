@@ -321,19 +321,33 @@ export default function Affirmations() {
                Your Favorites
              </h3>
              <div className="space-y-3">
-               {affirmations.filter(a => a.is_favorite).map((aff, idx) => (
-                 <motion.button
-                   key={aff.id}
-                   initial={{ opacity: 0, y: 10 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ delay: idx * 0.05 }}
-                   onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
-                   className="w-full text-left p-4 bg-stone-100/50 rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-200"
-                 >
-                   <p className="text-slate-900">"{aff.text}"</p>
-                   <p className="text-xs text-slate-600 mt-1 capitalize">{aff.category}</p>
-                 </motion.button>
-               ))}
+               {affirmations.filter(a => a.is_favorite).map((aff, idx) => {
+                 const categoryBgColors = {
+                   confidence: 'bg-purple-50',
+                   gratitude: 'bg-amber-50',
+                   strength: 'bg-rose-50',
+                   peace: 'bg-purple-50',
+                   success: 'bg-amber-50',
+                   love: 'bg-rose-50'
+                 };
+                 return (
+                   <motion.button
+                     key={aff.id}
+                     initial={{ opacity: 0, y: 10 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     transition={{ delay: idx * 0.05 }}
+                     onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
+                     className={cn(
+                       "w-full text-left p-4 rounded-xl shadow-sm hover:shadow-md transition-all border",
+                       categoryBgColors[aff.category] || 'bg-stone-100/50',
+                       'border-slate-200'
+                     )}
+                   >
+                     <p className="text-slate-900">"{aff.text}"</p>
+                     <p className="text-xs text-slate-600 mt-1 capitalize">{aff.category}</p>
+                   </motion.button>
+                 );
+               })}
              </div>
            </div>
          )}
