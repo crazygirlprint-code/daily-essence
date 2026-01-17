@@ -311,7 +311,7 @@ export default function Home() {
                       onClick={() => setActiveSection(section.id)}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
-                          ? 'bg-slate-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 text-white shadow-sm hover:bg-slate-800 dark:hover:from-rose-700 dark:hover:to-pink-700'
+                          ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 text-white shadow-lg shadow-purple-500/40 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600'
                           : 'bg-white/50 text-stone-700 border border-stone-300 hover:bg-stone-50'
                       }`}
                     >

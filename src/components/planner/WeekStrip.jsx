@@ -86,7 +86,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
             className={cn(
               'relative flex flex-col items-center min-w-[4.5rem] py-3 px-2 rounded-lg transition-all',
                 isSelected
-                  ? 'bg-slate-700 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 text-white shadow-lg dark:shadow-rose-500/30'
+                  ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 text-white shadow-lg shadow-purple-500/40'
                   : today
                     ? 'bg-amber-50 dark:bg-rose-950/40 text-slate-700 dark:text-rose-300 border border-amber-200/60 dark:border-rose-500/50'
                     : 'bg-white/50 text-stone-700 hover:bg-stone-50 border border-stone-300'
