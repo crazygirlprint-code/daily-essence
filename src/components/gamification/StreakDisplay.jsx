@@ -39,7 +39,7 @@ export default function StreakDisplay({ streak, compact = false }) {
     <motion.div
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      className="relative overflow-hidden rounded-2xl p-6 bg-white/50 border border-stone-200 shadow-sm"
+      className="relative overflow-hidden rounded-2xl p-6 bg-stone-200 border border-stone-300 shadow-sm"
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100/30 dark:bg-rose-200/20 rounded-full blur-3xl" />
       
