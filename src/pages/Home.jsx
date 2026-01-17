@@ -160,6 +160,49 @@ export default function Home() {
           <AIInsights />
         </div>
 
+        {/* Progress Report */}
+        <motion.div 
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+          className="relative overflow-hidden mb-8 p-5 rounded-xl bg-white/50 border border-stone-200 cursor-pointer shadow-sm"
+          onClick={() => setShowStatsDialog(true)}
+        >
+          <div className="absolute top-0 right-0 w-20 h-20 bg-amber-100/30 dark:bg-rose-200/20 rounded-full blur-2xl" />
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-slate-900 dark:text-stone-100">Your Progress</h3>
+              <span className="text-amber-700 dark:text-rose-400 font-serif text-base font-semibold">{Math.round(getProgressToNextLevel())}%</span>
+            </div>
+            <div className="grid grid-cols-3 gap-3 mb-3">
+              <div className="text-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+                <p className="text-2xl font-bold text-amber-600">{progress.points || 0}</p>
+                <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Points</p>
+              </div>
+              <div className="text-center p-3 bg-rose-50/50 rounded-lg border border-rose-100">
+                <p className="text-2xl font-bold text-rose-600">{progress.level || 1}</p>
+                <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Level</p>
+              </div>
+              <div className="text-center p-3 bg-orange-50/50 rounded-lg border border-orange-100">
+                <p className="text-2xl font-bold text-orange-600">{progress.streak_days || 0}</p>
+                <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Streak</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-stone-700 dark:text-stone-300 uppercase tracking-widest text-[10px] font-medium">Progress to Level {(progress.level || 1) + 1}</span>
+              </div>
+              <div className="h-2 bg-stone-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${getProgressToNextLevel()}%` }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  className="h-full bg-gradient-to-r from-amber-600 dark:from-rose-500 dark:to-pink-500 to-amber-400 rounded-full shadow-sm"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Quick Links */}
         <div className="mb-8">
           {(() => {
@@ -265,34 +308,7 @@ export default function Home() {
               />
             </div>
             
-            {/* Progress to next level */}
-            <motion.div 
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="relative overflow-hidden space-y-2 mb-8 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-stone-50 dark:from-rose-950/40 dark:to-pink-950/30 border border-amber-200 dark:border-rose-500/30 cursor-pointer shadow-sm"
-              onClick={() => setShowStatsDialog(true)}
-            >
-              <div className="absolute top-0 right-0 w-20 h-20 bg-amber-200/30 dark:bg-rose-500/20 rounded-full blur-2xl" />
-              <div className="relative z-10">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-stone-700 dark:text-stone-300 uppercase tracking-widest text-[10px] font-medium">Progress to Level {progress.level + 1}</span>
-                   <span className="text-amber-700 dark:text-rose-400 font-serif text-base font-semibold">{Math.round(getProgressToNextLevel())}%</span>
-                </div>
-                <div className="h-2 bg-stone-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${getProgressToNextLevel()}%` }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className="h-full bg-gradient-to-r from-amber-600 dark:from-rose-500 dark:to-pink-500 to-amber-400 rounded-full shadow-sm"
-                  />
-                </div>
-                <div className="flex justify-between text-[9px] text-stone-600 dark:text-stone-400 uppercase tracking-widest pt-1.5">
-                  <span>Level {progress.level || 1}</span>
-                  <span>Level {(progress.level || 1) + 1}</span>
-                </div>
-              </div>
-            </motion.div>
-            
+
             <div className="space-y-3">
           <AnimatePresence mode="popLayout">
             {isLoading ? (
