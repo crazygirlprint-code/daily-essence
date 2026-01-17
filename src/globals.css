@@ -16,50 +16,6 @@ css
         animation: shimmer 3s infinite;
       }
 
-      @keyframes sparkle-day {
-        0%, 100% {
-          background-color: #fbbf24;
-          box-shadow: 0 0 15px rgba(251, 191, 36, 0.7), 0 0 30px rgba(251, 191, 36, 0.4);
-        }
-        50% {
-          background-color: #fcd34d;
-          box-shadow: 0 0 25px rgba(252, 211, 77, 0.9), 0 0 50px rgba(252, 211, 77, 0.5);
-        }
-      }
-
-      @keyframes sparkle-night {
-        0%, 100% {
-          background-color: #3b82f6;
-          box-shadow: 0 0 15px rgba(59, 130, 246, 0.7), 0 0 30px rgba(59, 130, 246, 0.4);
-        }
-        50% {
-          background-color: #60a5fa;
-          box-shadow: 0 0 25px rgba(96, 165, 250, 0.9), 0 0 50px rgba(96, 165, 250, 0.5);
-        }
-      }
-
-      .animate-sparkle {
-        animation: sparkle-day 2s ease-in-out infinite !important;
-        background-color: #fbbf24 !important;
-        box-shadow: 0 0 15px rgba(251, 191, 36, 0.7), 0 0 30px rgba(251, 191, 36, 0.4) !important;
-        color: white !important;
-      }
-
-      .dark .animate-sparkle {
-        animation: sparkle-night 2s ease-in-out infinite !important;
-        background-color: #3b82f6 !important;
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.7), 0 0 30px rgba(59, 130, 246, 0.4) !important;
-        color: white !important;
-      }
-
-      .animate-sparkle:hover {
-        opacity: 0.9 !important;
-      }
-
-      .animate-sparkle:disabled {
-        opacity: 0.5 !important;
-      }
-
 /* Dark Luxury Theme - Slate & Amber */
 /* Exact Hex Codes:
    Backgrounds: slate-950 #020617, slate-900 #0f172a, slate-800 #1e293b, slate-700 #334155

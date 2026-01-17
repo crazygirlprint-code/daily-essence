@@ -310,7 +310,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
           <Button
            onClick={generateInsights}
            disabled={isLoading}
-           className="animate-sparkle text-white border-0 shadow-lg"
+           className="bg-slate-800 text-white hover:bg-slate-700 border-0 shadow-lg animate-shimmer bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-[length:200%_100%]"
           >
            <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
            Generate Insights
@@ -352,7 +352,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 generateInsights();
               }}
               disabled={isLoading}
-              className="animate-sparkle text-white border-0 shadow-lg"
+              className="bg-slate-700 hover:bg-slate-600 text-white"
             >
               <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
               Generate Insights
