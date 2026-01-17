@@ -5,13 +5,6 @@ const OPENWEATHER_API = 'https://api.openweathermap.org/data/2.5';
 
 Deno.serve(async (req) => {
   try {
-    const base44 = createClientFromRequest(req);
-    const user = await base44.auth.me();
-
-    if (!user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const { lat, lon, city } = await req.json();
 
     if (!OPENWEATHER_API_KEY) {
