@@ -352,7 +352,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 generateInsights();
               }}
               disabled={isLoading}
-              className="bg-slate-700 hover:bg-slate-600 text-white"
+              className="animate-sparkle text-white border-0 shadow-lg"
             >
               <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
               Generate Insights
