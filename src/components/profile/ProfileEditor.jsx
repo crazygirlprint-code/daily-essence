@@ -8,7 +8,7 @@ import { User, MapPin, Briefcase, Phone, Home, Calendar, Save, X } from 'lucide-
 
 export default function ProfileEditor({ user, onSave, onCancel }) {
   const [formData, setFormData] = useState({
-    full_name: user?.full_name || '',
+    display_name: user?.display_name || user?.full_name || '',
     birthday: user?.birthday || '',
     city: user?.city || '',
     profession: user?.profession || '',
@@ -51,11 +51,11 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
       <div className="space-y-2">
         <Label className="flex items-center gap-2 text-slate-900 dark:text-stone-100">
           <User className="w-4 h-4" />
-          Full Name
+          Display Name
         </Label>
         <Input
-          value={formData.full_name}
-          onChange={(e) => updateField('full_name', e.target.value)}
+          value={formData.display_name}
+          onChange={(e) => updateField('display_name', e.target.value)}
           placeholder="Your name"
           className="dark:bg-purple-950/30 dark:border-rose-500/30"
         />

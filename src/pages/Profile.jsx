@@ -115,7 +115,7 @@ export default function Profile() {
             </div>
             <div>
               <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">My Profile</h1>
-              <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.full_name}</p>
+              <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.display_name || user?.full_name}</p>
             </div>
           </div>
         </motion.div>
