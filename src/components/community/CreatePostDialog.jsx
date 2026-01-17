@@ -145,7 +145,7 @@ export default function CreatePostDialog({ isOpen, onOpenChange, onSubmit, isLoa
           <Button
             onClick={handleSubmit}
             disabled={!content.trim() || isLoading}
-            className="w-full rounded-xl h-12 bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white font-medium"
+            className="w-full rounded-xl h-12 bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-slate-900 font-medium"
           >
             {isLoading ? 'Sharing...' : 'Share with Community'}
           </Button>
