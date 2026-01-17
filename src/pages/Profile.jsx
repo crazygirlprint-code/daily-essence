@@ -7,11 +7,14 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import GoalForm from '@/components/profile/GoalForm';
 import GoalCard from '@/components/profile/GoalCard';
+import ProfileInfo from '@/components/profile/ProfileInfo';
+import ProfileEditor from '@/components/profile/ProfileEditor';
 
 export default function Profile() {
   const [showAddGoal, setShowAddGoal] = useState(false);
   const [editingGoal, setEditingGoal] = useState(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
   const queryClient = useQueryClient();
 
   // Fetch current user
@@ -89,6 +92,16 @@ export default function Profile() {
     }
   };
 
+  const handleSaveProfile = async (profileData) => {
+    try {
+      await base44.auth.updateMe(profileData);
+      queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+      setIsEditingProfile(false);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
   const activeGoals = goals.filter(g => g.active);
 
   return (
@@ -105,6 +118,22 @@ export default function Profile() {
               <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.full_name}</p>
             </div>
           </div>
+        </motion.div>
+
+        {/* Profile Info Section */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-8">
+          {isEditingProfile ? (
+            <ProfileEditor 
+              user={user}
+              onSave={handleSaveProfile}
+              onCancel={() => setIsEditingProfile(false)}
+            />
+          ) : (
+            <ProfileInfo 
+              user={user}
+              onEdit={() => setIsEditingProfile(true)}
+            />
+          )}
         </motion.div>
 
         {/* Wellness Goals Section */}
