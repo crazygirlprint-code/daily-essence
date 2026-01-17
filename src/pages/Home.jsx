@@ -153,7 +153,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
-        <DayHeader date={selectedDate} userName={user?.full_name} />
+        <DayHeader date={selectedDate} userName={user?.display_name || user?.full_name} />
         
         {/* AI Insights */}
         <div className="mb-8">
