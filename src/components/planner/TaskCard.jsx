@@ -27,7 +27,7 @@ export default function TaskCard({ task, onToggle, onDelete, onEdit }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: -20 }}
       className={cn(
-        'group relative bg-white/50 rounded-2xl p-4 border border-slate-100',
+        'group relative bg-white/50 dark:bg-purple-900/30 dark-luxury:bg-slate-800/50 rounded-2xl p-4 border border-slate-100 dark:border-rose-500/30 dark-luxury:border-slate-700/50',
         'shadow-sm hover:shadow-md transition-all duration-300',
         task.completed && 'opacity-60'
       )}
