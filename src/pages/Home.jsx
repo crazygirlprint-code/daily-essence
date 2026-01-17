@@ -163,7 +163,7 @@ export default function Home() {
         {/* Progress Report */}
         <motion.div 
           whileTap={{ scale: 0.98 }}
-          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-amber-100/60 dark:bg-rose-900/40 text-amber-900 dark:text-rose-100 border border-stone-300 shadow-sm mb-8 cursor-pointer"
+          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-stone-100/50 text-stone-900 border border-stone-300 shadow-sm mb-8 cursor-pointer"
           onClick={() => setShowStatsDialog(true)}
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
@@ -209,7 +209,7 @@ export default function Home() {
                     <Link key={link.name} to={createPageUrl(link.page)}>
                       <motion.div
                         whileTap={{ scale: 0.98 }}
-                        className={`relative overflow-hidden flex items-center gap-4 p-5 rounded-xl ${link.color} ${link.textColor} border border-stone-300 shadow-sm`}
+                        className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-stone-100/50 text-stone-900 border border-stone-300 shadow-sm"
                       >
                         <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
                         <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30">
@@ -233,7 +233,7 @@ export default function Home() {
                       <Link key={link.name} to={createPageUrl(link.page)}>
                         <motion.div
                           whileTap={{ scale: 0.95 }}
-                          className={`flex flex-col items-center gap-2 p-4 rounded-lg ${link.color} ${link.textColor} border border-stone-300/30`}
+                          className="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/50 text-stone-900 border border-stone-300/30"
                         >
                           <Icon className="w-5 h-5" strokeWidth={1.5} />
                           <span className="text-[9px] font-medium uppercase tracking-widest">{link.name}</span>
