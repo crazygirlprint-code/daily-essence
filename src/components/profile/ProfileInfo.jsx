@@ -93,15 +93,9 @@ export default function ProfileInfo({ user, onEdit }) {
       {/* Empty State */}
       {!user?.bio && fields.every(f => !f.value) && (
         <div className="text-center py-8">
-          <p className="text-stone-600 dark:text-stone-400 mb-4">
-            No information added yet
+          <p className="text-stone-600 dark:text-stone-400">
+            No information added yet. Click "Edit Profile" above to add your details.
           </p>
-          <Button
-            onClick={onEdit}
-            className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700 text-white"
-          >
-            Add Your Info
-          </Button>
         </div>
       )}
     </motion.div>
