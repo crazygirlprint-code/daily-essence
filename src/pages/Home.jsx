@@ -197,38 +197,38 @@ export default function Home() {
         {/* Progress Report */}
         <motion.div 
           whileTap={{ scale: 0.98 }}
-          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-gradient-to-br from-purple-400 via-pink-400 to-rose-400 text-white border-0 shadow-lg shadow-purple-500/40 mb-8 cursor-pointer"
+          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-white text-slate-900 border-0 shadow-lg shadow-slate-200/50 mb-8 cursor-pointer"
           onClick={() => navigate(createPageUrl('Progress'))}
         >
-          <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
-          <div className="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-white/30">
-            <Trophy className="w-6 h-6 text-amber-300" strokeWidth={1.5} />
+          <div className="absolute top-0 right-0 w-24 h-24 bg-purple-100/20 rounded-full blur-2xl" />
+          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center border border-purple-200">
+            <Trophy className="w-6 h-6 text-amber-500" strokeWidth={1.5} />
           </div>
           <div className="flex-1 relative z-10">
-            <p className="text-[10px] uppercase tracking-widest opacity-90 mb-1">Your Progress</p>
+            <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Your Progress</p>
             <div className="flex items-center gap-3 mb-2">
               <div>
-                <span className="font-serif text-lg font-semibold">{progress.points || 0}</span>
-                <span className="text-xs opacity-70 ml-1">pts</span>
+                <span className="font-serif text-lg font-semibold text-slate-900">{progress.points || 0}</span>
+                <span className="text-xs text-slate-500 ml-1">pts</span>
               </div>
-              <div className="w-px h-4 bg-white/30" />
+              <div className="w-px h-4 bg-slate-300" />
               <div>
-                <span className="font-serif text-lg font-semibold">L{progress.level || 1}</span>
+                <span className="font-serif text-lg font-semibold text-slate-900">L{progress.level || 1}</span>
               </div>
-              <div className="w-px h-4 bg-white/30" />
+              <div className="w-px h-4 bg-slate-300" />
               <div>
-                <span className="font-serif text-lg font-semibold">{progress.streak_days || 0}</span>
-                <span className="text-xs opacity-70 ml-1">🔥</span>
+                <span className="font-serif text-lg font-semibold text-slate-900">{progress.streak_days || 0}</span>
+                <span className="text-xs text-slate-500 ml-1">🔥</span>
               </div>
             </div>
-            <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-white/90 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-500"
                 style={{ width: `${getProgressToNextLevel()}%` }}
               />
             </div>
           </div>
-          <Sparkles className="w-5 h-5 opacity-40 text-white" strokeWidth={1.5} />
+          <Sparkles className="w-5 h-5 text-slate-400" strokeWidth={1.5} />
         </motion.div>
 
         {/* Quick Links */}
