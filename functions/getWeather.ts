@@ -28,8 +28,10 @@ Deno.serve(async (req) => {
 
     const response = await fetch(url);
     if (!response.ok) {
+      const errorData = await response.text();
+      console.error('OpenWeather error:', response.status, errorData);
       return Response.json(
-        { error: 'Failed to fetch weather data' },
+        { error: 'Failed to fetch weather data', details: errorData },
         { status: response.status }
       );
     }
