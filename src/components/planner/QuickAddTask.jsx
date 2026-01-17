@@ -154,11 +154,11 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
                       <SelectValue placeholder="Assign to family member" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value={null}>None</SelectItem>
-                      {familyMembers.map((member) => (
-                        <SelectItem key={member.id} value={member.name}>{member.name}</SelectItem>
-                      ))}
-                    </SelectContent>
+                       <SelectItem value={null}>None</SelectItem>
+                       {familyMembers.map((member) => (
+                         <SelectItem key={member.id} value={member.name}>{member.name}</SelectItem>
+                       ))}
+                     </SelectContent>
                   </Select>
                 )}
                 
