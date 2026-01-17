@@ -371,7 +371,7 @@ export default function Home() {
       >
         <Button
            onClick={() => setIsAddOpen(true)}
-           className="h-14 w-14 rounded-full bg-gradient-to-br from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 shadow-lg shadow-rose-500/40 text-white"
+           className={`h-14 w-14 rounded-full text-white shadow-lg ${user?.theme === 'dark' ? 'bg-gradient-to-br from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 shadow-rose-500/40' : 'bg-slate-700 hover:bg-slate-800 shadow-slate-500/30'}`}
          >
           <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>
