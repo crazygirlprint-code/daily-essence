@@ -78,7 +78,7 @@ export default function YourWhy({ user, onUpdate }) {
               onClick={handleSave}
               size="sm"
               disabled={saving}
-              className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700"
+              className="bg-slate-800 hover:bg-slate-700"
             >
               {saving ? (
                 <>Saving...</>
