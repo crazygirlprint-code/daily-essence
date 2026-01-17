@@ -24,11 +24,31 @@ const getWeatherIcon = (iconCode) => {
 
 export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}, forecast = [] }) {
   const [weekOffset, setWeekOffset] = useState(0);
-  const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
+  const weekStart = addDays(startOfWeek(selectedDate, { weekStartsOn: 1 }), weekOffset * 7);
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
+  const forecastStart = weekOffset * 7;
   
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setWeekOffset(prev => Math.max(prev - 1, 0))}
+          disabled={weekOffset === 0}
+          className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <span className="text-xs text-stone-500 dark:text-stone-400 uppercase tracking-widest font-medium">
+          {format(weekStart, 'MMM d')} - {format(addDays(weekStart, 6), 'MMM d')}
+        </span>
+        <button
+          onClick={() => setWeekOffset(prev => prev + 1)}
+          className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+      <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
       {days.map((day, index) => {
         const dateKey = format(day, 'yyyy-MM-dd');
         const taskCount = tasksByDate[dateKey] || 0;
