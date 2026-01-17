@@ -87,15 +87,15 @@ export default function Activities() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-3 gap-4 mb-8"
           >
-            <div className="bg-white rounded-xl p-4 border border-amber-200/50">
+            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
               <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Activities</p>
               <p className="text-2xl font-serif text-amber-600">{stats.count}</p>
             </div>
-            <div className="bg-white rounded-xl p-4 border border-amber-200/50">
+            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
               <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Total Time</p>
               <p className="text-2xl font-serif text-amber-600">{stats.totalMinutes}m</p>
             </div>
-            <div className="bg-white rounded-xl p-4 border border-amber-200/50">
+            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
               <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Avg Energy</p>
               <p className="text-2xl font-serif text-amber-600">{stats.avgEnergy}/10</p>
             </div>
