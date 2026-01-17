@@ -62,7 +62,7 @@ export default function Activities() {
               <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">Activity Log</h1>
               <p className="text-stone-600 dark:text-stone-400 text-sm mt-1">Track daily activities and their impact on your mood</p>
             </div>
-            <Button onClick={() => setShowLogger(true)} className="bg-slate-700 dark:bg-rose-600 hover:bg-slate-800 dark:hover:bg-rose-700 gap-2">
+            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40 gap-2">
               <Plus className="w-4 h-4" />
               Log Activity
             </Button>
@@ -87,17 +87,17 @@ export default function Activities() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-3 gap-4 mb-8"
           >
-            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
-              <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Activities</p>
-              <p className="text-2xl font-serif text-amber-600">{stats.count}</p>
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-200/50">
+              <p className="text-xs text-purple-600 uppercase tracking-widest mb-2">Activities</p>
+              <p className="text-2xl font-serif text-purple-600">{stats.count}</p>
             </div>
-            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
-              <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Total Time</p>
-              <p className="text-2xl font-serif text-amber-600">{stats.totalMinutes}m</p>
+            <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50">
+              <p className="text-xs text-pink-600 uppercase tracking-widest mb-2">Total Time</p>
+              <p className="text-2xl font-serif text-pink-600">{stats.totalMinutes}m</p>
             </div>
-            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
-              <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Avg Energy</p>
-              <p className="text-2xl font-serif text-amber-600">{stats.avgEnergy}/10</p>
+            <div className="bg-gradient-to-br from-rose-50 to-orange-50 rounded-xl p-4 border border-rose-200/50">
+              <p className="text-xs text-rose-600 uppercase tracking-widest mb-2">Avg Energy</p>
+              <p className="text-2xl font-serif text-rose-600">{stats.avgEnergy}/10</p>
             </div>
           </motion.div>
         )}
@@ -118,7 +118,7 @@ export default function Activities() {
             <Zap className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-50" />
             <h3 className="text-lg font-semibold text-slate-900 mb-2">No Activities Yet</h3>
             <p className="text-stone-600 mb-6">Log your first activity to track mood and energy changes.</p>
-            <Button onClick={() => setShowLogger(true)} className="bg-slate-700 dark:bg-rose-600 hover:bg-slate-800 dark:hover:bg-rose-700">
+            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40">
               Log Your First Activity
             </Button>
           </motion.div>
