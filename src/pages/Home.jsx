@@ -159,7 +159,37 @@ export default function Home() {
         <div className="mb-8">
           <AIInsights />
         </div>
-        
+
+        {/* Progress Report */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white/50 rounded-xl p-5 border border-stone-200 shadow-sm mb-8"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-slate-900 dark:text-stone-100">Your Progress</h3>
+            <Link to={createPageUrl('Progress')}>
+              <Button variant="ghost" size="sm" className="text-xs">
+                View All
+              </Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            <div className="text-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+              <p className="text-2xl font-bold text-amber-600">{progress.points || 0}</p>
+              <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Points</p>
+            </div>
+            <div className="text-center p-3 bg-rose-50/50 rounded-lg border border-rose-100">
+              <p className="text-2xl font-bold text-rose-600">{progress.level || 1}</p>
+              <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Level</p>
+            </div>
+            <div className="text-center p-3 bg-orange-50/50 rounded-lg border border-orange-100">
+              <p className="text-2xl font-bold text-orange-600">{progress.streak_days || 0}</p>
+              <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Streak</p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Quick Links */}
         <div className="mb-8">
           {(() => {
