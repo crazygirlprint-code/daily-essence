@@ -22,7 +22,14 @@ const getWeatherIcon = (iconCode) => {
   return iconMap[iconCode] || '☀️';
 };
 
-export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}, forecast = [] }) {
+const convertTemperature = (celsius, unit) => {
+  if (unit === 'fahrenheit') {
+    return Math.round((celsius * 9/5) + 32);
+  }
+  return Math.round(celsius);
+};
+
+export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}, forecast = [], temperatureUnit = 'fahrenheit' }) {
   const [weekOffset, setWeekOffset] = useState(0);
   const weekStart = addDays(startOfWeek(selectedDate, { weekStartsOn: 1 }), weekOffset * 7);
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
@@ -69,7 +76,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
                     ? 'bg-amber-50 dark:bg-rose-950/40 text-slate-700 dark:text-rose-300 border border-amber-200/60 dark:border-rose-500/50'
                     : 'bg-white/50 text-stone-700 hover:bg-stone-50 border border-stone-300'
             )}
-            title={weatherForDay ? `${weatherForDay.description} ${Math.round(weatherForDay.temp)}°C` : ''}
+            title={weatherForDay ? `${weatherForDay.description} ${convertTemperature(weatherForDay.temp, temperatureUnit)}°${temperatureUnit === 'fahrenheit' ? 'F' : 'C'}` : ''}
           >
             <span className="text-lg mb-0.5">
               {getWeatherIcon(weatherForDay?.icon)}
@@ -78,7 +85,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
               'text-xs font-semibold mb-1',
               isSelected ? 'text-white' : 'text-stone-700 dark:text-stone-400'
             )}>
-              {weatherForDay ? `${Math.round(weatherForDay.temp)}°` : '-'}
+              {weatherForDay ? `${convertTemperature(weatherForDay.temp, temperatureUnit)}°` : '-'}
             </span>
             <span className={cn(
               'text-[9px] font-medium uppercase tracking-widest mb-0.5',
