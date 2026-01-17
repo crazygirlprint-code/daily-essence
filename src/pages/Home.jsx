@@ -221,9 +221,9 @@ export default function Home() {
                 <span className="text-xs opacity-70 ml-1">🔥</span>
               </div>
             </div>
-            <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-white rounded-full transition-all duration-500"
+                className="h-full bg-white/90 rounded-full transition-all duration-500"
                 style={{ width: `${getProgressToNextLevel()}%` }}
               />
             </div>
