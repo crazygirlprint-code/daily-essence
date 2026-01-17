@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Sparkles, Loader2, User } from 'lucide-react';
+import { Plus, Sparkles, Loader2, User, Camera, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import GoalForm from '@/components/profile/GoalForm';
@@ -16,6 +16,7 @@ export default function Profile() {
   const [loadingInsights, setLoadingInsights] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [uploadingPicture, setUploadingPicture] = useState(false);
+  const [expandedImage, setExpandedImage] = useState(false);
   const queryClient = useQueryClient();
 
   // Fetch current user
@@ -127,31 +128,37 @@ export default function Profile() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex items-center gap-4 mb-4">
-            <button
-              onClick={() => document.getElementById('profile-pic-input').click()}
-              disabled={uploadingPicture}
-              className="relative group cursor-pointer"
-            >
-              {user?.profile_picture ? (
-                <img 
-                  src={user.profile_picture} 
-                  alt="Profile" 
-                  className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm group-hover:opacity-75 transition-opacity"
-                />
-              ) : (
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-stone-100 dark:from-rose-900/40 dark:to-pink-900/40 dark-luxury:from-amber-950 dark-luxury:to-blue-900 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30 group-hover:opacity-75 transition-opacity">
-                  <User className="w-8 h-8 text-amber-600 dark:text-rose-400" />
-                </div>
-              )}
-              {uploadingPicture && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
-                  <Loader2 className="w-6 h-6 text-white animate-spin" />
-                </div>
-              )}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 rounded-full transition-all">
-                <Plus className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            </button>
+            <div className="relative group">
+              <button
+                onClick={() => user?.profile_picture && setExpandedImage(true)}
+                disabled={uploadingPicture || !user?.profile_picture}
+                className="relative cursor-pointer"
+              >
+                {user?.profile_picture ? (
+                  <img 
+                    src={user.profile_picture} 
+                    alt="Profile" 
+                    className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm"
+                  />
+                ) : (
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-stone-100 dark:from-rose-900/40 dark:to-pink-900/40 dark-luxury:from-amber-950 dark-luxury:to-blue-900 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30">
+                    <User className="w-8 h-8 text-amber-600 dark:text-rose-400" />
+                  </div>
+                )}
+                {uploadingPicture && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
+                    <Loader2 className="w-6 h-6 text-white animate-spin" />
+                  </div>
+                )}
+              </button>
+              <button
+                onClick={() => document.getElementById('profile-pic-input').click()}
+                disabled={uploadingPicture}
+                className="absolute bottom-0 right-0 p-1.5 bg-amber-600 dark:bg-rose-600 hover:bg-amber-700 dark:hover:bg-rose-700 rounded-full text-white shadow-lg transition-colors"
+              >
+                <Camera className="w-3.5 h-3.5" />
+              </button>
+            </div>
             <input
               id="profile-pic-input"
               type="file"
@@ -261,6 +268,35 @@ export default function Profile() {
           )}
         </motion.div>
       </div>
+
+      {/* Expanded Image Modal */}
+      <AnimatePresence>
+        {expandedImage && user?.profile_picture && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setExpandedImage(false)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <button
+              onClick={() => setExpandedImage(false)}
+              className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <motion.img
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              src={user.profile_picture}
+              alt="Profile"
+              className="max-w-full max-h-[90vh] object-contain rounded-xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
