@@ -157,7 +157,7 @@ export default function Affirmations() {
             </div>
             
             <div className="relative z-10 text-center">
-              <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-white leading-relaxed">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-slate-900 leading-relaxed">
                 "{currentAffirmation.text}"
               </p>
               
