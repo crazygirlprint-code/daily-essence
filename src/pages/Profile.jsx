@@ -15,6 +15,7 @@ export default function Profile() {
   const [editingGoal, setEditingGoal] = useState(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [uploadingPicture, setUploadingPicture] = useState(false);
   const queryClient = useQueryClient();
 
   // Fetch current user
@@ -102,6 +103,22 @@ export default function Profile() {
     }
   };
 
+  const handleProfilePictureUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingPicture(true);
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      await base44.auth.updateMe({ profile_picture: file_url });
+      queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+    } catch (error) {
+      console.error('Error uploading profile picture:', error);
+    } finally {
+      setUploadingPicture(false);
+    }
+  };
+
   const activeGoals = goals.filter(g => g.active);
 
   return (
@@ -110,17 +127,38 @@ export default function Profile() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex items-center gap-4 mb-4">
-            {user?.profile_picture ? (
-              <img 
-                src={user.profile_picture} 
-                alt="Profile" 
-                className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm"
-              />
-            ) : (
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-stone-100 dark:from-rose-900/40 dark:to-pink-900/40 dark-luxury:from-amber-950 dark-luxury:to-blue-900 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30">
-                <User className="w-8 h-8 text-amber-600 dark:text-rose-400" />
+            <button
+              onClick={() => document.getElementById('profile-pic-input').click()}
+              disabled={uploadingPicture}
+              className="relative group cursor-pointer"
+            >
+              {user?.profile_picture ? (
+                <img 
+                  src={user.profile_picture} 
+                  alt="Profile" 
+                  className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm group-hover:opacity-75 transition-opacity"
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-stone-100 dark:from-rose-900/40 dark:to-pink-900/40 dark-luxury:from-amber-950 dark-luxury:to-blue-900 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30 group-hover:opacity-75 transition-opacity">
+                  <User className="w-8 h-8 text-amber-600 dark:text-rose-400" />
+                </div>
+              )}
+              {uploadingPicture && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
+                  <Loader2 className="w-6 h-6 text-white animate-spin" />
+                </div>
+              )}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 rounded-full transition-all">
+                <Plus className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-            )}
+            </button>
+            <input
+              id="profile-pic-input"
+              type="file"
+              accept="image/*"
+              onChange={handleProfilePictureUpload}
+              className="hidden"
+            />
             <div>
               <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">My Profile</h1>
               <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.display_name || user?.full_name}</p>
