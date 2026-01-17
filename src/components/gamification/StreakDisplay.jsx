@@ -39,18 +39,14 @@ export default function StreakDisplay({ streak, compact = false }) {
     <motion.div
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      className={cn(
-        'relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br',
-        getStreakColor(),
-        'text-white shadow-lg'
-      )}
+      className="relative overflow-hidden rounded-2xl p-6 bg-white/50 border border-stone-200 shadow-sm"
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100/30 dark:bg-rose-200/20 rounded-full blur-3xl" />
       
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-2">
-          <Flame className="w-6 h-6" />
-          <span className="text-sm font-medium uppercase tracking-wider">Current Streak</span>
+          <Flame className="w-6 h-6 text-orange-500" />
+          <span className="text-sm font-medium uppercase tracking-wider text-slate-700 dark:text-stone-300">Current Streak</span>
         </div>
         
         <div className="flex items-baseline gap-2">
@@ -58,33 +54,33 @@ export default function StreakDisplay({ streak, compact = false }) {
             key={streak}
             initial={{ scale: 1.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="text-6xl font-bold"
+            className="text-6xl font-bold text-slate-900 dark:text-stone-100"
           >
             {streak}
           </motion.span>
-          <span className="text-2xl font-medium opacity-90">
+          <span className="text-2xl font-medium text-slate-700 dark:text-stone-300">
             {streak === 1 ? 'day' : 'days'}
           </span>
         </div>
         
-        <p className="text-sm mt-2 text-white/80">{getStreakMessage()}</p>
+        <p className="text-sm mt-2 text-slate-600 dark:text-stone-400">{getStreakMessage()}</p>
         
         {/* Milestone progress */}
         {streak < 30 && (
           <div className="mt-4">
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs mb-1 text-slate-600 dark:text-stone-400">
               <span>Next milestone</span>
               <span className="font-medium">
                 {streak < 3 ? '3 days' : streak < 7 ? '7 days' : '30 days'}
               </span>
             </div>
-            <div className="h-1.5 bg-white/20 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-stone-200 dark:bg-neutral-700 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ 
                   width: `${(streak / (streak < 3 ? 3 : streak < 7 ? 7 : 30)) * 100}%` 
                 }}
-                className="h-full bg-white rounded-full"
+                className="h-full bg-gradient-to-r from-orange-400 to-orange-500 rounded-full"
               />
             </div>
           </div>
