@@ -302,7 +302,7 @@ export default function Home() {
             {isLoading ? (
               <div className="space-y-3">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-white/50 rounded-2xl p-4 border border-slate-100 animate-pulse">
+                  <div key={i} className="bg-stone-100/50 rounded-2xl p-4 border border-slate-100 animate-pulse">
                     <div className="flex gap-3">
                       <div className="w-5 h-5 rounded-full bg-slate-200" />
                       <div className="flex-1">
@@ -335,7 +335,7 @@ export default function Home() {
         )}
         
         {activeSection === 'meals' && (
-          <div className="bg-white/50 rounded-2xl p-4 shadow-sm border border-slate-100">
+          <div className="bg-stone-100/50 rounded-2xl p-4 shadow-sm border border-slate-100">
             <h3 className="font-semibold text-slate-700 dark:text-stone-300 mb-4 flex items-center gap-2">
               <UtensilsCrossed className="w-5 h-5 text-orange-500" />
               Meal Plan for {format(selectedDate, 'EEEE')}
@@ -352,7 +352,7 @@ export default function Home() {
         )}
         
         {activeSection === 'notes' && (
-          <div className="bg-white/50 rounded-2xl p-4 shadow-sm border border-slate-100">
+          <div className="bg-stone-100/50 rounded-2xl p-4 shadow-sm border border-slate-100">
             <QuickNotes />
           </div>
         )}
