@@ -35,7 +35,7 @@ export default function YourWhy({ user, onUpdate }) {
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-stone-700 flex items-center justify-center">
             <Heart className="w-5 h-5 text-white" fill="white" />
           </div>
           <div>
@@ -47,7 +47,7 @@ export default function YourWhy({ user, onUpdate }) {
           <Button
             onClick={() => setIsEditing(true)}
             size="sm"
-            className="gap-2 bg-slate-800 hover:bg-slate-700"
+            className="gap-2 bg-stone-700 hover:bg-stone-600 text-white"
           >
             <Edit className="w-3.5 h-3.5" />
             Edit

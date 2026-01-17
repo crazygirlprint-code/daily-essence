@@ -49,7 +49,7 @@ export default function ProfileInfo({ user, onEdit }) {
         <Button
           onClick={onEdit}
           size="sm"
-          className="gap-2 bg-slate-800 hover:bg-slate-700 text-white"
+          className="gap-2 bg-stone-700 hover:bg-stone-600 text-white"
         >
           <Edit className="w-4 h-4" />
           Edit Profile
