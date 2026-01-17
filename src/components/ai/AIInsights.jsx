@@ -346,7 +346,10 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               </div>
             </div>
             <Button
-              onClick={generateInsights}
+              onClick={(e) => {
+                e.stopPropagation();
+                generateInsights();
+              }}
               disabled={isLoading}
               className="bg-slate-700 hover:bg-slate-600 text-white"
             >
