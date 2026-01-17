@@ -275,7 +275,7 @@ export default function Home() {
                       onClick={() => setActiveSection(section.id)}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
-                          ? 'bg-amber-600 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 text-stone-50 shadow-sm hover:bg-amber-700 dark:hover:from-rose-700 dark:hover:to-pink-700'
+                          ? 'bg-slate-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 text-white shadow-sm hover:bg-slate-800 dark:hover:from-rose-700 dark:hover:to-pink-700'
                           : 'bg-white/50 text-stone-700 border border-stone-300 hover:bg-stone-50'
                       }`}
                     >
@@ -366,9 +366,9 @@ export default function Home() {
         transition={{ delay: 0.3, type: 'spring' }}
       >
         <Button
-          onClick={() => setIsAddOpen(true)}
-          className="h-14 w-14 rounded-full bg-amber-600 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 hover:bg-amber-700 dark:hover:from-rose-700 dark:hover:to-pink-700 shadow-lg dark:shadow-rose-500/30 shadow-amber-400/30 text-white"
-        >
+           onClick={() => setIsAddOpen(true)}
+           className="h-14 w-14 rounded-full bg-slate-700 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 hover:bg-slate-800 dark:hover:from-rose-700 dark:hover:to-pink-700 shadow-lg dark:shadow-rose-500/30 shadow-slate-400/30 text-white"
+         >
           <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>
       </motion.div>
