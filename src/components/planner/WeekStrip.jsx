@@ -115,6 +115,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
           </motion.button>
         );
       })}
+      </div>
     </div>
   );
 }
