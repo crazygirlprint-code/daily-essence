@@ -405,7 +405,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                   whileHover={{ scale: 1.01 }}
-                  className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-amber-300/50 transition-all cursor-pointer shadow-xs"
+                  className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-stone-300 transition-all cursor-pointer shadow-xs"
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-7 h-7 rounded bg-stone-100 flex items-center justify-center flex-shrink-0 border border-stone-300">
@@ -428,7 +428,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                     whileHover={{ scale: 1.01 }}
-                    className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-amber-300/50 transition-all cursor-pointer shadow-xs"
+                    className="bg-white backdrop-blur-sm rounded-lg p-4 border border-stone-200 hover:border-stone-300 transition-all cursor-pointer shadow-xs"
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-7 h-7 rounded bg-stone-100 flex items-center justify-center flex-shrink-0 border border-stone-300">
