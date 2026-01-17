@@ -232,59 +232,21 @@ export default function Home() {
         </motion.div>
 
         {/* Quick Links */}
-        <div className="mb-8">
-          {(() => {
-            const hour = new Date().getHours();
-            let featuredLink;
-            if (hour < 12) featuredLink = 'Affirmations';
-            else if (hour < 17) featuredLink = 'Meditation';
-            else featuredLink = 'Self-Care';
-            
+        <div className="mb-8 grid grid-cols-4 gap-3">
+          {quickLinks.map((link) => {
+            const Icon = link.icon;
             return (
-              <div className="space-y-3">
-                {/* Featured Link */}
-                {quickLinks.filter(l => l.name === featuredLink).map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <Link key={link.name} to={createPageUrl(link.page)}>
-                      <motion.div
-                        whileTap={{ scale: 0.98 }}
-                        className={`relative overflow-hidden flex items-center gap-4 p-5 rounded-xl ${link.color} ${link.textColor} border-0 shadow-lg`}
-                      >
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
-                        <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30">
-                          <Icon className="w-6 h-6" strokeWidth={1.5} />
-                        </div>
-                        <div className="flex-1 relative z-10">
-                          <p className="text-[10px] uppercase tracking-widest opacity-70 mb-0.5">Recommended Now</p>
-                          <h3 className="font-serif text-lg">{link.name}</h3>
-                        </div>
-                        <Sparkles className="w-5 h-5 opacity-40" strokeWidth={1.5} />
-                      </motion.div>
-                    </Link>
-                  );
-                })}
-                
-                {/* Other Links */}
-                <div className="grid grid-cols-3 gap-3">
-                  {quickLinks.filter(l => l.name !== featuredLink).map((link) => {
-                    const Icon = link.icon;
-                    return (
-                      <Link key={link.name} to={createPageUrl(link.page)}>
-                        <motion.div
-                          whileTap={{ scale: 0.95 }}
-                          className={`flex flex-col items-center gap-2 p-4 rounded-lg ${link.color} ${link.textColor} border-0 shadow-lg`}
-                        >
-                          <Icon className="w-5 h-5" strokeWidth={1.5} />
-                          <span className="text-[9px] font-medium uppercase tracking-widest">{link.name}</span>
-                        </motion.div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
+              <Link key={link.name} to={createPageUrl(link.page)}>
+                <motion.div
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-lg ${link.color} ${link.textColor} border-0 shadow-lg`}
+                >
+                  <Icon className="w-5 h-5" strokeWidth={1.5} />
+                  <span className="text-[9px] font-medium uppercase tracking-widest">{link.name}</span>
+                </motion.div>
+              </Link>
             );
-          })()}
+          })}
         </div>
         
         <div className="mb-8">
