@@ -31,7 +31,16 @@ const convertTemperature = (celsius, unit) => {
 
 export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}, forecast = [], temperatureUnit = 'fahrenheit' }) {
   const [weekOffset, setWeekOffset] = useState(0);
-  const weekStart = addDays(startOfWeek(selectedDate, { weekStartsOn: 1 }), weekOffset * 7);
+  
+  // Calculate the week start, allowing navigation backwards and forwards
+  const firstForecastDate = forecast.length > 0 ? new Date(forecast[0].date) : new Date();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  // Allow going back 7 days from today
+  const minWeekOffset = Math.ceil((firstForecastDate.getTime() - today.getTime()) / (7 * 24 * 60 * 60 * 1000)) - 1;
+  
+  const weekStart = addDays(startOfWeek(today, { weekStartsOn: 1 }), weekOffset * 7);
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   
   // Map forecast data by date key for easy lookup
@@ -44,8 +53,8 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <button
-          onClick={() => setWeekOffset(prev => Math.max(prev - 1, 0))}
-          disabled={weekOffset === 0}
+          onClick={() => setWeekOffset(prev => Math.max(prev - 1, minWeekOffset))}
+          disabled={weekOffset <= minWeekOffset}
           className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -55,7 +64,8 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
         </span>
         <button
           onClick={() => setWeekOffset(prev => prev + 1)}
-          className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg"
+          disabled={days[6] > new Date(forecast[forecast.length - 1]?.date || today)}
+          className="p-2 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <ChevronRight className="w-5 h-5" />
         </button>

@@ -59,7 +59,7 @@ Deno.serve(async (req) => {
       }
     });
 
-    const forecast = Object.values(dailyForecasts).slice(0, 7);
+    const forecast = Object.values(dailyForecasts).slice(0, 16);
 
     return Response.json({
       city: data.city.name,
