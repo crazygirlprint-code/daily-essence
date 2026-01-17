@@ -78,7 +78,7 @@ export default function YourWhy({ user, onUpdate }) {
               onClick={handleSave}
               size="sm"
               disabled={saving}
-              className="bg-slate-800 hover:bg-slate-700"
+              className="bg-stone-700 hover:bg-stone-600 text-white"
             >
               {saving ? (
                 <>Saving...</>
@@ -105,7 +105,7 @@ export default function YourWhy({ user, onUpdate }) {
               <Button
                 onClick={() => setIsEditing(true)}
                 size="sm"
-                className="bg-slate-800 hover:bg-slate-700"
+                className="bg-stone-700 hover:bg-stone-600 text-white"
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Write Your Why
