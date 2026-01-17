@@ -32,7 +32,7 @@ export default function GoalCard({ goal, onEdit, onDelete }) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`rounded-xl p-5 border shadow-sm ${categoryColors[goal.category]} dark-luxury:bg-slate-800/50 dark-luxury:border-amber-600/30`}
+      className="rounded-xl p-5 border shadow-sm bg-white/50 border-stone-200"
     >
       <div className="flex items-start justify-between mb-3">
         <div>

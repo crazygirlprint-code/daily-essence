@@ -226,7 +226,7 @@ export default function Events() {
         </div>
         
         {/* Calendar Grid */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-4 md:p-6 shadow-sm mb-6">
+        <div className="bg-white/50 rounded-3xl border border-slate-200 p-4 md:p-6 shadow-sm mb-6">
           <div className="grid grid-cols-7 gap-1 mb-2">
             {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
               <div key={day} className="text-center text-xs font-medium text-slate-400 py-2">
@@ -294,7 +294,7 @@ export default function Events() {
         </div>
         
         {/* Selected Date Events */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <div className="bg-white/50 rounded-2xl p-6 shadow-sm border border-slate-100">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-slate-800">
               {format(selectedDate, 'EEEE, MMMM d')}
@@ -325,7 +325,7 @@ export default function Events() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     whileHover={{ scale: 1.02 }}
-                    className="group flex items-center gap-4 p-4 bg-slate-50 rounded-xl transition-all"
+                    className="group flex items-center gap-4 p-4 bg-white/50 rounded-xl transition-all"
                   >
                     {event.emoji ? (
                       <motion.div
