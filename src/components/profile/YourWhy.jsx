@@ -47,7 +47,7 @@ export default function YourWhy({ user, onUpdate }) {
           <Button
             onClick={() => setIsEditing(true)}
             size="sm"
-            className="gap-2 bg-slate-800 hover:bg-slate-700"
+            className="gap-2 bg-slate-800 hover:bg-slate-700 text-white"
           >
             <Edit className="w-3.5 h-3.5" />
             Edit
@@ -78,8 +78,8 @@ export default function YourWhy({ user, onUpdate }) {
               onClick={handleSave}
               size="sm"
               disabled={saving}
-              className="bg-slate-800 hover:bg-slate-700"
-            >
+              className="bg-slate-800 hover:bg-slate-700 text-white"
+              >
               {saving ? (
                 <>Saving...</>
               ) : (
@@ -105,8 +105,8 @@ export default function YourWhy({ user, onUpdate }) {
               <Button
                 onClick={() => setIsEditing(true)}
                 size="sm"
-                className="bg-slate-800 hover:bg-slate-700"
-              >
+                className="bg-slate-800 hover:bg-slate-700 text-white"
+                >
                 <Edit className="w-4 h-4 mr-2" />
                 Write Your Why
               </Button>
