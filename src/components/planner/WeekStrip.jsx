@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { format, addDays, startOfWeek, isToday, isSameDay } from 'date-fns';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/components/hooks/useTheme';
 
@@ -22,6 +23,7 @@ const getWeatherIcon = (iconCode) => {
 };
 
 export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}, forecast = [] }) {
+  const [weekOffset, setWeekOffset] = useState(0);
   const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   
