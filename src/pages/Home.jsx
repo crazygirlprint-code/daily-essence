@@ -367,16 +367,16 @@ export default function Home() {
       >
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="h-14 w-14 rounded-full bg-neutral-900 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 hover:bg-black dark:hover:from-rose-700 dark:hover:to-pink-700 shadow-lg dark:shadow-rose-500/30 shadow-stone-400/30 text-stone-100"
+          className="h-14 w-14 rounded-full bg-amber-600 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 hover:bg-amber-700 dark:hover:from-rose-700 dark:hover:to-pink-700 shadow-lg dark:shadow-rose-500/30 shadow-amber-400/30 text-white"
         >
           <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>
       </motion.div>
       
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-black/80 dark-luxury:bg-slate-950/80 backdrop-blur-lg border-t border-stone-300 dark:border-rose-500/20 dark-luxury:border-amber-900/30 px-6 py-3 md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-purple-900/80 dark-luxury:bg-slate-950/80 backdrop-blur-lg border-t border-stone-300 dark:border-rose-500/20 dark-luxury:border-amber-900/30 px-6 py-3 md:hidden">
         <div className="flex justify-around items-center max-w-md mx-auto">
-          <button className="flex flex-col items-center gap-1 text-neutral-900">
+          <button className="flex flex-col items-center gap-1 text-stone-900 dark:text-stone-100">
             <Calendar className="w-5 h-5" strokeWidth={1.5} />
             <span className="text-[10px] font-medium uppercase tracking-widest">Today</span>
           </button>
