@@ -35,8 +35,8 @@ export default function YourWhy({ user, onUpdate }) {
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
-            <Heart className="w-5 h-5 text-white" fill="white" />
+          <div className="w-10 h-10 rounded-full bg-white/60 border border-stone-300 flex items-center justify-center">
+            <Heart className="w-5 h-5 text-stone-700" fill="currentColor" />
           </div>
           <div>
             <h3 className="text-xl font-serif text-stone-900">Your Why</h3>
