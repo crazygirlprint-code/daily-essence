@@ -33,7 +33,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
                   ? 'bg-amber-600 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 text-white shadow-lg dark:shadow-rose-500/30'
                   : today
                     ? 'bg-amber-100/50 dark:bg-rose-950/40 text-stone-900 dark:text-rose-300 border border-amber-300/50 dark:border-rose-500/50'
-                    : 'bg-white dark:bg-neutral-800/30 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-neutral-700/30 border border-stone-300 dark:border-rose-500/20'
+                    : 'bg-stone-100/50 text-stone-700 hover:bg-stone-50 border border-stone-300'
             )}
           >
             <span className="text-lg mb-0.5">
