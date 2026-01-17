@@ -9,6 +9,8 @@ import GoalForm from '@/components/profile/GoalForm';
 import GoalCard from '@/components/profile/GoalCard';
 import ProfileInfo from '@/components/profile/ProfileInfo';
 import ProfileEditor from '@/components/profile/ProfileEditor';
+import YourWhy from '@/components/profile/YourWhy';
+import PhotoGallery from '@/components/profile/PhotoGallery';
 
 export default function Profile() {
   const [showAddGoal, setShowAddGoal] = useState(false);
@@ -187,6 +189,22 @@ export default function Profile() {
               onEdit={() => setIsEditingProfile(true)}
             />
           )}
+        </motion.div>
+
+        {/* Your Why Section */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-8">
+          <YourWhy 
+            user={user} 
+            onUpdate={() => queryClient.invalidateQueries({ queryKey: ['currentUser'] })}
+          />
+        </motion.div>
+
+        {/* Photo Gallery Section */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-8">
+          <PhotoGallery 
+            photos={user?.photo_gallery || []}
+            onUpdate={() => queryClient.invalidateQueries({ queryKey: ['currentUser'] })}
+          />
         </motion.div>
 
         {/* Wellness Goals Section */}

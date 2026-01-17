@@ -1,0 +1,121 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Heart, Edit, Save, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { base44 } from '@/api/base44Client';
+
+export default function YourWhy({ user, onUpdate }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(user?.your_why || '');
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      await base44.auth.updateMe({ your_why: value });
+      onUpdate();
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error saving your why:', error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setValue(user?.your_why || '');
+    setIsEditing(false);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-gradient-to-br from-amber-50/80 to-stone-50/80 dark:from-rose-900/20 dark:to-pink-900/20 rounded-2xl p-6 border border-amber-200 dark:border-rose-500/30"
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 dark:from-rose-500 dark:to-pink-600 flex items-center justify-center">
+            <Heart className="w-5 h-5 text-white" fill="white" />
+          </div>
+          <div>
+            <h3 className="text-xl font-serif text-neutral-900 dark:text-stone-100">Your Why</h3>
+            <p className="text-xs text-stone-600 dark:text-stone-400">What drives you forward</p>
+          </div>
+        </div>
+        {!isEditing && (
+          <Button
+            onClick={() => setIsEditing(true)}
+            size="sm"
+            variant="outline"
+            className="gap-2 dark:border-rose-500/30"
+          >
+            <Edit className="w-3.5 h-3.5" />
+            Edit
+          </Button>
+        )}
+      </div>
+
+      {isEditing ? (
+        <div className="space-y-4">
+          <textarea
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="Share your motivation, values, or the reason you started this journey..."
+            rows={6}
+            className="w-full px-4 py-3 rounded-xl border border-stone-300 dark:border-rose-500/30 bg-white dark:bg-purple-950/30 text-slate-900 dark:text-stone-100 resize-none focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-rose-500"
+          />
+          <div className="flex gap-2 justify-end">
+            <Button
+              onClick={handleCancel}
+              variant="ghost"
+              size="sm"
+              disabled={saving}
+            >
+              <X className="w-4 h-4 mr-2" />
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSave}
+              size="sm"
+              disabled={saving}
+              className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700"
+            >
+              {saving ? (
+                <>Saving...</>
+              ) : (
+                <>
+                  <Save className="w-4 h-4 mr-2" />
+                  Save
+                </>
+              )}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          {user?.your_why ? (
+            <p className="text-slate-900 dark:text-stone-100 leading-relaxed italic">
+              "{user.your_why}"
+            </p>
+          ) : (
+            <div className="text-center py-8 border-2 border-dashed border-amber-300 dark:border-rose-500/30 rounded-xl">
+              <p className="text-stone-600 dark:text-stone-400 mb-3">
+                Share what motivates you on this wellness journey
+              </p>
+              <Button
+                onClick={() => setIsEditing(true)}
+                size="sm"
+                variant="outline"
+                className="dark:border-rose-500/30"
+              >
+                <Edit className="w-4 h-4 mr-2" />
+                Write Your Why
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
+    </motion.div>
+  );
+}
