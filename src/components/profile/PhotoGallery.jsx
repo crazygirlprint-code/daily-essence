@@ -51,7 +51,7 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
             onClick={() => document.getElementById('gallery-upload').click()}
             disabled={uploading}
             size="sm"
-            className="gap-2 bg-stone-700 hover:bg-stone-600 text-white"
+            className="gap-2 bg-rose-600 hover:bg-rose-700 text-white"
           >
             {uploading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -78,7 +78,7 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
               onClick={() => document.getElementById('gallery-upload').click()}
               disabled={uploading}
               size="sm"
-              className="bg-stone-700 hover:bg-stone-600 text-white"
+              className="bg-rose-600 hover:bg-rose-700 text-white"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Your First Photo
