@@ -279,7 +279,7 @@ export default function Home() {
                       onClick={() => setActiveSection(section.id)}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
-                          ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 text-white shadow-lg shadow-purple-500/40 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600'
+                          ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg shadow-slate-500/40 hover:from-slate-800 hover:to-slate-900'
                           : 'bg-white/50 text-stone-700 border border-stone-300 hover:bg-stone-50'
                       }`}
                     >
@@ -371,7 +371,7 @@ export default function Home() {
       >
         <Button
            onClick={() => setIsAddOpen(true)}
-           className="h-14 w-14 rounded-full bg-slate-700 dark:bg-gradient-to-br dark:from-rose-600 dark:to-pink-600 hover:bg-slate-800 dark:hover:from-rose-700 dark:hover:to-pink-700 shadow-lg dark:shadow-rose-500/30 shadow-slate-400/30 text-white"
+           className="h-14 w-14 rounded-full bg-slate-700 hover:bg-slate-800 shadow-lg shadow-slate-500/30 text-white"
          >
           <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>

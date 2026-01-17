@@ -186,7 +186,7 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
                 
                 <Button
                   type="submit"
-                  className="w-full rounded-xl h-12 bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 text-white font-medium shadow-lg shadow-rose-200"
+                  className="w-full rounded-xl h-12 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-800 hover:to-slate-900 text-white font-medium shadow-lg shadow-slate-500/30"
                 >
                   <Plus className="w-5 h-5 mr-2" />
                   Add Task
