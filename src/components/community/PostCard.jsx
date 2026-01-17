@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { motion } from 'framer-motion';
-import { Heart, MessageCircle, Share2, Flame, Trophy, Lightbulb, Image as ImageIcon, Star } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Heart, MessageCircle, Share2, Flame, Trophy, Lightbulb, Image as ImageIcon, Star, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const postTypeConfig = {
@@ -13,10 +13,39 @@ const postTypeConfig = {
 };
 
 export default function PostCard({ post, onLike, isLiked }) {
+  const [imageExpanded, setImageExpanded] = useState(false);
   const config = postTypeConfig[post.post_type];
   const TypeIcon = config.icon;
 
   return (
+    <>
+    <AnimatePresence>
+      {imageExpanded && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setImageExpanded(false)}
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+        >
+          <button
+            onClick={() => setImageExpanded(false)}
+            className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <motion.img
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.8 }}
+            src={post.image_url}
+            alt="Expanded"
+            className="max-w-full max-h-[90vh] object-contain rounded-xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -41,7 +70,10 @@ export default function PostCard({ post, onLike, isLiked }) {
 
       {/* Image */}
       {post.image_url && (
-        <div className="mb-4 rounded-xl overflow-hidden bg-slate-100">
+        <div 
+          onClick={() => setImageExpanded(true)}
+          className="mb-4 rounded-xl overflow-hidden bg-slate-100 cursor-pointer hover:opacity-90 transition-opacity"
+        >
           <img src={post.image_url} alt="Post" className="w-full h-64 object-cover" />
         </div>
       )}
@@ -71,5 +103,6 @@ export default function PostCard({ post, onLike, isLiked }) {
         </button>
       </div>
     </motion.div>
+    </>
   );
 }
