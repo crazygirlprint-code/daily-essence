@@ -109,10 +109,18 @@ export default function Profile() {
       <div className="max-w-4xl mx-auto px-4 py-8 pb-20">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-100 to-stone-100 dark:from-rose-900/40 dark:to-pink-900/40 dark-luxury:from-amber-950 dark-luxury:to-blue-900 flex items-center justify-center">
-              <User className="w-6 h-6 text-amber-600 dark:text-rose-400" />
-            </div>
+          <div className="flex items-center gap-4 mb-4">
+            {user?.profile_picture ? (
+              <img 
+                src={user.profile_picture} 
+                alt="Profile" 
+                className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm"
+              />
+            ) : (
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-stone-100 dark:from-rose-900/40 dark:to-pink-900/40 dark-luxury:from-amber-950 dark-luxury:to-blue-900 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30">
+                <User className="w-8 h-8 text-amber-600 dark:text-rose-400" />
+              </div>
+            )}
             <div>
               <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">My Profile</h1>
               <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.display_name || user?.full_name}</p>
