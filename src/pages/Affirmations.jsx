@@ -328,10 +328,10 @@ export default function Affirmations() {
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: idx * 0.05 }}
                    onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
-                   className="w-full text-left p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100"
+                   className="w-full text-left p-4 bg-stone-100/50 rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-200"
                  >
-                   <p className="text-slate-700">"{aff.text}"</p>
-                   <p className="text-xs text-slate-400 mt-1 capitalize">{aff.category}</p>
+                   <p className="text-slate-900">"{aff.text}"</p>
+                   <p className="text-xs text-slate-600 mt-1 capitalize">{aff.category}</p>
                  </motion.button>
                ))}
              </div>
