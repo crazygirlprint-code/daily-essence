@@ -1,7 +1,20 @@
 css
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
+      @tailwind components;
+      @tailwind utilities;
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .animate-shimmer {
+        animation: shimmer 3s infinite;
+      }
 
 /* Dark Luxury Theme - Slate & Amber */
 /* Exact Hex Codes:
