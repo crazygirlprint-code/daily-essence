@@ -66,7 +66,7 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="fixed bottom-0 left-0 right-0 md:bottom-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-50 md:max-w-lg md:w-full"
           >
-            <div className="bg-white rounded-t-3xl md:rounded-3xl shadow-2xl p-6">
+            <div className="bg-white rounded-t-3xl md:rounded-3xl shadow-2xl p-6 max-h-[90vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-slate-800">Add Task</h2>
                 <button
@@ -77,7 +77,7 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
                 </button>
               </div>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" onClick={(e) => e.stopPropagation()}>
                 <div className="relative">
                   <Input
                     placeholder="What needs to be done?"
