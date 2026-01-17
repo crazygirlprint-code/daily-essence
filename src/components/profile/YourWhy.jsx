@@ -31,23 +31,23 @@ export default function YourWhy({ user, onUpdate }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-amber-50/80 to-stone-50/80 dark:from-rose-900/20 dark:to-pink-900/20 rounded-2xl p-6 border border-amber-200 dark:border-rose-500/30"
+      className="bg-stone-100/50 rounded-2xl p-6 border border-stone-300"
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 dark:from-rose-500 dark:to-pink-600 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
             <Heart className="w-5 h-5 text-white" fill="white" />
           </div>
           <div>
-            <h3 className="text-xl font-serif text-neutral-900 dark:text-stone-100">Your Why</h3>
-            <p className="text-xs text-stone-600 dark:text-stone-400">What drives you forward</p>
+            <h3 className="text-xl font-serif text-stone-900">Your Why</h3>
+            <p className="text-xs text-stone-600">What drives you forward</p>
           </div>
         </div>
         {!isEditing && (
           <Button
             onClick={() => setIsEditing(true)}
             size="sm"
-            className="gap-2 bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700"
+            className="gap-2 bg-slate-800 hover:bg-slate-700"
           >
             <Edit className="w-3.5 h-3.5" />
             Edit
@@ -62,7 +62,7 @@ export default function YourWhy({ user, onUpdate }) {
             onChange={(e) => setValue(e.target.value)}
             placeholder="Share your motivation, values, or the reason you started this journey..."
             rows={6}
-            className="w-full px-4 py-3 rounded-xl border border-stone-300 dark:border-rose-500/30 bg-white dark:bg-purple-950/30 text-slate-900 dark:text-stone-100 resize-none focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-rose-500"
+            className="w-full px-4 py-3 rounded-xl border border-stone-300 bg-white text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-slate-500"
           />
           <div className="flex gap-2 justify-end">
             <Button
@@ -94,18 +94,18 @@ export default function YourWhy({ user, onUpdate }) {
       ) : (
         <div>
           {user?.your_why ? (
-            <p className="text-slate-900 dark:text-stone-100 leading-relaxed italic">
+            <p className="text-slate-900 leading-relaxed italic">
               "{user.your_why}"
             </p>
           ) : (
-            <div className="text-center py-8 border-2 border-dashed border-amber-300 dark:border-rose-500/30 rounded-xl">
-              <p className="text-stone-600 dark:text-stone-400 mb-3">
+            <div className="text-center py-8 border-2 border-dashed border-stone-300 rounded-xl">
+              <p className="text-stone-600 mb-3">
                 Share what motivates you on this wellness journey
               </p>
               <Button
                 onClick={() => setIsEditing(true)}
                 size="sm"
-                className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700"
+                className="bg-slate-800 hover:bg-slate-700"
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Write Your Why

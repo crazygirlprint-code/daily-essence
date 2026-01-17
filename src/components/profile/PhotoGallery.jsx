@@ -40,18 +40,18 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white/50 dark:bg-purple-900/30 rounded-2xl p-6 border border-stone-300 dark:border-rose-500/30"
+        className="bg-stone-100/50 rounded-2xl p-6 border border-stone-300"
       >
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-xl font-serif text-neutral-900 dark:text-stone-100">My Wellness Journey</h3>
-            <p className="text-sm text-stone-600 dark:text-stone-400 mt-1">Moments that matter</p>
+            <h3 className="text-xl font-serif text-stone-900">My Wellness Journey</h3>
+            <p className="text-sm text-stone-600 mt-1">Moments that matter</p>
           </div>
           <Button
             onClick={() => document.getElementById('gallery-upload').click()}
             disabled={uploading}
             size="sm"
-            className="gap-2 bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700"
+            className="gap-2 bg-slate-800 hover:bg-slate-700"
           >
             {uploading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -70,15 +70,15 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
         </div>
 
         {photos.length === 0 ? (
-          <div className="text-center py-12 border-2 border-dashed border-stone-300 dark:border-rose-500/30 rounded-xl">
-            <p className="text-stone-600 dark:text-stone-400 mb-4">
+          <div className="text-center py-12 border-2 border-dashed border-stone-300 rounded-xl">
+            <p className="text-stone-600 mb-4">
               No photos yet. Start capturing your wellness journey!
             </p>
             <Button
               onClick={() => document.getElementById('gallery-upload').click()}
               disabled={uploading}
               size="sm"
-              className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700"
+              className="bg-slate-800 hover:bg-slate-700"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Your First Photo
@@ -93,7 +93,7 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ delay: index * 0.05 }}
-                className="relative group aspect-square rounded-xl overflow-hidden bg-stone-200 dark:bg-rose-950/30"
+                className="relative group aspect-square rounded-xl overflow-hidden bg-stone-200"
               >
                 <img
                   src={photo}
