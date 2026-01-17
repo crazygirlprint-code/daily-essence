@@ -243,17 +243,17 @@ export default function Home() {
                     <Link key={link.name} to={createPageUrl(link.page)}>
                       <motion.div
                         whileTap={{ scale: 0.98 }}
-                        className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-stone-100/50 text-stone-900 border border-stone-300 shadow-sm"
+                        className={`relative overflow-hidden flex items-center gap-4 p-5 rounded-xl ${link.color} ${link.textColor} border-0 shadow-lg`}
                       >
                         <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
                         <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30">
                           <Icon className="w-6 h-6" strokeWidth={1.5} />
                         </div>
-                        <div className="flex-1">
+                        <div className="flex-1 relative z-10">
                           <p className="text-[10px] uppercase tracking-widest opacity-70 mb-0.5">Recommended Now</p>
                           <h3 className="font-serif text-lg">{link.name}</h3>
                         </div>
-                        <Sparkles className="w-5 h-5 opacity-50" strokeWidth={1.5} />
+                        <Sparkles className="w-5 h-5 opacity-40" strokeWidth={1.5} />
                       </motion.div>
                     </Link>
                   );
