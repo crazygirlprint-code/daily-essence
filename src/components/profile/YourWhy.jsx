@@ -39,7 +39,7 @@ export default function YourWhy({ user, onUpdate }) {
             <Heart className="w-5 h-5 text-stone-700" fill="currentColor" />
           </div>
           <div>
-            <h3 className="text-xl font-serif text-stone-900">Your Why</h3>
+            <h3 className="text-xl font-serif text-stone-800">Your Why</h3>
             <p className="text-xs text-stone-600">What drives you forward</p>
           </div>
         </div>
