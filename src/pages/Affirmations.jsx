@@ -191,7 +191,7 @@ export default function Affirmations() {
                 </Button>
               </div>
               
-              <p className="mt-6 text-white/70 text-sm capitalize">
+              <p className="mt-6 text-slate-700 text-sm capitalize">
                 {currentAffirmation.category}
               </p>
             </div>
