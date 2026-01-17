@@ -56,13 +56,13 @@ export default function Activities() {
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
       <div className="max-w-3xl mx-auto px-4 py-8 pb-20">
         {/* Header */}
-         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-           <div className="flex items-center justify-between mb-6">
-             <div>
-               <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100">Activity Log</h1>
-               <p className="text-stone-600 dark:text-stone-400 text-sm mt-1">Track daily activities and their impact on your mood</p>
-             </div>
-             <Button onClick={() => setShowLogger(true)} className="bg-amber-600 hover:bg-amber-700 dark:bg-rose-600 dark:hover:bg-rose-700 text-white gap-2">
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">Activity Log</h1>
+              <p className="text-stone-600 dark:text-stone-400 text-sm mt-1">Track daily activities and their impact on your mood</p>
+            </div>
+            <Button onClick={() => setShowLogger(true)} className="bg-amber-600 dark:bg-rose-600 hover:bg-amber-700 dark:hover:bg-rose-700 gap-2">
               <Plus className="w-4 h-4" />
               Log Activity
             </Button>
@@ -75,7 +75,7 @@ export default function Activities() {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-stone-300 bg-white text-slate-900"
+              className="px-4 py-2 rounded-lg border border-stone-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-900 dark:text-stone-100"
             />
           </div>
         </motion.div>
@@ -87,17 +87,17 @@ export default function Activities() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-3 gap-4 mb-8"
           >
-            <div className="bg-white/50 rounded-xl p-4 border border-stone-300">
+            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
               <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Activities</p>
-              <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.count}</p>
+              <p className="text-2xl font-serif text-amber-600">{stats.count}</p>
             </div>
-            <div className="bg-white/50 rounded-xl p-4 border border-stone-300">
+            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
               <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Total Time</p>
-              <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.totalMinutes}m</p>
+              <p className="text-2xl font-serif text-amber-600">{stats.totalMinutes}m</p>
             </div>
-            <div className="bg-white/50 rounded-xl p-4 border border-stone-300">
+            <div className="bg-white/50 rounded-xl p-4 border border-amber-200/50">
               <p className="text-xs text-stone-600 uppercase tracking-widest mb-2">Avg Energy</p>
-              <p className="text-2xl font-serif text-amber-600 dark:text-rose-400">{stats.avgEnergy}/10</p>
+              <p className="text-2xl font-serif text-amber-600">{stats.avgEnergy}/10</p>
             </div>
           </motion.div>
         )}
@@ -113,12 +113,12 @@ export default function Activities() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16 bg-white/50 rounded-2xl border border-dashed border-stone-300"
+            className="text-center py-16 bg-white/50 dark:bg-neutral-800/50 dark-luxury:bg-blue-900/30 rounded-2xl border border-dashed border-stone-300 dark:border-neutral-700"
           >
-            <Zap className="w-12 h-12 text-amber-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
+            <Zap className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-50" />
             <h3 className="text-lg font-semibold text-slate-900 mb-2">No Activities Yet</h3>
             <p className="text-stone-600 mb-6">Log your first activity to track mood and energy changes.</p>
-            <Button onClick={() => setShowLogger(true)} className="bg-amber-600 hover:bg-amber-700 dark:bg-rose-600 dark:hover:bg-rose-700 text-white">
+            <Button onClick={() => setShowLogger(true)} className="bg-amber-600 dark:bg-rose-600 hover:bg-amber-700 dark:hover:bg-rose-700">
               Log Your First Activity
             </Button>
           </motion.div>

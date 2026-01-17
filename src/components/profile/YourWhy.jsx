@@ -35,7 +35,7 @@ export default function YourWhy({ user, onUpdate }) {
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-rose-600 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
             <Heart className="w-5 h-5 text-white" fill="white" />
           </div>
           <div>
@@ -47,7 +47,7 @@ export default function YourWhy({ user, onUpdate }) {
           <Button
             onClick={() => setIsEditing(true)}
             size="sm"
-            className="gap-2 bg-rose-600 hover:bg-rose-700 text-white"
+            className="gap-2 bg-slate-800 hover:bg-slate-700"
           >
             <Edit className="w-3.5 h-3.5" />
             Edit
@@ -78,7 +78,7 @@ export default function YourWhy({ user, onUpdate }) {
               onClick={handleSave}
               size="sm"
               disabled={saving}
-              className="bg-rose-600 hover:bg-rose-700 text-white"
+              className="bg-slate-800 hover:bg-slate-700"
             >
               {saving ? (
                 <>Saving...</>
@@ -105,7 +105,7 @@ export default function YourWhy({ user, onUpdate }) {
               <Button
                 onClick={() => setIsEditing(true)}
                 size="sm"
-                className="bg-rose-600 hover:bg-rose-700 text-white"
+                className="bg-slate-800 hover:bg-slate-700"
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Write Your Why
