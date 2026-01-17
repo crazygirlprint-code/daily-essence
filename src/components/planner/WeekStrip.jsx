@@ -52,6 +52,14 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
             <span className="text-lg mb-0.5">
               {getWeatherIcon(weatherForDay?.icon)}
             </span>
+            {weatherForDay && (
+              <span className={cn(
+                'text-xs font-semibold mb-1',
+                isSelected ? 'text-white' : 'text-stone-700 dark:text-stone-400'
+              )}>
+                {Math.round(weatherForDay.temp)}°
+              </span>
+            )}
             <span className={cn(
               'text-[9px] font-medium uppercase tracking-widest mb-0.5',
                 isSelected ? 'text-white/90' : 'text-stone-500 dark:text-stone-400'
