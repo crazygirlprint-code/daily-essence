@@ -258,12 +258,12 @@ export default function Profile() {
               ))}
             </div>
           ) : activeGoals.length === 0 ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16 bg-white/50 rounded-2xl border border-dashed border-stone-300"
-            >
-              <Sparkles className="w-12 h-12 text-amber-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
+           <motion.div
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             className="text-center py-16 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-rose-950/30 dark:to-pink-950/20 rounded-2xl border border-dashed border-amber-300 dark:border-rose-500/30"
+           >
+             <Sparkles className="w-12 h-12 text-amber-500 dark:text-rose-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-slate-900 mb-2">No Wellness Goals Yet</h3>
               <p className="text-stone-600 mb-6">Set your first wellness goal to get personalized AI insights.</p>
               <Button onClick={() => setShowAddGoal(true)} className="bg-slate-700 hover:bg-slate-800 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700">
