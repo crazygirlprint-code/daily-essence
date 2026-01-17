@@ -197,15 +197,15 @@ export default function Home() {
         {/* Progress Report */}
         <motion.div 
           whileTap={{ scale: 0.98 }}
-          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-stone-100/50 text-stone-900 border border-stone-300 shadow-sm mb-8 cursor-pointer"
+          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-gradient-to-br from-purple-400 via-pink-400 to-rose-400 text-white border-0 shadow-lg shadow-purple-500/40 mb-8 cursor-pointer"
           onClick={() => setShowStatsDialog(true)}
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
           <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30">
-            <Trophy className="w-6 h-6" strokeWidth={1.5} />
+            <Trophy className="w-6 h-6 text-white" strokeWidth={1.5} />
           </div>
           <div className="flex-1 relative z-10">
-            <p className="text-[10px] uppercase tracking-widest opacity-70 mb-0.5">Your Progress</p>
+            <p className="text-[10px] uppercase tracking-widest opacity-90 mb-0.5">Your Progress</p>
             <div className="flex items-center gap-3">
               <div>
                 <span className="font-serif text-lg font-semibold">{progress.points || 0}</span>
@@ -222,7 +222,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <Sparkles className="w-5 h-5 opacity-50" strokeWidth={1.5} />
+          <Sparkles className="w-5 h-5 opacity-40 text-white" strokeWidth={1.5} />
         </motion.div>
 
         {/* Quick Links */}
