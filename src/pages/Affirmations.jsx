@@ -27,12 +27,12 @@ const DEFAULT_AFFIRMATIONS = [
 ];
 
 const categoryColors = {
-  confidence: 'from-purple-400 to-indigo-500',
-  gratitude: 'from-amber-400 to-orange-500',
+  confidence: 'from-plum-400 to-plum-500',
+  gratitude: 'from-mauve-400 to-mauve-500',
   strength: 'from-rose-400 to-pink-500',
-  peace: 'from-cyan-400 to-blue-500',
-  success: 'from-emerald-400 to-teal-500',
-  love: 'from-pink-400 to-rose-500'
+  peace: 'from-plum-300 to-plum-400',
+  success: 'from-mauve-300 to-mauve-400',
+  love: 'from-rose-400 to-pink-500'
 };
 
 export default function Affirmations() {
