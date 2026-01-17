@@ -64,9 +64,9 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 md:bottom-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-50 md:max-w-lg md:w-full"
+            className="fixed bottom-0 left-0 right-0 md:bottom-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-50 w-full md:w-full md:max-w-lg px-0 md:px-4"
           >
-            <div className="bg-white rounded-t-3xl md:rounded-3xl shadow-2xl p-6 max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-t-3xl md:rounded-3xl shadow-2xl p-6 max-h-[85vh] overflow-y-auto pb-32 md:pb-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-slate-800">Add Task</h2>
                 <button
