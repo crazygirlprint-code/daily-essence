@@ -10,25 +10,25 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-lg p-5 text-stone-100 shadow-lg mb-6 overflow-hidden relative border border-stone-700"
+      className="bg-white/50 rounded-lg p-5 shadow-lg mb-6 overflow-hidden relative border border-stone-200"
     >
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-700/10 to-transparent rounded-full blur-2xl" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-amber-800/10 to-transparent rounded-full blur-2xl" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100/30 rounded-full blur-2xl" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-100/20 rounded-full blur-2xl" />
       
       <div className="relative z-10">
         {/* Top row - Points and Level */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-lg bg-amber-700/20 flex items-center justify-center border border-amber-700/30">
-              <Trophy className="w-6 h-6 text-amber-400" strokeWidth={1.5} />
+            <div className="w-12 h-12 rounded-lg bg-amber-100/50 flex items-center justify-center border border-amber-200">
+              <Trophy className="w-6 h-6 text-amber-600" strokeWidth={1.5} />
             </div>
             <div>
-              <p className="text-amber-400 text-[10px] font-medium uppercase tracking-widest">Level {level}</p>
+              <p className="text-amber-700 text-[10px] font-medium uppercase tracking-widest">Level {level}</p>
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-amber-400 fill-amber-400" strokeWidth={1.5} />
-                <span className="text-2xl font-serif">{points.toLocaleString()}</span>
-                <span className="text-stone-400 text-xs uppercase tracking-widest">pts</span>
+                <Zap className="w-4 h-4 text-amber-600 fill-amber-600" strokeWidth={1.5} />
+                <span className="text-2xl font-serif text-slate-900">{points.toLocaleString()}</span>
+                <span className="text-stone-600 text-xs uppercase tracking-widest">pts</span>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
                 cy="32"
                 r="28"
                 fill="none"
-                stroke="rgba(255,255,255,0.1)"
+                stroke="rgba(0,0,0,0.1)"
                 strokeWidth="4"
               />
               <motion.circle
@@ -65,24 +65,24 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
               </defs>
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-lg font-serif">{completionRate}%</span>
+              <span className="text-lg font-serif text-slate-900">{completionRate}%</span>
             </div>
           </div>
         </div>
         
         {/* Quick stats row */}
-        <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-stone-700">
+        <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-stone-200">
           <div className="text-center">
-            <p className="text-2xl font-serif text-amber-300">{tasksCompleted}</p>
-            <p className="text-[9px] text-stone-400 uppercase tracking-widest">Done Today</p>
+            <p className="text-2xl font-serif text-amber-600">{tasksCompleted}</p>
+            <p className="text-[9px] text-slate-600 uppercase tracking-widest">Done Today</p>
           </div>
-          <div className="text-center border-x border-stone-700">
-            <p className="text-2xl font-serif text-stone-300">{tasksToday - tasksCompleted}</p>
-            <p className="text-[9px] text-stone-400 uppercase tracking-widest">Remaining</p>
+          <div className="text-center border-x border-stone-200">
+            <p className="text-2xl font-serif text-slate-700">{tasksToday - tasksCompleted}</p>
+            <p className="text-[9px] text-slate-600 uppercase tracking-widest">Remaining</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-serif text-amber-300">+10</p>
-            <p className="text-[9px] text-stone-400 uppercase tracking-widest">Per Task</p>
+            <p className="text-2xl font-serif text-amber-600">+10</p>
+            <p className="text-[9px] text-slate-600 uppercase tracking-widest">Per Task</p>
           </div>
         </div>
       </div>
