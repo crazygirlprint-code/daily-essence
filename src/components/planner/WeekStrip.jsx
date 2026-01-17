@@ -116,6 +116,6 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
         );
       })}
       </div>
-    </div>
-  );
-}
+      </div>
+      );
+      }
