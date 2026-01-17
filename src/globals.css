@@ -39,11 +39,25 @@ css
       }
 
       .animate-sparkle {
-        animation: sparkle-day 2s ease-in-out infinite;
+        animation: sparkle-day 2s ease-in-out infinite !important;
+        background-color: #fbbf24 !important;
+        box-shadow: 0 0 15px rgba(251, 191, 36, 0.7), 0 0 30px rgba(251, 191, 36, 0.4) !important;
+        color: white !important;
       }
 
       .dark .animate-sparkle {
-        animation: sparkle-night 2s ease-in-out infinite;
+        animation: sparkle-night 2s ease-in-out infinite !important;
+        background-color: #3b82f6 !important;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.7), 0 0 30px rgba(59, 130, 246, 0.4) !important;
+        color: white !important;
+      }
+
+      .animate-sparkle:hover {
+        opacity: 0.9 !important;
+      }
+
+      .animate-sparkle:disabled {
+        opacity: 0.5 !important;
       }
 
 /* Dark Luxury Theme - Slate & Amber */
