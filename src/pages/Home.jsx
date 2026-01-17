@@ -162,45 +162,33 @@ export default function Home() {
 
         {/* Progress Report */}
         <motion.div 
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.99 }}
-          className="relative overflow-hidden mb-8 p-5 rounded-xl bg-white/50 border border-stone-200 cursor-pointer shadow-sm"
+          whileTap={{ scale: 0.98 }}
+          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-amber-100/60 dark:bg-rose-900/40 text-amber-900 dark:text-rose-100 border border-stone-300 shadow-sm mb-8 cursor-pointer"
           onClick={() => setShowStatsDialog(true)}
         >
-          <div className="absolute top-0 right-0 w-20 h-20 bg-amber-100/30 dark:bg-rose-200/20 rounded-full blur-2xl" />
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-slate-900 dark:text-stone-100">Your Progress</h3>
-              <span className="text-amber-700 dark:text-rose-400 font-serif text-base font-semibold">{Math.round(getProgressToNextLevel())}%</span>
-            </div>
-            <div className="grid grid-cols-3 gap-3 mb-3">
-              <div className="text-center p-3 bg-amber-50/50 rounded-lg border border-amber-100">
-                <p className="text-2xl font-bold text-amber-600">{progress.points || 0}</p>
-                <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Points</p>
+          <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
+          <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30">
+            <Trophy className="w-6 h-6" strokeWidth={1.5} />
+          </div>
+          <div className="flex-1 relative z-10">
+            <p className="text-[10px] uppercase tracking-widest opacity-70 mb-0.5">Your Progress</p>
+            <div className="flex items-center gap-3">
+              <div>
+                <span className="font-serif text-lg font-semibold">{progress.points || 0}</span>
+                <span className="text-xs opacity-70 ml-1">pts</span>
               </div>
-              <div className="text-center p-3 bg-rose-50/50 rounded-lg border border-rose-100">
-                <p className="text-2xl font-bold text-rose-600">{progress.level || 1}</p>
-                <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Level</p>
+              <div className="w-px h-4 bg-white/30" />
+              <div>
+                <span className="font-serif text-lg font-semibold">L{progress.level || 1}</span>
               </div>
-              <div className="text-center p-3 bg-orange-50/50 rounded-lg border border-orange-100">
-                <p className="text-2xl font-bold text-orange-600">{progress.streak_days || 0}</p>
-                <p className="text-[10px] text-slate-600 uppercase tracking-widest mt-1">Streak</p>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-stone-700 dark:text-stone-300 uppercase tracking-widest text-[10px] font-medium">Progress to Level {(progress.level || 1) + 1}</span>
-              </div>
-              <div className="h-2 bg-stone-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${getProgressToNextLevel()}%` }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="h-full bg-gradient-to-r from-amber-600 dark:from-rose-500 dark:to-pink-500 to-amber-400 rounded-full shadow-sm"
-                />
+              <div className="w-px h-4 bg-white/30" />
+              <div>
+                <span className="font-serif text-lg font-semibold">{progress.streak_days || 0}</span>
+                <span className="text-xs opacity-70 ml-1">🔥</span>
               </div>
             </div>
           </div>
+          <Sparkles className="w-5 h-5 opacity-50" strokeWidth={1.5} />
         </motion.div>
 
         {/* Quick Links */}
