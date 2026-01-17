@@ -4,13 +4,24 @@ import { format, addDays, startOfWeek, isToday, isSameDay } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/components/hooks/useTheme';
 
-const getWeatherIcon = (dayIndex) => {
-  // Simple mock weather - in production, fetch from API
-  const weather = ['☀️', '⛅', '🌤️', '☁️', '🌧️', '⛅', '☀️'];
-  return weather[dayIndex % 7];
+const getWeatherIcon = (iconCode) => {
+  if (!iconCode) return '☀️';
+  // OpenWeather icon mapping
+  const iconMap = {
+    '01d': '☀️', '01n': '🌙',
+    '02d': '⛅', '02n': '⛅',
+    '03d': '☁️', '03n': '☁️',
+    '04d': '☁️', '04n': '☁️',
+    '09d': '🌧️', '09n': '🌧️',
+    '10d': '🌧️', '10n': '🌧️',
+    '11d': '⛈️', '11n': '⛈️',
+    '13d': '❄️', '13n': '❄️',
+    '50d': '🌫️', '50n': '🌫️',
+  };
+  return iconMap[iconCode] || '☀️';
 };
 
-export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {} }) {
+export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}, forecast = [] }) {
   const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   
@@ -21,6 +32,7 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
         const taskCount = tasksByDate[dateKey] || 0;
         const isSelected = isSameDay(day, selectedDate);
         const today = isToday(day);
+        const weatherForDay = forecast[index];
         
         return (
           <motion.button
@@ -35,9 +47,10 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
                     ? 'bg-amber-50 dark:bg-rose-950/40 text-slate-700 dark:text-rose-300 border border-amber-200/60 dark:border-rose-500/50'
                     : 'bg-white/50 text-stone-700 hover:bg-stone-50 border border-stone-300'
             )}
+            title={weatherForDay ? `${weatherForDay.description} ${Math.round(weatherForDay.temp)}°C` : ''}
           >
             <span className="text-lg mb-0.5">
-              {getWeatherIcon(index)}
+              {getWeatherIcon(weatherForDay?.icon)}
             </span>
             <span className={cn(
               'text-[9px] font-medium uppercase tracking-widest mb-0.5',
