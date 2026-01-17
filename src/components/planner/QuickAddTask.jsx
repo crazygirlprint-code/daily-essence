@@ -128,14 +128,19 @@ export default function QuickAddTask({ onAdd, familyMembers = [], isOpen, onOpen
                     <PopoverTrigger asChild>
                       <Button variant="outline" className="rounded-xl justify-start">
                         <Calendar className="w-4 h-4 mr-2 text-slate-400" />
-                        {task.due_date ? format(new Date(task.due_date), 'MMM d') : 'Date'}
+                        {task.due_date ? format(new Date(task.due_date + 'T00:00:00'), 'MMM d') : 'Date'}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
                       <CalendarComponent
                         mode="single"
-                        selected={task.due_date ? new Date(task.due_date) : undefined}
-                        onSelect={(date) => setTask({ ...task, due_date: date ? format(date, 'yyyy-MM-dd') : '' })}
+                        selected={task.due_date ? new Date(task.due_date + 'T00:00:00') : undefined}
+                        onSelect={(date) => {
+                          const year = date.getFullYear();
+                          const month = String(date.getMonth() + 1).padStart(2, '0');
+                          const day = String(date.getDate()).padStart(2, '0');
+                          setTask({ ...task, due_date: `${year}-${month}-${day}` });
+                        }}
                       />
                     </PopoverContent>
                   </Popover>
