@@ -178,10 +178,10 @@ export default function Home() {
   const allTasksDone = tasksForDate.length > 0 && pendingTasks.length === 0 && selectedCategory === 'all';
 
   const quickLinks = [
-    { name: 'Affirmations', icon: Sparkles, color: 'bg-amber-100/60 dark:bg-rose-900/40', textColor: 'text-amber-900 dark:text-rose-100', page: 'Affirmations' },
-    { name: 'Beauty', icon: Heart, color: 'bg-stone-200/50 dark:bg-pink-900/30', textColor: 'text-stone-900 dark:text-pink-100', page: 'Beauty' },
-    { name: 'Meditation', icon: Leaf, color: 'bg-neutral-200/50 dark:bg-rose-900/40', textColor: 'text-neutral-900 dark:text-rose-100', page: 'Meditation' },
-    { name: 'Self-Care', icon: Heart, color: 'bg-amber-100/50 dark:bg-pink-900/30', textColor: 'text-amber-900 dark:text-pink-100', page: 'SelfCare' },
+    { name: 'Affirmations', icon: Sparkles, color: 'bg-gradient-to-br from-purple-400 to-purple-500', textColor: 'text-white', page: 'Affirmations' },
+    { name: 'Beauty', icon: Heart, color: 'bg-gradient-to-br from-pink-400 to-pink-500', textColor: 'text-white', page: 'Beauty' },
+    { name: 'Meditation', icon: Leaf, color: 'bg-gradient-to-br from-rose-400 to-rose-500', textColor: 'text-white', page: 'Meditation' },
+    { name: 'Self-Care', icon: Heart, color: 'bg-gradient-to-br from-fuchsia-400 to-fuchsia-500', textColor: 'text-white', page: 'SelfCare' },
   ];
 
   return (
@@ -267,7 +267,7 @@ export default function Home() {
                       <Link key={link.name} to={createPageUrl(link.page)}>
                         <motion.div
                           whileTap={{ scale: 0.95 }}
-                          className="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/50 text-stone-900 border border-stone-300/30"
+                          className={`flex flex-col items-center gap-2 p-4 rounded-lg ${link.color} ${link.textColor} border-0 shadow-lg`}
                         >
                           <Icon className="w-5 h-5" strokeWidth={1.5} />
                           <span className="text-[9px] font-medium uppercase tracking-widest">{link.name}</span>
