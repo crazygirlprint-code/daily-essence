@@ -393,14 +393,16 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             >
               <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.5} />
             </Button>
-            <Button
-            onClick={() => setIsExpanded(false)}
-            size="sm"
-            variant="ghost"
-            className="text-stone-700 hover:bg-stone-200"
-            >
-              <X className="w-4 h-4" strokeWidth={1.5} />
-            </Button>
+            {insights && (
+              <Button
+              onClick={() => setIsExpanded(false)}
+              size="sm"
+              variant="ghost"
+              className="text-stone-700 hover:bg-stone-200"
+              >
+                <X className="w-4 h-4" strokeWidth={1.5} />
+              </Button>
+            )}
           </div>
         </div>
 
