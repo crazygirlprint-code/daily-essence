@@ -338,7 +338,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 transition={{ duration: 3, repeat: Infinity }}
                 className="w-10 h-10 rounded-xl bg-white/60 flex items-center justify-center border border-stone-300 shadow-lg shadow-stone-200/20"
               >
-                <Sparkles className="w-5 h-5 text-stone-700" strokeWidth={1.5} />
+                <Sparkles className="w-5 h-5 text-amber-500" strokeWidth={1.5} />
               </motion.div>
               <div>
                 <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
