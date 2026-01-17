@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { format, parseISO, isToday } from 'date-fns';
@@ -36,6 +36,7 @@ export default function Home() {
   const [unlockedBadge, setUnlockedBadge] = useState(null);
   const [showStatsDialog, setShowStatsDialog] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
+  const [weatherForecast, setWeatherForecast] = useState([]);
 
   useTimezone();
   const queryClient = useQueryClient();
@@ -44,6 +45,35 @@ export default function Home() {
   // Fetch current user
   React.useEffect(() => {
     base44.auth.me().then(setUser).catch(() => {});
+  }, []);
+  
+  // Fetch weather forecast
+  useEffect(() => {
+    const getWeather = async () => {
+      try {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              const { latitude, longitude } = position.coords;
+              const response = await base44.functions.invoke('getWeather', {
+                lat: latitude,
+                lon: longitude,
+              });
+              if (response.data?.forecast) {
+                setWeatherForecast(response.data.forecast);
+              }
+            },
+            (error) => {
+              console.log('Geolocation error, using default:', error);
+            }
+          );
+        }
+      } catch (error) {
+        console.error('Weather fetch error:', error);
+      }
+    };
+    
+    getWeather();
   }, []);
   
   // Fetch tasks
@@ -252,6 +282,7 @@ export default function Home() {
             selectedDate={selectedDate}
             onDateSelect={setSelectedDate}
             tasksByDate={tasksByDate}
+            forecast={weatherForecast}
           />
         </div>
         
