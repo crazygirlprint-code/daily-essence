@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Heart, UtensilsCrossed, RefreshCw, ChevronRight, Clock } from 'lucide-react';
+import { Sparkles, Heart, UtensilsCrossed, RefreshCw, ChevronRight, Clock, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { format, addDays, differenceInDays, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
@@ -11,10 +11,11 @@ import { usePremiumCheck } from '@/components/premium/usePremiumCheck';
 import PremiumGate from '@/components/premium/PremiumGate';
 
 export default function AIInsights() {
-  const [insights, setInsights] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const { hasAccess, isLoading: checkingAccess } = usePremiumCheck('Flourish');
-  const [trialInfo, setTrialInfo] = useState({ inTrial: false, daysLeft: 0 });
+   const [insights, setInsights] = useState(null);
+   const [isLoading, setIsLoading] = useState(false);
+   const [isExpanded, setIsExpanded] = useState(true);
+   const { hasAccess, isLoading: checkingAccess } = usePremiumCheck('Flourish');
+   const [trialInfo, setTrialInfo] = useState({ inTrial: false, daysLeft: 0 });
 
   const { data: tasks = [] } = useQuery({
     queryKey: ['tasks'],
@@ -319,6 +320,36 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
     );
   }
 
+  if (!isExpanded) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative overflow-hidden bg-stone-100/50 rounded-xl p-6 border border-stone-300 cursor-pointer shadow-sm"
+        onClick={() => setIsExpanded(true)}
+      >
+        <div className="absolute top-0 right-0 w-32 h-32 bg-white/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/20 rounded-full blur-2xl" />
+        
+        <div className="relative z-10">
+          <div className="flex items-center gap-3">
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="w-10 h-10 rounded-xl bg-white/60 flex items-center justify-center border border-stone-300 shadow-lg shadow-stone-200/20"
+            >
+              <Sparkles className="w-5 h-5 text-stone-700" strokeWidth={1.5} />
+            </motion.div>
+            <div>
+              <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
+              <p className="text-[10px] text-stone-600 uppercase tracking-widest">Click to expand</p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -352,15 +383,25 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               </div>
             </div>
           </div>
-          <Button
-          onClick={generateInsights}
-          disabled={isLoading}
-          size="sm"
-          variant="ghost"
-          className="text-stone-700 hover:bg-stone-200"
-          >
-            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.5} />
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+            onClick={generateInsights}
+            disabled={isLoading}
+            size="sm"
+            variant="ghost"
+            className="text-stone-700 hover:bg-stone-200"
+            >
+              <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.5} />
+            </Button>
+            <Button
+            onClick={() => setIsExpanded(false)}
+            size="sm"
+            variant="ghost"
+            className="text-stone-700 hover:bg-stone-200"
+            >
+              <X className="w-4 h-4" strokeWidth={1.5} />
+            </Button>
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
