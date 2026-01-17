@@ -77,9 +77,8 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
             <Button
               onClick={() => document.getElementById('gallery-upload').click()}
               disabled={uploading}
-              variant="outline"
               size="sm"
-              className="dark:border-rose-500/30"
+              className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Your First Photo
