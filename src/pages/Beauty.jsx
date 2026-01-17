@@ -137,14 +137,14 @@ export default function Beauty() {
           <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
             <TabsTrigger
               value="morning"
-              className="rounded-xl data-[state=active]:bg-gradient-to-r dark:data-[state=active]:from-rose-500 dark:data-[state=active]:to-pink-500 data-[state=active]:from-amber-400 data-[state=active]:to-orange-400 data-[state=active]:text-white"
+              className="rounded-xl data-[state=active]:bg-gradient-to-r dark:data-[state=active]:from-rose-500 dark:data-[state=active]:to-pink-500 data-[state=active]:from-mauve-500 data-[state=active]:to-mauve-600 data-[state=active]:text-white"
             >
               <Sun className="w-4 h-4 mr-2" />
               Morning
             </TabsTrigger>
             <TabsTrigger
               value="night"
-              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-400 data-[state=active]:to-purple-500 data-[state=active]:text-white"
+              className="rounded-xl data-[state=active]:bg-gradient-to-r dark:data-[state=active]:from-rose-500 dark:data-[state=active]:to-pink-500 data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white"
             >
               <Moon className="w-4 h-4 mr-2" />
               Night
@@ -153,10 +153,10 @@ export default function Beauty() {
           
           {/* Progress Card */}
           <div className={cn(
-            'rounded-2xl p-6 mb-6 text-white',
-            activeTab === 'morning' 
-              ? 'bg-gradient-to-r from-amber-400 dark:from-rose-500 dark:to-pink-500 to-orange-400'
-              : 'bg-gradient-to-r from-indigo-400 to-purple-500'
+           'rounded-2xl p-6 mb-6 text-white',
+           activeTab === 'morning' 
+             ? 'bg-gradient-to-r from-mauve-500 dark:from-rose-500 dark:to-pink-500 to-mauve-600'
+             : 'bg-gradient-to-r from-purple-500 dark:from-rose-500 dark:to-pink-500 to-purple-600'
           )}>
             <div className="flex justify-between items-center mb-3">
               <h3 className="font-semibold">Today's Progress</h3>
@@ -259,8 +259,8 @@ export default function Beauty() {
               className={cn(
                 'w-full rounded-xl h-12',
                 activeTab === 'morning'
-                  ? 'bg-gradient-to-r from-amber-400 dark:from-rose-500 dark:to-pink-500 to-orange-400'
-                  : 'bg-gradient-to-r from-indigo-400 to-purple-500'
+                  ? 'bg-gradient-to-r from-mauve-500 dark:from-rose-500 dark:to-pink-500 to-mauve-600'
+                  : 'bg-gradient-to-r from-purple-500 dark:from-rose-500 dark:to-pink-500 to-purple-600'
               )}
             >
               Add to Routine
