@@ -25,7 +25,7 @@ export default function DayHeader({ date, userName }) {
     <div className="mb-8">
       <div className="flex items-center gap-2 mb-2">
          <Icon className={`w-5 h-5 ${greeting.color}`} strokeWidth={1.5} />
-         <span className="text-stone-600 dark:text-stone-400 dark-luxury:text-amber-200/70 text-sm font-medium uppercase tracking-widest">{greeting.text}, {firstName}</span>
+         <span className="text-stone-700 dark:text-stone-200 dark-luxury:text-amber-200 text-base font-medium uppercase tracking-widest">{greeting.text}, {firstName}</span>
        </div>
 
        <h1 className="text-4xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-50 tracking-tight leading-tight">
