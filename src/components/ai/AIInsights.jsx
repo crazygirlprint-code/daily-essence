@@ -332,7 +332,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
         
         <div className="relative z-10">
           <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 flex-1 cursor-pointer" onClick={() => setIsExpanded(true)}>
+            <div className="flex items-center gap-3 flex-1">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -342,12 +342,13 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               </motion.div>
               <div>
                 <h3 className="font-serif text-lg text-stone-900">Daily Insights</h3>
-                <p className="text-[10px] text-stone-600 uppercase tracking-widest">Click to expand</p>
+                <p className="text-[10px] text-stone-600 uppercase tracking-widest">AI-Powered</p>
               </div>
             </div>
             <Button
               onClick={(e) => {
                 e.stopPropagation();
+                setIsExpanded(true);
                 generateInsights();
               }}
               disabled={isLoading}
