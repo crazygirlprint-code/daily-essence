@@ -279,7 +279,7 @@ export default function Home() {
                       onClick={() => setActiveSection(section.id)}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
-                          ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg shadow-slate-500/40 hover:from-slate-800 hover:to-slate-900'
+                          ? 'bg-slate-700 hover:bg-slate-800 text-white shadow-lg shadow-slate-500/40 dark:bg-gradient-to-r dark:from-rose-500 dark:via-rose-500 dark:to-rose-600 dark:hover:from-rose-600 dark:hover:via-rose-600 dark:hover:to-rose-700 dark:shadow-rose-500/40'
                           : 'bg-white/50 text-stone-700 border border-stone-300 hover:bg-stone-50'
                       }`}
                     >
