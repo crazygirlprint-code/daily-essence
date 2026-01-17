@@ -205,8 +205,8 @@ export default function Home() {
             <Trophy className="w-6 h-6 text-white" strokeWidth={1.5} />
           </div>
           <div className="flex-1 relative z-10">
-            <p className="text-[10px] uppercase tracking-widest opacity-90 mb-0.5">Your Progress</p>
-            <div className="flex items-center gap-3">
+            <p className="text-[10px] uppercase tracking-widest opacity-90 mb-1">Your Progress</p>
+            <div className="flex items-center gap-3 mb-2">
               <div>
                 <span className="font-serif text-lg font-semibold">{progress.points || 0}</span>
                 <span className="text-xs opacity-70 ml-1">pts</span>
@@ -220,6 +220,12 @@ export default function Home() {
                 <span className="font-serif text-lg font-semibold">{progress.streak_days || 0}</span>
                 <span className="text-xs opacity-70 ml-1">🔥</span>
               </div>
+            </div>
+            <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-white/70 rounded-full transition-all duration-500"
+                style={{ width: `${getProgressToNextLevel()}%` }}
+              />
             </div>
           </div>
           <Sparkles className="w-5 h-5 opacity-40 text-white" strokeWidth={1.5} />
