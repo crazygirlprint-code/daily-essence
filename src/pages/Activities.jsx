@@ -75,7 +75,7 @@ export default function Activities() {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-stone-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-slate-900 dark:text-stone-100"
+              className="px-4 py-2 rounded-lg border border-stone-300 bg-white text-slate-900"
             />
           </div>
         </motion.div>
