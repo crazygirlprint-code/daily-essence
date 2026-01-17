@@ -4,8 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Flame, Trophy, Lightbulb, Image as ImageIcon, Star } from 'lucide-react';
+import { Flame, Trophy, Lightbulb, Image as ImageIcon, Star, Camera, X, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { base44 } from '@/api/base44Client';
 
 const postTypes = [
   { value: 'streak', label: 'Share Your Streak', icon: Flame },
@@ -19,6 +20,22 @@ export default function CreatePostDialog({ isOpen, onOpenChange, onSubmit, isLoa
   const [postType, setPostType] = useState('accomplishment');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [uploadingImage, setUploadingImage] = useState(false);
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      setImageUrl(file_url);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    } finally {
+      setUploadingImage(false);
+    }
+  };
 
   const handleSubmit = () => {
     if (content.trim()) {
@@ -77,14 +94,50 @@ export default function CreatePostDialog({ isOpen, onOpenChange, onSubmit, isLoa
             />
           </div>
 
-          {/* Image URL */}
+          {/* Image Upload */}
           <div>
-            <label className="text-sm text-slate-600 font-medium block mb-2">Image URL (optional)</label>
-            <Input
-              placeholder="https://example.com/image.jpg"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              className="rounded-xl"
+            <label className="text-sm text-slate-600 font-medium block mb-2">Add Photo (optional)</label>
+            
+            {imageUrl ? (
+              <div className="relative rounded-xl overflow-hidden border-2 border-stone-200">
+                <img 
+                  src={imageUrl} 
+                  alt="Preview" 
+                  className="w-full h-48 object-cover"
+                />
+                <button
+                  onClick={() => setImageUrl('')}
+                  className="absolute top-2 right-2 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => document.getElementById('post-image-input').click()}
+                disabled={uploadingImage}
+                className="w-full h-32 border-2 border-dashed border-stone-300 rounded-xl hover:border-amber-400 hover:bg-amber-50/50 transition-all flex flex-col items-center justify-center gap-2 group"
+              >
+                {uploadingImage ? (
+                  <>
+                    <Loader2 className="w-6 h-6 text-stone-400 animate-spin" />
+                    <span className="text-sm text-stone-500">Uploading...</span>
+                  </>
+                ) : (
+                  <>
+                    <Camera className="w-6 h-6 text-stone-400 group-hover:text-amber-500 transition-colors" />
+                    <span className="text-sm text-stone-500 group-hover:text-amber-600">Click to upload photo</span>
+                  </>
+                )}
+              </button>
+            )}
+            <input
+              id="post-image-input"
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="hidden"
             />
           </div>
 
