@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { format, parseISO, isToday } from 'date-fns';
 import { useTimezone } from '@/components/hooks/useTimezone';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Calendar, Users, Sparkles, Heart, Leaf, UtensilsCrossed, StickyNote, Pencil, Trophy } from 'lucide-react';
+import { Plus, Calendar, Users, Sparkles, Heart, Leaf, UtensilsCrossed, StickyNote, Pencil, Trophy, Smile } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Link } from 'react-router-dom';
@@ -179,7 +179,7 @@ export default function Home() {
 
   const quickLinks = [
     { name: 'Affirmations', icon: Sparkles, color: 'bg-gradient-to-br from-purple-400 to-purple-500', textColor: 'text-white', page: 'Affirmations' },
-    { name: 'Beauty', icon: Heart, color: 'bg-gradient-to-br from-pink-400 to-pink-500', textColor: 'text-white', page: 'Beauty' },
+    { name: 'Beauty', icon: Smile, color: 'bg-gradient-to-br from-pink-400 to-pink-500', textColor: 'text-white', page: 'Beauty' },
     { name: 'Meditation', icon: Leaf, color: 'bg-gradient-to-br from-rose-400 to-rose-500', textColor: 'text-white', page: 'Meditation' },
     { name: 'Self-Care', icon: Heart, color: 'bg-gradient-to-br from-fuchsia-400 to-fuchsia-500', textColor: 'text-white', page: 'SelfCare' },
   ];
