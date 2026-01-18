@@ -336,15 +336,15 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="w-10 h-10 rounded-xl bg-purple-200 dark:bg-purple-700/50 flex items-center justify-center border border-purple-400 dark:border-purple-500 shadow-lg shadow-purple-400/30 dark:shadow-purple-500/30 animate-shimmer bg-gradient-to-r from-purple-200 via-purple-100 to-purple-200 dark:from-purple-700/50 dark:via-purple-600/60 dark:to-purple-700/50 bg-[length:200%_100%]"
+                className="w-10 h-10 rounded-xl bg-rose-200 dark:bg-rose-700/50 flex items-center justify-center border border-rose-400 dark:border-rose-500 shadow-lg shadow-rose-400/30 dark:shadow-rose-500/30 animate-shimmer bg-gradient-to-r from-rose-200 via-pink-100 to-rose-200 dark:from-rose-700/50 dark:via-rose-600/60 dark:to-rose-700/50 bg-[length:200%_100%]"
               >
-                <Sparkles className="w-5 h-5 text-purple-700 dark:text-purple-200 drop-shadow-md" strokeWidth={1.5} />
+                <Sparkles className="w-5 h-5 text-rose-700 dark:text-rose-200 drop-shadow-md" strokeWidth={1.5} />
               </motion.div>
               <div>
-                <h3 className="font-serif text-lg text-purple-900 dark:text-purple-50">Daily Insights</h3>
-                <p className="text-[10px] text-purple-700 dark:text-purple-300 uppercase tracking-widest">AI-Powered</p>
+                <h3 className="font-serif text-lg text-rose-900 dark:text-rose-50">Daily Insights</h3>
+                <p className="text-[10px] text-rose-700 dark:text-rose-300 uppercase tracking-widest">AI-Powered</p>
               </div>
-            </div>
+              </div>
             <Button
               onClick={(e) => {
                 e.stopPropagation();
