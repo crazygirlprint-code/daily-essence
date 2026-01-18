@@ -15,6 +15,7 @@ export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [showEventDialog, setShowEventDialog] = useState(false);
+  const [editingEventId, setEditingEventId] = useState(null);
   const [newEvent, setNewEvent] = useState({
     title: '',
     date: format(new Date(), 'yyyy-MM-dd'),
@@ -46,6 +47,24 @@ export default function Calendar() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['specialEvents'] });
       setShowEventDialog(false);
+      setEditingEventId(null);
+      setNewEvent({
+        title: '',
+        date: format(new Date(), 'yyyy-MM-dd'),
+        type: 'other',
+        notes: '',
+        emoji: '⭐',
+        recurring_yearly: false
+      });
+    },
+  });
+
+  const updateEventMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.SpecialEvent.update(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['specialEvents'] });
+      setShowEventDialog(false);
+      setEditingEventId(null);
       setNewEvent({
         title: '',
         date: format(new Date(), 'yyyy-MM-dd'),
@@ -168,7 +187,18 @@ export default function Calendar() {
             <p className="text-slate-600 dark:text-stone-300 text-sm">Track your tasks and events</p>
           </div>
           <Button
-            onClick={() => setShowEventDialog(true)}
+            onClick={() => {
+              setEditingEventId(null);
+              setNewEvent({
+                title: '',
+                date: format(new Date(), 'yyyy-MM-dd'),
+                type: 'other',
+                notes: '',
+                emoji: '⭐',
+                recurring_yearly: false
+              });
+              setShowEventDialog(true);
+            }}
             className="bg-slate-600 hover:bg-slate-700 dark:bg-rose-500 dark:hover:bg-rose-600 text-white gap-2"
           >
             <Plus className="w-4 h-4" />
@@ -281,7 +311,19 @@ export default function Calendar() {
                     key={event.id}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-start gap-3 p-3 bg-amber-50 dark:bg-rose-900/20 rounded-lg border border-amber-200 dark:border-rose-500/30 group"
+                    className="flex items-start gap-3 p-3 bg-amber-50 dark:bg-rose-900/20 rounded-lg border border-amber-200 dark:border-rose-500/30 group hover:bg-amber-100 dark:hover:bg-rose-900/30 cursor-pointer transition-colors"
+                    onClick={() => {
+                      setEditingEventId(event.id);
+                      setNewEvent({
+                        title: event.title,
+                        date: event.date,
+                        type: event.type,
+                        notes: event.notes || '',
+                        emoji: event.emoji || '⭐',
+                        recurring_yearly: event.recurring_yearly || false
+                      });
+                      setShowEventDialog(true);
+                    }}
                   >
                     <div className="text-2xl">{event.emoji || '⭐'}</div>
                     <div className="flex-1">
@@ -294,8 +336,11 @@ export default function Calendar() {
                       </p>
                     </div>
                     <button
-                      onClick={() => deleteEventMutation.mutate(event.id)}
-                      className="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-600 transition-all"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteEventMutation.mutate(event.id);
+                      }}
+                      className="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-600 transition-all flex-shrink-0"
                     >
                       ×
                     </button>
@@ -359,11 +404,11 @@ export default function Calendar() {
         </div>
       </div>
 
-      {/* Add Event Dialog */}
+      {/* Add/Edit Event Dialog */}
       <Dialog open={showEventDialog} onOpenChange={setShowEventDialog}>
         <DialogContent className="rounded-3xl">
           <DialogHeader>
-            <DialogTitle>Add Special Event</DialogTitle>
+            <DialogTitle>{editingEventId ? 'Edit Special Event' : 'Add Special Event'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <Input
@@ -422,11 +467,17 @@ export default function Calendar() {
             </label>
 
             <Button
-              onClick={() => createEventMutation.mutate(newEvent)}
+              onClick={() => {
+                if (editingEventId) {
+                  updateEventMutation.mutate({ id: editingEventId, data: newEvent });
+                } else {
+                  createEventMutation.mutate(newEvent);
+                }
+              }}
               disabled={!newEvent.title || !newEvent.date}
               className="w-full rounded-xl h-12 bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:to-pink-600 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:to-pink-700"
             >
-              Add Event
+              {editingEventId ? 'Update Event' : 'Add Event'}
             </Button>
           </div>
         </DialogContent>
