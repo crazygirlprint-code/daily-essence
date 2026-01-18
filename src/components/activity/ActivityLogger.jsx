@@ -237,7 +237,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
             <Button type="button" variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit" className="flex-1 bg-slate-800 hover:bg-slate-900 dark:bg-slate-800 dark:hover:bg-slate-900 text-white">
+            <Button type="submit" className="flex-1 bg-slate-700 hover:bg-slate-800 dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600 text-white">
              Log Activity
             </Button>
           </div>
