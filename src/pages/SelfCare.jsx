@@ -269,7 +269,7 @@ export default function SelfCare() {
         {/* Completed */}
         {completedActivities.length > 0 && (
           <div>
-            <h3 className="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
               <Check className="w-5 h-5 text-emerald-500" />
               Completed ({completedActivities.length})
             </h3>
