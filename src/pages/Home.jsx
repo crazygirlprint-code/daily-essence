@@ -356,7 +356,7 @@ export default function Home() {
         )}
         
         {activeSection === 'notes' && (
-           <div className="bg-stone-100/50 dark:bg-rose-200/20 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-rose-500/30">
+            <div className="bg-stone-100/50 dark:bg-stone-800/20 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-stone-600/30">
              <QuickNotes />
           </div>
         )}
