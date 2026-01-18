@@ -213,7 +213,12 @@ export default function Beauty() {
                     <Checkbox
                       checked={completedToday(routine)}
                       onCheckedChange={() => handleToggle(routine)}
-                      className="w-6 h-6 rounded-lg"
+                      className={cn(
+                        "w-6 h-6 rounded-lg",
+                        activeTab === 'morning'
+                          ? "data-[state=checked]:bg-slate-600 data-[state=checked]:border-slate-600"
+                          : "data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500"
+                      )}
                     />
                     <button
                       onClick={() => deleteMutation.mutate(routine.id)}
