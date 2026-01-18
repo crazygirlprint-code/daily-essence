@@ -10,51 +10,80 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white/50 dark:bg-purple-950/40 rounded-lg p-5 shadow-lg shadow-amber-300/30 dark:shadow-purple-600/30 mb-6 overflow-hidden relative border border-amber-200 dark:border-purple-700 backdrop-blur-sm"
+      className="bg-white/50 rounded-lg p-5 shadow-lg mb-6 overflow-hidden relative border border-stone-200"
     >
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100/30 dark:bg-transparent rounded-full blur-2xl" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-100/20 dark:bg-transparent rounded-full blur-2xl" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100/30 rounded-full blur-2xl" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-100/20 rounded-full blur-2xl" />
       
       <div className="relative z-10">
-        <div className="flex items-center justify-between gap-4">
-          {/* Icon */}
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="w-10 h-10 rounded-lg bg-amber-100/50 dark:bg-purple-700/40 flex items-center justify-center border border-amber-200 dark:border-purple-600 flex-shrink-0"
-          >
-            <Trophy className="w-5 h-5 text-amber-600 dark:text-purple-200" strokeWidth={1.5} />
-          </motion.div>
-          
-          {/* Stats */}
-          <div className="flex-1">
-            <p className="text-[10px] text-amber-700 dark:text-purple-300 uppercase tracking-widest font-medium">Your Progress</p>
-            <div className="flex items-center gap-2 mt-1.5">
-              <span className="text-2xl font-serif text-slate-900 dark:text-purple-100">{points}</span>
-              <span className="text-amber-600 dark:text-purple-400">pts</span>
-              <span className="text-stone-400 dark:text-purple-600">|</span>
-              <span className="text-lg font-serif text-slate-900 dark:text-purple-100">L{level}</span>
-              <span className="text-stone-400 dark:text-purple-600">|</span>
-              <div className="flex items-center gap-1">
-                <Zap className="w-4 h-4 text-amber-600 dark:text-purple-300 fill-amber-600 dark:fill-purple-300" strokeWidth={1.5} />
-                <span className="text-base font-serif text-slate-900 dark:text-purple-100">{completionRate}%</span>
+        {/* Top row - Points and Level */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-lg bg-amber-100/50 flex items-center justify-center border border-amber-200">
+              <Trophy className="w-6 h-6 text-amber-600" strokeWidth={1.5} />
+            </div>
+            <div>
+              <p className="text-amber-700 text-[10px] font-medium uppercase tracking-widest">Level {level}</p>
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-amber-600 fill-amber-600" strokeWidth={1.5} />
+                <span className="text-2xl font-serif text-slate-900">{points.toLocaleString()}</span>
+                <span className="text-stone-600 text-xs uppercase tracking-widest">pts</span>
               </div>
             </div>
           </div>
           
-          {/* Sparkle icon */}
-          <Sparkles className="w-4 h-4 text-amber-400 dark:text-purple-500 flex-shrink-0 opacity-50" strokeWidth={1.5} />
+          {/* Completion Rate Circle */}
+          <div className="relative w-16 h-16">
+            <svg className="w-full h-full transform -rotate-90">
+              <circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="none"
+                stroke="rgba(0,0,0,0.1)"
+                strokeWidth="4"
+              />
+              <motion.circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="none"
+                stroke="url(#gradient)"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeDasharray={2 * Math.PI * 28}
+                initial={{ strokeDashoffset: 2 * Math.PI * 28 }}
+                animate={{ strokeDashoffset: 2 * Math.PI * 28 * (1 - completionRate / 100) }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+              />
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#d97706" />
+                  <stop offset="100%" stopColor="#fbbf24" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="text-lg font-serif text-slate-900">{completionRate}%</span>
+            </div>
+          </div>
         </div>
         
-        {/* Progress Bar */}
-        <div className="mt-4 h-2 bg-amber-200/50 dark:bg-purple-600/20 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-400 dark:from-purple-500 dark:via-purple-400 dark:to-purple-300"
-            initial={{ width: 0 }}
-            animate={{ width: `${completionRate}%` }}
-            transition={{ duration: 1 }}
-          />
+        {/* Quick stats row */}
+        <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-stone-200">
+          <div className="text-center">
+            <p className="text-2xl font-serif text-amber-600">{tasksCompleted}</p>
+            <p className="text-[9px] text-slate-600 uppercase tracking-widest">Done Today</p>
+          </div>
+          <div className="text-center border-x border-stone-200">
+            <p className="text-2xl font-serif text-slate-700">{tasksToday - tasksCompleted}</p>
+            <p className="text-[9px] text-slate-600 uppercase tracking-widest">Remaining</p>
+          </div>
+          <div className="text-center">
+            <p className="text-2xl font-serif text-amber-600">+10</p>
+            <p className="text-[9px] text-slate-600 uppercase tracking-widest">Per Task</p>
+          </div>
         </div>
       </div>
     </motion.div>
