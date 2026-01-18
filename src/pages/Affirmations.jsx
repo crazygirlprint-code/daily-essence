@@ -350,11 +350,11 @@ export default function Affirmations() {
                      className={cn(
                        "w-full text-left p-4 rounded-xl shadow-sm hover:shadow-md transition-all border",
                        categoryBgColors[aff.category] || 'bg-stone-100/50',
-                       'border-slate-200'
+                       'border-slate-200 dark:border-rose-500/20 dark:bg-rose-900/20'
                      )}
                    >
-                     <p className="text-slate-900">"{aff.text}"</p>
-                     <p className="text-xs text-slate-600 mt-1 capitalize">{aff.category}</p>
+                     <p className="text-slate-900 dark:text-stone-100">"{aff.text}"</p>
+                     <p className="text-xs text-slate-600 dark:text-stone-400 mt-1 capitalize">{aff.category}</p>
                    </motion.button>
                  );
                })}
