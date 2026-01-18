@@ -62,7 +62,7 @@ export default function Activities() {
               <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">Activity Log</h1>
               <p className="text-stone-600 dark:text-stone-400 text-sm mt-1">Track daily activities and their impact on your mood</p>
             </div>
-            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40 gap-2">
+            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg gap-2">
               <Plus className="w-4 h-4" />
               Log Activity
             </Button>
@@ -118,7 +118,7 @@ export default function Activities() {
             <Zap className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-50" />
             <h3 className="text-lg font-semibold text-slate-900 mb-2">No Activities Yet</h3>
             <p className="text-stone-600 mb-6">Log your first activity to track mood and energy changes.</p>
-            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40">
+            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg">
               Log Your First Activity
             </Button>
           </motion.div>
