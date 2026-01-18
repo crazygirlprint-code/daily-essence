@@ -270,7 +270,7 @@ export default function Profile() {
               <Sparkles className="w-12 h-12 text-slate-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
               <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Wellness Goals Yet</h3>
               <p className="text-stone-600 dark:text-stone-100 mb-6">Set your first wellness goal to get personalized AI insights.</p>
-              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg">
+              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-rose-400 dark:to-pink-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-rose-500 dark:hover:to-pink-600 text-white shadow-lg">
                 Create Your First Goal
               </Button>
             </motion.div>
