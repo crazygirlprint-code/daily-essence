@@ -367,7 +367,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-50 dark:bg-rose-950/20 rounded-xl p-6 text-slate-900 dark:text-stone-100 shadow-lg shadow-slate-300/40 dark:shadow-rose-500/30 relative overflow-hidden border border-slate-200 dark:border-rose-500/30"
+      className="bg-slate-50 dark:bg-white rounded-xl p-6 text-slate-900 dark:text-stone-900 shadow-lg shadow-slate-300/40 dark:shadow-stone-200/30 relative overflow-hidden border border-slate-200 dark:border-stone-200"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 dark:bg-rose-900/20 rounded-full blur-3xl" />
