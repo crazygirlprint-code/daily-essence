@@ -345,10 +345,10 @@ export default function Budget() {
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Tabs value={timeView} onValueChange={setTimeView}>
               <TabsList className="grid grid-cols-4 w-full bg-white/50 dark:bg-white/10 rounded-2xl p-1">
-                <TabsTrigger value="day" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">Today</TabsTrigger>
-                <TabsTrigger value="week" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">Week</TabsTrigger>
-                <TabsTrigger value="month" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">Month</TabsTrigger>
-                <TabsTrigger value="year" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">YTD</TabsTrigger>
+                <TabsTrigger value="day" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Today</TabsTrigger>
+                <TabsTrigger value="week" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Week</TabsTrigger>
+                <TabsTrigger value="month" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Month</TabsTrigger>
+                <TabsTrigger value="year" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">YTD</TabsTrigger>
               </TabsList>
             </Tabs>
 
