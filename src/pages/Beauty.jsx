@@ -140,12 +140,12 @@ export default function Beauty() {
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4">
-            <Sparkles className="w-5 h-5 text-slate-600" />
-            <span className="font-medium text-slate-700">Beauty Routines</span>
-          </div>
-          <p className="text-slate-500">Your daily glow-up ritual</p>
-        </div>
+           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4 dark:bg-rose-900/30 dark:border dark:border-rose-500/30">
+             <Sparkles className="w-5 h-5 text-slate-600 dark:text-rose-400" />
+             <span className="font-medium text-slate-700 dark:text-stone-100">Beauty Routines</span>
+           </div>
+           <p className="text-slate-500 dark:text-stone-400">Your daily glow-up ritual</p>
+         </div>
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
