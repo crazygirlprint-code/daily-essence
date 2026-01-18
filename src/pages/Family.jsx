@@ -299,7 +299,7 @@ export default function Family() {
           setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '', photo_adjustment: null });
         }
       }}>
-        <DialogContent className="rounded-3xl">
+        <DialogContent className="rounded-3xl bg-white border-stone-200">
           <DialogHeader>
             <DialogTitle>{editingMember ? 'Edit Family Member' : 'Add Family Member'}</DialogTitle>
           </DialogHeader>
@@ -421,7 +421,7 @@ export default function Family() {
             <Button
               onClick={handleSave}
               disabled={!newMember.name.trim()}
-              className="w-full rounded-xl h-12 bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600"
+              className="w-full rounded-xl h-12 text-white bg-slate-700 hover:bg-slate-800 shadow-lg shadow-slate-500/30"
             >
               {editingMember ? 'Save Changes' : 'Add Member'}
             </Button>
