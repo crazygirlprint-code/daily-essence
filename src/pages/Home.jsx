@@ -279,8 +279,8 @@ export default function Home() {
                       onClick={() => setActiveSection(section.id)}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
-                          ? 'bg-slate-700 hover:bg-slate-800 text-white shadow-lg shadow-slate-500/40 dark:bg-gradient-to-r dark:from-rose-500 dark:via-rose-500 dark:to-rose-600 dark:hover:from-rose-600 dark:hover:via-rose-600 dark:hover:to-rose-700 dark:shadow-rose-500/40'
-                          : 'bg-white/50 text-stone-700 border border-stone-300 hover:bg-stone-50'
+                          ? 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-lg shadow-slate-500/40 dark:bg-gradient-to-r dark:from-rose-500 dark:via-pink-500 dark:to-rose-600 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-700 dark:shadow-rose-500/40'
+                          : 'bg-white/50 text-stone-700 border border-stone-300 hover:bg-stone-50 dark:bg-rose-950/20 dark:border-rose-500/30 dark:text-stone-300 dark:hover:bg-rose-950/30'
                       }`}
                     >
                 <Icon className="w-4 h-4" strokeWidth={1.5} />
@@ -371,7 +371,7 @@ export default function Home() {
       >
         <Button
            onClick={() => setIsAddOpen(true)}
-           className={`h-14 w-14 rounded-full text-white shadow-lg ${user?.theme === 'dark' ? 'bg-gradient-to-br from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 shadow-rose-500/40' : 'bg-slate-700 hover:bg-slate-800 shadow-slate-500/30'}`}
+           className="h-14 w-14 rounded-full text-white shadow-lg bg-gradient-to-br from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-slate-500/30 dark:from-rose-500 dark:to-pink-600 dark:hover:from-rose-600 dark:hover:to-pink-700 dark:shadow-rose-500/40"
          >
           <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>
