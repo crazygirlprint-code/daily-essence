@@ -105,8 +105,22 @@ export default function Beauty() {
     });
     
     if (isCompleting) {
+      // Award points for completing the step
       const result = await addPoints('beauty_routine');
-      setPointsEarned(result.pointsEarned);
+      let totalPoints = result.pointsEarned;
+      
+      // Check if this completes the entire routine
+      const updatedRoutines = await base44.entities.BeautyRoutine.list();
+      const currentTypeRoutines = updatedRoutines.filter(r => r.type === activeTab);
+      const allComplete = currentTypeRoutines.every(r => r.last_completed === today);
+      
+      if (allComplete) {
+        // Award bonus points for completing all steps
+        const bonusResult = await addPoints('beauty_routine_complete');
+        totalPoints += bonusResult.pointsEarned;
+      }
+      
+      setPointsEarned(totalPoints);
       setShowPoints(true);
     }
   };

@@ -7,7 +7,8 @@ const POINTS_CONFIG = {
   task_complete: 10,
   meditation_complete: 25,
   affirmation_listen: 5,
-  beauty_routine: 15,
+  beauty_routine: 5,
+  beauty_routine_complete: 10,
   meal_plan: 5,
   self_care: 30,
   streak_bonus: 20
