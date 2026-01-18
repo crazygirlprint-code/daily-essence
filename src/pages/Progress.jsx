@@ -233,8 +233,8 @@ export default function Progress() {
         </div>
         
         {/* Level Milestones */}
-        <div className="mt-8 bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-500/30">
-          <h3 className="font-semibold text-slate-700 dark:text-stone-200 mb-4">Level Milestones</h3>
+        <div className="mt-8 bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-400/40">
+          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Level Milestones</h3>
           <div className="space-y-3">
             {LEVEL_THRESHOLDS.slice(0, 10).map((threshold, index) => {
               const level = index + 1;
