@@ -234,9 +234,6 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                   onClick={() => {
                     if (isListening) {
                       stopListening();
-                      const newText = formData.notes + (formData.notes && transcript ? ' ' : '') + transcript;
-                      setFormData({ ...formData, notes: newText });
-                      clearTranscript();
                     } else {
                       startListening();
                     }
