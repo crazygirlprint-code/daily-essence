@@ -85,19 +85,19 @@ export default function Community() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white">
-      <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <Link to={createPageUrl('Home')}>
-            <Button variant="ghost" size="icon" className="rounded-xl">
-              <Home className="w-5 h-5" />
-            </Button>
-          </Link>
-          
-          <div className="text-center flex-1">
-            <h1 className="text-2xl font-bold text-slate-900">Community</h1>
-            <p className="text-sm text-slate-500 mt-1">Share your journey with moms like you</p>
+     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent">
+       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
+         {/* Header */}
+         <div className="flex items-center justify-between mb-8">
+           <Link to={createPageUrl('Home')}>
+             <Button variant="ghost" size="icon" className="rounded-xl">
+               <Home className="w-5 h-5" />
+             </Button>
+           </Link>
+
+           <div className="text-center flex-1">
+             <h1 className="text-2xl font-bold text-slate-900 dark:text-stone-100">Community</h1>
+             <p className="text-sm text-slate-500 dark:text-stone-400 mt-1">Share your journey with moms like you</p>
           </div>
 
           <Button
