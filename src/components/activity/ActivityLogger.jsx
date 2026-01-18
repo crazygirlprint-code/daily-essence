@@ -94,24 +94,32 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           </div>
 
           <div>
-             <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Title</label>
-             <div className="relative">
-               <Input
-                 placeholder="e.g., Morning walk in the park"
-                 value={formData.title || (isListening ? transcript : '')}
-                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                 className="mt-1 pr-10"
-                 required
-               />
-               <button
-                 type="button"
-                 onClick={() => isListening ? (stopListening(), setFormData({ ...formData, title: transcript }), clearTranscript()) : startListening()}
-                 className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
-               >
-                 <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
-               </button>
-             </div>
-           </div>
+            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Title</label>
+            <div className="relative">
+              <Input
+                placeholder="e.g., Morning walk in the park"
+                value={isListening ? transcript : formData.title}
+                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                className="mt-1 pr-10"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  if (isListening) {
+                    stopListening();
+                    setFormData({ ...formData, title: formData.title + (formData.title ? ' ' : '') + transcript });
+                    clearTranscript();
+                  } else {
+                    startListening();
+                  }
+                }}
+                className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+              >
+                <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+              </button>
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
