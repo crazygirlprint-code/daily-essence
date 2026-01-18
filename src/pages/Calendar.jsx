@@ -254,17 +254,17 @@ export default function Calendar() {
 
               return (
                 <button
-                  key={dateStr}
-                  onClick={() => setSelectedDate(dateStr)}
-                  className={cn(
-                    'aspect-square rounded-xl p-2 flex flex-col items-center justify-center transition-all',
-                    isSelected
-                      ? 'bg-slate-700 dark:bg-gradient-to-br dark:from-rose-500 dark:to-pink-600 text-white shadow-lg'
-                      : isToday
-                        ? 'bg-slate-100 dark:bg-rose-950/40 text-slate-700 dark:text-rose-300 ring-2 ring-slate-300 dark:ring-rose-500/50'
-                        : 'hover:bg-slate-50 dark:hover:bg-rose-900/20 text-slate-700 dark:text-stone-300'
-                  )}
-                >
+                   key={dateStr}
+                   onClick={() => setSelectedDate(dateStr)}
+                   className={cn(
+                     'aspect-square rounded-xl p-2 flex flex-col items-center justify-center transition-all',
+                     isSelected
+                       ? 'bg-gradient-to-br from-blue-600 to-blue-700 dark:bg-gradient-to-br dark:from-rose-500 dark:to-pink-600 text-white shadow-lg'
+                       : isToday
+                         ? 'bg-blue-100 dark:bg-rose-950/40 text-blue-700 dark:text-rose-300 ring-2 ring-blue-300 dark:ring-rose-500/50'
+                         : 'hover:bg-slate-50 dark:hover:bg-rose-900/20 text-slate-700 dark:text-stone-300'
+                   )}
+                 >
                   <span className={cn(
                     'text-sm',
                     isToday ? 'font-bold' : '',
