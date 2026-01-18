@@ -344,13 +344,13 @@ export default function Budget() {
         {/* Filters */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Tabs value={timeView} onValueChange={setTimeView}>
-            <TabsList className="grid grid-cols-4 w-full bg-white/50 rounded-2xl p-1">
-              <TabsTrigger value="day" className="rounded-xl">Today</TabsTrigger>
-              <TabsTrigger value="week" className="rounded-xl">Week</TabsTrigger>
-              <TabsTrigger value="month" className="rounded-xl">Month</TabsTrigger>
-              <TabsTrigger value="year" className="rounded-xl">YTD</TabsTrigger>
-            </TabsList>
-          </Tabs>
+              <TabsList className="grid grid-cols-4 w-full bg-white/50 dark:bg-white/10 rounded-2xl p-1">
+                <TabsTrigger value="day" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">Today</TabsTrigger>
+                <TabsTrigger value="week" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">Week</TabsTrigger>
+                <TabsTrigger value="month" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">Month</TabsTrigger>
+                <TabsTrigger value="year" className="rounded-xl dark:text-stone-200 dark:data-[state=active]:text-white">YTD</TabsTrigger>
+              </TabsList>
+            </Tabs>
 
           {familyMembers.length > 0 && (
             <Select value={selectedMember} onValueChange={setSelectedMember}>
