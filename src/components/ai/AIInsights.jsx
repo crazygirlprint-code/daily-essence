@@ -294,8 +294,8 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               <Sparkles className="w-5 h-5 text-slate-700 dark:text-rose-300 drop-shadow-md" strokeWidth={1.5} />
             </motion.div>
             <div>
-                <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100 font-semibold">Daily Insights</h3>
-                <p className="text-[10px] text-slate-700 dark:text-stone-300 uppercase tracking-widest font-semibold">AI-Powered</p>
+                <h3 className="font-serif text-lg text-slate-950 dark:text-stone-100 font-bold">Daily Insights</h3>
+                <p className="text-[10px] text-slate-800 dark:text-stone-300 uppercase tracking-widest font-bold">AI-Powered</p>
               </div>
           </div>
           <p className="text-slate-700 dark:text-stone-300 text-xs mb-4 leading-relaxed">
@@ -341,8 +341,8 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 <Sparkles className="w-5 h-5 text-slate-600 dark:text-rose-300 drop-shadow-md" strokeWidth={1.5} />
               </motion.div>
               <div>
-                  <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100 font-semibold">Daily Insights</h3>
-                  <p className="text-[10px] text-slate-700 dark:text-stone-300 uppercase tracking-widest font-semibold">AI-Powered</p>
+                  <h3 className="font-serif text-lg text-slate-950 dark:text-stone-100 font-bold">Daily Insights</h3>
+                  <p className="text-[10px] text-slate-800 dark:text-stone-300 uppercase tracking-widest font-bold">AI-Powered</p>
                 </div>
             </div>
             <Button
