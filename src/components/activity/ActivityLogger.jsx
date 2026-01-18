@@ -207,31 +207,31 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           )}
 
           <div>
-             <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Notes</label>
-             <div className="relative">
-               <Textarea
-                 placeholder="How did this activity make you feel? What did you learn?"
-                 value={formData.notes + (isListening ? ' ' + transcript : '')}
-                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                 className="mt-1 h-24"
-               />
-               <button
-                 type="button"
-                 onClick={() => {
-                   if (isListening) {
-                     stopListening();
-                     setFormData({ ...formData, notes: formData.notes + (formData.notes ? ' ' : '') + transcript });
-                     clearTranscript();
-                   } else {
-                     startListening();
-                   }
-                 }}
-                 className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
-               >
-                 <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
-               </button>
-             </div>
-           </div>
+              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Notes</label>
+              <div className="relative">
+                <Textarea
+                  placeholder="How did this activity make you feel? What did you learn?"
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  className="mt-1 h-24"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (isListening) {
+                      stopListening();
+                      setFormData({ ...formData, notes: formData.notes + (formData.notes ? ' ' : '') + transcript });
+                      clearTranscript();
+                    } else {
+                      startListening();
+                    }
+                  }}
+                  className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                >
+                  <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                </button>
+              </div>
+            </div>
 
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="outline" onClick={onClose}>
