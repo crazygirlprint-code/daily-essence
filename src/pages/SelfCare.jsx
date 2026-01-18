@@ -206,7 +206,7 @@ export default function SelfCare() {
         {/* Upcoming Activities */}
         {upcomingActivities.length > 0 && (
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-rose-500" />
               Scheduled
             </h3>
