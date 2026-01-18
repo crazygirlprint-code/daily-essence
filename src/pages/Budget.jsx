@@ -318,8 +318,8 @@ export default function Budget() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-serif text-slate-800 mb-2">Budget Tracker</h1>
-            <p className="text-slate-500">Manage your finances with clarity</p>
+            <h1 className="text-3xl font-serif text-slate-900 dark:text-stone-100 mb-2">Budget Tracker</h1>
+            <p className="text-slate-600 dark:text-stone-300">Manage your finances with clarity</p>
           </div>
           <div className="flex gap-2">
             <Button
@@ -373,26 +373,26 @@ export default function Budget() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
+            className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30"
           >
-            <div className="flex items-center gap-2 text-emerald-600 mb-2">
+            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-2">
               <TrendingUp className="w-5 h-5" />
               <span className="text-sm font-medium">Income</span>
             </div>
-            <p className="text-3xl font-bold text-slate-800">${totalIncome.toFixed(2)}</p>
+            <p className="text-3xl font-bold text-slate-800 dark:text-stone-100">${totalIncome.toFixed(2)}</p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
+            className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30"
           >
-            <div className="flex items-center gap-2 text-red-600 mb-2">
+            <div className="flex items-center gap-2 text-red-600 dark:text-rose-400 mb-2">
               <TrendingDown className="w-5 h-5" />
               <span className="text-sm font-medium">Expenses</span>
             </div>
-            <p className="text-3xl font-bold text-slate-800">${totalExpenses.toFixed(2)}</p>
+            <p className="text-3xl font-bold text-slate-800 dark:text-stone-100">${totalExpenses.toFixed(2)}</p>
           </motion.div>
 
           <motion.div
@@ -401,14 +401,16 @@ export default function Budget() {
             transition={{ delay: 0.2 }}
             className={cn(
               'rounded-2xl p-6 shadow-sm',
-              netBalance >= 0 ? 'bg-gradient-to-br from-emerald-50 to-teal-50' : 'bg-gradient-to-br from-red-50 to-orange-50'
+              netBalance >= 0 
+                ? 'bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-slate-100 dark:border-emerald-500/30' 
+                : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-rose-900/20 dark:to-pink-900/20 border border-slate-100 dark:border-rose-500/30'
             )}
           >
             <div className="flex items-center gap-2 mb-2">
-              <DollarSign className={cn('w-5 h-5', netBalance >= 0 ? 'text-emerald-600' : 'text-red-600')} />
-              <span className="text-sm font-medium text-slate-700">Net Balance</span>
+              <DollarSign className={cn('w-5 h-5', netBalance >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-rose-400')} />
+              <span className="text-sm font-medium text-slate-700 dark:text-stone-300">Net Balance</span>
             </div>
-            <p className={cn('text-3xl font-bold', netBalance >= 0 ? 'text-emerald-700' : 'text-red-700')}>
+            <p className={cn('text-3xl font-bold', netBalance >= 0 ? 'text-emerald-700 dark:text-emerald-300' : 'text-red-700 dark:text-rose-300')}>
               ${Math.abs(netBalance).toFixed(2)}
             </p>
           </motion.div>
@@ -416,8 +418,8 @@ export default function Budget() {
 
         {/* Budget Progress */}
         {currentBudgets.length > 0 && (
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-8">
-            <h3 className="font-semibold text-slate-700 mb-4">Monthly Budget Progress</h3>
+          <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
+            <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Monthly Budget Progress</h3>
             <div className="space-y-4">
               {currentBudgets.map((budget) => {
                 const spent = expensesByCategory[budget.category] || 0;
@@ -435,8 +437,8 @@ export default function Budget() {
                           <Icon className="w-4 h-4" />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-700">{config.name}</p>
-                          <p className="text-xs text-slate-400">Budget: ${budget.monthly_limit}</p>
+                          <p className="font-medium text-slate-700 dark:text-stone-200">{config.name}</p>
+                          <p className="text-xs text-slate-400 dark:text-stone-400">Budget: ${budget.monthly_limit}</p>
                         </div>
                       </div>
                       <div className="text-right">
@@ -478,8 +480,8 @@ export default function Budget() {
         {/* Charts */}
         {chartData.length > 0 && (
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-              <h3 className="font-semibold text-slate-700 mb-4">Spending Distribution</h3>
+            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
+              <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Spending Distribution</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie
@@ -501,8 +503,8 @@ export default function Budget() {
               </ResponsiveContainer>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-              <h3 className="font-semibold text-slate-700 mb-4">Category Spending</h3>
+            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
+              <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Category Spending</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
@@ -517,8 +519,8 @@ export default function Budget() {
         )}
 
         {/* Recent Transactions */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-          <h3 className="font-semibold text-slate-700 mb-4">Recent Transactions</h3>
+        <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
+          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Recent Transactions</h3>
           <div className="space-y-2">
             <AnimatePresence>
               {filteredTransactions.slice(0, 10).map((transaction) => {
@@ -531,21 +533,21 @@ export default function Budget() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
-                    className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors group"
+                    className="flex items-center justify-between p-3 hover:bg-slate-50 dark:hover:bg-rose-900/30 rounded-xl transition-colors group"
                   >
                     <div className="flex items-center gap-3">
                       <div className={cn('p-2 rounded-lg', config.color)}>
                         <Icon className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="font-medium text-slate-700">{transaction.description || config.name}</p>
+                        <p className="font-medium text-slate-700 dark:text-stone-200">{transaction.description || config.name}</p>
                         <p className="text-xs text-slate-400">{format(parseISO(transaction.date), 'MMM d, yyyy')}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <p className={cn(
                         'font-bold',
-                        transaction.type === 'income' ? 'text-emerald-600' : 'text-slate-800'
+                        transaction.type === 'income' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-800 dark:text-stone-100'
                       )}>
                         {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toFixed(2)}
                       </p>
@@ -566,7 +568,7 @@ export default function Budget() {
         {/* Add Transaction Button */}
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="fixed bottom-6 right-6 rounded-full w-14 h-14 text-white bg-slate-700 hover:bg-slate-800 shadow-lg shadow-slate-500/30 dark:bg-gradient-to-r dark:from-rose-500 dark:to-rose-600 dark:hover:from-rose-600 dark:hover:to-rose-700 dark:shadow-rose-500/40"
+          className="fixed bottom-6 right-6 rounded-full w-14 h-14 text-white bg-slate-700 hover:bg-slate-800 shadow-lg shadow-slate-500/30 dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-600 dark:hover:from-rose-600 dark:hover:to-pink-700 dark:shadow-rose-500/40"
         >
           <Plus className="w-6 h-6" />
         </Button>
