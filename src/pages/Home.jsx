@@ -197,7 +197,7 @@ export default function Home() {
         {/* Progress Report */}
          <motion.div 
            whileTap={{ scale: 0.98 }}
-           className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-white dark:bg-stone-800/20 text-slate-900 dark:text-stone-100 border-0 shadow-lg shadow-slate-200/50 dark:border-stone-600/30 mb-8 cursor-pointer"
+           className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-white dark:bg-white text-slate-900 dark:text-stone-900 border-0 shadow-lg shadow-slate-200/50 dark:border-stone-200 mb-8 cursor-pointer"
            onClick={() => navigate(createPageUrl('Progress'))}
          >
           <div className="absolute top-0 right-0 w-24 h-24 bg-purple-100/20 rounded-full blur-2xl" />
