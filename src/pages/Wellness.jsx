@@ -482,7 +482,7 @@ export default function Wellness() {
 
             {unscheduledActivities.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-slate-700 mb-4">Ideas</h3>
+                <h3 className="text-lg font-semibold text-slate-700 dark:text-stone-100 mb-4">Ideas</h3>
                 <div className="space-y-2">
                   {unscheduledActivities.map((activity) => {
                     const typeInfo = ACTIVITY_TYPES.find(t => t.id === activity.type) || ACTIVITY_TYPES[0];
