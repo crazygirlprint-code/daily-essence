@@ -254,7 +254,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-rose-900/20 dark:to-pink-900/10 rounded-xl p-6 border border-slate-200 dark:border-rose-500/30 cursor-pointer hover:shadow-lg transition-all"
+        className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-white dark:to-white rounded-xl p-6 border border-slate-200 dark:border-stone-200 cursor-pointer hover:shadow-lg transition-all"
         onClick={() => window.location.href = '/Pricing'}
       >
         <div className="flex items-center justify-between">
