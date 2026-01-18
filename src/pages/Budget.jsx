@@ -354,7 +354,7 @@ export default function Budget() {
 
           {familyMembers.length > 0 && (
             <Select value={selectedMember} onValueChange={setSelectedMember}>
-              <SelectTrigger className="bg-white/50 rounded-2xl">
+              <SelectTrigger className="bg-white/50 dark:bg-white/15 dark:text-stone-100 rounded-2xl">
                 <Users className="w-4 h-4 mr-2" />
                 <SelectValue />
               </SelectTrigger>
