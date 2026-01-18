@@ -339,7 +339,7 @@ export default function Home() {
         )}
         
         {activeSection === 'meals' && (
-           <div className="bg-stone-100/50 dark:bg-rose-200/20 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-rose-500/30">
+            <div className="bg-stone-100/50 dark:bg-stone-800/20 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-stone-600/30">
              <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
               <UtensilsCrossed className="w-5 h-5 text-orange-500" />
               Meal Plan for {format(selectedDate, 'EEEE')}
