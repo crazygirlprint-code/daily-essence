@@ -23,6 +23,7 @@ import {
 import { cn } from '@/lib/utils';
 import FamilyWall from '@/components/family/FamilyWall';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import PhotoAdjuster from '@/components/family/PhotoAdjuster';
 
 const relationshipIcons = {
   self: User,
@@ -65,8 +66,10 @@ const colorOptions = [
 export default function Family() {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [editingMember, setEditingMember] = useState(null);
-  const [newMember, setNewMember] = useState({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
+  const [newMember, setNewMember] = useState({ name: '', relationship: 'child', color: 'rose', photo_url: '', photo_adjustment: null });
   const [isUploading, setIsUploading] = useState(false);
+  const [tempPhotoUrl, setTempPhotoUrl] = useState(null);
+  const [isAdjusterOpen, setIsAdjusterOpen] = useState(false);
   
   const queryClient = useQueryClient();
   
@@ -85,7 +88,7 @@ export default function Family() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['familyMembers'] });
       setIsAddOpen(false);
-      setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
+      setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '', photo_adjustment: null });
     },
   });
 
@@ -95,7 +98,7 @@ export default function Family() {
       queryClient.invalidateQueries({ queryKey: ['familyMembers'] });
       setIsAddOpen(false);
       setEditingMember(null);
-      setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
+      setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '', photo_adjustment: null });
     },
   });
   
@@ -114,7 +117,7 @@ export default function Family() {
 
   const handleEdit = (member) => {
     setEditingMember(member);
-    setNewMember({ name: member.name, relationship: member.relationship, color: member.color, photo_url: member.photo_url || '' });
+    setNewMember({ name: member.name, relationship: member.relationship, color: member.color, photo_url: member.photo_url || '', photo_adjustment: member.photo_adjustment || null });
     setIsAddOpen(true);
   };
 
@@ -125,12 +128,24 @@ export default function Family() {
     setIsUploading(true);
     try {
       const { data } = await base44.integrations.Core.UploadFile({ file });
-      setNewMember({ ...newMember, photo_url: data.file_url });
+      setTempPhotoUrl(data.file_url);
+      setIsAdjusterOpen(true);
     } catch (error) {
       console.error('Upload failed:', error);
     } finally {
       setIsUploading(false);
     }
+  };
+
+  const handlePhotoAdjustConfirm = (adjustment) => {
+    setNewMember({ ...newMember, photo_url: tempPhotoUrl, photo_adjustment: adjustment });
+    setIsAdjusterOpen(false);
+    setTempPhotoUrl(null);
+  };
+
+  const handlePhotoAdjustCancel = () => {
+    setIsAdjusterOpen(false);
+    setTempPhotoUrl(null);
   };
 
   const handleSave = () => {
@@ -199,7 +214,15 @@ export default function Family() {
                       colorClasses.bg
                     )}>
                       {member.photo_url ? (
-                        <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                        <img 
+                          src={member.photo_url} 
+                          alt={member.name} 
+                          className="w-full h-full object-cover" 
+                          style={member.photo_adjustment ? {
+                            transform: `scale(${member.photo_adjustment.zoom})`,
+                            objectPosition: `${member.photo_adjustment.position.x}% ${member.photo_adjustment.position.y}%`
+                          } : {}}
+                        />
                       ) : (
                         <Icon className={cn('w-8 h-8', colorClasses.text)} />
                       )}
@@ -273,7 +296,7 @@ export default function Family() {
         setIsAddOpen(open);
         if (!open) {
           setEditingMember(null);
-          setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
+          setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '', photo_adjustment: null });
         }
       }}>
         <DialogContent className="rounded-3xl">
@@ -289,7 +312,15 @@ export default function Family() {
                 newMember.photo_url ? '' : getColorClasses(newMember.color).bg
               )}>
                 {newMember.photo_url ? (
-                  <img src={newMember.photo_url} alt="Preview" className="w-full h-full object-cover" />
+                  <img 
+                    src={newMember.photo_url} 
+                    alt="Preview" 
+                    className="w-full h-full object-cover" 
+                    style={newMember.photo_adjustment ? {
+                      transform: `scale(${newMember.photo_adjustment.zoom})`,
+                      objectPosition: `${newMember.photo_adjustment.position.x}% ${newMember.photo_adjustment.position.y}%`
+                    } : {}}
+                  />
                 ) : (
                   <User className={cn('w-12 h-12', getColorClasses(newMember.color).text)} />
                 )}
@@ -307,12 +338,23 @@ export default function Family() {
                 </span>
               </label>
               {newMember.photo_url && (
-                <button
-                  onClick={() => setNewMember({ ...newMember, photo_url: '' })}
-                  className="text-xs text-red-500 hover:text-red-600"
-                >
-                  Remove Photo
-                </button>
+                <>
+                  <button
+                    onClick={() => {
+                      setTempPhotoUrl(newMember.photo_url);
+                      setIsAdjusterOpen(true);
+                    }}
+                    className="text-xs text-blue-500 hover:text-blue-600"
+                  >
+                    Adjust Photo
+                  </button>
+                  <button
+                    onClick={() => setNewMember({ ...newMember, photo_url: '', photo_adjustment: null })}
+                    className="text-xs text-red-500 hover:text-red-600"
+                  >
+                    Remove Photo
+                  </button>
+                </>
               )}
             </div>
             
@@ -386,6 +428,13 @@ export default function Family() {
           </div>
         </DialogContent>
       </Dialog>
+
+      <PhotoAdjuster
+        imageUrl={tempPhotoUrl}
+        isOpen={isAdjusterOpen}
+        onConfirm={handlePhotoAdjustConfirm}
+        onCancel={handlePhotoAdjustCancel}
+      />
     </div>
   );
 }
