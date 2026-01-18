@@ -233,7 +233,7 @@ export default function Profile() {
                   </>
                 )}
               </Button>
-              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg gap-2">
+              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-rose-400 dark:to-pink-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-rose-500 dark:hover:to-pink-600 text-white shadow-lg gap-2">
                 <Plus className="w-4 h-4" />
                 New Goal
               </Button>
