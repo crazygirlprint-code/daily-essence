@@ -195,11 +195,11 @@ export default function Home() {
         </div>
 
         {/* Progress Report */}
-        <motion.div 
-          whileTap={{ scale: 0.98 }}
-          className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-white text-slate-900 border-0 shadow-lg shadow-slate-200/50 mb-8 cursor-pointer"
-          onClick={() => navigate(createPageUrl('Progress'))}
-        >
+         <motion.div 
+           whileTap={{ scale: 0.98 }}
+           className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-white dark:bg-rose-900/20 text-slate-900 dark:text-stone-100 border-0 shadow-lg shadow-slate-200/50 dark:border-rose-500/30 mb-8 cursor-pointer"
+           onClick={() => navigate(createPageUrl('Progress'))}
+         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-purple-100/20 rounded-full blur-2xl" />
           <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center border border-purple-200">
             <Trophy className="w-6 h-6 text-amber-500" strokeWidth={1.5} />
