@@ -127,7 +127,7 @@ export default function Beauty() {
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4">
-            <Sparkles className="w-5 h-5 text-pink-500" />
+            <Sparkles className="w-5 h-5 text-slate-600" />
             <span className="font-medium text-slate-700">Beauty Routines</span>
           </div>
           <p className="text-slate-500">Your daily glow-up ritual</p>
@@ -137,14 +137,14 @@ export default function Beauty() {
           <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
             <TabsTrigger
               value="morning"
-              className="rounded-xl data-[state=active]:bg-gradient-to-r dark:data-[state=active]:from-rose-500 dark:data-[state=active]:to-pink-500 data-[state=active]:from-mauve-500 data-[state=active]:to-mauve-600 data-[state=active]:text-white"
+              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
             >
               <Sun className="w-4 h-4 mr-2" />
               Morning
             </TabsTrigger>
             <TabsTrigger
               value="night"
-              className="rounded-xl data-[state=active]:bg-gradient-to-r dark:data-[state=active]:from-rose-500 dark:data-[state=active]:to-pink-500 data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white"
+              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-700 data-[state=active]:to-slate-800 data-[state=active]:text-white"
             >
               <Moon className="w-4 h-4 mr-2" />
               Night
@@ -155,8 +155,8 @@ export default function Beauty() {
           <div className={cn(
            'rounded-2xl p-6 mb-6 text-white',
            activeTab === 'morning' 
-             ? 'bg-gradient-to-r from-mauve-500 dark:from-rose-500 dark:to-pink-500 to-mauve-600'
-             : 'bg-gradient-to-r from-purple-500 dark:from-rose-500 dark:to-pink-500 to-purple-600'
+             ? 'bg-gradient-to-r from-slate-600 to-slate-700'
+             : 'bg-gradient-to-r from-slate-700 to-slate-800'
           )}>
             <div className="flex justify-between items-center mb-3">
               <h3 className="font-semibold">Today's Progress</h3>
@@ -196,8 +196,8 @@ export default function Beauty() {
                     completedToday(routine)
                       ? 'bg-green-500 text-white'
                       : activeTab === 'morning'
-                        ? 'bg-amber-100 dark:bg-rose-900/40 text-amber-600 dark:text-rose-300'
-                        : 'bg-indigo-100 text-indigo-600'
+                        ? 'bg-slate-100 text-slate-600'
+                        : 'bg-slate-200 text-slate-700'
                   )}>
                     {completedToday(routine) ? <Check className="w-4 h-4" /> : index + 1}
                   </span>
@@ -257,10 +257,10 @@ export default function Beauty() {
               onClick={handleAddStep}
               disabled={!newStep.trim()}
               className={cn(
-                'w-full rounded-xl h-12',
+                'w-full rounded-xl h-12 text-white',
                 activeTab === 'morning'
-                  ? 'bg-gradient-to-r from-mauve-500 dark:from-rose-500 dark:to-pink-500 to-mauve-600'
-                  : 'bg-gradient-to-r from-purple-500 dark:from-rose-500 dark:to-pink-500 to-purple-600'
+                  ? 'bg-gradient-to-r from-slate-600 to-slate-700'
+                  : 'bg-gradient-to-r from-slate-700 to-slate-800'
               )}
             >
               Add to Routine
