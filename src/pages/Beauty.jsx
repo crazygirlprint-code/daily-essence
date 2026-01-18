@@ -144,7 +144,7 @@ export default function Beauty() {
             </TabsTrigger>
             <TabsTrigger
               value="night"
-              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-700 data-[state=active]:to-slate-800 data-[state=active]:text-white"
+              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-500 data-[state=active]:text-white"
             >
               <Moon className="w-4 h-4 mr-2" />
               Night
@@ -156,7 +156,7 @@ export default function Beauty() {
            'rounded-2xl p-6 mb-6 text-white',
            activeTab === 'morning' 
              ? 'bg-gradient-to-r from-slate-600 to-slate-700'
-             : 'bg-gradient-to-r from-slate-700 to-slate-800'
+             : 'bg-gradient-to-r from-rose-500 to-pink-500'
           )}>
             <div className="flex justify-between items-center mb-3">
               <h3 className="font-semibold">Today's Progress</h3>
@@ -197,7 +197,7 @@ export default function Beauty() {
                       ? 'bg-green-500 text-white'
                       : activeTab === 'morning'
                         ? 'bg-slate-100 text-slate-600'
-                        : 'bg-slate-200 text-slate-700'
+                        : 'bg-rose-100 text-rose-600'
                   )}>
                     {completedToday(routine) ? <Check className="w-4 h-4" /> : index + 1}
                   </span>
@@ -260,7 +260,7 @@ export default function Beauty() {
                 'w-full rounded-xl h-12 text-white',
                 activeTab === 'morning'
                   ? 'bg-gradient-to-r from-slate-600 to-slate-700'
-                  : 'bg-gradient-to-r from-slate-700 to-slate-800'
+                  : 'bg-gradient-to-r from-rose-500 to-pink-500'
               )}
             >
               Add to Routine
