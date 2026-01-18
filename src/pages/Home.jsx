@@ -178,10 +178,10 @@ export default function Home() {
   const allTasksDone = tasksForDate.length > 0 && pendingTasks.length === 0 && selectedCategory === 'all';
 
   const quickLinks = [
-    { name: 'Affirmations', icon: Sparkles, color: 'bg-gradient-to-br from-purple-400 to-purple-500', textColor: 'text-white', page: 'Affirmations' },
-    { name: 'Beauty', icon: Smile, color: 'bg-gradient-to-br from-pink-400 to-pink-500', textColor: 'text-white', page: 'Beauty' },
-    { name: 'Meditation', icon: Leaf, color: 'bg-gradient-to-br from-rose-400 to-rose-500', textColor: 'text-white', page: 'Meditation' },
-    { name: 'Self-Care', icon: Heart, color: 'bg-gradient-to-br from-fuchsia-400 to-fuchsia-500', textColor: 'text-white', page: 'SelfCare' },
+    { name: 'Affirmations', icon: Sparkles, color: 'bg-gradient-to-br from-slate-600 to-slate-700 dark:from-purple-400 dark:to-purple-500', textColor: 'text-white', page: 'Affirmations' },
+    { name: 'Beauty', icon: Smile, color: 'bg-gradient-to-br from-slate-600 to-slate-700 dark:from-pink-400 dark:to-pink-500', textColor: 'text-white', page: 'Beauty' },
+    { name: 'Meditation', icon: Leaf, color: 'bg-gradient-to-br from-slate-600 to-slate-700 dark:from-rose-400 dark:to-rose-500', textColor: 'text-white', page: 'Meditation' },
+    { name: 'Self-Care', icon: Heart, color: 'bg-gradient-to-br from-slate-600 to-slate-700 dark:from-fuchsia-400 dark:to-fuchsia-500', textColor: 'text-white', page: 'SelfCare' },
   ];
 
   return (
@@ -223,7 +223,7 @@ export default function Home() {
             </div>
             <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-slate-600 to-slate-700 dark:from-purple-500 dark:to-pink-500 rounded-full transition-all duration-500"
                 style={{ width: `${getProgressToNextLevel()}%` }}
               />
             </div>
