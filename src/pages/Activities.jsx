@@ -53,7 +53,7 @@ export default function Activities() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50/40 via-slate-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
       <div className="max-w-3xl mx-auto px-4 py-8 pb-20">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
