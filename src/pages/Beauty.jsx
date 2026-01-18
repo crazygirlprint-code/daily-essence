@@ -217,11 +217,11 @@ export default function Beauty() {
                   </span>
                   
                   <span className={cn(
-                    'flex-1 font-medium',
-                    completedToday(routine) ? 'text-green-700 line-through' : 'text-slate-700'
-                  )}>
-                    {routine.name}
-                  </span>
+                     'flex-1 font-medium',
+                     completedToday(routine) ? 'text-green-700 line-through dark:text-green-400' : 'text-slate-700 dark:text-stone-100'
+                   )}>
+                     {routine.name}
+                   </span>
                   
                   <div className="flex items-center gap-2">
                     <Checkbox
