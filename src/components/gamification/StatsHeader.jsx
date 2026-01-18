@@ -17,72 +17,43 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-transparent rounded-full blur-2xl" />
       
       <div className="relative z-10">
-        {/* Top row - Points and Level */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between gap-4">
+          {/* Icon and Progress */}
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-lg bg-purple-300/40 dark:bg-purple-700/30 flex items-center justify-center border border-purple-400 dark:border-purple-600">
-              <Trophy className="w-6 h-6 text-purple-700 dark:text-purple-200" strokeWidth={1.5} />
-            </div>
-            <div>
-              <p className="text-purple-700 dark:text-purple-300 text-[10px] font-medium uppercase tracking-widest">Level {level}</p>
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-purple-600 dark:text-purple-300 fill-purple-600 dark:fill-purple-300" strokeWidth={1.5} />
-                <span className="text-2xl font-serif text-purple-900 dark:text-purple-100">{points.toLocaleString()}</span>
-                <span className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-widest">pts</span>
+            <motion.div
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="w-10 h-10 rounded-lg bg-purple-300/40 dark:bg-purple-700/40 flex items-center justify-center border border-purple-400 dark:border-purple-600 flex-shrink-0"
+            >
+              <Trophy className="w-5 h-5 text-purple-700 dark:text-purple-200" strokeWidth={1.5} />
+            </motion.div>
+            
+            <div className="flex-1">
+              <p className="text-[10px] text-purple-700 dark:text-purple-300 uppercase tracking-widest font-medium">Your Progress</p>
+              <div className="flex items-center gap-3 mt-1">
+                <div className="flex items-center gap-1">
+                  <span className="text-xl font-serif text-purple-900 dark:text-purple-100">{points}</span>
+                  <span className="text-[10px] text-purple-700 dark:text-purple-300 uppercase">pts</span>
+                </div>
+                <span className="text-purple-400 dark:text-purple-600">|</span>
+                <span className="text-sm font-serif text-purple-900 dark:text-purple-100">L{level}</span>
+                <span className="text-purple-400 dark:text-purple-600">|</span>
+                <div className="flex items-center gap-1">
+                  <Zap className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300 fill-purple-600 dark:fill-purple-300" strokeWidth={2} />
+                  <span className="text-sm font-serif text-purple-900 dark:text-purple-100">{completionRate}%</span>
+                </div>
               </div>
             </div>
           </div>
           
-          {/* Completion Rate Circle */}
-          <div className="relative w-16 h-16">
-            <svg className="w-full h-full transform -rotate-90">
-              <circle
-                cx="32"
-                cy="32"
-                r="28"
-                fill="none"
-                stroke="rgba(0,0,0,0.1)"
-                strokeWidth="4"
-              />
-              <motion.circle
-                cx="32"
-                cy="32"
-                r="28"
-                fill="none"
-                stroke="url(#gradient)"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeDasharray={2 * Math.PI * 28}
-                initial={{ strokeDashoffset: 2 * Math.PI * 28 }}
-                animate={{ strokeDashoffset: 2 * Math.PI * 28 * (1 - completionRate / 100) }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-              />
-              <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#d97706" />
-                  <stop offset="100%" stopColor="#fbbf24" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-lg font-serif text-purple-900 dark:text-purple-100">{completionRate}%</span>
-            </div>
-          </div>
-        </div>
-        
-        {/* Quick stats row */}
-        <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-purple-300 dark:border-purple-700">
-          <div className="text-center">
-            <p className="text-2xl font-serif text-purple-700 dark:text-purple-300">{tasksCompleted}</p>
-            <p className="text-[9px] text-purple-700 dark:text-purple-300 uppercase tracking-widest">Done Today</p>
-          </div>
-          <div className="text-center border-x border-purple-300 dark:border-purple-700">
-            <p className="text-2xl font-serif text-purple-800 dark:text-purple-200">{tasksToday - tasksCompleted}</p>
-            <p className="text-[9px] text-purple-700 dark:text-purple-300 uppercase tracking-widest">Remaining</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-serif text-purple-700 dark:text-purple-300">+10</p>
-            <p className="text-[9px] text-purple-700 dark:text-purple-300 uppercase tracking-widest">Per Task</p>
+          {/* Progress Bar */}
+          <div className="flex-1 h-2 bg-purple-300/30 dark:bg-purple-600/30 rounded-full overflow-hidden border border-purple-400 dark:border-purple-600">
+            <motion.div
+              className="h-full bg-gradient-to-r from-purple-600 to-purple-500 dark:from-purple-500 dark:to-purple-400"
+              initial={{ width: 0 }}
+              animate={{ width: `${completionRate}%` }}
+              transition={{ duration: 1 }}
+            />
           </div>
         </div>
       </div>
