@@ -226,12 +226,12 @@ export default function Wellness() {
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4">
-            <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
-            <span className="font-medium text-slate-700">Wellness</span>
-          </div>
-          <p className="text-slate-500">Beauty routines & self-care activities</p>
-        </div>
+           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4 dark:bg-rose-900/30 dark:border dark:border-rose-500/30">
+             <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
+             <span className="font-medium text-slate-700 dark:text-stone-100">Wellness</span>
+           </div>
+           <p className="text-slate-500 dark:text-stone-400">Beauty routines & self-care activities</p>
+         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
