@@ -295,7 +295,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             </motion.div>
             <div>
                 <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100 font-semibold">Daily Insights</h3>
-                <p className="text-[10px] text-slate-500 dark:text-stone-300 uppercase tracking-widest font-medium">AI-Powered</p>
+                <p className="text-[10px] text-slate-700 dark:text-stone-300 uppercase tracking-widest font-semibold">AI-Powered</p>
               </div>
           </div>
           <p className="text-slate-700 dark:text-stone-300 text-xs mb-4 leading-relaxed">
@@ -342,7 +342,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               </motion.div>
               <div>
                   <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100 font-semibold">Daily Insights</h3>
-                  <p className="text-[10px] text-slate-500 dark:text-stone-300 uppercase tracking-widest font-medium">AI-Powered</p>
+                  <p className="text-[10px] text-slate-700 dark:text-stone-300 uppercase tracking-widest font-semibold">AI-Powered</p>
                 </div>
             </div>
             <Button
@@ -386,7 +386,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             <div className="flex-1">
               <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100 font-semibold">Daily Insights</h3>
               <div className="flex items-center gap-2">
-                <p className="text-[10px] text-slate-500 dark:text-stone-300 uppercase tracking-widest font-medium">AI-Powered</p>
+                <p className="text-[10px] text-slate-700 dark:text-stone-300 uppercase tracking-widest font-semibold">AI-Powered</p>
                 {!hasAccess && trialInfo.inTrial && (
                   <div className="flex items-center gap-1 text-[10px] text-slate-700 dark:text-stone-300 bg-white dark:bg-rose-900/20 rounded px-2 py-0.5 border border-slate-200 dark:border-rose-500/30">
                     <Clock className="w-2.5 h-2.5" />
