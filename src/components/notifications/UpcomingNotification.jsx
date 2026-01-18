@@ -12,8 +12,8 @@ export default function UpcomingNotification() {
       setUser(u);
       if (u?.notification_enabled) {
         checkUpcomingItems();
-        // Check every 30 minutes
-        const interval = setInterval(checkUpcomingItems, 30 * 60 * 1000);
+        // Check every 4 hours
+        const interval = setInterval(checkUpcomingItems, 4 * 60 * 60 * 1000);
         return () => clearInterval(interval);
       }
     }).catch(() => {});
