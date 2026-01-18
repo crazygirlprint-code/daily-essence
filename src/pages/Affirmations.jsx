@@ -27,12 +27,21 @@ const DEFAULT_AFFIRMATIONS = [
 ];
 
 const categoryColors = {
-  confidence: 'from-slate-400 to-slate-500 dark:from-rose-400 dark:to-pink-500',
-  gratitude: 'from-slate-400 to-slate-500 dark:from-mauve-400 dark:to-mauve-500',
-  strength: 'from-slate-500 to-slate-600 dark:from-rose-400 dark:to-pink-500',
-  peace: 'from-slate-300 to-slate-400 dark:from-mauve-300 dark:to-mauve-400',
-  success: 'from-slate-400 to-slate-500 dark:from-mauve-300 dark:to-mauve-400',
-  love: 'from-slate-500 to-slate-600 dark:from-rose-400 dark:to-pink-500'
+  confidence: 'from-white to-white dark:from-rose-400 dark:to-pink-500',
+  gratitude: 'from-white to-white dark:from-mauve-400 dark:to-mauve-500',
+  strength: 'from-white to-white dark:from-rose-400 dark:to-pink-500',
+  peace: 'from-white to-white dark:from-mauve-300 dark:to-mauve-400',
+  success: 'from-white to-white dark:from-mauve-300 dark:to-mauve-400',
+  love: 'from-white to-white dark:from-rose-400 dark:to-pink-500'
+};
+
+const categoryBorders = {
+  confidence: 'border-slate-200 dark:border-transparent',
+  gratitude: 'border-slate-200 dark:border-transparent',
+  strength: 'border-slate-200 dark:border-transparent',
+  peace: 'border-slate-200 dark:border-transparent',
+  success: 'border-slate-200 dark:border-transparent',
+  love: 'border-slate-200 dark:border-transparent'
 };
 
 export default function Affirmations() {
@@ -135,9 +144,10 @@ export default function Affirmations() {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.3 }}
             className={cn(
-              'relative rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden',
+              'relative rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden border-2',
               'bg-gradient-to-br',
-              categoryColors[currentAffirmation.category] || categoryColors.confidence
+              categoryColors[currentAffirmation.category] || categoryColors.confidence,
+              categoryBorders[currentAffirmation.category] || categoryBorders.confidence
             )}
           >
             <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
@@ -157,7 +167,7 @@ export default function Affirmations() {
             </div>
             
             <div className="relative z-10 text-center">
-              <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-slate-900 leading-relaxed">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-slate-900 dark:text-white leading-relaxed">
                 "{currentAffirmation.text}"
               </p>
               
@@ -191,7 +201,7 @@ export default function Affirmations() {
                 </Button>
               </div>
               
-              <p className="mt-6 text-slate-700 text-sm capitalize">
+              <p className="mt-6 text-slate-700 dark:text-white/80 text-sm capitalize">
                 {currentAffirmation.category}
               </p>
             </div>
