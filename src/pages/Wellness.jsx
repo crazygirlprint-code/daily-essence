@@ -460,8 +460,8 @@ export default function Wellness() {
                           <Icon className="w-5 h-5" />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-medium text-slate-800">{activity.name}</h4>
-                          <p className="text-sm text-slate-500">
+                          <h4 className="font-medium text-slate-800 dark:text-stone-100">{activity.name}</h4>
+                          <p className="text-sm text-slate-500 dark:text-stone-400">
                             {format(new Date(activity.scheduled_date), 'EEEE, MMMM d')}
                           </p>
                         </div>
