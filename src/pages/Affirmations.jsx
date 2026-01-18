@@ -178,8 +178,8 @@ export default function Affirmations() {
                   className={cn(
                     'rounded-full px-8 py-6 text-lg font-medium shadow-xl transition-all',
                     isSpeaking 
-                      ? 'bg-white text-purple-600 hover:bg-white/90' 
-                      : 'bg-white/20 text-white border-2 border-white/50 hover:bg-white/30'
+                      ? 'bg-slate-800 text-white dark:bg-white dark:text-purple-600 hover:bg-slate-900 dark:hover:bg-white/90' 
+                      : 'bg-slate-600 text-white dark:bg-white/20 dark:text-white border-2 border-slate-700 dark:border-white/50 hover:bg-slate-700 dark:hover:bg-white/30'
                   )}
                 >
                   {isSpeaking && !isPaused ? (
