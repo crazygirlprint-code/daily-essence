@@ -215,7 +215,7 @@ export default function Profile() {
               <Button
                 onClick={generateInsights}
                 disabled={loadingInsights || activeGoals.length === 0}
-                className="gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40"
+                className="gap-2 bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg"
               >
                 {loadingInsights ? (
                   <>
@@ -229,7 +229,7 @@ export default function Profile() {
                   </>
                 )}
               </Button>
-              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40 gap-2">
+              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg gap-2">
                 <Plus className="w-4 h-4" />
                 New Goal
               </Button>
@@ -261,12 +261,12 @@ export default function Profile() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16 bg-white/50 rounded-2xl border border-dashed border-stone-300"
+              className="text-center py-16 bg-white/50 dark:bg-rose-950/20 rounded-2xl border border-dashed border-stone-300 dark:border-rose-500/30"
             >
               <Sparkles className="w-12 h-12 text-amber-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">No Wellness Goals Yet</h3>
-              <p className="text-stone-600 mb-6">Set your first wellness goal to get personalized AI insights.</p>
-              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Wellness Goals Yet</h3>
+              <p className="text-stone-600 dark:text-stone-200 mb-6">Set your first wellness goal to get personalized AI insights.</p>
+              <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg">
                 Create Your First Goal
               </Button>
             </motion.div>
