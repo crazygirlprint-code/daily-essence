@@ -202,6 +202,79 @@ export default function Calendar() {
           </div>
         </div>
       </div>
+
+      {/* Add Event Dialog */}
+      <Dialog open={showEventDialog} onOpenChange={setShowEventDialog}>
+        <DialogContent className="rounded-3xl">
+          <DialogHeader>
+            <DialogTitle>Add Special Event</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 pt-4">
+            <Input
+              placeholder="Event title"
+              value={newEvent.title}
+              onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+              className="rounded-xl"
+            />
+
+            <Select
+              value={newEvent.type}
+              onValueChange={(v) => setNewEvent({ ...newEvent, type: v })}
+            >
+              <SelectTrigger className="rounded-xl">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="birthday">Birthday</SelectItem>
+                <SelectItem value="anniversary">Anniversary</SelectItem>
+                <SelectItem value="holiday">Holiday</SelectItem>
+                <SelectItem value="appointment">Appointment</SelectItem>
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Input
+              type="date"
+              value={newEvent.date}
+              onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+              className="rounded-xl"
+            />
+
+            <Input
+              placeholder="Emoji (e.g., 🎂, 🎉, 🎈)"
+              value={newEvent.emoji}
+              onChange={(e) => setNewEvent({ ...newEvent, emoji: e.target.value })}
+              className="rounded-xl"
+              maxLength={2}
+            />
+
+            <Textarea
+              placeholder="Notes (optional)"
+              value={newEvent.notes}
+              onChange={(e) => setNewEvent({ ...newEvent, notes: e.target.value })}
+              className="rounded-xl"
+            />
+
+            <label className="flex items-center gap-2 text-sm text-slate-700 dark:text-stone-300">
+              <input
+                type="checkbox"
+                checked={newEvent.recurring_yearly}
+                onChange={(e) => setNewEvent({ ...newEvent, recurring_yearly: e.target.checked })}
+                className="rounded"
+              />
+              Repeat every year
+            </label>
+
+            <Button
+              onClick={() => createEventMutation.mutate(newEvent)}
+              disabled={!newEvent.title || !newEvent.date}
+              className="w-full rounded-xl h-12 bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:to-pink-600 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:to-pink-700"
+            >
+              Add Event
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
