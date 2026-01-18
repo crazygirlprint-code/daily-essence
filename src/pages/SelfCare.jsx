@@ -258,7 +258,7 @@ export default function SelfCare() {
                     className="flex items-center gap-3 p-3 bg-white/60 rounded-xl"
                   >
                     <span className={cn('w-3 h-3 rounded-full', typeInfo.color.split(' ')[0])} />
-                    <span className="flex-1 text-slate-600">{activity.name}</span>
+                    <span className="flex-1 text-slate-600 dark:text-stone-300">{activity.name}</span>
                   </div>
                 );
               })}
