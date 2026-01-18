@@ -37,8 +37,8 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   
-  // Allow going back 7 days from today
-  const minWeekOffset = Math.ceil((firstForecastDate.getTime() - today.getTime()) / (7 * 24 * 60 * 60 * 1000)) - 1;
+  // Allow going back many weeks
+  const minWeekOffset = -52;
   
   const weekStart = addDays(startOfWeek(today, { weekStartsOn: 1 }), weekOffset * 7);
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
