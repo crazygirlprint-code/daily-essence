@@ -256,7 +256,7 @@ export default function Meditation() {
       `bg-gradient-to-br ${meditationColor}`
     )}>
       {/* Ambient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-slate-900/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent" />
       
       {/* Background meditation music - royalty free ambient */}
       <audio 
