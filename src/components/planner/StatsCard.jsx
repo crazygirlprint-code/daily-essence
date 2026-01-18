@@ -13,19 +13,19 @@ export default function StatsCard({ tasks }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-rose-50 via-white to-amber-50 rounded-3xl p-6 border border-rose-100/50 shadow-sm"
+      className="bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-rose-950/20 dark:via-rose-950/10 dark:to-rose-950/20 rounded-3xl p-6 border border-slate-200 dark:border-rose-500/30 shadow-sm"
     >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold text-slate-700">Today's Progress</h3>
-        <span className="text-2xl font-bold text-rose-500">{progress}%</span>
+        <h3 className="font-semibold text-slate-700 dark:text-stone-200">Today's Progress</h3>
+        <span className="text-2xl font-bold text-slate-600 dark:text-rose-400">{progress}%</span>
       </div>
       
-      <div className="relative h-2 bg-slate-100 rounded-full overflow-hidden mb-6">
+      <div className="relative h-2 bg-slate-100 dark:bg-rose-950/40 rounded-full overflow-hidden mb-6">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="absolute inset-y-0 left-0 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full"
+          className="absolute inset-y-0 left-0 bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:to-pink-500 rounded-full"
         />
       </div>
       
@@ -34,24 +34,24 @@ export default function StatsCard({ tasks }) {
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-100 mb-2">
             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
           </div>
-          <p className="text-xl font-bold text-slate-800">{completed}</p>
-          <p className="text-xs text-slate-500">Done</p>
+          <p className="text-xl font-bold text-slate-800 dark:text-stone-200">{completed}</p>
+          <p className="text-xs text-slate-500 dark:text-stone-400">Done</p>
         </div>
         
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 mb-2">
             <Circle className="w-5 h-5 text-slate-500" />
           </div>
-          <p className="text-xl font-bold text-slate-800">{pending}</p>
-          <p className="text-xs text-slate-500">Pending</p>
+          <p className="text-xl font-bold text-slate-800 dark:text-stone-200">{pending}</p>
+          <p className="text-xs text-slate-500 dark:text-stone-400">Pending</p>
         </div>
         
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-red-100 mb-2">
             <Flame className="w-5 h-5 text-red-500" />
           </div>
-          <p className="text-xl font-bold text-slate-800">{highPriority}</p>
-          <p className="text-xs text-slate-500">Urgent</p>
+          <p className="text-xl font-bold text-slate-800 dark:text-stone-200">{highPriority}</p>
+          <p className="text-xs text-slate-500 dark:text-stone-400">Urgent</p>
         </div>
       </div>
     </motion.div>
