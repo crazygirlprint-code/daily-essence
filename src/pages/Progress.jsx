@@ -150,7 +150,7 @@ export default function Progress() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={cn('rounded-2xl p-4 border border-slate-200 dark:border-rose-500/30', stat.bgColor, 'dark:bg-rose-950/20')}
+                className={cn('rounded-2xl p-4 border border-slate-200 dark:border-rose-400/40 dark:bg-rose-950/40', stat.bgColor)}
               >
                 <Icon className={cn('w-6 h-6 mb-2', `text-${stat.color.split('-')[1]}-500`)} />
                 <p className="text-2xl font-bold text-slate-800 dark:text-stone-100">{stat.value}</p>
