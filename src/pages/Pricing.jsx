@@ -156,7 +156,7 @@ export default function Pricing() {
               }`}
             >
               {/* Background */}
-              <div className={`absolute inset-0 bg-white/50 rounded-3xl -z-10`} />
+              <div className={`absolute inset-0 bg-white/50 dark:bg-white/20 dark-luxury:bg-white/15 rounded-3xl -z-10`} />
 
               {plan.highlighted && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
