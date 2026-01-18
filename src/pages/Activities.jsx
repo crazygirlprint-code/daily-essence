@@ -117,7 +117,7 @@ export default function Activities() {
           >
             <Zap className="w-12 h-12 text-amber-400 dark:text-amber-300 mx-auto mb-4 opacity-50" />
             <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Activities Yet</h3>
-            <p className="text-stone-600 dark:text-stone-200 mb-6">Log your first activity to track mood and energy changes.</p>
+            <p className="text-stone-600 dark:text-stone-100 mb-6">Log your first activity to track mood and energy changes.</p>
             <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg">
               Log Your First Activity
             </Button>
