@@ -21,6 +21,15 @@ export default function UpcomingNotification() {
 
   const checkUpcomingItems = async () => {
     try {
+      // Check if we showed notifications recently (within 4 hours)
+      const lastShown = localStorage.getItem('lastNotificationTime');
+      const now = Date.now();
+      const fourHours = 4 * 60 * 60 * 1000;
+      
+      if (lastShown && (now - parseInt(lastShown)) < fourHours) {
+        return; // Don't show notifications yet
+      }
+
       const response = await base44.functions.invoke('checkUpcomingItems');
       const { upcomingItems } = response.data;
 
@@ -48,6 +57,7 @@ export default function UpcomingNotification() {
         }
 
         setNotifications(newNotifications);
+        localStorage.setItem('lastNotificationTime', now.toString());
 
         // Send browser notification if available
         if ('Notification' in window && Notification.permission === 'granted') {
