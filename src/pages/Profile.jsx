@@ -143,8 +143,8 @@ export default function Profile() {
                     className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm"
                   />
                 ) : (
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-stone-100 dark:from-rose-900/40 dark:to-pink-900/40 dark-luxury:from-amber-950 dark-luxury:to-blue-900 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30">
-                    <User className="w-8 h-8 text-amber-600 dark:text-rose-400" />
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-rose-900/40 dark:to-pink-900/40 flex items-center justify-center border-2 border-slate-300 dark:border-rose-500/30">
+                    <User className="w-8 h-8 text-slate-600 dark:text-rose-400" />
                   </div>
                 )}
                 {uploadingPicture && (
@@ -156,7 +156,7 @@ export default function Profile() {
               <button
                 onClick={() => document.getElementById('profile-pic-input').click()}
                 disabled={uploadingPicture}
-                className="absolute bottom-0 right-0 p-1.5 bg-amber-600 dark:bg-rose-600 hover:bg-amber-700 dark:hover:bg-rose-700 rounded-full text-white shadow-lg transition-colors"
+                className="absolute bottom-0 right-0 p-1.5 bg-slate-600 dark:bg-rose-600 hover:bg-slate-700 dark:hover:bg-rose-700 rounded-full text-white shadow-lg transition-colors"
               >
                 <Camera className="w-3.5 h-3.5" />
               </button>
@@ -169,7 +169,7 @@ export default function Profile() {
               className="hidden"
             />
             <div>
-              <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">My Profile</h1>
+              <h1 className="text-3xl font-serif text-slate-900 dark:text-stone-100">My Profile</h1>
               <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.display_name || user?.full_name}</p>
             </div>
           </div>
@@ -210,7 +210,7 @@ export default function Profile() {
         {/* Wellness Goals Section */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">Wellness Goals</h2>
+            <h2 className="text-2xl font-serif text-slate-900 dark:text-stone-100">Wellness Goals</h2>
             <div className="flex gap-2">
               <Button
                 onClick={generateInsights}
@@ -263,7 +263,7 @@ export default function Profile() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-16 bg-white/50 dark:bg-rose-950/20 rounded-2xl border border-dashed border-stone-300 dark:border-rose-500/30"
             >
-              <Sparkles className="w-12 h-12 text-amber-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
+              <Sparkles className="w-12 h-12 text-slate-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
               <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Wellness Goals Yet</h3>
               <p className="text-stone-600 dark:text-stone-200 mb-6">Set your first wellness goal to get personalized AI insights.</p>
               <Button onClick={() => setShowAddGoal(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg">
