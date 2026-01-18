@@ -102,7 +102,7 @@ export default function Community() {
 
           <Button
             onClick={() => setIsCreateOpen(true)}
-            className="rounded-xl bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-slate-900 font-medium"
+            className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:to-pink-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:to-pink-600 text-white font-medium"
           >
             <Plus className="w-4 h-4 mr-2" />
             Share
@@ -132,7 +132,7 @@ export default function Community() {
               <p className="text-slate-400 mb-6">Be the first to share your story with the community!</p>
               <Button
                 onClick={() => setIsCreateOpen(true)}
-                className="rounded-xl bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-slate-900 font-medium"
+                className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:to-pink-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:to-pink-600 text-white font-medium"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Share Your First Post
