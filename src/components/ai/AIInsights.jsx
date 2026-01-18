@@ -289,9 +289,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             <motion.div
               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="w-10 h-10 rounded-xl bg-white dark:bg-rose-900/30 flex items-center justify-center border border-slate-300 dark:border-rose-500/40 shadow-lg shadow-slate-200/20 dark:shadow-rose-500/10"
+              className="w-10 h-10 rounded-xl bg-white dark:bg-rose-900/30 flex items-center justify-center border border-slate-300 dark:border-rose-500/40 shadow-lg shadow-slate-400/30 dark:shadow-rose-500/30 animate-shimmer bg-gradient-to-r from-white via-slate-50 to-white dark:from-rose-900/30 dark:via-rose-800/40 dark:to-rose-900/30 bg-[length:200%_100%]"
             >
-              <Sparkles className="w-5 h-5 text-slate-700 dark:text-rose-300" strokeWidth={1.5} />
+              <Sparkles className="w-5 h-5 text-slate-700 dark:text-rose-300 drop-shadow-md" strokeWidth={1.5} />
             </motion.div>
             <div>
               <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100">Daily Insights</h3>
@@ -379,9 +379,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             <motion.div
               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="w-10 h-10 rounded-xl bg-white dark:bg-rose-900/30 flex items-center justify-center border border-slate-300 dark:border-rose-500/40 shadow-lg shadow-slate-200/20 dark:shadow-rose-500/10"
+              className="w-10 h-10 rounded-xl bg-white dark:bg-rose-900/30 flex items-center justify-center border border-slate-300 dark:border-rose-500/40 shadow-lg shadow-slate-400/30 dark:shadow-rose-500/30 animate-shimmer bg-gradient-to-r from-white via-slate-50 to-white dark:from-rose-900/30 dark:via-rose-800/40 dark:to-rose-900/30 bg-[length:200%_100%]"
             >
-              <Sparkles className="w-5 h-5 text-slate-700 dark:text-rose-300" strokeWidth={1.5} />
+              <Sparkles className="w-5 h-5 text-slate-700 dark:text-rose-300 drop-shadow-md" strokeWidth={1.5} />
             </motion.div>
             <div className="flex-1">
               <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100">Daily Insights</h3>
