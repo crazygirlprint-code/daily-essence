@@ -46,6 +46,16 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
   
   const { isListening, transcript, error, startListening, stopListening, clearTranscript } = useSpeechRecognition();
 
+  useEffect(() => {
+    if (!isListening && transcript) {
+      setFormData((prev) => ({
+        ...prev,
+        notes: prev.notes + (prev.notes && transcript ? ' ' : '') + transcript,
+      }));
+      clearTranscript();
+    }
+  }, [isListening, transcript]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({
