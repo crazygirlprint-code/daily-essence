@@ -234,6 +234,9 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                   <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
                 </button>
               </div>
+              {isListening && transcript && (
+                <p className="text-xs text-slate-600 dark:text-stone-300 mt-1">Recording: "{transcript}"</p>
+              )}
             </div>
 
           <div className="flex gap-3 pt-4">
