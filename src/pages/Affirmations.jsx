@@ -27,12 +27,12 @@ const DEFAULT_AFFIRMATIONS = [
 ];
 
 const categoryColors = {
-  confidence: 'from-plum-400 to-plum-500',
-  gratitude: 'from-mauve-400 to-mauve-500',
-  strength: 'from-rose-400 to-pink-500',
-  peace: 'from-plum-300 to-plum-400',
-  success: 'from-mauve-300 to-mauve-400',
-  love: 'from-rose-400 to-pink-500'
+  confidence: 'from-slate-400 to-slate-500 dark:from-rose-400 dark:to-pink-500',
+  gratitude: 'from-slate-400 to-slate-500 dark:from-mauve-400 dark:to-mauve-500',
+  strength: 'from-slate-500 to-slate-600 dark:from-rose-400 dark:to-pink-500',
+  peace: 'from-slate-300 to-slate-400 dark:from-mauve-300 dark:to-mauve-400',
+  success: 'from-slate-400 to-slate-500 dark:from-mauve-300 dark:to-mauve-400',
+  love: 'from-slate-500 to-slate-600 dark:from-rose-400 dark:to-pink-500'
 };
 
 export default function Affirmations() {
@@ -250,7 +250,7 @@ export default function Affirmations() {
           {!showCreateForm ? (
             <Button
               onClick={() => setShowCreateForm(true)}
-              className="w-full rounded-xl bg-gradient-to-r from-purple-500 to-rose-500 text-white hover:from-purple-600 hover:to-rose-600"
+              className="w-full rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:to-pink-500 text-white hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:to-pink-600"
             >
               <Plus className="w-4 h-4 mr-2" />
               Create Your Own Affirmation
@@ -303,7 +303,7 @@ export default function Affirmations() {
                   <Button
                     onClick={() => createMutation.mutate(newAffirmation)}
                     disabled={!newAffirmation.text.trim()}
-                    className="flex-1 rounded-xl bg-purple-600 hover:bg-purple-700 text-white"
+                    className="flex-1 rounded-xl bg-slate-600 dark:bg-rose-600 hover:bg-slate-700 dark:hover:bg-rose-700 text-white"
                   >
                     Save
                   </Button>
@@ -323,12 +323,12 @@ export default function Affirmations() {
              <div className="space-y-3">
                {affirmations.filter(a => a.is_favorite).map((aff, idx) => {
                  const categoryBgColors = {
-                   confidence: 'bg-purple-50',
-                   gratitude: 'bg-amber-50',
-                   strength: 'bg-rose-50',
-                   peace: 'bg-purple-50',
-                   success: 'bg-amber-50',
-                   love: 'bg-rose-50'
+                   confidence: 'bg-slate-50 dark:bg-rose-50',
+                   gratitude: 'bg-slate-100 dark:bg-mauve-50',
+                   strength: 'bg-slate-100 dark:bg-rose-50',
+                   peace: 'bg-slate-50 dark:bg-mauve-50',
+                   success: 'bg-slate-100 dark:bg-mauve-50',
+                   love: 'bg-slate-100 dark:bg-rose-50'
                  };
                  return (
                    <motion.button
