@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
 import Strolling from './pages/Strolling';
+import Wellness from './pages/Wellness';
 import __Layout from './Layout.jsx';
 
 
@@ -32,6 +33,7 @@ export const PAGES = {
     "Progress": Progress,
     "SelfCare": SelfCare,
     "Strolling": Strolling,
+    "Wellness": Wellness,
 }
 
 export const pagesConfig = {
