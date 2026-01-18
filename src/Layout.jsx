@@ -16,7 +16,6 @@ const navItems = [
   { name: 'Home', page: 'Home', icon: Home },
   { name: 'Calendar', page: 'Calendar', icon: Calendar },
   { name: 'Activities', page: 'Activities', icon: Zap },
-  { name: 'Events', page: 'Events', icon: Star },
   { name: 'Community', page: 'Community', icon: MessageCircle },
   { name: 'Affirmations', page: 'Affirmations', icon: Sparkles },
   { name: 'Meditation', page: 'Meditation', icon: Leaf },
