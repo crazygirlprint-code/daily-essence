@@ -65,7 +65,8 @@ const colorOptions = [
 export default function Family() {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [editingMember, setEditingMember] = useState(null);
-  const [newMember, setNewMember] = useState({ name: '', relationship: 'child', color: 'rose' });
+  const [newMember, setNewMember] = useState({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
+  const [isUploading, setIsUploading] = useState(false);
   
   const queryClient = useQueryClient();
   
@@ -84,7 +85,7 @@ export default function Family() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['familyMembers'] });
       setIsAddOpen(false);
-      setNewMember({ name: '', relationship: 'child', color: 'rose' });
+      setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
     },
   });
 
@@ -94,7 +95,7 @@ export default function Family() {
       queryClient.invalidateQueries({ queryKey: ['familyMembers'] });
       setIsAddOpen(false);
       setEditingMember(null);
-      setNewMember({ name: '', relationship: 'child', color: 'rose' });
+      setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
     },
   });
   
@@ -113,8 +114,23 @@ export default function Family() {
 
   const handleEdit = (member) => {
     setEditingMember(member);
-    setNewMember({ name: member.name, relationship: member.relationship, color: member.color });
+    setNewMember({ name: member.name, relationship: member.relationship, color: member.color, photo_url: member.photo_url || '' });
     setIsAddOpen(true);
+  };
+
+  const handlePhotoUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    setIsUploading(true);
+    try {
+      const { data } = await base44.integrations.Core.UploadFile({ file });
+      setNewMember({ ...newMember, photo_url: data.file_url });
+    } catch (error) {
+      console.error('Upload failed:', error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleSave = () => {
@@ -179,10 +195,14 @@ export default function Family() {
                     'flex flex-col items-center text-center'
                   )}>
                     <div className={cn(
-                      'w-16 h-16 rounded-2xl flex items-center justify-center mb-4',
+                      'w-16 h-16 rounded-2xl flex items-center justify-center mb-4 overflow-hidden',
                       colorClasses.bg
                     )}>
-                      <Icon className={cn('w-8 h-8', colorClasses.text)} />
+                      {member.photo_url ? (
+                        <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <Icon className={cn('w-8 h-8', colorClasses.text)} />
+                      )}
                     </div>
                     
                     <h3 className="font-semibold text-slate-800 mb-1">{member.name}</h3>
@@ -253,7 +273,7 @@ export default function Family() {
         setIsAddOpen(open);
         if (!open) {
           setEditingMember(null);
-          setNewMember({ name: '', relationship: 'child', color: 'rose' });
+          setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '' });
         }
       }}>
         <DialogContent className="rounded-3xl">
@@ -262,6 +282,40 @@ export default function Family() {
           </DialogHeader>
           
           <div className="space-y-4 pt-4">
+            {/* Photo Upload */}
+            <div className="flex flex-col items-center gap-3">
+              <div className={cn(
+                'w-24 h-24 rounded-2xl flex items-center justify-center overflow-hidden',
+                newMember.photo_url ? '' : getColorClasses(newMember.color).bg
+              )}>
+                {newMember.photo_url ? (
+                  <img src={newMember.photo_url} alt="Preview" className="w-full h-full object-cover" />
+                ) : (
+                  <User className={cn('w-12 h-12', getColorClasses(newMember.color).text)} />
+                )}
+              </div>
+              <label className="cursor-pointer">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoUpload}
+                  className="hidden"
+                  disabled={isUploading}
+                />
+                <span className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                  {isUploading ? 'Uploading...' : newMember.photo_url ? 'Change Photo' : 'Upload Photo'}
+                </span>
+              </label>
+              {newMember.photo_url && (
+                <button
+                  onClick={() => setNewMember({ ...newMember, photo_url: '' })}
+                  className="text-xs text-red-500 hover:text-red-600"
+                >
+                  Remove Photo
+                </button>
+              )}
+            </div>
+            
             <Input
               placeholder="Name"
               value={newMember.name}
