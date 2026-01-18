@@ -68,7 +68,7 @@ export default function StreakDisplay({ streak, compact = false }) {
         {/* Milestone progress */}
         {streak < 30 && (
           <div className="mt-4">
-            <div className="flex justify-between text-xs mb-1 text-slate-600 dark:text-stone-400">
+            <div className="flex justify-between text-xs mb-1 text-slate-600 dark:text-stone-300">
               <span>Next milestone</span>
               <span className="font-medium">
                 {streak < 3 ? '3 days' : streak < 7 ? '7 days' : '30 days'}
