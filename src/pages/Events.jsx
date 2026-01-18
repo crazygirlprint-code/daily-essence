@@ -253,9 +253,9 @@ export default function Events() {
                   className={cn(
                     'aspect-square rounded-xl p-1 flex flex-col items-center justify-start transition-all relative',
                     isSelected 
-                      ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 text-white shadow-lg shadow-purple-500/40'
+                      ? 'bg-gradient-to-br from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 text-white shadow-lg'
                       : today
-                        ? 'bg-purple-50 dark:bg-rose-950/40 text-purple-700 dark:text-rose-300 ring-2 ring-purple-200 dark:ring-rose-500/50'
+                        ? 'bg-slate-50 dark:bg-rose-950/40 text-slate-700 dark:text-rose-300 ring-2 ring-slate-200 dark:ring-rose-500/50'
                         : 'hover:bg-stone-50 dark:hover:bg-neutral-800/30 text-slate-700 dark:text-stone-400'
                   )}
                 >
@@ -305,7 +305,7 @@ export default function Events() {
                 setNewEvent({ ...newEvent, date: format(selectedDate, 'yyyy-MM-dd') });
                 setIsAddOpen(true);
               }}
-              className="rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40"
+              className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg"
             >
               <Plus className="w-4 h-4 mr-1" />
               Add Event
@@ -473,7 +473,7 @@ export default function Events() {
                 }
               }}
               disabled={!newEvent.title.trim() || !newEvent.date}
-              className="w-full rounded-xl h-12 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-purple-500/40"
+              className="w-full rounded-xl h-12 bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg"
             >
               {editingEvent ? 'Update Event' : 'Save Event'}
             </Button>
