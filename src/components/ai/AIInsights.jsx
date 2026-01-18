@@ -310,7 +310,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
           <Button
            onClick={generateInsights}
            disabled={isLoading}
-           className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-600 text-white hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-700 border-0 shadow-lg shadow-slate-500/40 dark:shadow-rose-500/40 animate-shimmer bg-[length:200%_100%]"
+           className="bg-gradient-to-r from-red-500 via-pink-400 to-rose-400 dark:from-rose-500 dark:via-pink-400 dark:to-rose-300 text-white hover:from-red-600 hover:via-pink-500 hover:to-rose-500 dark:hover:from-rose-600 dark:hover:via-pink-500 dark:hover:to-rose-400 border-0 shadow-lg shadow-rose-500/40 dark:shadow-rose-400/40"
           >
            <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
            Generate Insights
