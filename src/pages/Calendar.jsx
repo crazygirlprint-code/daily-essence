@@ -259,9 +259,9 @@ export default function Calendar() {
                    className={cn(
                      'aspect-square rounded-xl p-2 flex flex-col items-center justify-center transition-all',
                      isSelected
-                       ? 'bg-gradient-to-br from-blue-500 to-blue-600 dark:bg-gradient-to-br dark:from-rose-500 dark:to-pink-600 text-white shadow-lg'
+                       ? 'bg-gradient-to-br from-slate-600 to-slate-700 dark:bg-gradient-to-br dark:from-rose-500 dark:to-pink-600 text-white shadow-lg'
                        : isToday
-                         ? 'bg-blue-100 dark:bg-rose-950/40 text-blue-600 dark:text-rose-300 ring-2 ring-blue-400 dark:ring-rose-500/50'
+                         ? 'bg-slate-100 dark:bg-rose-950/40 text-slate-600 dark:text-rose-300 ring-2 ring-slate-400 dark:ring-rose-500/50'
                          : 'hover:bg-slate-50 dark:hover:bg-rose-900/20 text-slate-700 dark:text-stone-300'
                    )}
                  >
