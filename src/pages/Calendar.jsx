@@ -125,6 +125,42 @@ export default function Calendar() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50/40 via-stone-50/50 to-white dark:bg-transparent">
       <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Special Events Section */}
+        {upcomingEvents.length > 0 && (
+          <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-stone-100 mb-1">Special Events</h2>
+              <p className="text-slate-500 dark:text-stone-400 text-sm">Never miss an important date</p>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="text-xs font-medium text-slate-500 dark:text-stone-400 uppercase tracking-wider mb-3">
+                Coming Up
+              </h3>
+              <div className="flex gap-3 overflow-x-auto pb-2">
+                {upcomingEvents.map((event) => (
+                  <motion.button
+                    key={event.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    onClick={() => setSelectedDate(event.date)}
+                    className="flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-rose-900/20 dark:to-rose-900/10 border border-slate-200 dark:border-rose-500/30 hover:shadow-md transition-all"
+                  >
+                    <span className="text-2xl">{event.emoji || '⭐'}</span>
+                    <div className="text-left">
+                      <p className="font-medium text-sm text-slate-700 dark:text-stone-200">{event.title}</p>
+                      <p className="text-xs text-slate-500 dark:text-stone-400">
+                        {format(event.nextDate, 'MMM d')}
+                        {event.recurring_yearly && ' • Yearly'}
+                      </p>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -139,35 +175,6 @@ export default function Calendar() {
             Add Event
           </Button>
         </div>
-
-        {/* Upcoming Events */}
-        {upcomingEvents.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-sm font-medium text-slate-500 dark:text-stone-400 uppercase tracking-wide mb-3">
-              Coming Up
-            </h3>
-            <div className="flex gap-3 overflow-x-auto pb-2">
-              {upcomingEvents.map((event) => (
-                <motion.button
-                  key={event.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  onClick={() => setSelectedDate(event.date)}
-                  className="flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-rose-900/20 border border-slate-200 dark:border-rose-500/30 hover:shadow-md transition-all"
-                >
-                  <span className="text-2xl">{event.emoji || '⭐'}</span>
-                  <div className="text-left">
-                    <p className="font-medium text-sm text-slate-700 dark:text-stone-200">{event.title}</p>
-                    <p className="text-xs text-slate-500 dark:text-stone-400">
-                      {format(event.nextDate, 'MMM d')}
-                      {event.recurring_yearly && ' • Yearly'}
-                    </p>
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Calendar */}
         <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
