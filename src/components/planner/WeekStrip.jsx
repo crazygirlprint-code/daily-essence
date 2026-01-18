@@ -88,8 +88,8 @@ export default function WeekStrip({ selectedDate, onDateSelect, tasksByDate = {}
                 isSelected
                   ? 'bg-gradient-to-br from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-600 text-white shadow-lg shadow-slate-500/40 dark:shadow-rose-500/40'
                   : today
-                    ? 'bg-amber-50 dark:bg-white text-slate-700 dark:text-stone-700 border border-amber-200/60 dark:border-stone-200'
-                    : 'bg-white/50 text-stone-700 hover:bg-stone-50 border border-stone-300 dark:bg-white dark:border-stone-200 dark:text-stone-700 dark:hover:bg-stone-50'
+                    ? 'bg-amber-50 dark:bg-stone-50 text-slate-700 dark:text-slate-800 border border-amber-200/60 dark:border-stone-200'
+                    : 'bg-white/50 text-stone-700 hover:bg-stone-50 border border-stone-300 dark:bg-stone-50 dark:border-stone-200 dark:text-slate-800 dark:hover:bg-stone-100'
             )}
             title={weatherForDay ? `${weatherForDay.description} ${convertTemperature(weatherForDay.temp, temperatureUnit)}°${temperatureUnit === 'fahrenheit' ? 'F' : 'C'}` : ''}
           >

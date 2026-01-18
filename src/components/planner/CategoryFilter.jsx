@@ -32,7 +32,7 @@ export default function CategoryFilter({ selected, onChange, taskCounts = {} }) 
               'relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all',
               isActive
                 ? 'bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-600 text-white shadow-lg shadow-slate-300 dark:shadow-rose-500/30'
-                : 'bg-white/50 text-slate-600 hover:bg-slate-50 border border-slate-200 dark:bg-white dark:border-stone-200 dark:text-stone-700 dark:hover:bg-stone-50'
+                : 'bg-white/50 text-slate-600 hover:bg-slate-50 border border-slate-200 dark:bg-stone-50 dark:border-stone-200 dark:text-slate-800 dark:hover:bg-stone-100'
             )}
           >
             <Icon className="w-4 h-4" />

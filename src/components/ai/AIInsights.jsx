@@ -254,7 +254,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-white dark:to-white rounded-xl p-6 border border-slate-200 dark:border-stone-200 cursor-pointer hover:shadow-lg transition-all"
+        className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-stone-50 dark:to-stone-50 rounded-xl p-6 border border-slate-200 dark:border-stone-200 cursor-pointer hover:shadow-lg transition-all"
         onClick={() => window.location.href = '/Pricing'}
       >
         <div className="flex items-center justify-between">
@@ -279,7 +279,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-slate-50 dark:bg-white rounded-xl p-6 text-slate-900 dark:text-stone-900 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30 border border-slate-200 dark:border-stone-200"
+        className="relative overflow-hidden bg-slate-50 dark:bg-stone-50 rounded-xl p-6 text-slate-900 dark:text-slate-800 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30 border border-slate-200 dark:border-stone-200"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 dark:bg-rose-900/20 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-slate-50/50 dark:bg-rose-900/10 rounded-full blur-2xl" />
@@ -325,7 +325,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-slate-50 dark:bg-white rounded-xl p-6 border border-slate-200 dark:border-stone-200 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30"
+        className="relative overflow-hidden bg-slate-50 dark:bg-stone-50 rounded-xl p-6 border border-slate-200 dark:border-stone-200 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 dark:bg-rose-900/20 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-slate-50/50 dark:bg-rose-900/10 rounded-full blur-2xl" />
@@ -367,7 +367,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-50 dark:bg-white rounded-xl p-6 text-slate-900 dark:text-stone-900 shadow-lg shadow-slate-300/40 dark:shadow-stone-200/30 relative overflow-hidden border border-slate-200 dark:border-stone-200"
+      className="bg-slate-50 dark:bg-stone-50 rounded-xl p-6 text-slate-900 dark:text-slate-800 shadow-lg shadow-slate-300/40 dark:shadow-stone-200/30 relative overflow-hidden border border-slate-200 dark:border-stone-200"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 dark:bg-rose-900/20 rounded-full blur-3xl" />
