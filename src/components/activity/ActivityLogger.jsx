@@ -98,7 +98,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
             <div className="relative">
               <Input
                 placeholder="e.g., Morning walk in the park"
-                value={isListening ? transcript : formData.title}
+                value={formData.title + (isListening ? ' ' + transcript : '')}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 className="mt-1 pr-10"
                 required
