@@ -13,7 +13,7 @@ import PremiumGate from '@/components/premium/PremiumGate';
 export default function AIInsights() {
    const [insights, setInsights] = useState(null);
    const [isLoading, setIsLoading] = useState(false);
-   const [isExpanded, setIsExpanded] = useState(true);
+   const [isExpanded, setIsExpanded] = useState(false);
    const { hasAccess, isLoading: checkingAccess } = usePremiumCheck('Flourish');
    const [trialInfo, setTrialInfo] = useState({ inTrial: false, daysLeft: 0 });
 
