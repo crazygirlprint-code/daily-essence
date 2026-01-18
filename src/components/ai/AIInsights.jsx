@@ -279,7 +279,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-slate-50 dark:bg-rose-950/20 rounded-xl p-6 text-slate-900 dark:text-stone-100 shadow-sm border border-slate-200 dark:border-rose-500/30"
+        className="relative overflow-hidden bg-slate-50 dark:bg-rose-950/20 rounded-xl p-6 text-slate-900 dark:text-stone-100 shadow-lg shadow-slate-200/50 dark:shadow-rose-500/20 border border-slate-200 dark:border-rose-500/30"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 dark:bg-rose-900/20 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-slate-50/50 dark:bg-rose-900/10 rounded-full blur-2xl" />
@@ -325,7 +325,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-slate-50 dark:bg-rose-950/20 rounded-xl p-6 border border-slate-200 dark:border-rose-500/30 shadow-sm"
+        className="relative overflow-hidden bg-slate-50 dark:bg-rose-950/20 rounded-xl p-6 border border-slate-200 dark:border-rose-500/30 shadow-lg shadow-slate-200/50 dark:shadow-rose-500/20"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 dark:bg-rose-900/20 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-slate-50/50 dark:bg-rose-900/10 rounded-full blur-2xl" />
@@ -336,9 +336,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="w-10 h-10 rounded-xl bg-white dark:bg-rose-900/30 flex items-center justify-center border border-slate-300 dark:border-rose-500/40 shadow-lg shadow-slate-200/20 dark:shadow-rose-500/10"
+                className="w-10 h-10 rounded-xl bg-white dark:bg-rose-900/30 flex items-center justify-center border border-slate-300 dark:border-rose-500/40 shadow-lg shadow-slate-400/30 dark:shadow-rose-500/30 animate-shimmer bg-gradient-to-r from-white via-slate-50 to-white dark:from-rose-900/30 dark:via-rose-800/40 dark:to-rose-900/30 bg-[length:200%_100%]"
               >
-                <Sparkles className="w-5 h-5 text-slate-600 dark:text-rose-300" strokeWidth={1.5} />
+                <Sparkles className="w-5 h-5 text-slate-600 dark:text-rose-300 drop-shadow-md" strokeWidth={1.5} />
               </motion.div>
               <div>
                 <h3 className="font-serif text-lg text-slate-900 dark:text-stone-100">Daily Insights</h3>
@@ -367,7 +367,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-slate-50 dark:bg-rose-950/20 rounded-xl p-6 text-slate-900 dark:text-stone-100 shadow-sm relative overflow-hidden border border-slate-200 dark:border-rose-500/30"
+      className="bg-slate-50 dark:bg-rose-950/20 rounded-xl p-6 text-slate-900 dark:text-stone-100 shadow-lg shadow-slate-300/40 dark:shadow-rose-500/30 relative overflow-hidden border border-slate-200 dark:border-rose-500/30"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 dark:bg-rose-900/20 rounded-full blur-3xl" />
@@ -446,7 +446,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white/40 dark:bg-rose-900/20 backdrop-blur-sm rounded-lg p-4 border border-slate-300 dark:border-rose-500/30"
+                  className="bg-white/40 dark:bg-rose-900/20 backdrop-blur-sm rounded-lg p-4 border border-slate-300 dark:border-rose-500/30 shadow-md shadow-slate-200/30 dark:shadow-rose-500/20"
                 >
                   <p className="text-sm text-slate-900 dark:text-stone-100 leading-relaxed italic">
                     "{insights.daily_summary.message}"
