@@ -127,9 +127,9 @@ export default function Community() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-16"
             >
-              <Heart className="w-16 h-16 text-stone-200 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-slate-600 mb-2">No posts yet</h3>
-              <p className="text-slate-400 mb-6">Be the first to share your story with the community!</p>
+              <Heart className="w-16 h-16 text-stone-200 dark:text-rose-900/50 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-slate-600 dark:text-stone-200 mb-2">No posts yet</h3>
+              <p className="text-slate-400 dark:text-stone-400 mb-6">Be the first to share your story with the community!</p>
               <Button
                 onClick={() => setIsCreateOpen(true)}
                 className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:to-pink-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:to-pink-600 text-white font-medium"
