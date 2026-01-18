@@ -63,7 +63,7 @@ export default function StreakDisplay({ streak, compact = false }) {
           </span>
         </div>
         
-        <p className="text-sm mt-2 text-slate-600 dark:text-stone-400">{getStreakMessage()}</p>
+        <p className="text-sm mt-2 text-slate-600 dark:text-stone-200">{getStreakMessage()}</p>
         
         {/* Milestone progress */}
         {streak < 30 && (
