@@ -161,8 +161,8 @@ export default function Progress() {
         </div>
         
         {/* Extra Stats */}
-        <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm mb-8 border border-slate-200 dark:border-rose-500/30">
-          <h3 className="font-semibold text-slate-700 dark:text-stone-200 mb-4">Your Activity Summary</h3>
+        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm mb-8 border border-slate-200 dark:border-rose-400/40">
+          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Your Activity Summary</h3>
           <div className="grid grid-cols-2 gap-4">
             {extraStats.map((stat, index) => (
               <motion.div
@@ -170,10 +170,10 @@ export default function Progress() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="text-center p-3 bg-gradient-to-br from-stone-50 to-amber-50 rounded-xl"
+                className="text-center p-3 bg-gradient-to-br from-stone-50 to-amber-50 dark:from-rose-900/30 dark:to-pink-900/20 rounded-xl"
               >
-                <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
-                <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
+                <p className="text-2xl font-bold text-slate-800 dark:text-stone-100">{stat.value}</p>
+                <p className="text-xs text-slate-500 dark:text-stone-300 mt-1">{stat.label}</p>
               </motion.div>
             ))}
           </div>
