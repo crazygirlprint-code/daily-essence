@@ -325,7 +325,7 @@ export default function Budget() {
             <Button
               onClick={exportToCSV}
               variant="outline"
-              className="gap-2 bg-slate-600 text-white border-slate-700 hover:bg-slate-700 dark:bg-rose-500 dark:text-white dark:border-rose-600 dark:hover:bg-rose-600"
+              className="gap-2 bg-slate-600 text-white border-slate-700 hover:bg-slate-700 dark:bg-rose-700 dark:text-white dark:border-rose-600 dark:hover:bg-rose-800"
             >
               <Download className="w-4 h-4" />
               Export CSV
@@ -333,7 +333,7 @@ export default function Budget() {
             <Button
               onClick={() => setIsBudgetOpen(true)}
               variant="outline"
-              className="gap-2 bg-slate-600 text-white border-slate-700 hover:bg-slate-700 dark:bg-rose-500 dark:text-white dark:border-rose-600 dark:hover:bg-rose-600"
+              className="gap-2 bg-slate-600 text-white border-slate-700 hover:bg-slate-700 dark:bg-rose-700 dark:text-white dark:border-rose-600 dark:hover:bg-rose-800"
             >
               <Target className="w-4 h-4" />
               Set Budget
