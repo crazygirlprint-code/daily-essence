@@ -128,7 +128,7 @@ export default function SelfCare() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-gradient-to-r from-rose-400 to-pink-400 rounded-2xl p-4 mb-6 text-white"
+            className="bg-gradient-to-r from-slate-600 to-slate-700 rounded-2xl p-4 mb-6 text-white"
           >
             <div className="flex items-start gap-3">
               <div className="p-2 bg-white/20 rounded-xl">
@@ -164,7 +164,7 @@ export default function SelfCare() {
                   setNewActivity({ ...newActivity, name: randomSuggestion });
                   setIsAddOpen(true);
                 }}
-                className="rounded-xl bg-rose-500 hover:bg-rose-600"
+                className="rounded-xl bg-slate-700 hover:bg-slate-800"
               >
                 Schedule This
               </Button>
@@ -294,7 +294,7 @@ export default function SelfCare() {
         {/* Add Button */}
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-xl bg-gradient-to-r from-rose-500 to-pink-600"
+          className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-xl bg-slate-700 hover:bg-slate-800 text-white shadow-slate-500/30"
         >
           <Plus className="w-6 h-6" />
         </Button>
@@ -352,7 +352,7 @@ export default function SelfCare() {
             <Button
               onClick={() => createMutation.mutate(newActivity)}
               disabled={!newActivity.name.trim()}
-              className="w-full rounded-xl h-12 bg-gradient-to-r from-rose-500 to-pink-600"
+              className="w-full rounded-xl h-12 bg-slate-700 hover:bg-slate-800 text-white"
             >
               Save Activity
             </Button>
