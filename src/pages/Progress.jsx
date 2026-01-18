@@ -220,8 +220,8 @@ export default function Progress() {
         </div>
         
         {/* Badges */}
-        <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-500/30">
-          <h3 className="font-semibold text-slate-700 dark:text-stone-200 mb-4 flex items-center gap-2">
+        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-400/40">
+          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
             <Trophy className="w-5 h-5 text-slate-600 dark:text-amber-400" />
             Achievements
           </h3>
