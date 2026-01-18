@@ -568,7 +568,7 @@ export default function Budget() {
         {/* Add Transaction Button */}
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="fixed bottom-6 right-6 rounded-full w-14 h-14 text-white bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg shadow-blue-500/30 dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-600 dark:hover:from-rose-600 dark:hover:to-pink-700 dark:shadow-rose-500/40"
+          className="fixed bottom-6 right-6 rounded-full w-14 h-14 text-white bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg shadow-blue-600/30 dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-600 dark:hover:from-rose-600 dark:hover:to-pink-700 dark:shadow-rose-500/40"
         >
           <Plus className="w-6 h-6" />
         </Button>
