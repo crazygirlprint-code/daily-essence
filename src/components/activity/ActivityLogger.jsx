@@ -44,7 +44,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
     queryFn: () => base44.entities.FamilyMember.list(),
   });
   
-  const { isListening, transcript, startListening, stopListening, clearTranscript } = useSpeechRecognition();
+  const { isListening, transcript, error, startListening, stopListening, clearTranscript } = useSpeechRecognition();
 
   const handleSubmit = (e) => {
     e.preventDefault();
