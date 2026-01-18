@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, addMonths, subMonths, parseISO } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, addMonths, subMonths, parseISO, isBefore } from 'date-fns';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Plus, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -90,6 +90,28 @@ export default function Calendar() {
   const incompleteTasks = selectedTasks.filter(t => !t.completed);
   const selectedEvents = eventsByDate[selectedDate] || [];
 
+  // Get upcoming events
+  const upcomingEvents = useMemo(() => {
+    const today = new Date();
+    const upcoming = events
+      .map(event => {
+        let eventDate = parseISO(event.date);
+        if (event.recurring_yearly) {
+          const thisYear = new Date(today.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+          if (isBefore(thisYear, today)) {
+            eventDate = new Date(today.getFullYear() + 1, eventDate.getMonth(), eventDate.getDate());
+          } else {
+            eventDate = thisYear;
+          }
+        }
+        return { ...event, nextDate: eventDate };
+      })
+      .filter(e => !isBefore(e.nextDate, today))
+      .sort((a, b) => a.nextDate - b.nextDate)
+      .slice(0, 4);
+    return upcoming;
+  }, [events]);
+
   const monthStart = startOfMonth(currentDate);
   const monthEnd = endOfMonth(currentDate);
   const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
@@ -117,6 +139,35 @@ export default function Calendar() {
             Add Event
           </Button>
         </div>
+
+        {/* Upcoming Events */}
+        {upcomingEvents.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-sm font-medium text-slate-500 dark:text-stone-400 uppercase tracking-wide mb-3">
+              Coming Up
+            </h3>
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {upcomingEvents.map((event) => (
+                <motion.button
+                  key={event.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  onClick={() => setSelectedDate(event.date)}
+                  className="flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-rose-900/20 border border-slate-200 dark:border-rose-500/30 hover:shadow-md transition-all"
+                >
+                  <span className="text-2xl">{event.emoji || '⭐'}</span>
+                  <div className="text-left">
+                    <p className="font-medium text-sm text-slate-700 dark:text-stone-200">{event.title}</p>
+                    <p className="text-xs text-slate-500 dark:text-stone-400">
+                      {format(event.nextDate, 'MMM d')}
+                      {event.recurring_yearly && ' • Yearly'}
+                    </p>
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Calendar */}
         <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
