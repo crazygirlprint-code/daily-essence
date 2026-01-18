@@ -145,8 +145,8 @@ export default function Community() {
                 if (!typePosts || typePosts.length === 0) return null;
 
                 return (
-                  <div key={type}>
-                    <h2 className="text-xl font-bold text-slate-900 mb-4">{label}</h2>
+                    <div key={type}>
+                      <h2 className="text-xl font-bold text-slate-900 dark:text-stone-100 mb-4">{label}</h2>
                     <div className="space-y-4">
                       {typePosts.map((post) => (
                         <PostCard
