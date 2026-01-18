@@ -254,7 +254,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 rounded-xl p-6 border border-purple-200 dark:border-purple-700 cursor-pointer hover:shadow-lg transition-all"
+        className="relative overflow-hidden bg-transparent rounded-xl p-6 border border-purple-200 dark:border-purple-700 cursor-pointer hover:shadow-lg transition-all"
         onClick={() => window.location.href = '/Pricing'}
       >
         <div className="flex items-center justify-between">
@@ -279,10 +279,10 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-purple-50 dark:bg-purple-950 rounded-xl p-6 text-purple-900 dark:text-purple-100 shadow-lg shadow-purple-300/30 dark:shadow-purple-600/30 border border-purple-200 dark:border-purple-700"
+        className="relative overflow-hidden bg-transparent rounded-xl p-6 text-purple-900 dark:text-purple-100 shadow-lg shadow-purple-300/30 dark:shadow-purple-600/30 border border-purple-200 dark:border-purple-700 backdrop-blur-sm"
       >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-100/50 dark:bg-purple-800/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-50/50 dark:bg-purple-900/10 rounded-full blur-2xl" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-transparent rounded-full blur-2xl" />
         
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-3">
@@ -302,7 +302,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             Get personalized daily summary and actionable recommendations based on your habits and goals
           </p>
           {!hasAccess && trialInfo.inTrial && (
-            <div className="flex items-center gap-2 mb-3 text-xs text-purple-900 dark:text-purple-100 bg-purple-200 dark:bg-purple-700/40 rounded-lg px-3 py-2 border border-purple-400 dark:border-purple-600">
+            <div className="flex items-center gap-2 mb-3 text-xs text-purple-900 dark:text-purple-100 bg-purple-200/30 dark:bg-purple-700/20 rounded-lg px-3 py-2 border border-purple-400 dark:border-purple-600">
               <Clock className="w-3.5 h-3.5" />
               <span>Free trial: {trialInfo.daysLeft} {trialInfo.daysLeft === 1 ? 'day' : 'days'} left</span>
             </div>
@@ -428,7 +428,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               className="space-y-3"
             >
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="bg-purple-200 dark:bg-purple-700/30 rounded-lg p-4 animate-pulse border border-purple-300 dark:border-purple-600">
+                <div key={i} className="bg-purple-200/40 dark:bg-purple-700/20 rounded-lg p-4 animate-pulse border border-purple-300 dark:border-purple-600">
                   <div className="h-3 bg-purple-400 dark:bg-purple-500/30 rounded w-3/4 mb-2" />
                   <div className="h-2.5 bg-purple-300 dark:bg-purple-600/20 rounded w-full" />
                 </div>
@@ -446,7 +446,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-purple-200/60 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 shadow-md shadow-purple-300/30 dark:shadow-purple-600/20"
+                  className="bg-purple-200/30 dark:bg-purple-700/20 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 shadow-md shadow-purple-300/30 dark:shadow-purple-600/20"
                   >
                   <p className="text-sm text-purple-900 dark:text-purple-100 leading-relaxed italic">
                     "{insights.daily_summary.message}"
@@ -484,7 +484,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                     whileHover={{ scale: 1.01 }}
-                    className="bg-purple-200 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
+                    className="bg-purple-200/30 dark:bg-purple-700/20 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
                     >
                     <div className="flex items-start gap-3">
                       <div className="w-7 h-7 rounded bg-purple-300 dark:bg-purple-600/50 flex items-center justify-center flex-shrink-0 border border-purple-500 dark:border-purple-400">
@@ -533,7 +533,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     whileHover={{ scale: 1.01 }}
-                    className="bg-purple-200 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
+                    className="bg-purple-200/30 dark:bg-purple-700/20 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
                     >
                     <div className="flex items-start gap-3">
                       <div className="w-7 h-7 rounded bg-purple-300 dark:bg-purple-600/50 flex items-center justify-center flex-shrink-0 border border-purple-500 dark:border-purple-400">
