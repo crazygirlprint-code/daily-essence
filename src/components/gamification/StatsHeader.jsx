@@ -18,43 +18,43 @@ export default function StatsHeader({ points, level, progressPercent, tasksToday
       
       <div className="relative z-10">
         <div className="flex items-center justify-between gap-4">
-          {/* Icon and Progress */}
-          <div className="flex items-center gap-3">
-            <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="w-10 h-10 rounded-lg bg-purple-300/40 dark:bg-purple-700/40 flex items-center justify-center border border-purple-400 dark:border-purple-600 flex-shrink-0"
-            >
-              <Trophy className="w-5 h-5 text-purple-700 dark:text-purple-200" strokeWidth={1.5} />
-            </motion.div>
-            
-            <div className="flex-1">
-              <p className="text-[10px] text-purple-700 dark:text-purple-300 uppercase tracking-widest font-medium">Your Progress</p>
-              <div className="flex items-center gap-3 mt-1">
-                <div className="flex items-center gap-1">
-                  <span className="text-xl font-serif text-purple-900 dark:text-purple-100">{points}</span>
-                  <span className="text-[10px] text-purple-700 dark:text-purple-300 uppercase">pts</span>
-                </div>
-                <span className="text-purple-400 dark:text-purple-600">|</span>
-                <span className="text-sm font-serif text-purple-900 dark:text-purple-100">L{level}</span>
-                <span className="text-purple-400 dark:text-purple-600">|</span>
-                <div className="flex items-center gap-1">
-                  <Zap className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300 fill-purple-600 dark:fill-purple-300" strokeWidth={2} />
-                  <span className="text-sm font-serif text-purple-900 dark:text-purple-100">{completionRate}%</span>
-                </div>
+          {/* Icon */}
+          <motion.div
+            animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="w-10 h-10 rounded-lg bg-purple-300/40 dark:bg-purple-700/40 flex items-center justify-center border border-purple-400 dark:border-purple-600 flex-shrink-0"
+          >
+            <Trophy className="w-5 h-5 text-purple-700 dark:text-purple-200" strokeWidth={1.5} />
+          </motion.div>
+          
+          {/* Stats */}
+          <div className="flex-1">
+            <p className="text-[10px] text-purple-700 dark:text-purple-300 uppercase tracking-widest font-medium">Your Progress</p>
+            <div className="flex items-center gap-2 mt-1.5">
+              <span className="text-2xl font-serif text-purple-900 dark:text-purple-100">{points}</span>
+              <span className="text-purple-500 dark:text-purple-400">pts</span>
+              <span className="text-purple-400 dark:text-purple-600">|</span>
+              <span className="text-lg font-serif text-purple-900 dark:text-purple-100">L{level}</span>
+              <span className="text-purple-400 dark:text-purple-600">|</span>
+              <div className="flex items-center gap-1">
+                <Zap className="w-4 h-4 text-purple-600 dark:text-purple-300 fill-purple-600 dark:fill-purple-300" strokeWidth={1.5} />
+                <span className="text-base font-serif text-purple-900 dark:text-purple-100">{completionRate}%</span>
               </div>
             </div>
           </div>
           
-          {/* Progress Bar */}
-          <div className="flex-1 h-2 bg-purple-300/30 dark:bg-purple-600/30 rounded-full overflow-hidden border border-purple-400 dark:border-purple-600">
-            <motion.div
-              className="h-full bg-gradient-to-r from-purple-600 to-purple-500 dark:from-purple-500 dark:to-purple-400"
-              initial={{ width: 0 }}
-              animate={{ width: `${completionRate}%` }}
-              transition={{ duration: 1 }}
-            />
-          </div>
+          {/* Sparkle icon */}
+          <Sparkles className="w-4 h-4 text-purple-400 dark:text-purple-500 flex-shrink-0 opacity-50" strokeWidth={1.5} />
+        </div>
+        
+        {/* Progress Bar */}
+        <div className="mt-4 h-2 bg-purple-400/20 dark:bg-purple-600/20 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 dark:from-purple-500 dark:via-purple-400 dark:to-purple-300"
+            initial={{ width: 0 }}
+            animate={{ width: `${completionRate}%` }}
+            transition={{ duration: 1 }}
+          />
         </div>
       </div>
     </motion.div>
