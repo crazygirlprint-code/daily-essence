@@ -49,7 +49,7 @@ function LayoutContent({ children, currentPageName }) {
     }
 
   const darkBg = isDark ? {
-    background: 'linear-gradient(to bottom, rgb(70, 45, 80), rgb(55, 35, 65), rgb(70, 45, 80))'
+    background: 'linear-gradient(to bottom right, rgb(15, 23, 42), rgb(75, 0, 130), rgb(15, 23, 42))'
   } : {};
 
   return (
