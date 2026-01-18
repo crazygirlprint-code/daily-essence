@@ -387,13 +387,13 @@ export default function Wellness() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
+                className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30"
               >
                 <div className="flex items-center gap-2 text-amber-500 mb-2">
                   <Lightbulb className="w-5 h-5" />
-                  <span className="text-sm font-medium">Suggestion for you</span>
+                  <span className="text-sm font-medium dark:text-stone-200">Suggestion for you</span>
                 </div>
-                <p className="text-slate-700 font-medium">{randomSuggestion}</p>
+                <p className="text-slate-700 dark:text-stone-100 font-medium">{randomSuggestion}</p>
                 <div className="flex gap-2 mt-4">
                   <Button
                     size="sm"
