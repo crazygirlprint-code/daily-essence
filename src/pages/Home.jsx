@@ -378,20 +378,20 @@ export default function Home() {
       </motion.div>
       
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-purple-900/80 dark-luxury:bg-slate-950/80 backdrop-blur-lg border-t border-stone-300 dark:border-rose-500/20 dark-luxury:border-amber-900/30 px-6 py-3 md:hidden">
-        <div className="flex justify-around items-center max-w-md mx-auto">
-          <button className="flex flex-col items-center gap-1 text-stone-900 dark:text-stone-100">
-            <Calendar className="w-5 h-5" strokeWidth={1.5} />
-            <span className="text-[10px] font-medium uppercase tracking-widest">Today</span>
-          </button>
-          <Link to={createPageUrl('Calendar')} className="flex flex-col items-center gap-1 text-stone-500">
-            <Calendar className="w-5 h-5" strokeWidth={1.5} />
-            <span className="text-[10px] font-medium uppercase tracking-widest">Calendar</span>
-          </Link>
-          <Link to={createPageUrl('Family')} className="flex flex-col items-center gap-1 text-stone-500">
-            <Users className="w-5 h-5" strokeWidth={1.5} />
-            <span className="text-[10px] font-medium uppercase tracking-widest">Family</span>
-          </Link>
+       <div className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-purple-900/80 dark-luxury:bg-slate-950/80 backdrop-blur-lg border-t border-stone-300 dark:border-rose-500/20 dark-luxury:border-amber-900/30 px-6 py-3 md:hidden">
+         <div className="flex justify-around items-center max-w-md mx-auto">
+           <button className="flex flex-col items-center gap-1 text-stone-900 dark:text-stone-100">
+             <Calendar className="w-5 h-5" strokeWidth={1.5} />
+             <span className="text-[10px] font-medium uppercase tracking-widest dark:text-stone-100">Today</span>
+           </button>
+           <Link to={createPageUrl('Calendar')} className="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400">
+             <Calendar className="w-5 h-5" strokeWidth={1.5} />
+             <span className="text-[10px] font-medium uppercase tracking-widest">Calendar</span>
+           </Link>
+           <Link to={createPageUrl('Family')} className="flex flex-col items-center gap-1 text-stone-500 dark:text-stone-400">
+             <Users className="w-5 h-5" strokeWidth={1.5} />
+             <span className="text-[10px] font-medium uppercase tracking-widest">Family</span>
+           </Link>
         </div>
       </div>
       
