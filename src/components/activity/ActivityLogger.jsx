@@ -233,13 +233,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                 />
                 <button
                   type="button"
-                  onClick={() => {
-                    if (isListening) {
-                      stopListening();
-                    } else {
-                      startListening();
-                    }
-                  }}
+                  onClick={handleMicClick}
                   className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
                 >
                   <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
