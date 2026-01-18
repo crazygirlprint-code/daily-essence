@@ -11,11 +11,11 @@ import PointsPopup from '@/components/gamification/PointsPopup';
 import { useTheme } from '@/components/hooks/useTheme';
 
 const MEDITATION_TYPES = [
-  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-purple-500 to-purple-700', colorLuxury: 'from-purple-600 to-purple-800' },
-  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-600 to-purple-800', colorLuxury: 'from-purple-700 to-purple-900' },
-  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-purple-500 to-purple-700', colorLuxury: 'from-purple-600 to-purple-800' },
-  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-purple-700 to-purple-900', colorLuxury: 'from-purple-800 to-purple-950' },
-  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-purple-600 to-purple-800', colorLuxury: 'from-purple-700 to-purple-900' },
+  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
 ];
 
 const DURATIONS = [10, 15, 20];
