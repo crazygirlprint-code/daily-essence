@@ -11,11 +11,11 @@ import PointsPopup from '@/components/gamification/PointsPopup';
 import { useTheme } from '@/components/hooks/useTheme';
 
 const MEDITATION_TYPES = [
-  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-purple-200 to-purple-300', colorLuxury: 'from-purple-300 to-purple-400' },
-  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-200 to-purple-300', colorLuxury: 'from-purple-300 to-purple-400' },
-  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-purple-200 to-purple-300', colorLuxury: 'from-purple-300 to-purple-400' },
-  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-purple-200 to-purple-300', colorLuxury: 'from-purple-300 to-purple-400' },
-  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-purple-200 to-purple-300', colorLuxury: 'from-purple-300 to-purple-400' },
+  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
 ];
 
 const DURATIONS = [10, 15, 20];
@@ -256,7 +256,7 @@ export default function Meditation() {
       `bg-gradient-to-br ${meditationColor}`
     )}>
       {/* Ambient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-slate-900/10" />
       
       {/* Background meditation music - royalty free ambient */}
       <audio 
