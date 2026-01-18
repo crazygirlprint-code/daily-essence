@@ -62,7 +62,7 @@ export default function Profile() {
     setLoadingInsights(true);
     try {
       const response = await base44.functions.invoke('generateGoalInsights', {});
-      if (response.data?.insights) {
+      if (response.data?.insights && response.data.insights.length > 0) {
         // Update each goal with its insight
         for (const insight of response.data.insights) {
           await base44.entities.WellnessGoal.update(insight.goal_id, {
@@ -70,9 +70,13 @@ export default function Profile() {
           });
         }
         queryClient.invalidateQueries({ queryKey: ['wellnessGoals'] });
+        alert('AI insights generated successfully!');
+      } else {
+        alert('No active goals found to generate insights for.');
       }
     } catch (error) {
       console.error('Error generating insights:', error);
+      alert('Failed to generate insights. Please try again.');
     } finally {
       setLoadingInsights(false);
     }
