@@ -190,14 +190,14 @@ export default function Home() {
         <DayHeader date={selectedDate} userName={user?.display_name || user?.full_name} />
         
         {/* AI Insights */}
-        <div className="mb-8">
-          <AIInsights />
-        </div>
+         <div className="mb-8 bg-stone-100/50 dark:bg-stone-50/10 rounded-2xl p-6 border border-stone-200/50 dark:border-stone-600/20">
+           <AIInsights />
+         </div>
 
         {/* Progress Report */}
          <motion.div 
            whileTap={{ scale: 0.98 }}
-           className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-white dark:bg-stone-50 text-slate-900 dark:text-slate-800 border-0 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30 dark:border-stone-200 mb-8 cursor-pointer"
+           className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-stone-100/50 dark:bg-stone-50/10 text-slate-900 dark:text-slate-800 border border-stone-200/50 dark:border-stone-600/20 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30 mb-8 cursor-pointer"
            onClick={() => navigate(createPageUrl('Progress'))}
          >
           <div className="absolute top-0 right-0 w-24 h-24 bg-purple-100/20 rounded-full blur-2xl" />
@@ -249,7 +249,7 @@ export default function Home() {
           })}
         </div>
         
-        <div className="mb-8">
+        <div className="mb-8 bg-stone-100/50 dark:bg-stone-50/10 rounded-2xl p-6 border border-stone-200/50 dark:border-stone-600/20">
           <WeekStrip 
             selectedDate={selectedDate}
             onDateSelect={setSelectedDate}
