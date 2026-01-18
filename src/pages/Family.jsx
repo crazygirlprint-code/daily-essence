@@ -181,9 +181,9 @@ export default function Family() {
         
         {/* Tabs */}
         <Tabs defaultValue="members" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="members">Members</TabsTrigger>
-            <TabsTrigger value="wall">Family Wall</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 mb-6 dark:bg-white/10">
+            <TabsTrigger value="members" className="dark:text-stone-200 dark:data-[state=active]:bg-rose-700/50">Members</TabsTrigger>
+            <TabsTrigger value="wall" className="dark:text-stone-200 dark:data-[state=active]:bg-rose-700/50">Family Wall</TabsTrigger>
           </TabsList>
           
           <TabsContent value="members">
