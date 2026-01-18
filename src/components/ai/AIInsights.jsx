@@ -254,21 +254,21 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-gradient-to-br from-rose-100 to-pink-100 dark:from-rose-900 dark:to-rose-800 rounded-xl p-6 border border-rose-300 dark:border-rose-600 cursor-pointer hover:shadow-lg transition-all"
+        className="relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 rounded-xl p-6 border border-purple-200 dark:border-purple-700 cursor-pointer hover:shadow-lg transition-all"
         onClick={() => window.location.href = '/Pricing'}
       >
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-5 h-5 text-rose-600 dark:text-rose-200" />
-              <h3 className="font-serif text-lg text-rose-900 dark:text-rose-50">AI Daily Insights</h3>
+              <Sparkles className="w-5 h-5 text-purple-600 dark:text-purple-300" />
+              <h3 className="font-serif text-lg text-purple-900 dark:text-purple-100">AI Daily Insights</h3>
             </div>
-            <p className="text-sm text-rose-800 dark:text-rose-200 mb-1">
+            <p className="text-sm text-purple-800 dark:text-purple-200 mb-1">
               Get personalized recommendations based on your habits
             </p>
-            <p className="text-xs text-rose-700 dark:text-rose-300 font-medium">Trial ended - Upgrade to Flourish</p>
+            <p className="text-xs text-purple-700 dark:text-purple-300 font-medium">Trial ended - Upgrade to Flourish</p>
           </div>
-          <ChevronRight className="w-5 h-5 text-rose-500 dark:text-rose-300" />
+          <ChevronRight className="w-5 h-5 text-purple-600 dark:text-purple-400" />
         </div>
       </motion.div>
     );
@@ -279,10 +279,10 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden bg-rose-100 dark:bg-rose-900 rounded-xl p-6 text-rose-900 dark:text-rose-50 shadow-lg shadow-rose-300/40 dark:shadow-rose-500/30 border border-rose-300 dark:border-rose-600"
+        className="relative overflow-hidden bg-purple-50 dark:bg-purple-950 rounded-xl p-6 text-purple-900 dark:text-purple-100 shadow-lg shadow-purple-300/30 dark:shadow-purple-600/30 border border-purple-200 dark:border-purple-700"
       >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-rose-200/50 dark:bg-rose-700/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-rose-100/50 dark:bg-rose-800/10 rounded-full blur-2xl" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-100/50 dark:bg-purple-800/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-50/50 dark:bg-purple-900/10 rounded-full blur-2xl" />
         
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-3">
@@ -294,15 +294,15 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               <Sparkles className="w-5 h-5 text-purple-700 dark:text-purple-200 drop-shadow-md" strokeWidth={1.5} />
             </motion.div>
             <div>
-              <h3 className="font-serif text-lg text-rose-900 dark:text-rose-50">Daily Insights</h3>
-              <p className="text-[10px] text-rose-700 dark:text-rose-300 uppercase tracking-widest">AI-Powered</p>
+              <h3 className="font-serif text-lg text-purple-900 dark:text-purple-100">Daily Insights</h3>
+              <p className="text-[10px] text-purple-700 dark:text-purple-300 uppercase tracking-widest">AI-Powered</p>
             </div>
           </div>
           <p className="text-rose-800 dark:text-rose-200 text-xs mb-4 leading-relaxed">
             Get personalized daily summary and actionable recommendations based on your habits and goals
           </p>
           {!hasAccess && trialInfo.inTrial && (
-            <div className="flex items-center gap-2 mb-3 text-xs text-rose-900 dark:text-rose-100 bg-rose-200 dark:bg-rose-700/40 rounded-lg px-3 py-2 border border-rose-400 dark:border-rose-600">
+            <div className="flex items-center gap-2 mb-3 text-xs text-purple-900 dark:text-purple-100 bg-purple-200 dark:bg-purple-700/40 rounded-lg px-3 py-2 border border-purple-400 dark:border-purple-600">
               <Clock className="w-3.5 h-3.5" />
               <span>Free trial: {trialInfo.daysLeft} {trialInfo.daysLeft === 1 ? 'day' : 'days'} left</span>
             </div>
@@ -310,7 +310,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
           <Button
            onClick={generateInsights}
            disabled={isLoading}
-           className="bg-gradient-to-r from-rose-600 via-pink-500 to-rose-600 dark:from-rose-600 dark:via-pink-500 dark:to-rose-600 text-white hover:from-rose-700 hover:via-pink-600 hover:to-rose-700 dark:hover:from-rose-700 dark:hover:via-pink-600 dark:hover:to-rose-700 border-0 shadow-lg shadow-rose-500/40 dark:shadow-rose-500/40"
+           className="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 dark:from-purple-600 dark:via-purple-500 dark:to-purple-600 text-white hover:from-purple-700 hover:via-purple-600 hover:to-purple-700 dark:hover:from-purple-700 dark:hover:via-purple-600 dark:hover:to-purple-700 border-0 shadow-lg shadow-purple-500/40 dark:shadow-purple-600/40"
           >
            <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
            Generate Insights
@@ -379,9 +379,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
             <motion.div
               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="w-10 h-10 rounded-xl bg-rose-200 dark:bg-rose-700/50 flex items-center justify-center border border-rose-400 dark:border-rose-500 shadow-lg shadow-rose-400/30 dark:shadow-rose-500/30 animate-shimmer bg-gradient-to-r from-rose-200 via-pink-100 to-rose-200 dark:from-rose-700/50 dark:via-rose-600/60 dark:to-rose-700/50 bg-[length:200%_100%]"
+              className="w-10 h-10 rounded-xl bg-purple-200 dark:bg-purple-700/50 flex items-center justify-center border border-purple-400 dark:border-purple-600 shadow-lg shadow-purple-300/30 dark:shadow-purple-600/30 animate-shimmer bg-gradient-to-r from-purple-200 via-purple-100 to-purple-200 dark:from-purple-700/50 dark:via-purple-700/60 dark:to-purple-700/50 bg-[length:200%_100%]"
             >
-              <Sparkles className="w-5 h-5 text-rose-700 dark:text-rose-200 drop-shadow-md" strokeWidth={1.5} />
+              <Sparkles className="w-5 h-5 text-purple-700 dark:text-purple-200 drop-shadow-md" strokeWidth={1.5} />
             </motion.div>
             <div className="flex-1">
               <h3 className="font-serif text-lg text-rose-900 dark:text-rose-50">Daily Insights</h3>
@@ -411,7 +411,7 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               onClick={() => setIsExpanded(false)}
               size="sm"
               variant="ghost"
-              className="text-rose-700 dark:text-rose-200 hover:bg-rose-200 dark:hover:bg-rose-700"
+              className="text-purple-700 dark:text-purple-200 hover:bg-purple-200 dark:hover:bg-purple-700"
               >
                 <X className="w-4 h-4" strokeWidth={1.5} />
               </Button>
@@ -428,9 +428,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
               className="space-y-3"
             >
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="bg-rose-200 dark:bg-rose-700/30 rounded-lg p-4 animate-pulse border border-rose-300 dark:border-rose-600">
-                  <div className="h-3 bg-rose-400 dark:bg-rose-500/30 rounded w-3/4 mb-2" />
-                  <div className="h-2.5 bg-rose-300 dark:bg-rose-600/20 rounded w-full" />
+                <div key={i} className="bg-purple-200 dark:bg-purple-700/30 rounded-lg p-4 animate-pulse border border-purple-300 dark:border-purple-600">
+                  <div className="h-3 bg-purple-400 dark:bg-purple-500/30 rounded w-3/4 mb-2" />
+                  <div className="h-2.5 bg-purple-300 dark:bg-purple-600/20 rounded w-full" />
                 </div>
               ))}
             </motion.div>
@@ -446,9 +446,9 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-rose-200/60 dark:bg-rose-700/40 backdrop-blur-sm rounded-lg p-4 border border-rose-400 dark:border-rose-500 shadow-md shadow-rose-300/30 dark:shadow-rose-500/20"
+                  className="bg-purple-200/60 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 shadow-md shadow-purple-300/30 dark:shadow-purple-600/20"
                   >
-                  <p className="text-sm text-rose-900 dark:text-rose-50 leading-relaxed italic">
+                  <p className="text-sm text-purple-900 dark:text-purple-100 leading-relaxed italic">
                     "{insights.daily_summary.message}"
                   </p>
                 </motion.div>
@@ -461,16 +461,16 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                   whileHover={{ scale: 1.01 }}
-                  className="bg-rose-200 dark:bg-rose-700/40 backdrop-blur-sm rounded-lg p-4 border border-rose-400 dark:border-rose-500 hover:border-rose-500 dark:hover:border-rose-400 transition-all cursor-pointer shadow-xs"
+                  className="bg-purple-200 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
                   >
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded bg-rose-300 dark:bg-rose-600/50 flex items-center justify-center flex-shrink-0 border border-rose-500 dark:border-rose-400">
-                       <span className="text-rose-900 dark:text-rose-100 text-sm font-serif">1</span>
+                    <div className="w-7 h-7 rounded bg-purple-300 dark:bg-purple-600/50 flex items-center justify-center flex-shrink-0 border border-purple-500 dark:border-purple-400">
+                       <span className="text-purple-900 dark:text-purple-100 text-sm font-serif">1</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm text-rose-900 dark:text-rose-50 mb-1">{insights.priority_action.title}</h4>
-                       <p className="text-xs text-rose-800 dark:text-rose-200 leading-relaxed">{insights.priority_action.description}</p>
-                       <p className="text-[10px] text-rose-700 dark:text-rose-300 mt-1.5 uppercase tracking-widest">{insights.priority_action.why_now}</p>
+                      <h4 className="font-medium text-sm text-purple-900 dark:text-purple-100 mb-1">{insights.priority_action.title}</h4>
+                       <p className="text-xs text-purple-800 dark:text-purple-200 leading-relaxed">{insights.priority_action.description}</p>
+                       <p className="text-[10px] text-purple-700 dark:text-purple-300 mt-1.5 uppercase tracking-widest">{insights.priority_action.why_now}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -484,19 +484,19 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                     whileHover={{ scale: 1.01 }}
-                    className="bg-rose-200 dark:bg-rose-700/40 backdrop-blur-sm rounded-lg p-4 border border-rose-400 dark:border-rose-500 hover:border-rose-500 dark:hover:border-rose-400 transition-all cursor-pointer shadow-xs"
+                    className="bg-purple-200 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
                     >
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded bg-rose-300 dark:bg-rose-600/50 flex items-center justify-center flex-shrink-0 border border-rose-500 dark:border-rose-400">
-                         <Heart className="w-3.5 h-3.5 text-rose-700 dark:text-rose-200" strokeWidth={1.5} />
+                      <div className="w-7 h-7 rounded bg-purple-300 dark:bg-purple-600/50 flex items-center justify-center flex-shrink-0 border border-purple-500 dark:border-purple-400">
+                         <Heart className="w-3.5 h-3.5 text-purple-700 dark:text-purple-200" strokeWidth={1.5} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="font-medium text-sm text-rose-900 dark:text-rose-50">{insights.wellness.title}</h4>
-                             <ChevronRight className="w-3.5 h-3.5 text-rose-700 dark:text-rose-300" strokeWidth={1.5} />
+                          <h4 className="font-medium text-sm text-purple-900 dark:text-purple-100">{insights.wellness.title}</h4>
+                             <ChevronRight className="w-3.5 h-3.5 text-purple-700 dark:text-purple-300" strokeWidth={1.5} />
                            </div>
-                           <p className="text-xs text-rose-800 dark:text-rose-200 leading-relaxed">{insights.wellness.description}</p>
-                           <p className="text-[10px] text-rose-700 dark:text-rose-300 mt-1.5 uppercase tracking-widest">{insights.wellness.benefit}</p>
+                           <p className="text-xs text-purple-800 dark:text-purple-200 leading-relaxed">{insights.wellness.description}</p>
+                           <p className="text-[10px] text-purple-700 dark:text-purple-300 mt-1.5 uppercase tracking-widest">{insights.wellness.benefit}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -510,16 +510,16 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                   whileHover={{ scale: 1.01 }}
-                  className="bg-rose-200 dark:bg-rose-700/40 backdrop-blur-sm rounded-lg p-4 border border-rose-400 dark:border-rose-500 hover:border-rose-500 dark:hover:border-rose-400 transition-all cursor-pointer shadow-xs"
+                  className="bg-purple-200 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
                   >
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded bg-rose-300 dark:bg-rose-600/50 flex items-center justify-center flex-shrink-0 border border-rose-500 dark:border-rose-400">
-                       <UtensilsCrossed className="w-3.5 h-3.5 text-rose-700 dark:text-rose-200" strokeWidth={1.5} />
+                    <div className="w-7 h-7 rounded bg-purple-300 dark:bg-purple-600/50 flex items-center justify-center flex-shrink-0 border border-purple-500 dark:border-purple-400">
+                       <UtensilsCrossed className="w-3.5 h-3.5 text-purple-700 dark:text-purple-200" strokeWidth={1.5} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm text-rose-900 dark:text-rose-50 mb-1">{insights.meal.title}</h4>
-                       <p className="text-xs text-rose-800 dark:text-rose-200 leading-relaxed">{insights.meal.description}</p>
-                       <p className="text-[10px] text-rose-700 dark:text-rose-300 mt-1.5 uppercase tracking-widest">{insights.meal.timing}</p>
+                      <h4 className="font-medium text-sm text-purple-900 dark:text-purple-100 mb-1">{insights.meal.title}</h4>
+                       <p className="text-xs text-purple-800 dark:text-purple-200 leading-relaxed">{insights.meal.description}</p>
+                       <p className="text-[10px] text-purple-700 dark:text-purple-300 mt-1.5 uppercase tracking-widest">{insights.meal.timing}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -533,19 +533,19 @@ Be warm, specific, and actionable. Reference her actual data. Speak like a suppo
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     whileHover={{ scale: 1.01 }}
-                    className="bg-rose-200 dark:bg-rose-700/40 backdrop-blur-sm rounded-lg p-4 border border-rose-400 dark:border-rose-500 hover:border-rose-500 dark:hover:border-rose-400 transition-all cursor-pointer shadow-xs"
+                    className="bg-purple-200 dark:bg-purple-700/40 backdrop-blur-sm rounded-lg p-4 border border-purple-400 dark:border-purple-500 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer shadow-xs"
                     >
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded bg-rose-300 dark:bg-rose-600/50 flex items-center justify-center flex-shrink-0 border border-rose-500 dark:border-rose-400">
-                         <Sparkles className="w-3.5 h-3.5 text-rose-700 dark:text-rose-200" strokeWidth={1.5} />
+                      <div className="w-7 h-7 rounded bg-purple-300 dark:bg-purple-600/50 flex items-center justify-center flex-shrink-0 border border-purple-500 dark:border-purple-400">
+                         <Sparkles className="w-3.5 h-3.5 text-purple-700 dark:text-purple-200" strokeWidth={1.5} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="font-medium text-sm text-rose-900 dark:text-rose-50">{insights.affirmation.theme}</h4>
-                             <ChevronRight className="w-3.5 h-3.5 text-rose-700 dark:text-rose-300" strokeWidth={1.5} />
+                          <h4 className="font-medium text-sm text-purple-900 dark:text-purple-100">{insights.affirmation.theme}</h4>
+                             <ChevronRight className="w-3.5 h-3.5 text-purple-700 dark:text-purple-300" strokeWidth={1.5} />
                            </div>
-                           <p className="text-xs text-rose-800 dark:text-rose-200 leading-relaxed">{insights.affirmation.suggestion}</p>
-                           <p className="text-[10px] text-rose-700 dark:text-rose-300 mt-1.5 uppercase tracking-widest">{insights.affirmation.relevance}</p>
+                           <p className="text-xs text-purple-800 dark:text-purple-200 leading-relaxed">{insights.affirmation.suggestion}</p>
+                           <p className="text-[10px] text-purple-700 dark:text-purple-300 mt-1.5 uppercase tracking-widest">{insights.affirmation.relevance}</p>
                       </div>
                     </div>
                   </motion.div>
