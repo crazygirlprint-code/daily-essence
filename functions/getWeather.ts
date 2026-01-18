@@ -68,40 +68,8 @@ Deno.serve(async (req) => {
       }
     });
 
-    // Fetch historical weather for past 7 days
-    const historicalForecasts = {};
-    const today = new Date();
-    for (let i = 1; i <= 7; i++) {
-      const pastDate = new Date(today);
-      pastDate.setDate(pastDate.getDate() - i);
-      const timestamp = Math.floor(pastDate.getTime() / 1000);
-      const dateKey = pastDate.toISOString().split('T')[0];
-      
-      try {
-        const histUrl = `${OPENWEATHER_API}/weather?lat=${coords.lat}&lon=${coords.lon}&units=metric&dt=${timestamp}&appid=${OPENWEATHER_API_KEY}`;
-        const histResponse = await fetch(histUrl);
-        if (histResponse.ok) {
-          const histData = await histResponse.json();
-          historicalForecasts[dateKey] = {
-            date: dateKey,
-            temp: histData.main.temp,
-            feels_like: histData.main.feels_like,
-            temp_min: histData.main.temp_min,
-            temp_max: histData.main.temp_max,
-            description: histData.weather[0].description,
-            icon: histData.weather[0].icon,
-            humidity: histData.main.humidity,
-            wind_speed: histData.wind.speed,
-          };
-        }
-      } catch (error) {
-        console.error(`Failed to fetch historical data for ${dateKey}:`, error);
-      }
-    }
-
-    // Combine historical and forecast data
-    const allForecasts = { ...historicalForecasts, ...dailyForecasts };
-    const forecast = Object.values(allForecasts).sort((a, b) => new Date(a.date) - new Date(b.date));
+    // Only return forecast data (5-day forecast available)
+    const forecast = Object.values(dailyForecasts).slice(0, 16);
 
     return Response.json({
       city: forecastData.city.name,
