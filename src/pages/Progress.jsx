@@ -150,7 +150,7 @@ export default function Progress() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={cn('rounded-2xl p-4 border border-slate-200 dark:border-rose-400/40 dark:bg-rose-950/40', stat.bgColor)}
+                className={cn('rounded-2xl p-4 border-2 border-purple-200 dark:border-purple-500/60 dark:bg-rose-950/40', stat.bgColor)}
               >
                 <Icon className={cn('w-6 h-6 mb-2', `text-${stat.color.split('-')[1]}-500`)} />
                 <p className="text-2xl font-bold text-slate-800 dark:text-stone-100">{stat.value}</p>
@@ -161,7 +161,7 @@ export default function Progress() {
         </div>
         
         {/* Extra Stats */}
-        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm mb-8 border border-slate-200 dark:border-rose-400/40">
+        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm mb-8 border-2 border-purple-200 dark:border-purple-500/60">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Your Activity Summary</h3>
           <div className="grid grid-cols-2 gap-4">
             {extraStats.map((stat, index) => (
@@ -180,7 +180,7 @@ export default function Progress() {
         </div>
         
         {/* Activity Heatmap */}
-        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm mb-8 border border-slate-200 dark:border-rose-400/40">
+        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm mb-8 border-2 border-purple-200 dark:border-purple-500/60">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
             <Calendar className="w-5 h-5 text-slate-600 dark:text-rose-400" />
             Activity (Last 30 Days)
@@ -220,7 +220,7 @@ export default function Progress() {
         </div>
         
         {/* Badges */}
-        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-400/40">
+        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
             <Trophy className="w-5 h-5 text-slate-600 dark:text-amber-400" />
             Achievements
@@ -233,7 +233,7 @@ export default function Progress() {
         </div>
         
         {/* Level Milestones */}
-        <div className="mt-8 bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-400/40">
+        <div className="mt-8 bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Level Milestones</h3>
           <div className="space-y-3">
             {LEVEL_THRESHOLDS.slice(0, 10).map((threshold, index) => {
@@ -245,8 +245,8 @@ export default function Progress() {
                 <div
                   key={level}
                   className={cn(
-                    'flex items-center gap-3 p-3 rounded-xl transition-all border',
-                    isReached ? 'bg-gradient-to-r from-slate-50 to-slate-100 dark:from-rose-900/30 dark:to-pink-900/20 border-slate-200 dark:border-rose-500/30' : 'bg-slate-50 dark:bg-rose-950/20 border-slate-200 dark:border-rose-500/20',
+                    'flex items-center gap-3 p-3 rounded-xl transition-all border-2',
+                    isReached ? 'bg-gradient-to-r from-slate-50 to-slate-100 dark:from-rose-900/30 dark:to-pink-900/20 border-purple-200 dark:border-purple-500/60' : 'bg-slate-50 dark:bg-rose-950/20 border-purple-200 dark:border-purple-500/60',
                     isCurrent && 'ring-2 ring-slate-300 dark:ring-rose-400'
                   )}
                 >
