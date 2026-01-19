@@ -52,13 +52,13 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
         ...prev,
         notes: prev.notes + (prev.notes && transcript ? ' ' : '') + transcript,
       }));
+      clearTranscript();
     }
-  }, [isListening, transcript]);
+  }, [isListening, transcript, clearTranscript]);
 
   const handleMicClick = () => {
     if (isListening) {
       stopListening();
-      clearTranscript();
     } else {
       startListening();
     }
