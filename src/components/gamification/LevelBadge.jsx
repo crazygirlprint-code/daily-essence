@@ -18,7 +18,7 @@ export default function LevelBadge({ level, points, progressPercent, compact = f
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-br from-amber-50 via-rose-50 to-purple-50 rounded-2xl p-4 border border-amber-100"
+      className="bg-gradient-to-br from-amber-50 via-rose-50 to-purple-50 rounded-2xl p-4 border-2 border-purple-200 dark:border-purple-500/60"
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
