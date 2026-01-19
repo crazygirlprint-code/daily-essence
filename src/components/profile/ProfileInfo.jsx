@@ -42,7 +42,7 @@ export default function ProfileInfo({ user, onEdit }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-stone-100/50 rounded-2xl p-6 border border-stone-300"
+      className="bg-stone-100/50 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60"
     >
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-serif text-stone-900">About Me</h3>

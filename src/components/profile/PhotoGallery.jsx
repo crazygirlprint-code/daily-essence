@@ -40,7 +40,7 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-stone-100/50 rounded-2xl p-6 border border-stone-300"
+        className="bg-stone-100/50 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60"
       >
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -70,7 +70,7 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
         </div>
 
         {photos.length === 0 ? (
-          <div className="text-center py-12 border-2 border-dashed border-stone-300 rounded-xl">
+          <div className="text-center py-12 border-2 border-dashed border-purple-300 dark:border-purple-500/60 rounded-xl">
             <p className="text-stone-600 mb-4">
               No photos yet. Start capturing your wellness journey!
             </p>

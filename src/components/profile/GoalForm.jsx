@@ -34,7 +34,7 @@ export default function GoalForm({ goal, onSubmit, onCancel }) {
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white/50 dark:bg-purple-900/30 rounded-2xl p-6 border border-stone-300 dark:border-rose-500/30 shadow-sm"
+      className="bg-white/50 dark:bg-purple-900/30 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60 shadow-sm"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -99,7 +99,7 @@ export default function GoalForm({ goal, onSubmit, onCancel }) {
         </div>
 
         <div className="flex gap-3 pt-4">
-          <Button type="button" variant="outline" onClick={onCancel} className="dark:border-rose-500/30">
+          <Button type="button" variant="outline" onClick={onCancel} className="border-2 border-purple-200 dark:border-purple-500/60">
             Cancel
           </Button>
           <Button type="submit" className="bg-amber-600 hover:bg-amber-700 dark:bg-gradient-to-r dark:from-rose-600 dark:to-pink-600 dark:hover:from-rose-700 dark:hover:to-pink-700">

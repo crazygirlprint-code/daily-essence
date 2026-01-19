@@ -31,7 +31,7 @@ export default function YourWhy({ user, onUpdate }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-stone-100/50 rounded-2xl p-6 border border-stone-300"
+      className="bg-stone-100/50 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60"
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -62,7 +62,7 @@ export default function YourWhy({ user, onUpdate }) {
             onChange={(e) => setValue(e.target.value)}
             placeholder="Share your motivation, values, or the reason you started this journey..."
             rows={6}
-            className="w-full px-4 py-3 rounded-xl border border-stone-300 bg-white text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-slate-500"
+            className="w-full px-4 py-3 rounded-xl border-2 border-purple-200 dark:border-purple-500/60 bg-white text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-slate-500"
           />
           <div className="flex gap-2 justify-end">
             <Button
@@ -98,7 +98,7 @@ export default function YourWhy({ user, onUpdate }) {
               "{user.your_why}"
             </p>
           ) : (
-            <div className="text-center py-8 border-2 border-dashed border-stone-300 rounded-xl">
+            <div className="text-center py-8 border-2 border-dashed border-purple-300 dark:border-purple-500/60 rounded-xl">
               <p className="text-stone-600 mb-3">
                 Share what motivates you on this wellness journey
               </p>
