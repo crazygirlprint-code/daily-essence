@@ -127,16 +127,16 @@ export default function Pricing() {
               <Home className="w-5 h-5" />
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold text-slate-900">Pricing Plans</h1>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-stone-100">Pricing Plans</h1>
           <div className="w-10" /> {/* Spacer */}
         </div>
 
         {/* Intro Text */}
         <div className="text-center mb-12 max-w-2xl mx-auto">
-          <p className="text-slate-600 text-lg mb-4">
+          <p className="text-slate-600 dark:text-stone-300 text-lg mb-4">
             Choose the perfect plan for your wellness and productivity journey
           </p>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-stone-400">
             Start free, upgrade anytime. All features can be tested before purchase.
           </p>
         </div>
@@ -178,15 +178,15 @@ export default function Pricing() {
               <div className="p-8 flex flex-col h-full">
                 {/* Plan Header */}
                 <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h2>
-                  <p className="text-sm text-slate-600">{plan.description}</p>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-stone-100 mb-2">{plan.name}</h2>
+                  <p className="text-sm text-slate-600 dark:text-stone-300">{plan.description}</p>
                   
                   <div className="mt-4">
-                    <span className="text-4xl font-bold text-slate-900">
+                    <span className="text-4xl font-bold text-slate-900 dark:text-stone-100">
                       ${plan.price}
                     </span>
                     {plan.price > 0 && (
-                      <span className="text-slate-600 ml-2">/month</span>
+                      <span className="text-slate-600 dark:text-stone-300 ml-2">/month</span>
                     )}
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export default function Pricing() {
                       />
                       <span
                         className={`text-sm ${
-                          feature.included ? 'text-slate-700' : 'text-slate-400 line-through'
+                          feature.included ? 'text-slate-700 dark:text-stone-200' : 'text-slate-400 dark:text-stone-500 line-through'
                         }`}
                       >
                         {feature.text}
@@ -226,11 +226,11 @@ export default function Pricing() {
 
         {/* FAQ Section */}
         <div className="max-w-3xl mx-auto mt-16 text-center">
-          <h3 className="text-2xl font-bold text-slate-900 mb-6">Questions?</h3>
-          <p className="text-slate-600 mb-4">
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-stone-100 mb-6">Questions?</h3>
+          <p className="text-slate-600 dark:text-stone-300 mb-4">
             All plans come with a 7-day free trial of premium features. No credit card required.
           </p>
-          <p className="text-slate-500 text-sm">
+          <p className="text-slate-500 dark:text-stone-400 text-sm">
             Questions about billing? Contact support@dailyessence.app
           </p>
         </div>
