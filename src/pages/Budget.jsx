@@ -418,7 +418,7 @@ export default function Budget() {
 
         {/* Budget Progress */}
         {currentBudgets.length > 0 && (
-          <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
+          <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-8">
             <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Monthly Budget Progress</h3>
             <div className="space-y-4">
               {currentBudgets.map((budget) => {
@@ -480,7 +480,7 @@ export default function Budget() {
         {/* Charts */}
         {chartData.length > 0 && (
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
+            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
               <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Spending Distribution</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
@@ -503,7 +503,7 @@ export default function Budget() {
               </ResponsiveContainer>
             </div>
 
-            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
+            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
               <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Category Spending</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={chartData}>
@@ -519,7 +519,7 @@ export default function Budget() {
         )}
 
         {/* Recent Transactions */}
-        <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
+        <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Recent Transactions</h3>
           <div className="space-y-2">
             <AnimatePresence>
@@ -605,7 +605,7 @@ export default function Budget() {
               placeholder="Amount"
               value={newTransaction.amount}
               onChange={(e) => setNewTransaction({ ...newTransaction, amount: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             <Select
@@ -626,14 +626,14 @@ export default function Budget() {
               type="date"
               value={newTransaction.date}
               onChange={(e) => setNewTransaction({ ...newTransaction, date: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             <Input
               placeholder="Description (optional)"
               value={newTransaction.description}
               onChange={(e) => setNewTransaction({ ...newTransaction, description: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             {familyMembers.length > 0 && (
@@ -709,14 +709,14 @@ export default function Budget() {
               placeholder="Monthly Limit"
               value={newBudget.monthly_limit}
               onChange={(e) => setNewBudget({ ...newBudget, monthly_limit: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             <Input
               type="month"
               value={newBudget.month}
               onChange={(e) => setNewBudget({ ...newBudget, month: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             <Button
