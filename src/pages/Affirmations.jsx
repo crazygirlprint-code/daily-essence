@@ -214,7 +214,7 @@ export default function Affirmations() {
             variant="outline"
             size="icon"
             onClick={handlePrev}
-            className="rounded-full w-12 h-12 bg-white shadow-md"
+            className="rounded-full w-12 h-12 bg-white border-2 border-purple-200 dark:border-purple-500/60 shadow-md"
           >
             <ChevronLeft className="w-5 h-5" />
           </Button>
@@ -232,7 +232,7 @@ export default function Affirmations() {
             variant="outline"
             size="icon"
             onClick={handleNext}
-            className="rounded-full w-12 h-12 bg-white shadow-md"
+            className="rounded-full w-12 h-12 bg-white border-2 border-purple-200 dark:border-purple-500/60 shadow-md"
           >
             <ChevronRight className="w-5 h-5" />
           </Button>
