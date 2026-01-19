@@ -89,12 +89,12 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-950 rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/40 shadow-2xl"
+        className="bg-white dark:bg-rose-950/30 dark:backdrop-blur-xl rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/40 shadow-2xl"
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-serif text-neutral-900 dark:text-rose-100">Log Activity</h2>
