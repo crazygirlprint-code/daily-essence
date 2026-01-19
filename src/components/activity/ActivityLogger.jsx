@@ -97,7 +97,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
       <motion.div
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/40 shadow-2xl"
-        style={isDark ? { background: 'linear-gradient(135deg, rgb(15, 23, 42), rgb(75, 0, 130), rgb(15, 23, 42))' } : {}}
+        style={isDark ? { background: 'linear-gradient(to bottom right, rgb(15, 23, 42), rgb(75, 0, 130), rgb(15, 23, 42))' } : {}}
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-serif text-neutral-900 dark:text-rose-100">Log Activity</h2>
