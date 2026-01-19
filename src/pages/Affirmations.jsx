@@ -36,12 +36,12 @@ const categoryColors = {
 };
 
 const categoryBorders = {
-  confidence: 'border-slate-200 dark:border-transparent',
-  gratitude: 'border-slate-200 dark:border-transparent',
-  strength: 'border-slate-200 dark:border-transparent',
-  peace: 'border-slate-200 dark:border-transparent',
-  success: 'border-slate-200 dark:border-transparent',
-  love: 'border-slate-200 dark:border-transparent'
+  confidence: 'border-purple-200 dark:border-purple-500/60',
+  gratitude: 'border-purple-200 dark:border-purple-500/60',
+  strength: 'border-purple-200 dark:border-purple-500/60',
+  peace: 'border-purple-200 dark:border-purple-500/60',
+  success: 'border-purple-200 dark:border-purple-500/60',
+  love: 'border-purple-200 dark:border-purple-500/60'
 };
 
 export default function Affirmations() {
@@ -129,7 +129,7 @@ export default function Affirmations() {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-rose-50 to-amber-50 dark:bg-gradient-to-br dark:from-purple-300 dark:to-purple-400 dark-luxury:bg-transparent">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4">
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-4">
             <Sparkles className="w-5 h-5 text-amber-500" />
             <span className="font-medium text-slate-700">Daily Affirmations</span>
           </div>
@@ -222,7 +222,7 @@ export default function Affirmations() {
           <Button
             variant="outline"
             onClick={handleRandom}
-            className="rounded-full px-6 bg-white shadow-md"
+            className="rounded-full px-6 bg-white border-2 border-purple-200 dark:border-purple-500/60 shadow-md"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Random
@@ -269,7 +269,7 @@ export default function Affirmations() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-2xl p-6 shadow-lg"
+              className="bg-white rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60 shadow-lg"
             >
               <div className="space-y-4">
                 <div className="relative">
@@ -277,7 +277,7 @@ export default function Affirmations() {
                     placeholder="Type or say your affirmation..."
                     value={newAffirmation.text || (isListening ? transcript : '')}
                     onChange={(e) => setNewAffirmation({ ...newAffirmation, text: e.target.value })}
-                    className="rounded-xl pr-10"
+                    className="rounded-xl pr-10 border-2 border-purple-200 dark:border-purple-500/60"
                   />
                   <button
                     type="button"
@@ -290,7 +290,7 @@ export default function Affirmations() {
                 <select
                   value={newAffirmation.category}
                   onChange={(e) => setNewAffirmation({ ...newAffirmation, category: e.target.value })}
-                  className="w-full p-2 rounded-xl border border-slate-200"
+                  className="w-full p-2 rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
                 >
                   <option value="confidence">Confidence</option>
                   <option value="gratitude">Gratitude</option>
@@ -306,7 +306,7 @@ export default function Affirmations() {
                       clearTranscript();
                     }}
                     variant="outline"
-                    className="flex-1 rounded-xl"
+                    className="flex-1 rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
                   >
                     Cancel
                   </Button>
@@ -348,9 +348,9 @@ export default function Affirmations() {
                      transition={{ delay: idx * 0.05 }}
                      onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
                      className={cn(
-                       "w-full text-left p-4 rounded-xl shadow-sm hover:shadow-md transition-all border",
+                       "w-full text-left p-4 rounded-xl shadow-sm hover:shadow-md transition-all border-2",
                        categoryBgColors[aff.category] || 'bg-stone-100/50',
-                       'border-slate-200 dark:border-rose-500/20 dark:bg-rose-900/20'
+                       'border-purple-200 dark:border-purple-500/60 dark:bg-rose-900/20'
                      )}
                    >
                      <p className="text-slate-900 dark:text-stone-100">"{aff.text}"</p>
