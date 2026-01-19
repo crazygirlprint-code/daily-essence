@@ -94,21 +94,21 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white dark:bg-slate-950 dark-luxury:bg-slate-950 rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/30 dark-luxury:border-rose-500/30"
+        className="bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-950 rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/40 shadow-2xl"
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-serif text-neutral-900 dark:text-stone-100">Log Activity</h2>
+          <h2 className="text-2xl font-serif text-neutral-900 dark:text-rose-100">Log Activity</h2>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-stone-100 dark:hover:bg-neutral-800 rounded-lg"
+            className="p-1 hover:bg-stone-100 dark:hover:bg-rose-950/50 rounded-lg transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 dark:text-rose-200" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Type</label>
+            <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Activity Type</label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
               <SelectTrigger className="mt-1">
                 <SelectValue />
@@ -122,7 +122,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           </div>
 
           <div>
-             <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Activity Title</label>
+             <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Activity Title</label>
              <div className="relative">
                <Input
                  placeholder="e.g., Morning walk in the park"
@@ -143,13 +143,13 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                <p className="text-xs text-red-600 dark:text-red-400 mt-1">Error: {error}</p>
              )}
              {isListening && (
-               <p className="text-xs text-slate-600 dark:text-stone-300 mt-1">Listening... {transcript && `"${transcript}"`}</p>
+               <p className="text-xs text-slate-600 dark:text-rose-300 mt-1">Listening... {transcript && `"${transcript}"`}</p>
              )}
            </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Duration (min)</label>
+              <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Duration (min)</label>
               <Input
                 type="number"
                 placeholder="30"
@@ -159,7 +159,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Date</label>
+              <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Date</label>
               <Input
                 type="date"
                 value={formData.activity_date}
@@ -171,7 +171,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           </div>
 
           <div>
-            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Mood Before</label>
+            <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Mood Before</label>
             <Select value={formData.mood_before} onValueChange={(value) => setFormData({ ...formData, mood_before: value })}>
               <SelectTrigger className="mt-1">
                 <SelectValue />
@@ -185,7 +185,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           </div>
 
           <div>
-            <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Mood After</label>
+            <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Mood After</label>
             <Select value={formData.mood_after} onValueChange={(value) => setFormData({ ...formData, mood_after: value })}>
               <SelectTrigger className="mt-1">
                 <SelectValue />
@@ -200,8 +200,8 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Energy Level</label>
-              <span className="text-sm font-semibold text-amber-600">{formData.energy_level}/10</span>
+              <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Energy Level</label>
+              <span className="text-sm font-semibold text-amber-600 dark:text-rose-400">{formData.energy_level}/10</span>
             </div>
             <input
               type="range"
@@ -215,7 +215,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
 
           {familyMembers.length > 0 && (
             <div>
-              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Family Member (Optional)</label>
+              <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Family Member (Optional)</label>
               <Select value={formData.family_member} onValueChange={(value) => setFormData({ ...formData, family_member: value })}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Select family member" />
@@ -233,7 +233,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           )}
 
           <div>
-              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Notes</label>
+              <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Notes</label>
               <div className="relative">
                 <Textarea
                   placeholder="How did this activity make you feel? What did you learn?"
