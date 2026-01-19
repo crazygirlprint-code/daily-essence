@@ -96,7 +96,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/40 shadow-2xl"
+        className="bg-white rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border-2 border-purple-200 dark:border-purple-500/60 shadow-2xl"
         style={isDark ? { background: 'linear-gradient(to bottom right, rgb(15, 23, 42), rgb(75, 0, 130), rgb(15, 23, 42))' } : {}}
       >
         <div className="flex items-center justify-between mb-6">
@@ -113,7 +113,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           <div>
             <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Activity Type</label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="mt-1 border-purple-200 dark:border-purple-500/40">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -131,7 +131,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                  placeholder="e.g., Morning walk in the park"
                  value={formData.title}
                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                 className="mt-1 pr-10"
+                 className="mt-1 pr-10 border-purple-200 dark:border-purple-500/40"
                  required
                />
                <button
@@ -158,7 +158,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                 placeholder="30"
                 value={formData.duration_minutes}
                 onChange={(e) => setFormData({ ...formData, duration_minutes: e.target.value })}
-                className="mt-1"
+                className="mt-1 border-purple-200 dark:border-purple-500/40"
               />
             </div>
             <div>
@@ -167,7 +167,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                 type="date"
                 value={formData.activity_date}
                 onChange={(e) => setFormData({ ...formData, activity_date: e.target.value })}
-                className="mt-1"
+                className="mt-1 border-purple-200 dark:border-purple-500/40"
                 required
               />
             </div>
@@ -176,7 +176,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           <div>
             <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Mood Before</label>
             <Select value={formData.mood_before} onValueChange={(value) => setFormData({ ...formData, mood_before: value })}>
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="mt-1 border-purple-200 dark:border-purple-500/40">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -190,7 +190,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
           <div>
             <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Mood After</label>
             <Select value={formData.mood_after} onValueChange={(value) => setFormData({ ...formData, mood_after: value })}>
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="mt-1 border-purple-200 dark:border-purple-500/40">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -220,7 +220,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
             <div>
               <label className="text-sm font-medium text-stone-700 dark:text-rose-200">Family Member (Optional)</label>
               <Select value={formData.family_member} onValueChange={(value) => setFormData({ ...formData, family_member: value })}>
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1 border-purple-200 dark:border-purple-500/40">
                   <SelectValue placeholder="Select family member" />
                 </SelectTrigger>
                 <SelectContent>
@@ -242,7 +242,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                   placeholder="How did this activity make you feel? What did you learn?"
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="mt-1 h-24"
+                  className="mt-1 h-24 border-purple-200 dark:border-purple-500/40"
                 />
                 <button
                   type="button"
@@ -261,10 +261,10 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
             </div>
 
           <div className="flex gap-3 pt-4">
-            <Button type="button" variant="outline" onClick={onClose}>
+            <Button type="button" variant="outline" onClick={onClose} className="border-purple-200 dark:border-purple-500/40">
               Cancel
             </Button>
-            <Button type="submit" className="flex-1 bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600">
+            <Button type="submit" className="flex-1 bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600 border-purple-200 dark:border-purple-500/40">
              Log Activity
             </Button>
           </div>
