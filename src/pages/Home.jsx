@@ -190,14 +190,14 @@ export default function Home() {
         <DayHeader date={selectedDate} userName={user?.display_name || user?.full_name} />
         
         {/* AI Insights */}
-         <div className="mb-8 bg-stone-100/50 dark:bg-stone-50/10 rounded-2xl p-6 border border-stone-200/50 dark:border-stone-600/20">
+         <div className="mb-8 bg-stone-100/50 dark:bg-stone-50/10 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60">
            <AIInsights />
          </div>
 
         {/* Progress Report */}
          <motion.div 
            whileTap={{ scale: 0.98 }}
-           className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-stone-100/50 dark:bg-stone-50/10 text-slate-900 dark:text-slate-800 border border-stone-200/50 dark:border-stone-600/20 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30 mb-8 cursor-pointer"
+           className="relative overflow-hidden flex items-center gap-4 p-5 rounded-xl bg-stone-100/50 dark:bg-stone-50/10 text-slate-900 dark:text-slate-800 border-2 border-purple-200 dark:border-purple-500/60 shadow-lg shadow-slate-200/50 dark:shadow-stone-200/30 mb-8 cursor-pointer"
            onClick={() => navigate(createPageUrl('Progress'))}
          >
           <div className="absolute top-0 right-0 w-24 h-24 bg-purple-100/20 rounded-full blur-2xl" />
@@ -249,7 +249,7 @@ export default function Home() {
           })}
         </div>
         
-        <div className="mb-8 bg-stone-100/50 dark:bg-stone-50/10 rounded-2xl p-6 border border-stone-200/50 dark:border-stone-600/20">
+        <div className="mb-8 bg-stone-100/50 dark:bg-stone-50/10 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60">
           <WeekStrip 
             selectedDate={selectedDate}
             onDateSelect={setSelectedDate}
@@ -280,7 +280,7 @@ export default function Home() {
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all tracking-wide ${
                         activeSection === section.id
                           ? 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-lg shadow-slate-500/40 dark:bg-gradient-to-r dark:from-rose-500 dark:via-pink-500 dark:to-rose-600 dark:hover:from-rose-600 dark:hover:via-pink-600 dark:hover:to-rose-700 dark:shadow-rose-500/40'
-                          : 'bg-white/50 text-stone-700 border border-stone-300 hover:bg-stone-50 dark:bg-rose-950/20 dark:border-rose-500/30 dark:text-stone-300 dark:hover:bg-rose-950/30'
+                          : 'bg-white/50 text-stone-700 border-2 border-purple-200 dark:border-purple-500/60 hover:bg-stone-50 dark:bg-rose-950/20 dark:text-stone-300 dark:hover:bg-rose-950/30'
                       }`}
                     >
                 <Icon className="w-4 h-4" strokeWidth={1.5} />
@@ -306,7 +306,7 @@ export default function Home() {
             {isLoading ? (
               <div className="space-y-3">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-stone-100/50 rounded-2xl p-4 border border-slate-100 animate-pulse">
+                  <div key={i} className="bg-stone-100/50 rounded-2xl p-4 border-2 border-purple-200 dark:border-purple-500/60 animate-pulse">
                     <div className="flex gap-3">
                       <div className="w-5 h-5 rounded-full bg-slate-200" />
                       <div className="flex-1">
@@ -339,7 +339,7 @@ export default function Home() {
         )}
         
         {activeSection === 'meals' && (
-            <div className="bg-stone-100/50 dark:bg-stone-800/20 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-stone-600/30">
+            <div className="bg-stone-100/50 dark:bg-stone-800/20 rounded-2xl p-4 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
              <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
               <UtensilsCrossed className="w-5 h-5 text-orange-500" />
               Meal Plan for {format(selectedDate, 'EEEE')}
@@ -356,7 +356,7 @@ export default function Home() {
         )}
         
         {activeSection === 'notes' && (
-            <div className="bg-stone-100/50 dark:bg-stone-800/20 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-stone-600/30">
+            <div className="bg-stone-100/50 dark:bg-stone-800/20 rounded-2xl p-4 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
              <QuickNotes />
           </div>
         )}
