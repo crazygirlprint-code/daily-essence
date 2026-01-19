@@ -49,7 +49,7 @@ export default function PostCard({ post, onLike, isLiked }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-stone-100/50 rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md transition-all"
+      className="bg-stone-100/50 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60 shadow-sm hover:shadow-md transition-all"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
