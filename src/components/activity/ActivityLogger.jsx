@@ -45,21 +45,31 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
   });
   
   const { isListening, transcript, error, startListening, stopListening, clearTranscript } = useSpeechRecognition();
+  const [activeField, setActiveField] = useState(null);
 
   useEffect(() => {
-    if (!isListening && transcript) {
-      setFormData((prev) => ({
-        ...prev,
-        notes: prev.notes + (prev.notes && transcript ? ' ' : '') + transcript,
-      }));
+    if (!isListening && transcript && activeField) {
+      if (activeField === 'title') {
+        setFormData((prev) => ({
+          ...prev,
+          title: prev.title + (prev.title && transcript ? ' ' : '') + transcript,
+        }));
+      } else if (activeField === 'notes') {
+        setFormData((prev) => ({
+          ...prev,
+          notes: prev.notes + (prev.notes && transcript ? ' ' : '') + transcript,
+        }));
+      }
       clearTranscript();
+      setActiveField(null);
     }
-  }, [isListening, transcript, clearTranscript]);
+  }, [isListening, transcript, clearTranscript, activeField]);
 
-  const handleMicClick = () => {
+  const handleMicClick = (field) => {
     if (isListening) {
       stopListening();
     } else {
+      setActiveField(field);
       startListening();
     }
   };
@@ -123,10 +133,10 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                />
                <button
                  type="button"
-                 onClick={handleMicClick}
-                 className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                 onClick={() => handleMicClick('title')}
+                 className={`absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors ${isListening && activeField === 'title' ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
                >
-                 <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                 <Mic className={`w-4 h-4 ${isListening && activeField === 'title' ? 'animate-pulse' : ''}`} />
                </button>
              </div>
              {error && (
@@ -233,10 +243,10 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
                 />
                 <button
                   type="button"
-                  onClick={handleMicClick}
-                  className={`absolute right-3 top-3 p-1 transition-colors ${isListening ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
+                  onClick={() => handleMicClick('notes')}
+                  className={`absolute right-3 top-3 p-1 transition-colors ${isListening && activeField === 'notes' ? 'text-red-500' : 'text-slate-400 hover:text-slate-600'}`}
                 >
-                  <Mic className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                  <Mic className={`w-4 h-4 ${isListening && activeField === 'notes' ? 'animate-pulse' : ''}`} />
                 </button>
               </div>
               {error && (
