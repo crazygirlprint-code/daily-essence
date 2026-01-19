@@ -146,7 +146,7 @@ export default function Calendar() {
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Special Events Section */}
         {upcomingEvents.length > 0 && (
-          <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
+          <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-8">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-stone-100 mb-1">Special Events</h2>
               <p className="text-slate-500 dark:text-stone-400 text-sm">Never miss an important date</p>
@@ -163,7 +163,7 @@ export default function Calendar() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     onClick={() => setSelectedDate(event.date)}
-                    className="flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-rose-900/20 dark:to-rose-900/10 border border-slate-200 dark:border-rose-500/30 hover:shadow-md transition-all"
+                    className="flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-rose-900/20 dark:to-rose-900/10 border-2 border-purple-200 dark:border-purple-500/60 hover:shadow-md transition-all"
                   >
                     <span className="text-2xl">{event.emoji || '⭐'}</span>
                     <div className="text-left">
@@ -207,13 +207,13 @@ export default function Calendar() {
         </div>
 
         {/* Calendar */}
-        <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
+        <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-8">
           <div className="flex items-center justify-between mb-6">
             <Button
               variant="ghost"
               size="icon"
               onClick={previousMonth}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -224,7 +224,7 @@ export default function Calendar() {
               variant="ghost"
               size="icon"
               onClick={nextMonth}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
@@ -293,7 +293,7 @@ export default function Calendar() {
         </div>
 
         {/* Selected Date Details */}
-        <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
+        <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">
             {format(parseISO(selectedDate), 'EEEE, MMMM d, yyyy')}
           </h3>
@@ -311,7 +311,7 @@ export default function Calendar() {
                     key={event.id}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-start gap-3 p-3 bg-amber-50 dark:bg-rose-900/20 rounded-lg border border-amber-200 dark:border-rose-500/30 group hover:bg-amber-100 dark:hover:bg-rose-900/30 cursor-pointer transition-colors"
+                    className="flex items-start gap-3 p-3 bg-amber-50 dark:bg-rose-900/20 rounded-lg border-2 border-purple-200 dark:border-purple-500/60 group hover:bg-amber-100 dark:hover:bg-rose-900/30 cursor-pointer transition-colors"
                     onClick={() => {
                       setEditingEventId(event.id);
                       setNewEvent({
@@ -363,7 +363,7 @@ export default function Calendar() {
                     key={task.id}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-rose-900/20 rounded-lg border border-slate-100 dark:border-rose-500/20"
+                    className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-rose-900/20 rounded-lg border-2 border-purple-200 dark:border-purple-500/60"
                   >
                     <button
                       onClick={() => updateTaskMutation.mutate({ 
@@ -415,7 +415,7 @@ export default function Calendar() {
               placeholder="Event title"
               value={newEvent.title}
               onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             <Select
@@ -438,14 +438,14 @@ export default function Calendar() {
               type="date"
               value={newEvent.date}
               onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             <Input
               placeholder="Emoji (e.g., 🎂, 🎉, 🎈)"
               value={newEvent.emoji}
               onChange={(e) => setNewEvent({ ...newEvent, emoji: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
               maxLength={2}
             />
 
@@ -453,7 +453,7 @@ export default function Calendar() {
               placeholder="Notes (optional)"
               value={newEvent.notes}
               onChange={(e) => setNewEvent({ ...newEvent, notes: e.target.value })}
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
             />
 
             <label className="flex items-center gap-2 text-sm text-slate-700 dark:text-stone-300">
