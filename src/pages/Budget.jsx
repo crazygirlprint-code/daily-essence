@@ -373,7 +373,7 @@ export default function Budget() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60"
+            className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60"
           >
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-2">
               <TrendingUp className="w-5 h-5" />
@@ -386,7 +386,7 @@ export default function Budget() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60"
+            className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60"
           >
             <div className="flex items-center gap-2 text-red-600 dark:text-rose-400 mb-2">
               <TrendingDown className="w-5 h-5" />
@@ -480,7 +480,7 @@ export default function Budget() {
         {/* Charts */}
         {chartData.length > 0 && (
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
+            <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
               <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Spending Distribution</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
@@ -503,7 +503,7 @@ export default function Budget() {
               </ResponsiveContainer>
             </div>
 
-            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
+            <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
               <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Category Spending</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={chartData}>
@@ -519,7 +519,7 @@ export default function Budget() {
         )}
 
         {/* Recent Transactions */}
-        <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
+        <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Recent Transactions</h3>
           <div className="space-y-2">
             <AnimatePresence>
