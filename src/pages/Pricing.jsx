@@ -149,7 +149,7 @@ export default function Pricing() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className={`relative rounded-3xl border-2 ${plan.borderColor} transition-all duration-300 ${
+              className={`relative rounded-3xl border-2 border-purple-200 dark:border-purple-500/60 transition-all duration-300 ${
                 plan.highlighted 
                   ? 'md:scale-105 shadow-2xl' 
                   : 'shadow-lg hover:shadow-xl'
