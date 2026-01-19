@@ -29,7 +29,7 @@ export default function ActivityCard({ activity, onDelete }) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white/50 rounded-xl p-4 border border-stone-200"
+      className="bg-white/50 dark:bg-purple-950/30 rounded-xl p-4 border-2 border-purple-300 dark:border-purple-500/60"
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-start gap-3 flex-1">

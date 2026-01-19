@@ -75,7 +75,7 @@ export default function Activities() {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-stone-300 dark:border-rose-500/30 bg-white dark:bg-white/10 text-slate-900 dark:text-stone-100"
+              className="px-4 py-2 rounded-lg border-2 border-purple-300 dark:border-purple-500/60 bg-white dark:bg-white/10 text-slate-900 dark:text-stone-100"
             />
           </div>
         </motion.div>
@@ -87,15 +87,15 @@ export default function Activities() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-3 gap-4 mb-8"
           >
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-200/50">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/40 dark:to-pink-950/40 rounded-xl p-4 border-2 border-purple-300 dark:border-purple-500/60">
               <p className="text-xs text-purple-600 uppercase tracking-widest mb-2">Activities</p>
               <p className="text-2xl font-serif text-purple-600">{stats.count}</p>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50">
+            <div className="bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/40 dark:to-rose-950/40 rounded-xl p-4 border-2 border-purple-300 dark:border-purple-500/60">
               <p className="text-xs text-pink-600 uppercase tracking-widest mb-2">Total Time</p>
               <p className="text-2xl font-serif text-pink-600">{stats.totalMinutes}m</p>
             </div>
-            <div className="bg-gradient-to-br from-rose-50 to-orange-50 rounded-xl p-4 border border-rose-200/50">
+            <div className="bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-950/40 dark:to-orange-950/40 rounded-xl p-4 border-2 border-purple-300 dark:border-purple-500/60">
               <p className="text-xs text-rose-600 uppercase tracking-widest mb-2">Avg Energy</p>
               <p className="text-2xl font-serif text-rose-600">{stats.avgEnergy}/10</p>
             </div>
