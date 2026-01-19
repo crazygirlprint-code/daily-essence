@@ -234,7 +234,7 @@ export default function Wellness() {
          </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
+          <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl border-2 border-purple-200 dark:border-purple-500/60 p-1 mb-6">
             <TabsTrigger
               value="beauty"
               className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
@@ -254,7 +254,7 @@ export default function Wellness() {
           {/* Beauty Content */}
           <TabsContent value="beauty" className="space-y-6">
             <Tabs value={beautyTab} onValueChange={setBeautyTab} className="w-full">
-              <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
+              <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl border-2 border-purple-200 dark:border-purple-500/60 p-1 mb-6">
                 <TabsTrigger
                   value="morning"
                   className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
@@ -409,7 +409,7 @@ export default function Wellness() {
                     size="sm"
                     variant="ghost"
                     onClick={() => setShowSuggestion(false)}
-                    className="rounded-xl"
+                    className="rounded-xl border-2 border-transparent"
                   >
                     Dismiss
                   </Button>
@@ -553,7 +553,7 @@ export default function Wellness() {
                 ? setNewStep(e.target.value)
                 : setNewActivity({ ...newActivity, name: e.target.value })
               }
-              className="rounded-xl"
+              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
               onKeyDown={(e) => e.key === 'Enter' && (activeTab === 'beauty' ? handleAddRoutineStep() : null)}
             />
 
