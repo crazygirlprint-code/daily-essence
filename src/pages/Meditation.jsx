@@ -284,10 +284,10 @@ export default function Meditation() {
                     onClick={() => setSelectedType(type)}
                     whileTap={{ scale: 0.95 }}
                     className={cn(
-                      'flex flex-col items-center gap-2 p-3 rounded-2xl transition-all backdrop-blur-sm border-2',
+                      'flex flex-col items-center gap-2 p-3 rounded-2xl transition-all backdrop-blur-sm',
                       isActive
-                        ? 'bg-white/95 text-slate-800 shadow-xl border-purple-200 dark:border-purple-500/60'
-                        : 'bg-white/15 text-white hover:bg-white/25 border-purple-200/40 dark:border-purple-500/40'
+                        ? 'bg-white/95 text-slate-800 shadow-xl ring-2 ring-white/50'
+                        : 'bg-white/15 text-white hover:bg-white/25'
                     )}
                   >
                     <Icon className="w-6 h-6" />
@@ -304,10 +304,10 @@ export default function Meditation() {
                   key={dur}
                   onClick={() => setSelectedDuration(dur)}
                   className={cn(
-                    'w-20 h-20 rounded-full font-bold text-xl transition-all backdrop-blur-sm border-2',
+                    'w-20 h-20 rounded-full font-bold text-xl transition-all backdrop-blur-sm',
                     selectedDuration === dur
-                      ? 'bg-white/95 text-slate-800 shadow-xl scale-110 border-purple-200 dark:border-purple-500/60'
-                      : 'bg-white/15 text-white hover:bg-white/25 border-purple-200/40 dark:border-purple-500/40'
+                      ? 'bg-white/95 text-slate-800 shadow-xl scale-110 ring-2 ring-white/50'
+                      : 'bg-white/15 text-white hover:bg-white/25'
                   )}
                 >
                   {dur}
@@ -321,8 +321,8 @@ export default function Meditation() {
               <button
                 onClick={() => setAudioEnabled(!audioEnabled)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all backdrop-blur-sm border-2',
-                  audioEnabled ? 'bg-white/95 text-slate-800 shadow-lg border-purple-200 dark:border-purple-500/60' : 'bg-white/15 text-white border-purple-200/40 dark:border-purple-500/40'
+                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all backdrop-blur-sm',
+                  audioEnabled ? 'bg-white/95 text-slate-800 shadow-lg' : 'bg-white/15 text-white'
                 )}
               >
                 {audioEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
@@ -333,8 +333,8 @@ export default function Meditation() {
               <button
                 onClick={() => setMusicEnabled(!musicEnabled)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all backdrop-blur-sm border-2',
-                  musicEnabled ? 'bg-white/95 text-slate-800 shadow-lg border-purple-200 dark:border-purple-500/60' : 'bg-white/15 text-white border-purple-200/40 dark:border-purple-500/40'
+                  'flex items-center gap-2 px-4 py-2 rounded-full transition-all backdrop-blur-sm',
+                  musicEnabled ? 'bg-white/95 text-slate-800 shadow-lg' : 'bg-white/15 text-white'
                 )}
               >
                 <span className="text-sm font-medium">
@@ -348,7 +348,7 @@ export default function Meditation() {
               <Button
                 onClick={startMeditation}
                 size="lg"
-                className="rounded-full px-12 py-8 text-xl bg-white/95 text-slate-800 hover:bg-white shadow-2xl border-2 border-purple-200 dark:border-purple-500/60 backdrop-blur-sm"
+                className="rounded-full px-12 py-8 text-xl bg-white/95 text-slate-800 hover:bg-white shadow-2xl backdrop-blur-sm"
               >
                 <Play className="w-6 h-6 mr-2 fill-current" />
                 Begin
@@ -360,7 +360,7 @@ export default function Meditation() {
           <div className="text-center">
             {/* Timer Circle */}
             <div className="relative w-64 h-64 mx-auto mb-8">
-              <div className="absolute inset-0 bg-white/5 rounded-full border-2 border-purple-200/40 dark:border-purple-500/40 backdrop-blur-md" />
+              <div className="absolute inset-0 bg-white/5 rounded-full backdrop-blur-md" />
               <svg className="w-full h-full transform -rotate-90 relative z-10">
                 <circle
                   cx="128"
@@ -423,7 +423,7 @@ export default function Meditation() {
                   <Button
                     onClick={isPlaying ? pauseMeditation : startMeditation}
                     size="lg"
-                    className="rounded-full w-16 h-16 bg-white/95 text-slate-800 hover:bg-white shadow-xl border-2 border-purple-200 dark:border-purple-500/60 backdrop-blur-sm"
+                    className="rounded-full w-16 h-16 bg-white/95 text-slate-800 hover:bg-white shadow-xl backdrop-blur-sm"
                   >
                     {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 fill-current" />}
                   </Button>
@@ -431,7 +431,7 @@ export default function Meditation() {
                     onClick={resetMeditation}
                     size="lg"
                     variant="outline"
-                    className="rounded-full w-16 h-16 border-2 border-purple-200/60 dark:border-purple-500/60 text-white hover:bg-white/15 backdrop-blur-sm"
+                    className="rounded-full w-16 h-16 border-2 border-white/80 text-white hover:bg-white/15 backdrop-blur-sm"
                   >
                     <RotateCcw className="w-5 h-5" />
                   </Button>
@@ -440,7 +440,7 @@ export default function Meditation() {
                 <Button
                   onClick={resetMeditation}
                   size="lg"
-                  className="rounded-full px-8 bg-white/95 text-slate-800 hover:bg-white shadow-xl border-2 border-purple-200 dark:border-purple-500/60 backdrop-blur-sm"
+                  className="rounded-full px-8 bg-white/95 text-slate-800 hover:bg-white shadow-xl backdrop-blur-sm"
                 >
                   Start New Session
                 </Button>

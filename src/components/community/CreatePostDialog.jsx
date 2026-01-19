@@ -71,8 +71,8 @@ export default function CreatePostDialog({ isOpen, onOpenChange, onSubmit, isLoa
                     onClick={() => setPostType(type.value)}
                     className={`flex items-center gap-2 p-3 rounded-xl border-2 transition-all ${
                       postType === type.value
-                        ? 'border-purple-400 dark:border-purple-500 bg-amber-50 dark:bg-purple-900/30'
-                        : 'border-purple-200 dark:border-purple-500/60 bg-white hover:border-purple-300 dark:hover:border-purple-500'
+                        ? 'border-amber-400 bg-amber-50'
+                        : 'border-stone-200 bg-white hover:border-stone-300'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -90,7 +90,7 @@ export default function CreatePostDialog({ isOpen, onOpenChange, onSubmit, isLoa
               placeholder="Share your accomplishment, streak, journey or motivation..."
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="rounded-xl min-h-24 border-2 border-purple-200 dark:border-purple-500/60"
+              className="rounded-xl min-h-24"
             />
           </div>
 
@@ -99,7 +99,7 @@ export default function CreatePostDialog({ isOpen, onOpenChange, onSubmit, isLoa
             <label className="text-sm text-slate-600 font-medium block mb-2">Add Photo (optional)</label>
             
             {imageUrl ? (
-              <div className="relative rounded-xl overflow-hidden border-2 border-purple-200 dark:border-purple-500/60">
+              <div className="relative rounded-xl overflow-hidden border-2 border-stone-200">
                 <img 
                   src={imageUrl} 
                   alt="Preview" 
@@ -117,7 +117,7 @@ export default function CreatePostDialog({ isOpen, onOpenChange, onSubmit, isLoa
                 type="button"
                 onClick={() => document.getElementById('post-image-input').click()}
                 disabled={uploadingImage}
-                className="w-full h-32 border-2 border-dashed border-purple-300 dark:border-purple-500/60 rounded-xl hover:border-purple-400 dark:hover:border-purple-500 hover:bg-amber-50/50 transition-all flex flex-col items-center justify-center gap-2 group"
+                className="w-full h-32 border-2 border-dashed border-stone-300 rounded-xl hover:border-amber-400 hover:bg-amber-50/50 transition-all flex flex-col items-center justify-center gap-2 group"
               >
                 {uploadingImage ? (
                   <>

@@ -270,7 +270,7 @@ export default function Budget() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-3xl p-12 shadow-xl border-2 border-stone-200 dark:border-purple-500/60"
+            className="bg-white rounded-3xl p-12 shadow-xl border border-amber-200"
           >
             <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-amber-100 to-stone-100 rounded-full flex items-center justify-center">
               <Lock className="w-10 h-10 text-amber-600" />
@@ -344,7 +344,7 @@ export default function Budget() {
         {/* Filters */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Tabs value={timeView} onValueChange={setTimeView}>
-              <TabsList className="grid grid-cols-4 w-full bg-white/50 dark:bg-white/10 border-2 border-stone-200 dark:border-purple-500/60 rounded-2xl p-1">
+              <TabsList className="grid grid-cols-4 w-full bg-white/50 dark:bg-white/10 rounded-2xl p-1">
                 <TabsTrigger value="day" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Today</TabsTrigger>
                 <TabsTrigger value="week" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Week</TabsTrigger>
                 <TabsTrigger value="month" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Month</TabsTrigger>
@@ -354,7 +354,7 @@ export default function Budget() {
 
           {familyMembers.length > 0 && (
             <Select value={selectedMember} onValueChange={setSelectedMember}>
-              <SelectTrigger className="bg-white/50 dark:bg-white/15 dark:text-stone-100 border-2 border-stone-200 dark:border-purple-500/60 rounded-2xl">
+              <SelectTrigger className="bg-white/50 dark:bg-white/15 dark:text-stone-100 rounded-2xl">
                 <Users className="w-4 h-4 mr-2" />
                 <SelectValue />
               </SelectTrigger>
@@ -373,7 +373,7 @@ export default function Budget() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-stone-200 dark:border-purple-500/60"
+            className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30"
           >
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-2">
               <TrendingUp className="w-5 h-5" />
@@ -386,7 +386,7 @@ export default function Budget() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-stone-200 dark:border-purple-500/60"
+            className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30"
           >
             <div className="flex items-center gap-2 text-red-600 dark:text-rose-400 mb-2">
               <TrendingDown className="w-5 h-5" />
@@ -402,8 +402,8 @@ export default function Budget() {
             className={cn(
               'rounded-2xl p-6 shadow-sm',
               netBalance >= 0 
-                ? 'bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-purple-500/60' 
-                : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-rose-900/20 dark:to-pink-900/20 border-2 border-red-200 dark:border-purple-500/60'
+                ? 'bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-slate-100 dark:border-emerald-500/30' 
+                : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-rose-900/20 dark:to-pink-900/20 border border-slate-100 dark:border-rose-500/30'
             )}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -418,7 +418,7 @@ export default function Budget() {
 
         {/* Budget Progress */}
         {currentBudgets.length > 0 && (
-          <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-stone-200 dark:border-purple-500/60 mb-8">
+          <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
             <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Monthly Budget Progress</h3>
             <div className="space-y-4">
               {currentBudgets.map((budget) => {
@@ -480,7 +480,7 @@ export default function Budget() {
         {/* Charts */}
         {chartData.length > 0 && (
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-stone-200 dark:border-purple-500/60">
+            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
               <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Spending Distribution</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
@@ -503,7 +503,7 @@ export default function Budget() {
               </ResponsiveContainer>
             </div>
 
-            <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-stone-200 dark:border-purple-500/60">
+            <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
               <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Category Spending</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={chartData}>
@@ -519,7 +519,7 @@ export default function Budget() {
         )}
 
         {/* Recent Transactions */}
-        <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-stone-200 dark:border-purple-500/60">
+        <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30">
           <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Recent Transactions</h3>
           <div className="space-y-2">
             <AnimatePresence>
@@ -576,7 +576,7 @@ export default function Budget() {
 
       {/* Add Transaction Dialog */}
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-        <DialogContent className="rounded-3xl border-2 border-stone-200 dark:border-purple-500/60">
+        <DialogContent className="rounded-3xl">
           <DialogHeader>
             <DialogTitle>Add Transaction</DialogTitle>
           </DialogHeader>
@@ -585,7 +585,7 @@ export default function Budget() {
               <Button
                 variant={newTransaction.type === 'expense' ? 'default' : 'outline'}
                 onClick={() => setNewTransaction({ ...newTransaction, type: 'expense' })}
-                className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60"
+                className="rounded-xl"
               >
                 <TrendingDown className="w-4 h-4 mr-2" />
                 Expense
@@ -593,7 +593,7 @@ export default function Budget() {
               <Button
                 variant={newTransaction.type === 'income' ? 'default' : 'outline'}
                 onClick={() => setNewTransaction({ ...newTransaction, type: 'income' })}
-                className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60"
+                className="rounded-xl"
               >
                 <TrendingUp className="w-4 h-4 mr-2" />
                 Income
@@ -605,14 +605,14 @@ export default function Budget() {
               placeholder="Amount"
               value={newTransaction.amount}
               onChange={(e) => setNewTransaction({ ...newTransaction, amount: e.target.value })}
-              className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60"
+              className="rounded-xl"
             />
 
             <Select
               value={newTransaction.category}
               onValueChange={(v) => setNewTransaction({ ...newTransaction, category: v })}
             >
-              <SelectTrigger className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60">
+              <SelectTrigger className="rounded-xl">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -626,14 +626,14 @@ export default function Budget() {
               type="date"
               value={newTransaction.date}
               onChange={(e) => setNewTransaction({ ...newTransaction, date: e.target.value })}
-              className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60"
+              className="rounded-xl"
             />
 
             <Input
               placeholder="Description (optional)"
               value={newTransaction.description}
               onChange={(e) => setNewTransaction({ ...newTransaction, description: e.target.value })}
-              className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60"
+              className="rounded-xl"
             />
 
             {familyMembers.length > 0 && (
@@ -641,7 +641,7 @@ export default function Budget() {
                 value={newTransaction.family_member}
                 onValueChange={(v) => setNewTransaction({ ...newTransaction, family_member: v })}
               >
-                <SelectTrigger className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60">
+                <SelectTrigger className="rounded-xl">
                   <SelectValue placeholder="Family Member (optional)" />
                 </SelectTrigger>
                 <SelectContent>
@@ -657,7 +657,7 @@ export default function Budget() {
               value={newTransaction.payment_method}
               onValueChange={(v) => setNewTransaction({ ...newTransaction, payment_method: v })}
             >
-              <SelectTrigger className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60">
+              <SelectTrigger className="rounded-xl">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -685,7 +685,7 @@ export default function Budget() {
 
       {/* Set Budget Dialog */}
       <Dialog open={isBudgetOpen} onOpenChange={setIsBudgetOpen}>
-        <DialogContent className="rounded-3xl border-2 border-stone-200 dark:border-purple-500/60">
+        <DialogContent className="rounded-3xl">
           <DialogHeader>
             <DialogTitle>Set Monthly Budget</DialogTitle>
           </DialogHeader>
@@ -694,7 +694,7 @@ export default function Budget() {
               value={newBudget.category}
               onValueChange={(v) => setNewBudget({ ...newBudget, category: v })}
             >
-              <SelectTrigger className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60">
+              <SelectTrigger className="rounded-xl">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -709,14 +709,14 @@ export default function Budget() {
               placeholder="Monthly Limit"
               value={newBudget.monthly_limit}
               onChange={(e) => setNewBudget({ ...newBudget, monthly_limit: e.target.value })}
-              className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60"
+              className="rounded-xl"
             />
 
             <Input
               type="month"
               value={newBudget.month}
               onChange={(e) => setNewBudget({ ...newBudget, month: e.target.value })}
-              className="rounded-xl border-2 border-stone-200 dark:border-purple-500/60"
+              className="rounded-xl"
             />
 
             <Button

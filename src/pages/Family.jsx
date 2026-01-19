@@ -181,7 +181,7 @@ export default function Family() {
         
         {/* Tabs */}
         <Tabs defaultValue="members" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6 border-2 border-purple-200 dark:border-purple-500/60 dark:bg-white/10">
+          <TabsList className="grid w-full grid-cols-2 mb-6 dark:bg-white/10">
             <TabsTrigger value="members" className="dark:text-stone-200 dark:data-[state=active]:bg-rose-700/50">Members</TabsTrigger>
             <TabsTrigger value="wall" className="dark:text-stone-200 dark:data-[state=active]:bg-rose-700/50">Family Wall</TabsTrigger>
           </TabsList>
@@ -205,7 +205,7 @@ export default function Family() {
                   className="relative group"
                 >
                   <div className={cn(
-                    'bg-white rounded-3xl p-6 border-2 border-purple-200 dark:border-purple-500/60 shadow-sm',
+                    'bg-white rounded-3xl p-6 border border-slate-200 shadow-sm',
                     'hover:shadow-md transition-all duration-300',
                     'flex flex-col items-center text-center'
                   )}>
@@ -266,7 +266,7 @@ export default function Family() {
           <motion.button
             onClick={() => setIsAddOpen(true)}
             whileTap={{ scale: 0.95 }}
-            className="bg-slate-50 rounded-3xl p-6 border-2 border-dashed border-purple-200 dark:border-purple-500/60 flex flex-col items-center justify-center min-h-[200px] hover:border-purple-300 dark:hover:border-purple-500 hover:bg-rose-50/50 transition-all"
+            className="bg-slate-50 rounded-3xl p-6 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center min-h-[200px] hover:border-rose-300 hover:bg-rose-50/50 transition-all"
           >
             <div className="w-16 h-16 rounded-2xl bg-white border-2 border-dashed border-slate-200 flex items-center justify-center mb-4">
               <Plus className="w-8 h-8 text-slate-300" />
@@ -299,7 +299,7 @@ export default function Family() {
           setNewMember({ name: '', relationship: 'child', color: 'rose', photo_url: '', photo_adjustment: null });
         }
       }}>
-        <DialogContent className="rounded-3xl bg-white border-2 border-purple-200 dark:border-purple-500/60">
+        <DialogContent className="rounded-3xl bg-white border-stone-200">
           <DialogHeader>
             <DialogTitle>{editingMember ? 'Edit Family Member' : 'Add Family Member'}</DialogTitle>
           </DialogHeader>
@@ -362,14 +362,14 @@ export default function Family() {
               placeholder="Name"
               value={newMember.name}
               onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
-              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
+              className="rounded-xl"
             />
             
             <Select
               value={newMember.relationship}
               onValueChange={(v) => setNewMember({ ...newMember, relationship: v })}
             >
-              <SelectTrigger className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60">
+              <SelectTrigger className="rounded-xl">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>

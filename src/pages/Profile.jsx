@@ -144,10 +144,10 @@ export default function Profile() {
                   <img 
                     src={user.profile_picture} 
                     alt="Profile" 
-                    className="w-20 h-20 rounded-full object-cover border-2 border-purple-300 dark:border-purple-500/60 shadow-sm"
+                    className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm"
                   />
                 ) : (
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-rose-900/40 dark:to-pink-900/40 flex items-center justify-center border-2 border-purple-300 dark:border-purple-500/60">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-rose-900/40 dark:to-pink-900/40 flex items-center justify-center border-2 border-slate-300 dark:border-rose-500/30">
                     <User className="w-8 h-8 text-slate-600 dark:text-rose-400" />
                   </div>
                 )}
@@ -258,14 +258,14 @@ export default function Profile() {
           {isLoading ? (
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="h-32 bg-stone-200 rounded-xl border-2 border-purple-200 dark:border-purple-500/60 animate-pulse" />
+                <div key={i} className="h-32 bg-stone-200 rounded-xl animate-pulse" />
               ))}
             </div>
           ) : activeGoals.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16 bg-white/50 dark:bg-rose-950/20 rounded-2xl border-2 border-dashed border-purple-300 dark:border-purple-500/60"
+              className="text-center py-16 bg-white/50 dark:bg-rose-950/20 rounded-2xl border border-dashed border-stone-300 dark:border-rose-500/30"
             >
               <Sparkles className="w-12 h-12 text-slate-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
               <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Wellness Goals Yet</h3>

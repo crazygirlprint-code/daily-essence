@@ -226,7 +226,7 @@ export default function Wellness() {
     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-4 dark:bg-rose-900/30">
+           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4 dark:bg-rose-900/30 dark:border dark:border-rose-500/30">
              <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
              <span className="font-medium text-slate-700 dark:text-stone-100">Wellness</span>
            </div>
@@ -234,7 +234,7 @@ export default function Wellness() {
          </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl border-2 border-purple-200 dark:border-purple-500/60 p-1 mb-6">
+          <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
             <TabsTrigger
               value="beauty"
               className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
@@ -254,7 +254,7 @@ export default function Wellness() {
           {/* Beauty Content */}
           <TabsContent value="beauty" className="space-y-6">
             <Tabs value={beautyTab} onValueChange={setBeautyTab} className="w-full">
-              <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl border-2 border-purple-200 dark:border-purple-500/60 p-1 mb-6">
+              <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
                 <TabsTrigger
                   value="morning"
                   className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
@@ -272,7 +272,7 @@ export default function Wellness() {
               </TabsList>
 
               <div className={cn(
-                'rounded-2xl p-6 mb-6 text-white border-2 border-purple-200 dark:border-purple-500/60',
+                'rounded-2xl p-6 mb-6 text-white',
                 beautyTab === 'morning' 
                   ? 'bg-gradient-to-r from-slate-600 to-slate-700'
                   : 'bg-gradient-to-r from-rose-500 to-pink-500'
@@ -303,10 +303,10 @@ export default function Wellness() {
                       exit={{ opacity: 0, x: -50 }}
                       transition={{ delay: index * 0.05 }}
                       className={cn(
-                        'group flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border-2 transition-all',
+                        'group flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border transition-all',
                         completedToday(routine) 
                           ? 'border-green-200 bg-green-50/50' 
-                          : 'border-purple-200 dark:border-purple-500/60 hover:shadow-md'
+                          : 'border-slate-100 hover:shadow-md'
                       )}
                     >
                       <span className={cn(
@@ -353,7 +353,7 @@ export default function Wellness() {
               <Button
                 onClick={() => setIsAddOpen(true)}
                 variant="outline"
-                className="w-full rounded-2xl h-14 border-dashed border-2 border-purple-200 dark:border-purple-500/60 hover:bg-white"
+                className="w-full rounded-2xl h-14 border-dashed border-2 hover:bg-white"
               >
                 <Plus className="w-5 h-5 mr-2" />
                 Add Step
@@ -367,7 +367,7 @@ export default function Wellness() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-gradient-to-r from-slate-600 to-slate-700 rounded-2xl border-2 border-purple-200 dark:border-purple-500/60 p-4 text-white"
+                className="bg-gradient-to-r from-slate-600 to-slate-700 rounded-2xl p-4 text-white"
               >
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-white/20 rounded-xl">
@@ -387,7 +387,7 @@ export default function Wellness() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60"
+                className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30"
               >
                 <div className="flex items-center gap-2 text-amber-500 mb-2">
                   <Lightbulb className="w-5 h-5" />
@@ -409,7 +409,7 @@ export default function Wellness() {
                     size="sm"
                     variant="ghost"
                     onClick={() => setShowSuggestion(false)}
-                    className="rounded-xl border-2 border-transparent"
+                    className="rounded-xl"
                   >
                     Dismiss
                   </Button>
@@ -428,7 +428,7 @@ export default function Wellness() {
                       setNewActivity({ ...newActivity, type: type.id, name: type.name });
                       setIsAddOpen(true);
                     }}
-                    className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl border-2 border-purple-200 dark:border-purple-500/60 shadow-sm hover:shadow-md transition-all"
+                    className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all"
                   >
                     <div className={cn('p-3 rounded-xl', type.color)}>
                       <Icon className="w-5 h-5" />
@@ -454,7 +454,7 @@ export default function Wellness() {
                         key={activity.id}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-4 p-4 bg-white rounded-2xl border-2 border-purple-200 dark:border-purple-500/60 shadow-sm"
+                        className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm"
                       >
                         <div className={cn('p-3 rounded-xl', typeInfo.color)}>
                           <Icon className="w-5 h-5" />
@@ -489,7 +489,7 @@ export default function Wellness() {
                     return (
                       <div
                         key={activity.id}
-                        className="flex items-center gap-3 p-3 bg-white/60 rounded-xl border-2 border-purple-200/40 dark:border-purple-500/40"
+                        className="flex items-center gap-3 p-3 bg-white/60 rounded-xl"
                       >
                         <span className={cn('w-3 h-3 rounded-full', typeInfo.color.split(' ')[0])} />
                         <span className="flex-1 text-slate-600 dark:text-stone-300">{activity.name}</span>
@@ -513,7 +513,7 @@ export default function Wellness() {
                     return (
                       <div
                         key={activity.id}
-                        className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl border-2 border-emerald-200 opacity-70"
+                        className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl opacity-70"
                       >
                         <Icon className="w-4 h-4 text-emerald-600" />
                         <span className="text-emerald-700 line-through">{activity.name}</span>
@@ -536,7 +536,7 @@ export default function Wellness() {
 
       {/* Add Dialog */}
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-        <DialogContent className="rounded-3xl border-2 border-purple-200 dark:border-purple-500/60">
+        <DialogContent className="rounded-3xl">
           <DialogHeader>
             <DialogTitle>
               {activeTab === 'beauty' 
@@ -553,7 +553,7 @@ export default function Wellness() {
                 ? setNewStep(e.target.value)
                 : setNewActivity({ ...newActivity, name: e.target.value })
               }
-              className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60"
+              className="rounded-xl"
               onKeyDown={(e) => e.key === 'Enter' && (activeTab === 'beauty' ? handleAddRoutineStep() : null)}
             />
 
@@ -563,7 +563,7 @@ export default function Wellness() {
                   value={newActivity.type}
                   onValueChange={(v) => setNewActivity({ ...newActivity, type: v })}
                 >
-                  <SelectTrigger className="rounded-xl border-2 border-purple-200 dark:border-purple-500/60">
+                  <SelectTrigger className="rounded-xl">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -575,7 +575,7 @@ export default function Wellness() {
 
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant="outline" className="w-full rounded-xl border-2 border-purple-200 dark:border-purple-500/60 justify-start">
+                    <Button variant="outline" className="w-full rounded-xl justify-start">
                       <Calendar className="w-4 h-4 mr-2 text-slate-400" />
                       {newActivity.scheduled_date 
                         ? format(new Date(newActivity.scheduled_date), 'MMMM d, yyyy')

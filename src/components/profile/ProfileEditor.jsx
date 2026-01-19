@@ -56,7 +56,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       onSubmit={handleSubmit}
-      className="bg-white/50 dark:bg-purple-900/30 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-500/60 space-y-6"
+      className="bg-white/50 dark:bg-purple-900/30 rounded-2xl p-6 border border-stone-300 dark:border-rose-500/30 space-y-6"
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-serif text-neutral-900 dark:text-stone-100">Edit Profile</h3>
@@ -74,10 +74,10 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
               <img 
                 src={formData.profile_picture} 
                 alt="Profile" 
-                className="w-24 h-24 rounded-full object-cover border-2 border-purple-300 dark:border-purple-500/60"
+                className="w-24 h-24 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30"
               />
             ) : (
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-amber-100 to-stone-200 dark:from-rose-900/40 dark:to-pink-900/30 flex items-center justify-center border-2 border-purple-300 dark:border-purple-500/60">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-amber-100 to-stone-200 dark:from-rose-900/40 dark:to-pink-900/30 flex items-center justify-center border-2 border-stone-300 dark:border-rose-500/30">
                 <User className="w-10 h-10 text-stone-600 dark:text-stone-300" />
               </div>
             )}
@@ -94,7 +94,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
               size="sm"
               onClick={() => document.getElementById('profile-picture-input').click()}
               disabled={uploadingImage}
-              className="border-2 border-purple-200 dark:border-purple-500/60"
+              className="dark:border-rose-500/30"
             >
               <Camera className="w-4 h-4 mr-2" />
               {formData.profile_picture ? 'Change Photo' : 'Upload Photo'}
@@ -131,7 +131,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           value={formData.display_name}
           onChange={(e) => updateField('display_name', e.target.value)}
           placeholder="Your name"
-          className="border-2 border-purple-200 dark:bg-purple-950/30 dark:border-purple-500/60"
+          className="dark:bg-purple-950/30 dark:border-rose-500/30"
         />
       </div>
 
@@ -143,7 +143,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           onChange={(e) => updateField('bio', e.target.value)}
           placeholder="Tell us about yourself..."
           rows={3}
-          className="w-full px-3 py-2 rounded-lg border-2 border-purple-200 dark:border-purple-500/60 bg-white dark:bg-purple-950/30 text-slate-900 dark:text-stone-100 resize-none focus:outline-none focus:ring-2 focus:ring-amber-500"
+          className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-rose-500/30 bg-white dark:bg-purple-950/30 text-slate-900 dark:text-stone-100 resize-none focus:outline-none focus:ring-2 focus:ring-amber-500"
         />
       </div>
 
@@ -166,7 +166,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           type="date"
           value={formData.birthday}
           onChange={(e) => updateField('birthday', e.target.value)}
-          className="border-2 border-purple-200 dark:bg-purple-950/30 dark:border-purple-500/60"
+          className="dark:bg-purple-950/30 dark:border-rose-500/30"
         />
       </div>
 
@@ -189,7 +189,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           value={formData.city}
           onChange={(e) => updateField('city', e.target.value)}
           placeholder="Your city"
-          className="border-2 border-purple-200 dark:bg-purple-950/30 dark:border-purple-500/60"
+          className="dark:bg-purple-950/30 dark:border-rose-500/30"
         />
       </div>
 
@@ -212,7 +212,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           value={formData.profession}
           onChange={(e) => updateField('profession', e.target.value)}
           placeholder="Your profession"
-          className="border-2 border-purple-200 dark:bg-purple-950/30 dark:border-purple-500/60"
+          className="dark:bg-purple-950/30 dark:border-rose-500/30"
         />
       </div>
 
@@ -236,7 +236,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           value={formData.phone}
           onChange={(e) => updateField('phone', e.target.value)}
           placeholder="Your phone number"
-          className="border-2 border-purple-200 dark:bg-purple-950/30 dark:border-purple-500/60"
+          className="dark:bg-purple-950/30 dark:border-rose-500/30"
         />
       </div>
 
@@ -259,7 +259,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           value={formData.address}
           onChange={(e) => updateField('address', e.target.value)}
           placeholder="Your address"
-          className="border-2 border-purple-200 dark:bg-purple-950/30 dark:border-purple-500/60"
+          className="dark:bg-purple-950/30 dark:border-rose-500/30"
         />
       </div>
 
@@ -272,7 +272,7 @@ export default function ProfileEditor({ user, onSave, onCancel }) {
           <Save className="w-4 h-4" />
           Save Changes
         </Button>
-        <Button type="button" variant="outline" onClick={onCancel} className="border-2 border-purple-200 dark:border-purple-500/60">
+        <Button type="button" variant="outline" onClick={onCancel} className="dark:border-rose-500/30">
           Cancel
         </Button>
       </div>
