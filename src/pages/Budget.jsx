@@ -344,7 +344,7 @@ export default function Budget() {
         {/* Filters */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Tabs value={timeView} onValueChange={setTimeView}>
-              <TabsList className="grid grid-cols-4 w-full bg-white/50 dark:bg-white/10 border-2 border-purple-200 dark:border-purple-500/60 rounded-2xl p-1">
+              <TabsList className="grid grid-cols-4 w-full bg-white/50 dark:bg-white/10 border-2 border-stone-200 dark:border-purple-500/60 rounded-2xl p-1">
                 <TabsTrigger value="day" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Today</TabsTrigger>
                 <TabsTrigger value="week" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Week</TabsTrigger>
                 <TabsTrigger value="month" className="rounded-xl dark:text-stone-300 dark:data-[state=active]:bg-rose-700/50 dark:data-[state=active]:text-white">Month</TabsTrigger>
@@ -354,7 +354,7 @@ export default function Budget() {
 
           {familyMembers.length > 0 && (
             <Select value={selectedMember} onValueChange={setSelectedMember}>
-              <SelectTrigger className="bg-white/50 dark:bg-white/15 dark:text-stone-100 border-2 border-purple-200 dark:border-purple-500/60 rounded-2xl">
+              <SelectTrigger className="bg-white/50 dark:bg-white/15 dark:text-stone-100 border-2 border-stone-200 dark:border-purple-500/60 rounded-2xl">
                 <Users className="w-4 h-4 mr-2" />
                 <SelectValue />
               </SelectTrigger>
@@ -402,8 +402,8 @@ export default function Budget() {
             className={cn(
               'rounded-2xl p-6 shadow-sm',
               netBalance >= 0 
-                ? 'bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-purple-200 dark:border-purple-500/60' 
-                : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-rose-900/20 dark:to-pink-900/20 border-2 border-purple-200 dark:border-purple-500/60'
+                ? 'bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-purple-500/60' 
+                : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-rose-900/20 dark:to-pink-900/20 border-2 border-red-200 dark:border-purple-500/60'
             )}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -418,7 +418,7 @@ export default function Budget() {
 
         {/* Budget Progress */}
         {currentBudgets.length > 0 && (
-          <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-8">
+          <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-stone-200 dark:border-purple-500/60 mb-8">
             <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Monthly Budget Progress</h3>
             <div className="space-y-4">
               {currentBudgets.map((budget) => {
