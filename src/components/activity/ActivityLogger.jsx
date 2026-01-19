@@ -8,7 +8,6 @@ import { X, Mic } from 'lucide-react';
 import { useSpeechRecognition } from '@/components/hooks/useSpeechRecognition';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useTheme } from '@/components/hooks/useTheme';
 
 const activityTypes = [
   { value: 'mindful_walking', label: '🚶 Mindful Walking' },
@@ -28,7 +27,6 @@ const moodOptions = [
 ];
 
 export default function ActivityLogger({ onSubmit, onClose, preselectedType, prefilledTitle = '' }) {
-  const { isDark } = useTheme();
   const [formData, setFormData] = useState({
     type: preselectedType || 'mindful_walking',
     title: prefilledTitle,
@@ -96,8 +94,7 @@ export default function ActivityLogger({ onSubmit, onClose, preselectedType, pre
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/40 shadow-2xl"
-        style={isDark ? { background: 'linear-gradient(135deg, rgb(15, 23, 42), rgb(75, 0, 130), rgb(15, 23, 42))' } : {}}
+        className="bg-white dark:bg-gradient-to-br dark:from-purple-950 dark:via-rose-950 dark:to-slate-950 rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-stone-200 dark:border-rose-500/40 shadow-2xl"
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-serif text-neutral-900 dark:text-rose-100">Log Activity</h2>
