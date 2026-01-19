@@ -219,7 +219,7 @@ export default function Profile() {
               <Button
                 onClick={generateInsights}
                 disabled={loadingInsights || activeGoals.length === 0}
-                className="gap-2 bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:via-rose-400 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:via-rose-500 dark:hover:to-pink-600 shadow-lg"
+                className="gap-2 bg-slate-700 hover:bg-slate-800 text-white dark:bg-slate-700 dark:hover:bg-slate-800 shadow-lg"
               >
                 {loadingInsights ? (
                   <>
