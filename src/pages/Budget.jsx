@@ -418,7 +418,7 @@ export default function Budget() {
 
         {/* Budget Progress */}
         {currentBudgets.length > 0 && (
-          <div className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-8">
+          <div className="bg-stone-200/50 dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border-2 border-purple-200 dark:border-purple-500/60 mb-8">
             <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Monthly Budget Progress</h3>
             <div className="space-y-4">
               {currentBudgets.map((budget) => {
