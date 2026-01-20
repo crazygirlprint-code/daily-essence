@@ -14,8 +14,6 @@ import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
 import Strolling from './pages/Strolling';
 import Wellness from './pages/Wellness';
-import ChatDemo from './pages/ChatDemo';
-import ChatAdmin from './pages/ChatAdmin';
 import __Layout from './Layout.jsx';
 
 
@@ -36,8 +34,6 @@ export const PAGES = {
     "SelfCare": SelfCare,
     "Strolling": Strolling,
     "Wellness": Wellness,
-    "ChatDemo": ChatDemo,
-    "ChatAdmin": ChatAdmin,
 }
 
 export const pagesConfig = {
