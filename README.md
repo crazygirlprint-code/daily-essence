@@ -1,39 +1,40 @@
-**Welcome to your Base44 project** 
+# Daily Essence
 
-**About**
+Daily Essence is a minimal, intention-focused app designed to help users build meaningful daily habits through reflection, consistency, and simplicity.
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+---
 
-This project contains everything you need to run your app locally.
+## ✨ What Daily Essence Does
 
-**Edit the code in your local development environment**
+Daily Essence supports daily intentional living through small, repeatable practices. The app encourages users to slow down, reflect, and stay consistent without pressure or overwhelm.
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+Core features include:
+- Daily prompts or reflections
+- Habit and intention tracking
+- Clean, distraction-free design
+- Gentle progress awareness
 
-**Prerequisites:** 
+---
 
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
+## 🌿 Why Daily Essence Is Useful
 
-```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
+Daily Essence is built for users who want clarity and consistency without complexity.
 
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
-```
+It is useful because it:
+- Encourages sustainable habits
+- Avoids productivity overload
+- Fits naturally into daily routines
+- Supports mental clarity and self-awareness
 
-Run the app: `npm run dev`
+---
 
-**Publish your changes**
+## 🚀 Getting Started
 
-Open [Base44.com](http://Base44.com) and click on Publish.
+### Prerequisites
+- Node.js (v18 or later recommended)
+- npm
 
-**Docs & Support**
+### Installation
 
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+```bash
+npm install
