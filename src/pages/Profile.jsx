@@ -157,13 +157,33 @@ export default function Profile() {
                   </div>
                 )}
               </button>
-              <button
-                onClick={() => document.getElementById('profile-pic-input').click()}
-                disabled={uploadingPicture}
-                className="absolute bottom-0 right-0 p-1.5 bg-slate-600 dark:bg-rose-600 hover:bg-slate-700 dark:hover:bg-rose-700 rounded-full text-white shadow-lg transition-colors"
-              >
-                <Camera className="w-3.5 h-3.5" />
-              </button>
+              <div className="absolute bottom-0 right-0 flex gap-1">
+                {user?.profile_picture && (
+                  <button
+                    onClick={async () => {
+                      if (confirm('Remove profile picture?')) {
+                        try {
+                          await base44.auth.updateMe({ profile_picture: null });
+                          queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+                        } catch (error) {
+                          console.error('Error removing profile picture:', error);
+                        }
+                      }
+                    }}
+                    disabled={uploadingPicture}
+                    className="p-1.5 bg-red-600 hover:bg-red-700 rounded-full text-white shadow-lg transition-colors"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+                <button
+                  onClick={() => document.getElementById('profile-pic-input').click()}
+                  disabled={uploadingPicture}
+                  className="p-1.5 bg-slate-600 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-800 rounded-full text-white shadow-lg transition-colors"
+                >
+                  <Camera className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
             <input
               id="profile-pic-input"

@@ -9,11 +9,11 @@ import Family from './pages/Family';
 import Home from './pages/Home';
 import Meditation from './pages/Meditation';
 import Pricing from './pages/Pricing';
+import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
 import Strolling from './pages/Strolling';
 import Wellness from './pages/Wellness';
-import Profile from './pages/Profile';
 import __Layout from './Layout.jsx';
 
 
@@ -29,11 +29,11 @@ export const PAGES = {
     "Home": Home,
     "Meditation": Meditation,
     "Pricing": Pricing,
+    "Profile": Profile,
     "Progress": Progress,
     "SelfCare": SelfCare,
     "Strolling": Strolling,
     "Wellness": Wellness,
-    "Profile": Profile,
 }
 
 export const pagesConfig = {
