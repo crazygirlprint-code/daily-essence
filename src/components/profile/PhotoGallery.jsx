@@ -51,7 +51,7 @@ export default function PhotoGallery({ photos = [], onUpdate }) {
             onClick={() => document.getElementById('gallery-upload').click()}
             disabled={uploading}
             size="sm"
-            className="gap-2 bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600"
+            className="gap-2 bg-slate-700 hover:bg-slate-800 text-white dark:bg-slate-700 dark:hover:bg-slate-800"
           >
             {uploading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
