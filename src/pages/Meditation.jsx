@@ -8,14 +8,13 @@ import { cn } from '@/lib/utils';
 import { useTextToSpeech } from '@/components/audio/useTextToSpeech';
 import { useGamification } from '@/components/gamification/useGamification';
 import PointsPopup from '@/components/gamification/PointsPopup';
-import { useTheme } from '@/components/hooks/useTheme';
 
 const MEDITATION_TYPES = [
-  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
-  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
-  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
-  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
-  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-purple-300 to-purple-400', colorLuxury: 'from-purple-400 to-purple-500' },
+  { id: 'breathing', name: 'Breathing', icon: Wind, color: 'from-purple-300 to-purple-400' },
+  { id: 'body_scan', name: 'Body Scan', icon: Heart, color: 'from-purple-300 to-purple-400' },
+  { id: 'gratitude', name: 'Gratitude', icon: CloudSun, color: 'from-purple-300 to-purple-400' },
+  { id: 'sleep', name: 'Sleep', icon: Moon, color: 'from-purple-300 to-purple-400' },
+  { id: 'stress_relief', name: 'Stress Relief', icon: Leaf, color: 'from-purple-300 to-purple-400' },
 ];
 
 const DURATIONS = [10, 15, 20];
@@ -94,7 +93,6 @@ export default function Meditation() {
   const audioRef = useRef(null);
   const { speak, stop, isSpeaking } = useTextToSpeech();
   const { addPoints } = useGamification();
-  const { theme } = useTheme();
   const queryClient = useQueryClient();
   
   const saveMutation = useMutation({
@@ -248,12 +246,10 @@ export default function Meditation() {
     ? ((selectedDuration * 60 - timeRemaining) / (selectedDuration * 60)) * 100 
     : 0;
 
-  const meditationColor = theme === 'dark-luxury' ? selectedType.colorLuxury : selectedType.color;
-
   return (
     <div className={cn(
       'min-h-screen transition-colors duration-1000 relative overflow-hidden',
-      `bg-gradient-to-br ${meditationColor}`
+      `bg-gradient-to-br ${selectedType.color}`
     )}>
       {/* Ambient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-slate-900/10" />
