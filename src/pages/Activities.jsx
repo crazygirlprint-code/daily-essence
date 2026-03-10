@@ -53,29 +53,29 @@ export default function Activities() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50/40 via-slate-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
       <div className="max-w-3xl mx-auto px-4 py-8 pb-20">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-serif text-neutral-900 dark:text-stone-100 dark-luxury:text-amber-400">Activity Log</h1>
-              <p className="text-stone-600 dark:text-stone-400 text-sm mt-1">Track daily activities and their impact on your mood</p>
+              <h1 className="text-3xl font-serif text-slate-900">Activity Log</h1>
+              <p className="text-stone-600 text-sm mt-1">Track daily activities and their impact on your mood</p>
             </div>
-            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg gap-2">
-              <Plus className="w-4 h-4" />
+            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-sm gap-2">
+              <Plus className="w-4 h-4" strokeWidth={1.5} />
               Log Activity
             </Button>
           </div>
 
           {/* Date Selector */}
           <div className="flex items-center gap-3 mb-6">
-            <Calendar className="w-5 h-5 text-stone-600 dark:text-stone-400" />
+            <Calendar className="w-5 h-5 text-stone-600" strokeWidth={1.5} />
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-stone-300 dark:border-rose-500/30 bg-white dark:bg-white/10 text-slate-900 dark:text-stone-100"
+              className="px-4 py-2 rounded-lg border border-stone-200/50 bg-white text-slate-900"
             />
           </div>
         </motion.div>
@@ -87,17 +87,17 @@ export default function Activities() {
             animate={{ opacity: 1, y: 0 }}
             className="grid grid-cols-3 gap-4 mb-8"
           >
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-200/50">
-              <p className="text-xs text-purple-600 uppercase tracking-widest mb-2">Activities</p>
-              <p className="text-2xl font-serif text-purple-600">{stats.count}</p>
+            <div className="bg-stone-100/50 rounded-xl p-4 border border-stone-200/50">
+              <p className="text-xs text-slate-600 uppercase tracking-widest mb-2">Activities</p>
+              <p className="text-2xl font-serif text-slate-900">{stats.count}</p>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50">
-              <p className="text-xs text-pink-600 uppercase tracking-widest mb-2">Total Time</p>
-              <p className="text-2xl font-serif text-pink-600">{stats.totalMinutes}m</p>
+            <div className="bg-stone-100/50 rounded-xl p-4 border border-stone-200/50">
+              <p className="text-xs text-slate-600 uppercase tracking-widest mb-2">Total Time</p>
+              <p className="text-2xl font-serif text-slate-900">{stats.totalMinutes}m</p>
             </div>
-            <div className="bg-gradient-to-br from-rose-50 to-orange-50 rounded-xl p-4 border border-rose-200/50">
-              <p className="text-xs text-rose-600 uppercase tracking-widest mb-2">Avg Energy</p>
-              <p className="text-2xl font-serif text-rose-600">{stats.avgEnergy}/10</p>
+            <div className="bg-stone-100/50 rounded-xl p-4 border border-stone-200/50">
+              <p className="text-xs text-slate-600 uppercase tracking-widest mb-2">Avg Energy</p>
+              <p className="text-2xl font-serif text-slate-900">{stats.avgEnergy}/10</p>
             </div>
           </motion.div>
         )}
@@ -113,12 +113,12 @@ export default function Activities() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-16 bg-white/50 dark:bg-rose-950/20 dark-luxury:bg-blue-900/30 rounded-2xl border border-dashed border-stone-300 dark:border-rose-500/30"
+            className="text-center py-16 bg-white/50 rounded-2xl border border-dashed border-stone-300"
           >
-            <Zap className="w-12 h-12 text-amber-400 dark:text-amber-300 mx-auto mb-4 opacity-50" />
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Activities Yet</h3>
-            <p className="text-stone-600 dark:text-stone-100 mb-6">Log your first activity to track mood and energy changes.</p>
-            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:via-pink-500 dark:to-rose-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:via-pink-600 dark:hover:to-rose-600 text-white shadow-lg">
+            <Zap className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-50" strokeWidth={1.5} />
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">No Activities Yet</h3>
+            <p className="text-stone-600 mb-6">Log your first activity to track mood and energy changes.</p>
+            <Button onClick={() => setShowLogger(true)} className="bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-sm">
               Log Your First Activity
             </Button>
           </motion.div>
