@@ -197,13 +197,13 @@ export default function Home() {
         {/* Premium Upgrade Prompt */}
         <motion.div 
           whileTap={{ scale: 0.98 }}
-          className="mb-8 relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 p-6 border border-amber-200/50 shadow-lg cursor-pointer"
+          className="mb-8 relative overflow-hidden rounded-2xl bg-gradient-to-br from-stone-100/80 to-stone-50 p-6 border border-stone-200/50 shadow-lg cursor-pointer"
           onClick={() => navigate(createPageUrl('Pricing'))}
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-200/30 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-slate-200/20 rounded-full blur-3xl" />
           <div className="relative z-10">
             <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center shadow-lg">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <div className="flex-1">
@@ -215,7 +215,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <Button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg">
+            <Button className="w-full bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-lg shadow-slate-500/30">
               Upgrade Now
             </Button>
           </div>
