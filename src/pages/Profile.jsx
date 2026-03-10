@@ -129,7 +129,7 @@ export default function Profile() {
   const activeGoals = goals.filter(g => g.active);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
       <div className="max-w-4xl mx-auto px-4 py-8 pb-20">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
@@ -144,11 +144,11 @@ export default function Profile() {
                   <img 
                     src={user.profile_picture} 
                     alt="Profile" 
-                    className="w-20 h-20 rounded-full object-cover border-2 border-stone-300 dark:border-rose-500/30 shadow-sm"
+                    className="w-20 h-20 rounded-full object-cover border-2 border-stone-200/50 shadow-sm"
                   />
                 ) : (
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-rose-900/40 dark:to-pink-900/40 flex items-center justify-center border-2 border-slate-300 dark:border-rose-500/30">
-                    <User className="w-8 h-8 text-slate-600 dark:text-rose-400" />
+                  <div className="w-20 h-20 rounded-full bg-stone-100/50 flex items-center justify-center border-2 border-stone-200/50">
+                    <User className="w-8 h-8 text-slate-600" strokeWidth={1.5} />
                   </div>
                 )}
                 {uploadingPicture && (
@@ -193,8 +193,8 @@ export default function Profile() {
               className="hidden"
             />
             <div>
-              <h1 className="text-3xl font-serif text-slate-900 dark:text-stone-100">My Profile</h1>
-              <p className="text-slate-900 dark:text-stone-100 font-medium">{user?.display_name || user?.full_name}</p>
+              <h1 className="text-3xl font-serif text-slate-900">My Profile</h1>
+              <p className="text-slate-700 font-medium">{user?.display_name || user?.full_name}</p>
             </div>
           </div>
         </motion.div>
@@ -234,27 +234,27 @@ export default function Profile() {
         {/* Wellness Goals Section */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-serif text-slate-900 dark:text-stone-100">Wellness Goals</h2>
+            <h2 className="text-2xl font-serif text-slate-900">Wellness Goals</h2>
             <div className="flex gap-2">
               <Button
                 onClick={generateInsights}
                 disabled={loadingInsights || activeGoals.length === 0}
-                className="gap-2 bg-slate-700 hover:bg-slate-800 text-white dark:bg-slate-700 dark:hover:bg-slate-800 shadow-lg"
+                className="gap-2 bg-slate-700 hover:bg-slate-800 text-white shadow-sm"
               >
                 {loadingInsights ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin" strokeWidth={1.5} />
                     Analyzing...
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-4 h-4" />
+                    <Sparkles className="w-4 h-4" strokeWidth={1.5} />
                     Get AI Insights
                   </>
                 )}
               </Button>
-              <Button onClick={() => setShowAddGoal(true)} className="bg-slate-700 hover:bg-slate-800 text-white dark:bg-slate-700 dark:hover:bg-slate-800 shadow-lg gap-2">
-                <Plus className="w-4 h-4" />
+              <Button onClick={() => setShowAddGoal(true)} className="bg-slate-700 hover:bg-slate-800 text-white shadow-sm gap-2">
+                <Plus className="w-4 h-4" strokeWidth={1.5} />
                 New Goal
               </Button>
             </div>
@@ -285,12 +285,12 @@ export default function Profile() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16 bg-white/50 dark:bg-rose-950/20 rounded-2xl border border-dashed border-stone-300 dark:border-rose-500/30"
+              className="text-center py-16 bg-white/50 rounded-2xl border border-dashed border-stone-300"
             >
-              <Sparkles className="w-12 h-12 text-slate-400 dark:text-rose-400 mx-auto mb-4 opacity-50" />
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-stone-100 mb-2">No Wellness Goals Yet</h3>
-              <p className="text-stone-600 dark:text-stone-100 mb-6">Set your first wellness goal to get personalized AI insights.</p>
-              <Button onClick={() => setShowAddGoal(true)} className="bg-slate-700 hover:bg-slate-800 text-white dark:bg-slate-700 dark:hover:bg-slate-800 shadow-lg">
+              <Sparkles className="w-12 h-12 text-slate-400 mx-auto mb-4 opacity-50" strokeWidth={1.5} />
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">No Wellness Goals Yet</h3>
+              <p className="text-stone-600 mb-6">Set your first wellness goal to get personalized AI insights.</p>
+              <Button onClick={() => setShowAddGoal(true)} className="bg-slate-700 hover:bg-slate-800 text-white shadow-sm">
                 Create Your First Goal
               </Button>
             </motion.div>
