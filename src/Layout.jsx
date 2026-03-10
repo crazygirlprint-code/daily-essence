@@ -22,7 +22,6 @@ const navItems = [
   { name: 'Family', page: 'Family', icon: Users },
   { name: 'Budget', page: 'Budget', icon: Sparkles },
   { name: 'Progress', page: 'Progress', icon: Trophy },
-  { name: 'Pricing', page: 'Pricing', icon: Star },
 ];
 
 function LayoutContent({ children, currentPageName }) {
