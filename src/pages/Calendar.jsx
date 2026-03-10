@@ -142,14 +142,14 @@ export default function Calendar() {
   const nextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50/40 via-stone-50/50 to-white dark:bg-transparent">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Special Events Section */}
         {upcomingEvents.length > 0 && (
-          <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/50 mb-8">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-stone-100 mb-1">Special Events</h2>
-              <p className="text-slate-500 dark:text-stone-400 text-sm">Never miss an important date</p>
+              <h2 className="text-2xl font-bold text-slate-900 mb-1">Special Events</h2>
+              <p className="text-slate-500 text-sm">Never miss an important date</p>
             </div>
 
             <div className="mb-4">
@@ -183,8 +183,8 @@ export default function Calendar() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-serif text-slate-900 dark:text-stone-100">Calendar</h1>
-            <p className="text-slate-600 dark:text-stone-300 text-sm">Track your tasks and events</p>
+            <h1 className="text-3xl font-serif text-slate-900">Calendar</h1>
+            <p className="text-slate-600 text-sm">Track your tasks and events</p>
           </div>
           <Button
             onClick={() => {
@@ -199,15 +199,15 @@ export default function Calendar() {
               });
               setShowEventDialog(true);
             }}
-            className="bg-slate-600 hover:bg-slate-700 dark:bg-rose-500 dark:hover:bg-rose-600 text-white gap-2"
+            className="bg-slate-600 hover:bg-slate-700 text-white gap-2"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-4 h-4" strokeWidth={1.5} />
             Add Event
           </Button>
         </div>
 
         {/* Calendar */}
-        <div className="bg-white dark:bg-rose-950/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30 mb-8">
+        <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/50 mb-8">
           <div className="flex items-center justify-between mb-6">
             <Button
               variant="ghost"
@@ -215,9 +215,9 @@ export default function Calendar() {
               onClick={previousMonth}
               className="rounded-xl"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
             </Button>
-            <h2 className="text-xl font-bold text-slate-800 dark:text-stone-100">
+            <h2 className="text-xl font-bold text-slate-800">
               {format(currentDate, 'MMMM yyyy')}
             </h2>
             <Button
@@ -226,13 +226,13 @@ export default function Calendar() {
               onClick={nextMonth}
               className="rounded-xl"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5" strokeWidth={1.5} />
             </Button>
           </div>
 
           <div className="grid grid-cols-7 gap-2">
             {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-              <div key={day} className="text-center text-xs font-medium text-slate-500 dark:text-stone-400 pb-2">
+              <div key={day} className="text-center text-xs font-medium text-slate-500 pb-2">
                 {day}
               </div>
             ))}
