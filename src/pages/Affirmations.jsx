@@ -27,21 +27,21 @@ const DEFAULT_AFFIRMATIONS = [
 ];
 
 const categoryColors = {
-  confidence: 'from-white to-white dark:from-rose-400 dark:to-pink-500',
-  gratitude: 'from-white to-white dark:from-mauve-400 dark:to-mauve-500',
-  strength: 'from-white to-white dark:from-rose-400 dark:to-pink-500',
-  peace: 'from-white to-white dark:from-mauve-300 dark:to-mauve-400',
-  success: 'from-white to-white dark:from-mauve-300 dark:to-mauve-400',
-  love: 'from-white to-white dark:from-rose-400 dark:to-pink-500'
+  confidence: 'from-amber-50 to-rose-50',
+  gratitude: 'from-purple-50 to-pink-50',
+  strength: 'from-blue-50 to-cyan-50',
+  peace: 'from-green-50 to-emerald-50',
+  success: 'from-orange-50 to-amber-50',
+  love: 'from-rose-50 to-pink-50'
 };
 
 const categoryBorders = {
-  confidence: 'border-slate-200 dark:border-transparent',
-  gratitude: 'border-slate-200 dark:border-transparent',
-  strength: 'border-slate-200 dark:border-transparent',
-  peace: 'border-slate-200 dark:border-transparent',
-  success: 'border-slate-200 dark:border-transparent',
-  love: 'border-slate-200 dark:border-transparent'
+  confidence: 'border-stone-200/50',
+  gratitude: 'border-stone-200/50',
+  strength: 'border-stone-200/50',
+  peace: 'border-stone-200/50',
+  success: 'border-stone-200/50',
+  love: 'border-stone-200/50'
 };
 
 export default function Affirmations() {
@@ -126,12 +126,12 @@ export default function Affirmations() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-rose-50 to-amber-50 dark:bg-gradient-to-br dark:from-purple-300 dark:to-purple-400 dark-luxury:bg-transparent">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4">
-            <Sparkles className="w-5 h-5 text-amber-500" />
-            <span className="font-medium text-slate-700">Daily Affirmations</span>
+          <div className="inline-flex items-center gap-2 bg-white backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4 border border-stone-200/50">
+            <Sparkles className="w-5 h-5 text-amber-500" strokeWidth={1.5} />
+            <span className="font-serif font-medium text-slate-700">Daily Affirmations</span>
           </div>
           <p className="text-slate-500">Speak kindness to yourself every day</p>
         </div>
@@ -144,30 +144,29 @@ export default function Affirmations() {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.3 }}
             className={cn(
-              'relative rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden border-2',
+              'relative rounded-3xl p-8 md:p-12 shadow-sm overflow-hidden border',
               'bg-gradient-to-br',
               categoryColors[currentAffirmation.category] || categoryColors.confidence,
               categoryBorders[currentAffirmation.category] || categoryBorders.confidence
             )}
           >
-            <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
             <div className="absolute top-4 right-4">
               <button
                 onClick={() => toggleFavoriteMutation.mutate({
                   id: currentAffirmation.id,
                   is_favorite: currentAffirmation.is_favorite
                 })}
-                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+                className="p-2 rounded-full bg-white/40 hover:bg-white/60 transition-colors"
               >
                 <Heart className={cn(
                   'w-6 h-6',
-                  currentAffirmation.is_favorite ? 'fill-white text-white' : 'text-white/70'
-                )} />
+                  currentAffirmation.is_favorite ? 'fill-rose-500 text-rose-500' : 'text-slate-400'
+                )} strokeWidth={1.5} />
               </button>
             </div>
             
             <div className="relative z-10 text-center">
-              <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-slate-900 dark:text-white leading-relaxed">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-slate-900 leading-relaxed">
                 "{currentAffirmation.text}"
               </p>
               
@@ -176,32 +175,32 @@ export default function Affirmations() {
                   onClick={handleListen}
                   size="lg"
                   className={cn(
-                    'rounded-full px-8 py-6 text-lg font-medium shadow-xl transition-all',
+                    'rounded-full px-8 py-6 text-lg font-medium shadow-sm transition-all',
                     isSpeaking 
-                      ? 'bg-slate-800 text-white dark:bg-white dark:text-purple-600 hover:bg-slate-900 dark:hover:bg-white/90' 
-                      : 'bg-slate-600 text-white dark:bg-white/20 dark:text-white border-2 border-slate-700 dark:border-white/50 hover:bg-slate-700 dark:hover:bg-white/30'
+                      ? 'bg-slate-800 text-white hover:bg-slate-900' 
+                      : 'bg-slate-600 text-white hover:bg-slate-700'
                   )}
                 >
                   {isSpeaking && !isPaused ? (
                     <>
-                      <Pause className="w-5 h-5 mr-2" />
+                      <Pause className="w-5 h-5 mr-2" strokeWidth={1.5} />
                       Pause
                     </>
                   ) : isPaused ? (
                     <>
-                      <Play className="w-5 h-5 mr-2" />
+                      <Play className="w-5 h-5 mr-2" strokeWidth={1.5} />
                       Resume
                     </>
                   ) : (
                     <>
-                      <Volume2 className="w-5 h-5 mr-2" />
+                      <Volume2 className="w-5 h-5 mr-2" strokeWidth={1.5} />
                       Listen to Affirmation
                     </>
                   )}
                 </Button>
               </div>
               
-              <p className="mt-6 text-slate-700 dark:text-white/80 text-sm capitalize">
+              <p className="mt-6 text-slate-600 text-sm capitalize tracking-wide">
                 {currentAffirmation.category}
               </p>
             </div>
@@ -326,19 +325,19 @@ export default function Affirmations() {
         {/* Favorites Section */}
          {affirmations.some(a => a.is_favorite) && (
            <div className="mt-12">
-             <h3 className="text-lg font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
-               <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
+             <h3 className="text-lg font-serif font-semibold text-slate-700 mb-4 flex items-center gap-2">
+               <Heart className="w-5 h-5 text-rose-500 fill-rose-500" strokeWidth={1.5} />
                Your Favorites
              </h3>
              <div className="space-y-3">
                {affirmations.filter(a => a.is_favorite).map((aff, idx) => {
                  const categoryBgColors = {
-                   confidence: 'bg-slate-50 dark:bg-rose-50',
-                   gratitude: 'bg-slate-100 dark:bg-mauve-50',
-                   strength: 'bg-slate-100 dark:bg-rose-50',
-                   peace: 'bg-slate-50 dark:bg-mauve-50',
-                   success: 'bg-slate-100 dark:bg-mauve-50',
-                   love: 'bg-slate-100 dark:bg-rose-50'
+                   confidence: 'bg-stone-100/50',
+                   gratitude: 'bg-stone-100/50',
+                   strength: 'bg-stone-100/50',
+                   peace: 'bg-stone-100/50',
+                   success: 'bg-stone-100/50',
+                   love: 'bg-stone-100/50'
                  };
                  return (
                    <motion.button
@@ -348,13 +347,12 @@ export default function Affirmations() {
                      transition={{ delay: idx * 0.05 }}
                      onClick={() => setCurrentIndex(affirmations.findIndex(a => a.id === aff.id))}
                      className={cn(
-                       "w-full text-left p-4 rounded-xl shadow-sm hover:shadow-md transition-all border",
-                       categoryBgColors[aff.category] || 'bg-stone-100/50',
-                       'border-slate-200 dark:border-rose-500/20 dark:bg-rose-900/20'
+                       "w-full text-left p-4 rounded-xl shadow-sm hover:shadow-md transition-all border border-stone-200/50",
+                       categoryBgColors[aff.category] || 'bg-stone-100/50'
                      )}
-                   >
-                     <p className="text-slate-900 dark:text-stone-100">"{aff.text}"</p>
-                     <p className="text-xs text-slate-600 dark:text-stone-400 mt-1 capitalize">{aff.category}</p>
+                     >
+                     <p className="text-slate-900">"{aff.text}"</p>
+                     <p className="text-xs text-slate-600 mt-1 capitalize">{aff.category}</p>
                    </motion.button>
                  );
                })}

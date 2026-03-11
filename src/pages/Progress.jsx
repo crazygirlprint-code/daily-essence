@@ -101,7 +101,7 @@ export default function Progress() {
 
   if (checkingAccess) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white flex items-center justify-center">
         <div className="animate-pulse text-slate-400">Loading...</div>
       </div>
     );
@@ -123,11 +123,11 @@ export default function Progress() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent dark-luxury:bg-transparent">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-slate-800 dark:text-stone-100">Your Progress</h1>
-          <p className="text-slate-500 dark:text-stone-400 mt-1">Keep going, you're doing amazing! 🌟</p>
+          <h1 className="text-3xl font-serif text-slate-800">Your Progress</h1>
+          <p className="text-slate-500 mt-1">Keep going, you're doing amazing! 🌟</p>
         </div>
         
         {/* Level and Streak */}
@@ -150,19 +150,19 @@ export default function Progress() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={cn('rounded-2xl p-4 border border-slate-200 dark:border-rose-400/40 dark:bg-rose-950/40', stat.bgColor)}
+                className={cn('rounded-2xl p-6 border border-stone-200/50 bg-stone-100/50', stat.bgColor)}
               >
-                <Icon className={cn('w-6 h-6 mb-2', `text-${stat.color.split('-')[1]}-500`)} />
-                <p className="text-2xl font-bold text-slate-800 dark:text-stone-100">{stat.value}</p>
-                <p className="text-sm text-slate-500 dark:text-stone-400">{stat.label}</p>
+                <Icon className={cn('w-6 h-6 mb-2', `text-${stat.color.split('-')[1]}-500`)} strokeWidth={1.5} />
+                <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
+                <p className="text-sm text-slate-500">{stat.label}</p>
               </motion.div>
             );
           })}
         </div>
         
         {/* Extra Stats */}
-        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm mb-8 border border-slate-200 dark:border-rose-400/40">
-          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Your Activity Summary</h3>
+        <div className="bg-stone-100/50 rounded-2xl p-6 shadow-sm mb-8 border border-stone-200/50">
+          <h3 className="font-serif font-semibold text-slate-700 mb-4">Your Activity Summary</h3>
           <div className="grid grid-cols-2 gap-4">
             {extraStats.map((stat, index) => (
               <motion.div
@@ -170,19 +170,19 @@ export default function Progress() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="text-center p-3 bg-gradient-to-br from-stone-50 to-amber-50 dark:from-rose-900/30 dark:to-pink-900/20 rounded-xl"
+                className="text-center p-3 bg-white rounded-xl border border-stone-200/50"
               >
-                <p className="text-2xl font-bold text-slate-800 dark:text-stone-100">{stat.value}</p>
-                <p className="text-xs text-slate-500 dark:text-stone-300 mt-1">{stat.label}</p>
+                <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
+                <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
         
         {/* Activity Heatmap */}
-        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm mb-8 border border-slate-200 dark:border-rose-400/40">
-          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-slate-600 dark:text-rose-400" />
+        <div className="bg-stone-100/50 rounded-2xl p-6 shadow-sm mb-8 border border-stone-200/50">
+          <h3 className="font-serif font-semibold text-slate-700 mb-4 flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-slate-600" strokeWidth={1.5} />
             Activity (Last 30 Days)
           </h3>
           <div className="grid grid-cols-10 gap-1">
@@ -197,32 +197,32 @@ export default function Progress() {
                   title={`${format(day, 'MMM d')}: ${count} tasks`}
                   className={cn(
                     'aspect-square rounded-sm transition-colors',
-                    intensity === 0 && 'bg-slate-100 dark:bg-rose-950/30',
-                    intensity === 1 && 'bg-slate-300 dark:bg-rose-400',
-                    intensity === 2 && 'bg-slate-500 dark:bg-rose-500',
-                    intensity === 3 && 'bg-slate-700 dark:bg-rose-600',
-                    isToday(day) && 'ring-2 ring-slate-400 dark:ring-rose-400 ring-offset-1'
+                    intensity === 0 && 'bg-slate-100',
+                    intensity === 1 && 'bg-slate-300',
+                    intensity === 2 && 'bg-slate-500',
+                    intensity === 3 && 'bg-slate-700',
+                    isToday(day) && 'ring-2 ring-slate-400 ring-offset-1'
                   )}
                 />
               );
             })}
           </div>
-          <div className="flex items-center justify-end gap-2 mt-3 text-xs text-slate-400 dark:text-stone-400">
+          <div className="flex items-center justify-end gap-2 mt-3 text-xs text-slate-400">
             <span>Less</span>
             <div className="flex gap-1">
-              <div className="w-3 h-3 rounded-sm bg-slate-100 dark:bg-rose-950/30" />
-              <div className="w-3 h-3 rounded-sm bg-slate-300 dark:bg-rose-400" />
-              <div className="w-3 h-3 rounded-sm bg-slate-500 dark:bg-rose-500" />
-              <div className="w-3 h-3 rounded-sm bg-slate-700 dark:bg-rose-600" />
+              <div className="w-3 h-3 rounded-sm bg-slate-100" />
+              <div className="w-3 h-3 rounded-sm bg-slate-300" />
+              <div className="w-3 h-3 rounded-sm bg-slate-500" />
+              <div className="w-3 h-3 rounded-sm bg-slate-700" />
             </div>
             <span>More</span>
           </div>
         </div>
         
         {/* Badges */}
-        <div className="bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-400/40">
-          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
-            <Trophy className="w-5 h-5 text-slate-600 dark:text-amber-400" />
+        <div className="bg-stone-100/50 rounded-2xl p-6 shadow-sm border border-stone-200/50">
+          <h3 className="font-serif font-semibold text-slate-700 mb-4 flex items-center gap-2">
+            <Trophy className="w-5 h-5 text-slate-600" strokeWidth={1.5} />
             Achievements
           </h3>
           <BadgesDisplay 
@@ -233,8 +233,8 @@ export default function Progress() {
         </div>
         
         {/* Level Milestones */}
-        <div className="mt-8 bg-white dark:bg-rose-950/40 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-rose-400/40">
-          <h3 className="font-semibold text-slate-700 dark:text-stone-100 mb-4">Level Milestones</h3>
+        <div className="mt-8 bg-stone-100/50 rounded-2xl p-6 shadow-sm border border-stone-200/50">
+          <h3 className="font-serif font-semibold text-slate-700 mb-4">Level Milestones</h3>
           <div className="space-y-3">
             {LEVEL_THRESHOLDS.slice(0, 10).map((threshold, index) => {
               const level = index + 1;
@@ -246,28 +246,28 @@ export default function Progress() {
                   key={level}
                   className={cn(
                     'flex items-center gap-3 p-3 rounded-xl transition-all border',
-                    isReached ? 'bg-gradient-to-r from-slate-50 to-slate-100 dark:from-rose-900/30 dark:to-pink-900/20 border-slate-200 dark:border-rose-500/30' : 'bg-slate-50 dark:bg-rose-950/20 border-slate-200 dark:border-rose-500/20',
-                    isCurrent && 'ring-2 ring-slate-300 dark:ring-rose-400'
+                    isReached ? 'bg-white border-stone-200/50' : 'bg-stone-50 border-stone-200/50',
+                    isCurrent && 'ring-2 ring-slate-300'
                   )}
                 >
                   <div className={cn(
                     'w-10 h-10 rounded-full flex items-center justify-center font-bold',
                     isReached 
-                      ? 'bg-gradient-to-br from-slate-600 to-slate-700 dark:from-rose-400 dark:to-pink-500 text-white' 
-                      : 'bg-slate-200 dark:bg-rose-950/40 text-slate-400 dark:text-stone-500'
+                      ? 'bg-gradient-to-br from-slate-600 to-slate-700 text-white' 
+                      : 'bg-slate-200 text-slate-400'
                   )}>
                     {level}
                   </div>
                   <div className="flex-1">
                     <p className={cn(
                       'font-medium',
-                      isReached ? 'text-slate-700 dark:text-stone-200' : 'text-slate-400 dark:text-stone-500'
+                      isReached ? 'text-slate-700' : 'text-slate-400'
                     )}>
                       Level {level}
                     </p>
-                    <p className="text-xs text-slate-400 dark:text-stone-500">{threshold} points</p>
+                    <p className="text-xs text-slate-400">{threshold} points</p>
                   </div>
-                  {isReached && <CheckCircle2 className="w-5 h-5 text-emerald-500" />}
+                  {isReached && <CheckCircle2 className="w-5 h-5 text-emerald-500" strokeWidth={1.5} />}
                 </div>
               );
             })}

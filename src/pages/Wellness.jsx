@@ -223,30 +223,30 @@ export default function Wellness() {
   const randomSuggestion = SUGGESTIONS[Math.floor(Math.random() * SUGGESTIONS.length)];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4 dark:bg-rose-900/30 dark:border dark:border-rose-500/30">
-             <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
-             <span className="font-medium text-slate-700 dark:text-stone-100">Wellness</span>
+           <div className="inline-flex items-center gap-2 bg-white backdrop-blur px-4 py-2 rounded-full shadow-sm mb-4 border border-stone-200/50">
+             <Heart className="w-5 h-5 text-rose-500 fill-rose-500" strokeWidth={1.5} />
+             <span className="font-serif font-medium text-slate-700">Wellness</span>
            </div>
-           <p className="text-slate-500 dark:text-stone-400">Beauty routines & self-care activities</p>
+           <p className="text-slate-500">Beauty routines & self-care activities</p>
          </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
+          <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6 border border-stone-200/50">
             <TabsTrigger
               value="beauty"
               className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
             >
-              <Sparkles className="w-4 h-4 mr-2" />
+              <Sparkles className="w-4 h-4 mr-2" strokeWidth={1.5} />
               Beauty
             </TabsTrigger>
             <TabsTrigger
               value="selfcare"
-              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-500 data-[state=active]:text-white"
+              className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
             >
-              <Heart className="w-4 h-4 mr-2" />
+              <Heart className="w-4 h-4 mr-2" strokeWidth={1.5} />
               Self-Care
             </TabsTrigger>
           </TabsList>
@@ -254,29 +254,24 @@ export default function Wellness() {
           {/* Beauty Content */}
           <TabsContent value="beauty" className="space-y-6">
             <Tabs value={beautyTab} onValueChange={setBeautyTab} className="w-full">
-              <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6">
+              <TabsList className="grid grid-cols-2 w-full bg-white/50 rounded-2xl p-1 mb-6 border border-stone-200/50">
                 <TabsTrigger
                   value="morning"
                   className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
                 >
-                  <Sun className="w-4 h-4 mr-2" />
+                  <Sun className="w-4 h-4 mr-2" strokeWidth={1.5} />
                   Morning
                 </TabsTrigger>
                 <TabsTrigger
                   value="night"
-                  className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-500 data-[state=active]:text-white"
+                  className="rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-600 data-[state=active]:to-slate-700 data-[state=active]:text-white"
                 >
-                  <Moon className="w-4 h-4 mr-2" />
+                  <Moon className="w-4 h-4 mr-2" strokeWidth={1.5} />
                   Night
                 </TabsTrigger>
               </TabsList>
 
-              <div className={cn(
-                'rounded-2xl p-6 mb-6 text-white',
-                beautyTab === 'morning' 
-                  ? 'bg-gradient-to-r from-slate-600 to-slate-700'
-                  : 'bg-gradient-to-r from-rose-500 to-pink-500'
-              )}>
+              <div className="rounded-2xl p-6 mb-6 text-white bg-gradient-to-r from-slate-600 to-slate-700">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-semibold">Today's Progress</h3>
                   <span className="text-2xl font-bold">{completedCount}/{totalCount}</span>
@@ -306,7 +301,7 @@ export default function Wellness() {
                         'group flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border transition-all',
                         completedToday(routine) 
                           ? 'border-green-200 bg-green-50/50' 
-                          : 'border-slate-100 hover:shadow-md'
+                          : 'border-stone-200/50 hover:shadow-md'
                       )}
                     >
                       <span className={cn(
@@ -322,7 +317,7 @@ export default function Wellness() {
                       
                       <span className={cn(
                         'flex-1 font-medium',
-                        completedToday(routine) ? 'text-green-700 line-through dark:text-green-400' : 'text-slate-700 dark:text-stone-100'
+                        completedToday(routine) ? 'text-green-700 line-through' : 'text-slate-700'
                       )}>
                         {routine.name}
                       </span>
@@ -364,36 +359,36 @@ export default function Wellness() {
           {/* Self-Care Content */}
           <TabsContent value="selfcare" className="space-y-6">
             {needsReminder && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-gradient-to-r from-slate-600 to-slate-700 rounded-2xl p-4 text-white"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-white/20 rounded-xl">
-                    <Lightbulb className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">Time for some self-love! 💖</h3>
-                    <p className="text-sm text-white/90 mt-1">
-                      It's been {daysSinceLastSelfCare}+ days since your last self-care activity.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+             <motion.div
+               initial={{ opacity: 0, y: -10 }}
+               animate={{ opacity: 1, y: 0 }}
+               className="bg-gradient-to-r from-slate-600 to-slate-700 rounded-2xl p-6 text-white"
+             >
+               <div className="flex items-start gap-3">
+                 <div className="p-2 bg-white/20 rounded-xl">
+                   <Lightbulb className="w-5 h-5" strokeWidth={1.5} />
+                 </div>
+                 <div>
+                   <h3 className="font-serif font-semibold">Time for some self-love! 💖</h3>
+                   <p className="text-sm text-white/90 mt-1">
+                     It's been {daysSinceLastSelfCare}+ days since your last self-care activity.
+                   </p>
+                 </div>
+               </div>
+             </motion.div>
             )}
 
             {showSuggestion && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white dark:bg-rose-900/20 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-rose-500/30"
+                className="bg-stone-100/50 rounded-2xl p-6 shadow-sm border border-stone-200/50"
               >
                 <div className="flex items-center gap-2 text-amber-500 mb-2">
-                  <Lightbulb className="w-5 h-5" />
-                  <span className="text-sm font-medium dark:text-stone-200">Suggestion for you</span>
+                  <Lightbulb className="w-5 h-5" strokeWidth={1.5} />
+                  <span className="text-sm font-medium">Suggestion for you</span>
                 </div>
-                <p className="text-slate-700 dark:text-stone-100 font-medium">{randomSuggestion}</p>
+                <p className="text-slate-700 font-medium">{randomSuggestion}</p>
                 <div className="flex gap-2 mt-4">
                   <Button
                     size="sm"
@@ -441,8 +436,8 @@ export default function Wellness() {
 
             {upcomingActivities.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-rose-500" />
+                <h3 className="text-lg font-serif font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-rose-500" strokeWidth={1.5} />
                   Scheduled
                 </h3>
                 <div className="space-y-3">
@@ -460,8 +455,8 @@ export default function Wellness() {
                           <Icon className="w-5 h-5" />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-medium text-slate-800 dark:text-stone-100">{activity.name}</h4>
-                          <p className="text-sm text-slate-500 dark:text-stone-400">
+                          <h4 className="font-medium text-slate-800">{activity.name}</h4>
+                          <p className="text-sm text-slate-500">
                             {format(new Date(activity.scheduled_date), 'EEEE, MMMM d')}
                           </p>
                         </div>
@@ -470,7 +465,7 @@ export default function Wellness() {
                           onClick={() => handleCompleteActivity(activity)}
                           className="rounded-xl bg-emerald-500 hover:bg-emerald-600"
                         >
-                          <Check className="w-4 h-4 mr-1" />
+                          <Check className="w-4 h-4 mr-1" strokeWidth={1.5} />
                           Done
                         </Button>
                       </motion.div>
@@ -482,17 +477,17 @@ export default function Wellness() {
 
             {unscheduledActivities.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-slate-700 dark:text-stone-100 mb-4">Ideas</h3>
+                <h3 className="text-lg font-serif font-semibold text-slate-700 mb-4">Ideas</h3>
                 <div className="space-y-2">
                   {unscheduledActivities.map((activity) => {
                     const typeInfo = ACTIVITY_TYPES.find(t => t.id === activity.type) || ACTIVITY_TYPES[0];
                     return (
                       <div
                         key={activity.id}
-                        className="flex items-center gap-3 p-3 bg-white/60 rounded-xl"
+                        className="flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-200/50"
                       >
                         <span className={cn('w-3 h-3 rounded-full', typeInfo.color.split(' ')[0])} />
-                        <span className="flex-1 text-slate-600 dark:text-stone-300">{activity.name}</span>
+                        <span className="flex-1 text-slate-600">{activity.name}</span>
                       </div>
                     );
                   })}
@@ -502,8 +497,8 @@ export default function Wellness() {
 
             {completedActivities.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-slate-700 dark:text-stone-100 mb-4 flex items-center gap-2">
-                  <Check className="w-5 h-5 text-emerald-500" />
+                <h3 className="text-lg font-serif font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                  <Check className="w-5 h-5 text-emerald-500" strokeWidth={1.5} />
                   Completed ({completedActivities.length})
                 </h3>
                 <div className="space-y-2">
@@ -528,9 +523,9 @@ export default function Wellness() {
 
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-xl bg-slate-700 hover:bg-slate-800 text-white shadow-slate-500/30"
+          className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-sm bg-slate-700 hover:bg-slate-800 text-white"
         >
-          <Plus className="w-6 h-6" />
+          <Plus className="w-6 h-6" strokeWidth={1.5} />
         </Button>
       </div>
 

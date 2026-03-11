@@ -85,7 +85,7 @@ export default function Community() {
   };
 
   return (
-     <div className="min-h-screen bg-gradient-to-b from-amber-50/40 via-stone-50/50 to-white dark:bg-transparent">
+     <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
        <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
          {/* Header */}
          <div className="flex items-center justify-between mb-8">
@@ -96,15 +96,15 @@ export default function Community() {
            </Link>
 
            <div className="text-center flex-1">
-             <h1 className="text-2xl font-bold text-slate-900 dark:text-stone-100">Community</h1>
-             <p className="text-sm text-slate-500 dark:text-stone-400 mt-1">Share your journey with moms like you</p>
+             <h1 className="text-2xl font-serif text-slate-900">Community</h1>
+             <p className="text-sm text-slate-500 mt-1">Share your journey with moms like you</p>
           </div>
 
           <Button
             onClick={() => setIsCreateOpen(true)}
-            className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:to-pink-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:to-pink-600 text-white font-medium"
+            className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white"
           >
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="w-4 h-4 mr-2" strokeWidth={1.5} />
             Share
           </Button>
         </div>
@@ -127,14 +127,14 @@ export default function Community() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-16"
             >
-              <Heart className="w-16 h-16 text-stone-200 dark:text-rose-900/50 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-slate-600 dark:text-stone-200 mb-2">No posts yet</h3>
-              <p className="text-slate-400 dark:text-stone-400 mb-6">Be the first to share your story with the community!</p>
+              <Heart className="w-16 h-16 text-stone-200 mx-auto mb-4" strokeWidth={1.5} />
+              <h3 className="text-lg font-serif font-semibold text-slate-600 mb-2">No posts yet</h3>
+              <p className="text-slate-400 mb-6">Be the first to share your story with the community!</p>
               <Button
                 onClick={() => setIsCreateOpen(true)}
-                className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 dark:from-rose-400 dark:to-pink-500 hover:from-slate-700 hover:to-slate-800 dark:hover:from-rose-500 dark:hover:to-pink-600 text-white font-medium"
+                className="rounded-xl bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white"
               >
-                <Plus className="w-4 h-4 mr-2" />
+                <Plus className="w-4 h-4 mr-2" strokeWidth={1.5} />
                 Share Your First Post
               </Button>
             </motion.div>
@@ -146,7 +146,7 @@ export default function Community() {
 
                 return (
                     <div key={type}>
-                      <h2 className="text-xl font-bold text-slate-900 dark:text-stone-100 mb-4">{label}</h2>
+                      <h2 className="text-xl font-serif font-bold text-slate-900 mb-4">{label}</h2>
                     <div className="space-y-4">
                       {typePosts.map((post) => (
                         <PostCard
