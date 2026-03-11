@@ -103,7 +103,12 @@ export default function Profile() {
   const handleSaveProfile = async (profileData) => {
     try {
       await base44.auth.updateMe(profileData);
+      // Update author name on all community posts if name changed
+      if (profileData.display_name && profileData.display_name !== user?.display_name) {
+        await base44.functions.invoke('updatePostsAuthorName', { newName: profileData.display_name });
+      }
       queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+      queryClient.invalidateQueries({ queryKey: ['communityPosts'] });
       setIsEditingProfile(false);
     } catch (error) {
       console.error('Error updating profile:', error);
