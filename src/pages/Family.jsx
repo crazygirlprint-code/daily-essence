@@ -24,6 +24,8 @@ import { cn } from '@/lib/utils';
 import FamilyWall from '@/components/family/FamilyWall';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PhotoAdjuster from '@/components/family/PhotoAdjuster';
+import ShareCalendarDialog from '@/components/family/ShareCalendarDialog';
+import { Share2 } from 'lucide-react';
 
 const relationshipIcons = {
   self: User,
@@ -70,6 +72,7 @@ export default function Family() {
   const [isUploading, setIsUploading] = useState(false);
   const [tempPhotoUrl, setTempPhotoUrl] = useState(null);
   const [isAdjusterOpen, setIsAdjusterOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
   
   const queryClient = useQueryClient();
   
@@ -163,20 +166,31 @@ export default function Family() {
         <div className="flex items-center justify-between mb-6">
           <Link to={createPageUrl('Home')}>
             <Button variant="ghost" size="icon" className="rounded-xl">
-              <Home className="w-5 h-5" />
+              <Home className="w-5 h-5" strokeWidth={1.5} />
             </Button>
           </Link>
           
           <h1 className="text-xl font-bold text-slate-800">Family</h1>
           
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsAddOpen(true)}
-            className="rounded-xl"
-          >
-            <Plus className="w-5 h-5" />
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsShareOpen(true)}
+              className="rounded-xl"
+              title="Share calendar"
+            >
+              <Share2 className="w-5 h-5" strokeWidth={1.5} />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsAddOpen(true)}
+              className="rounded-xl"
+            >
+              <Plus className="w-5 h-5" strokeWidth={1.5} />
+            </Button>
+          </div>
         </div>
         
         {/* Tabs */}
@@ -434,6 +448,11 @@ export default function Family() {
         isOpen={isAdjusterOpen}
         onConfirm={handlePhotoAdjustConfirm}
         onCancel={handlePhotoAdjustCancel}
+      />
+
+      <ShareCalendarDialog
+        isOpen={isShareOpen}
+        onOpenChange={setIsShareOpen}
       />
     </div>
   );
