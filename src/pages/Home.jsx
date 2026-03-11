@@ -216,7 +216,7 @@ export default function Home() {
               </div>
             </div>
             <Button className="w-full bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-lg shadow-slate-500/30">
-              Upgrade Now
+              Unlock Premium
             </Button>
           </div>
         </motion.div>
