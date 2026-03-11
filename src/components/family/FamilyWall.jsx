@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tantml:react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Camera, Sparkles, MessageCircle, Trash2, Pin, X, Loader2, Image as ImageIcon, Bell, Award } from 'lucide-react';
