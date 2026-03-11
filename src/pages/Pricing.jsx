@@ -197,7 +197,7 @@ export default function Pricing() {
                   disabled={isLoading || !plan.priceId}
                   className={`w-full h-11 rounded-xl font-semibold text-white mb-8 ${plan.buttonColor}`}
                 >
-                  {plan.priceId ? 'Upgrade Now' : 'Get Started Free'}
+                  {plan.priceId ? 'Unlock Premium' : 'Start Your Journey'}
                 </Button>
 
                 {/* Features List */}
