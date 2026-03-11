@@ -47,9 +47,9 @@ export default function YourWhy({ user, onUpdate }) {
           <Button
             onClick={() => setIsEditing(true)}
             size="sm"
-            className="gap-2 bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600"
+            className="gap-2 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white"
           >
-            <Edit className="w-3.5 h-3.5" />
+            <Edit className="w-3.5 h-3.5" strokeWidth={1.5} />
             Edit
           </Button>
         )}
@@ -78,13 +78,13 @@ export default function YourWhy({ user, onUpdate }) {
               onClick={handleSave}
               size="sm"
               disabled={saving}
-              className="bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600"
+              className="bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white"
               >
               {saving ? (
                 <>Saving...</>
               ) : (
                 <>
-                  <Save className="w-4 h-4 mr-2" />
+                  <Save className="w-4 h-4 mr-2" strokeWidth={1.5} />
                   Save
                 </>
               )}
@@ -105,9 +105,9 @@ export default function YourWhy({ user, onUpdate }) {
               <Button
                 onClick={() => setIsEditing(true)}
                 size="sm"
-                className="bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600"
+                className="bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white"
                 >
-                <Edit className="w-4 h-4 mr-2" />
+                <Edit className="w-4 h-4 mr-2" strokeWidth={1.5} />
                 Write Your Why
               </Button>
             </div>

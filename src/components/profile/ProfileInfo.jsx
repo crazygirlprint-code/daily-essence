@@ -49,9 +49,9 @@ export default function ProfileInfo({ user, onEdit }) {
         <Button
           onClick={onEdit}
           size="sm"
-          className="gap-2 bg-slate-700 hover:bg-slate-800 text-white dark:bg-gradient-to-r dark:from-rose-500 dark:to-pink-500 dark:hover:from-rose-600 dark:hover:to-pink-600"
+          className="gap-2 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white"
         >
-          <Edit className="w-4 h-4" />
+          <Edit className="w-4 h-4" strokeWidth={1.5} />
           Edit Profile
         </Button>
       </div>
