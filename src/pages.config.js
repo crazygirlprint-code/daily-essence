@@ -64,6 +64,7 @@ import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
 import Strolling from './pages/Strolling';
 import Wellness from './pages/Wellness';
+import SharedCalendar from './pages/SharedCalendar';
 import __Layout from './Layout.jsx';
 
 
@@ -85,6 +86,7 @@ export const PAGES = {
     "SelfCare": SelfCare,
     "Strolling": Strolling,
     "Wellness": Wellness,
+    "SharedCalendar": SharedCalendar,
 }
 
 export const pagesConfig = {
