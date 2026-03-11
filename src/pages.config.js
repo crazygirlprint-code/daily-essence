@@ -62,9 +62,9 @@ import Pricing from './pages/Pricing';
 import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import SelfCare from './pages/SelfCare';
+import SharedCalendar from './pages/SharedCalendar';
 import Strolling from './pages/Strolling';
 import Wellness from './pages/Wellness';
-import SharedCalendar from './pages/SharedCalendar';
 import __Layout from './Layout.jsx';
 
 
@@ -84,9 +84,9 @@ export const PAGES = {
     "Profile": Profile,
     "Progress": Progress,
     "SelfCare": SelfCare,
+    "SharedCalendar": SharedCalendar,
     "Strolling": Strolling,
     "Wellness": Wellness,
-    "SharedCalendar": SharedCalendar,
 }
 
 export const pagesConfig = {
