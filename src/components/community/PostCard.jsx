@@ -12,7 +12,7 @@ const postTypeConfig = {
   motivation: { icon: Star, label: 'Motivation', color: 'text-rose-500', bg: 'bg-rose-50' },
 };
 
-export default function PostCard({ post, onLike, isLiked }) {
+export default function PostCard({ post, onLike, isLiked, currentUser }) {
   const [imageExpanded, setImageExpanded] = useState(false);
   const config = postTypeConfig[post.post_type];
   const TypeIcon = config.icon;
@@ -54,7 +54,11 @@ export default function PostCard({ post, onLike, isLiked }) {
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
-          <p className="font-semibold text-slate-900">{post.author_name}</p>
+          <p className="font-semibold text-slate-900">
+            {post.created_by === currentUser?.email
+              ? (currentUser?.display_name || currentUser?.full_name || post.author_name)
+              : post.author_name}
+          </p>
           <p className="text-xs text-slate-400 mt-0.5">
             {formatDistanceToNow(new Date(post.created_date), { addSuffix: true })}
           </p>
