@@ -154,6 +154,7 @@ export default function Community() {
                           post={post}
                           onLike={() => handleLike(post)}
                           isLiked={post.liked_by?.includes(user?.email)}
+                          currentUser={user}
                         />
                       ))}
                     </div>
