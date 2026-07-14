@@ -6,20 +6,16 @@ import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Home, Plus, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useAuth } from '@/lib/AuthContext';
 import PostCard from '@/components/community/PostCard';
 import CreatePostDialog from '@/components/community/CreatePostDialog';
 
 export default function Community() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const { user } = useAuth();
   const [userLikes, setUserLikes] = useState({});
 
   const queryClient = useQueryClient();
-
-  // Fetch current user
-  React.useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => {});
-  }, []);
 
   // Fetch community posts
   const { data: posts = [], isLoading } = useQuery({

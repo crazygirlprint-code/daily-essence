@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '@/lib/AuthContext';
 import { Plus, Sparkles, Loader2, User, Camera, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
@@ -20,12 +21,12 @@ export default function Profile() {
   const [uploadingPicture, setUploadingPicture] = useState(false);
   const [expandedImage, setExpandedImage] = useState(false);
   const queryClient = useQueryClient();
+  const { user: authUser } = useAuth();
+  const [user, setUser] = useState(null);
 
-  // Fetch current user
-  const { data: user } = useQuery({
-    queryKey: ['currentUser'],
-    queryFn: () => base44.auth.me(),
-  });
+  React.useEffect(() => {
+    if (authUser && !user) setUser(authUser);
+  }, [authUser]);
 
   // Fetch wellness goals
   const { data: goals = [], isLoading } = useQuery({
@@ -107,7 +108,8 @@ export default function Profile() {
       if (profileData.display_name && profileData.display_name !== user?.display_name) {
         await base44.functions.invoke('updatePostsAuthorName', { newName: profileData.display_name });
       }
-      queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+      const freshUser = await base44.auth.me();
+      setUser(freshUser);
       queryClient.invalidateQueries({ queryKey: ['communityPosts'] });
       setIsEditingProfile(false);
     } catch (error) {
@@ -123,7 +125,8 @@ export default function Profile() {
     try {
       const { file_url } = await base44.integrations.Core.UploadFile({ file });
       await base44.auth.updateMe({ profile_picture: file_url });
-      queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+      const freshUser = await base44.auth.me();
+      setUser(freshUser);
     } catch (error) {
       console.error('Error uploading profile picture:', error);
     } finally {

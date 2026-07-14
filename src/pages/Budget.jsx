@@ -15,6 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/lib/AuthContext';
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, parseISO } from 'date-fns';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
@@ -36,6 +37,7 @@ export default function Budget() {
   const [timeView, setTimeView] = useState('month');
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isBudgetOpen, setIsBudgetOpen] = useState(false);
+  const { user } = useAuth();
   const [hasAccess, setHasAccess] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMember, setSelectedMember] = useState('all');
@@ -58,22 +60,13 @@ export default function Budget() {
 
   // Check subscription status - only Radiant tier and admin
   React.useEffect(() => {
-    const checkSubscription = async () => {
-      try {
-        const user = await base44.auth.me();
-        // Only Radiant tier (top tier) or admin can access
-        const isRadiantTier = user.subscription_status === 'active' && 
-          (user.subscription_plan === 'Radiant' || user.subscription_plan === 'radiant');
-        const isAdmin = user.role === 'admin';
-        setHasAccess(isRadiantTier || isAdmin);
-      } catch (error) {
-        setHasAccess(false);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    checkSubscription();
-  }, []);
+    if (!user) return;
+    const isRadiantTier = user.subscription_status === 'active' && 
+      (user.subscription_plan === 'Radiant' || user.subscription_plan === 'radiant');
+    const isAdmin = user.role === 'admin';
+    setHasAccess(isRadiantTier || isAdmin);
+    setIsLoading(false);
+  }, [user]);
 
   const { data: transactions = [] } = useQuery({
     queryKey: ['transactions'],
