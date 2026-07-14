@@ -10,10 +10,14 @@ export default function UpcomingNotification() {
 
   useEffect(() => {
     if (user?.notification_enabled) {
-      checkUpcomingItems();
+      // Delay first check to reduce initial API burst
+      const timer = setTimeout(() => checkUpcomingItems(), 3000);
       // Check every 4 hours
       const interval = setInterval(checkUpcomingItems, 4 * 60 * 60 * 1000);
-      return () => clearInterval(interval);
+      return () => {
+        clearTimeout(timer);
+        clearInterval(interval);
+      };
     }
   }, [user]);
 

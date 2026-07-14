@@ -44,9 +44,9 @@ export default function Home() {
     const queryClient = useQueryClient();
     const { progress, addPoints, getProgressToNextLevel } = useGamification();
   
-  // Fetch weather forecast
+  // Fetch weather forecast (delayed to reduce initial API burst)
   useEffect(() => {
-    const getWeather = async () => {
+    const timer = setTimeout(async () => {
       try {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
@@ -68,9 +68,8 @@ export default function Home() {
       } catch (error) {
         console.error('Weather fetch error:', error);
       }
-    };
-    
-    getWeather();
+    }, 2000);
+    return () => clearTimeout(timer);
   }, []);
   
   // Fetch tasks
