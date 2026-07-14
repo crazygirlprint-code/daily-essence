@@ -3,20 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
 
 export default function NotificationBanner() {
+  const { user } = useAuth();
   const [showBanner, setShowBanner] = useState(false);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    base44.auth.me().then(u => {
-      setUser(u);
-      // Show banner if notifications are disabled
-      if (u && !u.notification_enabled) {
-        setShowBanner(true);
-      }
-    }).catch(() => {});
-  }, []);
+    if (user && !user.notification_enabled) {
+      setShowBanner(true);
+    }
+  }, [user]);
 
   const handleEnableNotifications = async () => {
     try {

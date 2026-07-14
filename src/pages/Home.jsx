@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Link, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { useAuth } from '@/lib/AuthContext';
 
 import DayHeader from '@/components/planner/DayHeader';
 import WeekStrip from '@/components/planner/WeekStrip';
@@ -29,27 +30,19 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isAddOpen, setIsAddOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const { user } = useAuth();
   const [showPoints, setShowPoints] = useState(false);
   const [pointsEarned, setPointsEarned] = useState(0);
   const [activeSection, setActiveSection] = useState('tasks');
   const [unlockedBadge, setUnlockedBadge] = useState(null);
   const [editingTask, setEditingTask] = useState(null);
   const [weatherForecast, setWeatherForecast] = useState([]);
-  const [temperatureUnit, setTemperatureUnit] = useState('fahrenheit');
+  const temperatureUnit = user?.temperature_unit || 'fahrenheit';
 
   useTimezone();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { progress, addPoints, getProgressToNextLevel } = useGamification();
-  
-  // Fetch current user
-  React.useEffect(() => {
-    base44.auth.me().then((userData) => {
-      setUser(userData);
-      setTemperatureUnit(userData?.temperature_unit || 'fahrenheit');
-    }).catch(() => {});
-  }, []);
   
   // Fetch weather forecast
   useEffect(() => {

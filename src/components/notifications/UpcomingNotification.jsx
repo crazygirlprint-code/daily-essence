@@ -2,22 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, CheckCircle2, Calendar, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
 
 export default function UpcomingNotification() {
+  const { user } = useAuth();
   const [notifications, setNotifications] = useState([]);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    base44.auth.me().then(u => {
-      setUser(u);
-      if (u?.notification_enabled) {
-        checkUpcomingItems();
-        // Check every 4 hours
-        const interval = setInterval(checkUpcomingItems, 4 * 60 * 60 * 1000);
-        return () => clearInterval(interval);
-      }
-    }).catch(() => {});
-  }, []);
+    if (user?.notification_enabled) {
+      checkUpcomingItems();
+      // Check every 4 hours
+      const interval = setInterval(checkUpcomingItems, 4 * 60 * 60 * 1000);
+      return () => clearInterval(interval);
+    }
+  }, [user]);
 
   const checkUpcomingItems = async () => {
     try {
