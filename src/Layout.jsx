@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { 
   Home, Calendar, Heart, Sparkles, Leaf, 
-  Users, Star, Menu, X, Trophy, MessageCircle, Zap
+  Users, Star, Menu, X, Trophy, MessageCircle, Zap, BarChart3
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -22,6 +22,7 @@ const navItems = [
   { name: 'Family', page: 'Family', icon: Users },
   { name: 'Budget', page: 'Budget', icon: Sparkles },
   { name: 'Progress', page: 'Progress', icon: Trophy },
+  { name: 'Monthly Summary', page: 'MonthlySummary', icon: BarChart3 },
 ];
 
 function LayoutContent({ children, currentPageName }) {
