@@ -1,0 +1,58 @@
+{
+  "name": "WellnessGoal",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Goal name (e.g., Better Sleep, Stress Reduction)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the goal"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "sleep",
+        "stress",
+        "fitness",
+        "nutrition",
+        "mental_health",
+        "social",
+        "other"
+      ],
+      "description": "Goal category"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium"
+    },
+    "target_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Target date to achieve this goal"
+    },
+    "current_progress": {
+      "type": "number",
+      "default": 0,
+      "description": "Progress percentage (0-100)"
+    },
+    "last_ai_insight": {
+      "type": "string",
+      "description": "Last AI-generated insight for this goal"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ]
+}

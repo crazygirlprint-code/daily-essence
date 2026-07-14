@@ -1,0 +1,82 @@
+{
+  "name": "FamilyPost",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "The note or memory caption"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "note",
+        "memory",
+        "reminder",
+        "milestone"
+      ],
+      "default": "note",
+      "description": "Type of post - note, memory, reminder, or milestone"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Photo URL for memories"
+    },
+    "family_member": {
+      "type": "string",
+      "description": "Which family member this is about"
+    },
+    "pinned": {
+      "type": "boolean",
+      "default": false,
+      "description": "Pin important notes to the top"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "write": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

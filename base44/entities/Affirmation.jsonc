@@ -1,0 +1,35 @@
+{
+  "name": "Affirmation",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "confidence",
+        "gratitude",
+        "strength",
+        "peace",
+        "success",
+        "love"
+      ]
+    },
+    "is_favorite": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "text",
+    "category"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "user"
+      }
+    }
+  }
+}

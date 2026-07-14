@@ -1,0 +1,59 @@
+{
+  "name": "CommunityPost",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "Post content/caption"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Optional image URL"
+    },
+    "post_type": {
+      "type": "string",
+      "enum": [
+        "streak",
+        "accomplishment",
+        "journey",
+        "photo",
+        "motivation"
+      ],
+      "default": "accomplishment",
+      "description": "Type of post"
+    },
+    "likes": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of likes"
+    },
+    "liked_by": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "List of user emails who liked this post"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Display name of the author"
+    }
+  },
+  "required": [
+    "content",
+    "post_type"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": true,
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

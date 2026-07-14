@@ -1,0 +1,52 @@
+{
+  "name": "SelfCareActivity",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "spa",
+        "shopping",
+        "dinner",
+        "movie",
+        "massage",
+        "nature",
+        "social",
+        "hobby",
+        "other"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

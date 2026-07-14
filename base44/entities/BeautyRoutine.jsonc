@@ -1,0 +1,45 @@
+{
+  "name": "BeautyRoutine",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "morning",
+        "night"
+      ]
+    },
+    "order": {
+      "type": "number"
+    },
+    "completed_today": {
+      "type": "boolean",
+      "default": false
+    },
+    "last_completed": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

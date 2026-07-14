@@ -1,0 +1,105 @@
+{
+  "name": "Transaction",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "Transaction amount"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "groceries",
+        "dining",
+        "shopping",
+        "transportation",
+        "utilities",
+        "healthcare",
+        "entertainment",
+        "childcare",
+        "education",
+        "personal",
+        "other"
+      ],
+      "description": "Spending category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Transaction description"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Transaction date"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "credit_card",
+        "debit_card",
+        "cash",
+        "bank_transfer",
+        "other"
+      ],
+      "default": "credit_card"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "expense",
+        "income"
+      ],
+      "default": "expense"
+    }
+  },
+  "required": [
+    "amount",
+    "category",
+    "date"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "write": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

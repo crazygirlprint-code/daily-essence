@@ -1,0 +1,95 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "display_name": {
+      "type": "string",
+      "description": "Display name for the user"
+    },
+    "profile_picture": {
+      "type": "string",
+      "description": "Profile picture URL"
+    },
+    "bio": {
+      "type": "string",
+      "description": "User bio"
+    },
+    "birthday": {
+      "type": "string",
+      "format": "date",
+      "description": "User's birthday"
+    },
+    "city": {
+      "type": "string",
+      "description": "User's city"
+    },
+    "profession": {
+      "type": "string",
+      "description": "User's profession"
+    },
+    "phone": {
+      "type": "string",
+      "description": "User's phone number"
+    },
+    "address": {
+      "type": "string",
+      "description": "User's address"
+    },
+    "your_why": {
+      "type": "string",
+      "description": "Personal motivation and values"
+    },
+    "photo_gallery": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Collection of wellness journey photos"
+    },
+    "show_bio": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_birthday": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_city": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_profession": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_phone": {
+      "type": "boolean",
+      "default": false
+    },
+    "show_address": {
+      "type": "boolean",
+      "default": false
+    },
+    "temperature_unit": {
+      "type": "string",
+      "enum": [
+        "celsius",
+        "fahrenheit"
+      ],
+      "default": "fahrenheit",
+      "description": "Temperature unit preference for weather display"
+    }
+  },
+  "required": [
+    "display_name",
+    "profile_picture",
+    "bio",
+    "birthday",
+    "city",
+    "profession",
+    "phone",
+    "address",
+    "your_why"
+  ]
+}

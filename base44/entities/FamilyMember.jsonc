@@ -1,0 +1,116 @@
+{
+  "name": "FamilyMember",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "spouse",
+        "husband",
+        "wife",
+        "boyfriend",
+        "girlfriend",
+        "son",
+        "daughter",
+        "father",
+        "mother",
+        "dad",
+        "mom",
+        "brother",
+        "sister",
+        "grandfather",
+        "grandmother",
+        "grandpa",
+        "grandma",
+        "uncle",
+        "aunt",
+        "cousin",
+        "niece",
+        "nephew",
+        "friend",
+        "self",
+        "other"
+      ]
+    },
+    "color": {
+      "type": "string",
+      "description": "Color code for this family member"
+    },
+    "photo_url": {
+      "type": "string",
+      "description": "Profile photo URL for this family member"
+    },
+    "photo_adjustment": {
+      "type": "object",
+      "description": "Photo zoom and position adjustment",
+      "properties": {
+        "zoom": {
+          "type": "number"
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "relationship"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "write": {
+      "created_by": "{{user.email}}",
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "name": "ChatMessage",
+  "type": "object",
+  "properties": {
+    "user_name": {
+      "type": "string",
+      "description": "Name of the user sending the message"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user"
+    },
+    "message": {
+      "type": "string",
+      "description": "The chat message text"
+    },
+    "media_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "image",
+              "video"
+            ]
+          },
+          "filename": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Uploaded media files"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Chat session identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed"
+      ],
+      "default": "pending"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "rls": {
+    "create": true,
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import GoogleCalendarSync from '@/components/calendar/GoogleCalendarSync';
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -144,6 +145,8 @@ export default function Calendar() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50/40 via-stone-50/50 to-white">
       <div className="max-w-6xl mx-auto px-4 py-8">
+        <GoogleCalendarSync />
+
         {/* Special Events Section */}
         {upcomingEvents.length > 0 && (
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-200/50 mb-8">

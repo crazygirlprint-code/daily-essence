@@ -1,0 +1,50 @@
+{
+  "name": "SpecialEvent",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "birthday",
+        "anniversary",
+        "holiday",
+        "appointment",
+        "other"
+      ]
+    },
+    "color": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "emoji": {
+      "type": "string",
+      "description": "Emoji or sticker for premium users"
+    },
+    "recurring_yearly": {
+      "type": "boolean",
+      "default": false
+    },
+    "google_event_id": {
+      "type": "string",
+      "description": "Google Calendar event ID for synced events"
+    }
+  },
+  "required": [
+    "title",
+    "date"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

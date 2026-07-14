@@ -1,0 +1,94 @@
+{
+  "name": "Activity",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "mindful_walking",
+        "journaling",
+        "social_connection",
+        "healthy_meal",
+        "creative_hobby",
+        "other"
+      ],
+      "description": "Type of activity"
+    },
+    "title": {
+      "type": "string",
+      "description": "Activity title"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Duration in minutes"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes about the activity"
+    },
+    "mood_before": {
+      "type": "string",
+      "enum": [
+        "very_low",
+        "low",
+        "neutral",
+        "good",
+        "excellent"
+      ],
+      "description": "Mood before the activity"
+    },
+    "mood_after": {
+      "type": "string",
+      "enum": [
+        "very_low",
+        "low",
+        "neutral",
+        "good",
+        "excellent"
+      ],
+      "description": "Mood after the activity"
+    },
+    "energy_level": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Energy level after activity (1-10)"
+    },
+    "logged_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the activity was logged"
+    },
+    "activity_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when activity occurred"
+    },
+    "family_member": {
+      "type": "string",
+      "description": "Family member associated with this activity"
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "activity_date"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "UserProgress",
+  "type": "object",
+  "properties": {
+    "points": {
+      "type": "number",
+      "default": 0
+    },
+    "level": {
+      "type": "number",
+      "default": 1
+    },
+    "total_tasks_completed": {
+      "type": "number",
+      "default": 0
+    },
+    "streak_days": {
+      "type": "number",
+      "default": 0
+    },
+    "last_activity_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "badges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
